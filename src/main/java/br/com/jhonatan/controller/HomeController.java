@@ -5,6 +5,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * 
+ * @author Jhonatan Rodrigues {jhonatan.rdgs@gmail.com}
+ * 
+ *
+ */
 @Controller
 public class HomeController {
 	
