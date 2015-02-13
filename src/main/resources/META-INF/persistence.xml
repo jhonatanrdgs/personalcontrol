@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="entityManager" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        
+        <validation-mode>NONE</validation-mode>
+        <properties>
+           <prop key="hibernate.hbm2ddl.auto">update</prop>
+           <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
