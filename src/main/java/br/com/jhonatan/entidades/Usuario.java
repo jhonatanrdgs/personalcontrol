@@ -23,7 +23,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(generator="usuario_seq", strategy=GenerationType.SEQUENCE)
 	private Long id;
 	
-	@Transient
+	@Column
 	private String oi;
 
 	public Long getId() {
