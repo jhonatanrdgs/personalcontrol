@@ -28,9 +28,9 @@ public class HomeController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	@Transactional
 	public String init(ModelMap map) {
-		Usuario u = new Usuario();
-		u.setOi("oi");
-		entityManager.persist(u);
+//		Usuario u = new Usuario();
+//		u.setOi("oi");
+//		entityManager.persist(u);
 		map.addAttribute("bemVindo", "Bem Vindo!");
 		return VIEW_INDEX;
 	}
