@@ -31,12 +31,10 @@
 		</property>
 	</bean>
 	
-	<bean id="postgresDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    	<property name="driverClassName" value="org.postgresql.Driver"/>
-    	 <property name="url" value="jdbc:postgresql://127.7.176.2:5432/personalcontrol"/>
-<!--     	<property name="url" value="jdbc:postgresql://localhost:5432/personalcontrol"/> -->
-    	<property name="username" value="adminxmajui1"/>
-    	<property name="password" value="UnSFGW6QNz28"/>
+	<bean id="postgresDS" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	 <property name="jndiName">
+        <value>java:comp/env/jdbc/PostgreSQLDS</value>
+    </property>
 	</bean>
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
