@@ -40,8 +40,8 @@ public class Usuario implements Serializable {
 	@Column(name = "ativo", nullable = false)
 	private boolean ativo;
 	
-	@Column(name = "permissao", nullable = false)
-	private Long permissao;
+	@Column(name = "permissao", nullable = false, length=20)
+	private String permissao;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	private Set<Despesa> despesas;
@@ -99,11 +99,11 @@ public class Usuario implements Serializable {
 		this.ativo = ativo;
 	}
 
-	public Long getPermissao() {
+	public String getPermissao() {
 		return permissao;
 	}
 
-	public void setPermissao(Long permissao) {
+	public void setPermissao(String permissao) {
 		this.permissao = permissao;
 	}
 

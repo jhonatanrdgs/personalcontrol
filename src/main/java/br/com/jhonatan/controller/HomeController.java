@@ -25,7 +25,7 @@ public class HomeController {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@RequestMapping(value="/", method = RequestMethod.GET)
+	@RequestMapping(value="/logged")
 	@Transactional
 	public String init(ModelMap map) {
 //		Usuario u = new Usuario();
