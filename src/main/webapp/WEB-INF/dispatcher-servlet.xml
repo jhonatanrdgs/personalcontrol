@@ -59,6 +59,15 @@
 	</bean>  
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<bean id="tilesConfigurer"
+        class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/tiles-definitions.xml</value>
+            </list>
+        </property>
+    </bean>
 
 	<sec:http auto-config="true" use-expressions="true">
 		<sec:intercept-url pattern="/logged**" access="hasRole('ROLE_ADMIN')" />
