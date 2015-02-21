@@ -89,8 +89,8 @@
 	<sec:authentication-manager>
 	  <sec:authentication-provider>
 		<sec:jdbc-user-service data-source-ref="postgresDS"
-		  users-by-username-query="select nome_usuario as username, senha as password, ativo as enabled from personal_control.usuario where  nome_usuario = ?"
-		  authorities-by-username-query="select nome_usuario as username, permissao as role from personal_control.usuario where nome_usuario = ?  " />
+		  users-by-username-query="select login as username, senha as password, ativo as enabled from personal_control.usuario where  login = ?"
+		  authorities-by-username-query="select login as username, permissao as role from personal_control.usuario where login = ?  " />
 	  </sec:authentication-provider>
 	</sec:authentication-manager>
 	
