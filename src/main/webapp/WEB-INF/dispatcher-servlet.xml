@@ -31,6 +31,7 @@
 		</property>
 	</bean>
 	
+	<!-- Database connection -->
 	<bean id="postgresDS" class="org.springframework.jndi.JndiObjectFactoryBean">
     	 <property name="jndiName">
         <value>java:comp/env/jdbc/PostgreSQLDS</value>
@@ -58,6 +59,7 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
+	<!-- Tiles -->
 	<bean id="tilesConfigurer"
         class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
@@ -67,6 +69,7 @@
         </property>
     </bean>
 
+	<!-- Security -->
 	<sec:http auto-config="true" use-expressions="true">
 		<sec:intercept-url pattern="/logged**" access="hasRole('ROLE_ADMIN')" />
  
