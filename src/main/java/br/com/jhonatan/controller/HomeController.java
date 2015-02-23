@@ -34,5 +34,5 @@ public class HomeController {
 		map.addAttribute("bemVindo", "Bem Vindo!");
 		return VIEW_INDEX;
 	}
-
+	
 }
