@@ -22,9 +22,6 @@ public class HomeController {
 	
 	private static final String VIEW_INDEX = "index";
 	
-	@PersistenceContext
-	private EntityManager entityManager;
-	
 	@RequestMapping(value="/logged")
 	@Transactional
 	public String init(ModelMap map) {

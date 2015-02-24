@@ -11,7 +11,7 @@
  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
-	<context:component-scan base-package="br.com.jhonatan.controller" />
+	<context:component-scan base-package="br.com.jhonatan" />
 	
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" id="handlerMapping">
         <property name="alwaysUseFullPath" value="true">
@@ -90,6 +90,7 @@
 	<!-- Select users and user_roles from database -->
 	<sec:authentication-manager>
 	  <sec:authentication-provider>
+	  	<sec:password-encoder hash="md5"/> 
 		<sec:jdbc-user-service data-source-ref="postgresDS"
 		  users-by-username-query="select login as username, senha as password, ativo as enabled from personal_control.usuario where  login = ?"
 		  authorities-by-username-query="select login as username, permissao as role from personal_control.usuario where login = ?  " />
