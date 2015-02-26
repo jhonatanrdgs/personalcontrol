@@ -5,14 +5,14 @@
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
 		<form:form class="form-horizontal" action="save" method="post" commandName="categoriaForm" id="formCategoria">
-
-			<div class="row container-center well">
+			<form:hidden  path="id" class="form-control"  />
+			<div class="row container-center_80 well">
 				<div class="col-lg-7 div-center">
 					<br/>
 					<div class="form-group">
-						<label class="col-md-1" for="nome">Nome:</label>
+						<label class="col-md-1 control-label" for="nome">Nome:</label>
 						<div class="col-md-8 input-icon">
-							<form:input type="text" path="descricao" class="form-control" />
+							<form:input type="text" path="descricao" class="form-control"  />
 						</div>
 					</div>
 					<input type="submit" value="Salvar" class="btn btn-primary"/>

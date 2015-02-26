@@ -1,5 +1,7 @@
 package br.com.jhonatan.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +23,9 @@ public class CategoriaServiceImpl implements CategoriaService {
 		}
 	}
 
+	@Override
+	public List<Categoria> pesquisarCategorias(String descricao) {
+		return categoriaDao.pesquisarCategorias(descricao);
+	}
+	
 }

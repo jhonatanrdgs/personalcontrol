@@ -9,15 +9,26 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+
+@NamedQueries({
+	
+	@NamedQuery(name=Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, 
+			query="from Categoria c where descricao like concat('%', ?1, '%') or ?1 is null")
+	
+})
 
 @Entity
 @Table(name = "categoria", schema = "personal_control")
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 4064100564382874653L;
+	public static final String CONSULTAR_CATEGORIAS_POR_DESCRICAO = "categoria.consultarCategoriasPorDescricao";
 
 	@Id
 	@GeneratedValue(generator="categoria_sequence", strategy=GenerationType.SEQUENCE)
