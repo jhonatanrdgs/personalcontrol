@@ -31,6 +31,7 @@ public class CategoriaController {
 		List<Categoria> categorias = categoriaService.pesquisarCategorias(categoria.getDescricao());
 		map.addAttribute("resultado", categorias);
 		//TODO paginação
+		//TODO mensagem se não achar nada
 		return "categoria/listCategoria"; 
 	}
 	
@@ -44,6 +45,7 @@ public class CategoriaController {
 	@RequestMapping(value="/categoria/save")
 	public String saveCategoria(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
 		categoriaService.salvarOuAtualizar(categoria);
+		//TODO mensagem de sucesso
 		return "categoria/listCategoria"; 
 	}
 	
