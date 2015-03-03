@@ -10,4 +10,6 @@ public interface CategoriaService {
 
 	public List<Categoria> pesquisarCategorias(String descricao);
 
+	public Categoria pesquisarPorId(Long id);
+
 }

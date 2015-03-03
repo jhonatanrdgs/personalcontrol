@@ -15,10 +15,10 @@
             <li class="divider"></li>
             <li><a href="#">Rendimentos</a></li>
             <li class="divider"></li>
-            <li><a href="#">Métodos de Pagamento</a></li>
+            <li><a href="<c:url value="/metodoPagamento/listMetodosPagamento" />">Métodos de Pagamento</a></li>
           </ul>
         </li>
-        <li class="active"><a href="#">Despesas<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="<c:url value="/despesa/listDespesas" />">Despesas<span class="sr-only">(current)</span></a></li>
         <li><a href="#">Despesas Carro</a></li>
         <li><a href="#">Relatórios</a></li>
         

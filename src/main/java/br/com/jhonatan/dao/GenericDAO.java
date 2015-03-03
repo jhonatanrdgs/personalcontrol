@@ -49,6 +49,10 @@ public class GenericDAO<T> implements Serializable {
 		}
 	}
 	
+	public T findById(Class<T> classe, Long id) {
+		return this.entityManager.find(classe, id);
+	}
+	
 	public EntityManager getEntityManager() {
 		return this.entityManager;
 	}

@@ -51,14 +51,12 @@ public class CategoriaController {
 	
 	@RequestMapping(value="/categoria/edit", method=RequestMethod.GET)
 	public String prepareEdit(@RequestParam("categoriaId") Long id, ModelMap map) {
-		//TODO jogar a variável correta para a tela e casas o o método new
-		Categoria categoriaForm = new Categoria();
-		categoriaForm.setId(1L);
-		categoriaForm.setDescricao("fumegante");
-		 map.addAttribute("categoriaForm", categoriaForm);//TODO buscar no banco para mandar para a tela. tbm preencher os parametros da tela
+		Categoria categoria = categoriaService.pesquisarPorId(id);
+		map.addAttribute("categoriaForm", categoria);
 		return "categoria/editCategoria";
 	}
 	
+	//TODO btn voltar
 	
 
 }

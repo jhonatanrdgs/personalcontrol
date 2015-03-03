@@ -27,5 +27,12 @@ public class CategoriaServiceImpl implements CategoriaService {
 	public List<Categoria> pesquisarCategorias(String descricao) {
 		return categoriaDao.pesquisarCategorias(descricao);
 	}
+
+	@Override
+	public Categoria pesquisarPorId(Long id) {
+		return categoriaDao.findById(Categoria.class, id);
+	}
+	
+	
 	
 }

@@ -12,4 +12,6 @@ public interface CategoriaDAO {
 
 	public List<Categoria> pesquisarCategorias(String descricao);
 
+	public Categoria findById(Class<Categoria> classe, Long id);
+
 }
