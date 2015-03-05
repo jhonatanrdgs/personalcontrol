@@ -10,7 +10,7 @@
 				<div class="col-lg-7 div-center">
 					<br/>
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Nome:</label>
+						<label class="col-md-1 control-label" for="descricao">Nome:</label>
 						<div class="col-md-8 input-icon">
 							<form:input type="text" path="descricao" class="form-control"  />
 						</div>

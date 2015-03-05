@@ -13,5 +13,7 @@ public interface MetodoPagamentoDAO {
 	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao);
 	
 	public MetodoPagamento findById(Class<MetodoPagamento> classe, Long id);
+
+	public List<MetodoPagamento> pesquisarTodosMetodosPagamento();
 	
 }

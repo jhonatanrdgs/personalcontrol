@@ -19,7 +19,9 @@ import javax.persistence.Table;
 @NamedQueries({
 	
 	@NamedQuery(name=Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, 
-			query="from Categoria c where descricao like concat('%', ?1, '%') or ?1 is null")
+			query="from Categoria c where descricao like concat('%', ?1, '%') or ?1 is null"),
+	
+	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS, query="from Categoria c")
 	
 })
 
@@ -29,6 +31,7 @@ public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 4064100564382874653L;
 	public static final String CONSULTAR_CATEGORIAS_POR_DESCRICAO = "categoria.consultarCategoriasPorDescricao";
+	public static final String CONSULTAR_TODAS_CATEGORIAS = "categoria.consultareTodasCategorias";
 
 	@Id
 	@GeneratedValue(generator="categoria_sequence", strategy=GenerationType.SEQUENCE)

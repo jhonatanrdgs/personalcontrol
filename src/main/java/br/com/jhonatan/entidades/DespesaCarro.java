@@ -20,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "despesa_carro", schema = "personal_control")
-public class DespesaCarro implements Serializable {
+public class DespesaCarro implements Serializable {//TODO isso com a despesa pode ser herança, fica melhor
 
 	private static final long serialVersionUID = 598761704442941495L;
 

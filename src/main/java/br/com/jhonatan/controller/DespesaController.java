@@ -32,11 +32,11 @@ public class DespesaController {
 
 	@RequestMapping(value="/despesa/listDespesas")
 	public String listDespesas(ModelMap map) {
-		//TODO preencher e colocar combos na tela
 		Despesa despesa = new Despesa();
 		despesa.setCategoria(new Categoria());
 		despesa.setMetodoPagamento(new MetodoPagamento());
 		map.addAttribute("despesaForm", despesa);
+		montarCombos(map);
 		return "despesa/listDespesa";
 	}
 	
@@ -44,16 +44,21 @@ public class DespesaController {
 	public String search(@ModelAttribute("despesaForm") Despesa despesa, ModelMap map) {
 		List<Despesa> despesas = despesaService.pesquisarDespesas
 				(despesa.getDescricao(), despesa.getCategoria().getId(),
-						despesa.getMetodoPagamento().getId(), new Date(), new Date());//TODO arrumar datas
+						despesa.getMetodoPagamento().getId(), new Date(), new Date());//TODO arrumar datas e possiveis null pointer nos getId
 		map.addAttribute("resultado", despesas);
 		return "despesa/listDespesa";
 	}
 	
 	@RequestMapping(value="/despesa/newDespesa")
 	public String newDespesa(ModelMap map) {
-		//TODO preencher e colocar combos na tela
+		//TODO numero da parcela deve sempre ser 1 aqui
+		//TODO totalParcelas só deve aparecer caso seja compra parcelada
+		//TODO questão do grupo
 		Despesa despesa = new Despesa();
+		despesa.setNumeroParcela(1);
+		despesa.setData(new Date());
 		map.addAttribute("despesaForm", despesa);
+		montarCombos(map);
 		return "despesa/editDespesa";
 	}
 	
@@ -66,12 +71,19 @@ public class DespesaController {
 	
 	@RequestMapping(value="/despesa/edit", method=RequestMethod.GET)
 	public String edit(@RequestParam("despesaId") Long id, ModelMap map) {
-		//TODO preencher e colocar combos na tela
 		Despesa despesa = despesaService.findById(id);
 		map.addAttribute("despesaForm", despesa);
+		montarCombos(map);
 		return "despesa/editDespesa";
 	}
 	
 	//TODO btn voltar
+	
+	private void montarCombos(ModelMap map) {
+		List<Categoria> categorias = categoriaService.pesquisarTodasCategorias();//TODO, colocar categorias ativas somente, refatorar
+		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarTodosMetodosPagamento();//TODO, colocar metodos de pagamento ativos somente, refatorar
+		map.addAttribute("categorias", categorias);
+		map.addAttribute("metodosPagamento", metodosPagamento);
+	}
 	
 }

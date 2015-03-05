@@ -22,7 +22,9 @@ import javax.persistence.Table;
 @NamedQueries({
 	
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO,
-			query="from MetodoPagamento mp where mp.descricao like concat('%', ?1, '%') or ?1 is null")
+			query="from MetodoPagamento mp where mp.descricao like concat('%', ?1, '%') or ?1 is null"),
+			
+	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO, query="from MetodoPagamento mp")
 })
 
 @Entity
@@ -32,6 +34,8 @@ public class MetodoPagamento implements Serializable {
 	private static final long serialVersionUID = 5099386082815919390L;
 
 	public static final String CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO = "metodoPagamento.consultarMetodosPagamentoPorDescricao";
+
+	public static final String CONSULTAR_TODOS_METODOS_PAGAMENTO = "metodoPagamento.consultarTodosMetodosPagamento";
 
 	@Id
 	@GeneratedValue(generator="metodo_pagamento_seq", strategy=GenerationType.SEQUENCE)

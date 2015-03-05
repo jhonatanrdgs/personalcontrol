@@ -73,6 +73,8 @@
 	<sec:http auto-config="true" use-expressions="true">
 		<sec:intercept-url pattern="/logged**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/categoria/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/metodoPagamento/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/despesa/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
  
 		<!-- access denied page -->
 		<sec:access-denied-handler error-page="/403" />

@@ -23,3 +23,6 @@ Postgres
 
 Boostrap
 http://getbootstrap.com/css/
+
+JQuery mask input
+https://github.com/igorescobar/jQuery-Mask-Plugin

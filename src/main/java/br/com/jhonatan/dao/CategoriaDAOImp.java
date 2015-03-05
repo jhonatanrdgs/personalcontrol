@@ -15,7 +15,11 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 	public List<Categoria> pesquisarCategorias(String descricao) {
 		return criarQueryResultList(Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, descricao);
 	}
-	
+
+	@Override
+	public List<Categoria> pesquisarTodasCategorias() {
+		return criarQueryResultList(Categoria.CONSULTAR_TODAS_CATEGORIAS);
+	}
 	
 	
 }

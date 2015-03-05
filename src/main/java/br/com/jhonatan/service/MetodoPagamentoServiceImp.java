@@ -34,4 +34,11 @@ public class MetodoPagamentoServiceImp implements MetodoPagamentoService {
 		return metodoPagamentoDao.findById(MetodoPagamento.class, id);
 	}
 
+	@Override
+	public List<MetodoPagamento> pesquisarTodosMetodosPagamento() {
+		return metodoPagamentoDao.pesquisarTodosMetodosPagamento();
+	}
+	
+	
+
 }

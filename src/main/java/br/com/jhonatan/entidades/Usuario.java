@@ -12,15 +12,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+@NamedQueries({
+	
+	@NamedQuery(name=Usuario.CONSULTAR_POR_LOGIN, 
+			query="from Usuario u where login = ?1")
+	
+})
 
 @Entity
 @Table(name = "usuario", schema = "personal_control")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 129310144023328222L;
+
+	public static final String CONSULTAR_POR_LOGIN = "usuario.consultarPorLogin";
 
 	@Id
 	@GeneratedValue(generator="usuario_seq", strategy=GenerationType.SEQUENCE)

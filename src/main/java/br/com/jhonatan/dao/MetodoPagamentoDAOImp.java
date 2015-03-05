@@ -16,5 +16,10 @@ public class MetodoPagamentoDAOImp extends GenericDAO<MetodoPagamento> implement
 		return criarQueryResultList(MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO, descricao);
 	}
 
+	@Override
+	public List<MetodoPagamento> pesquisarTodosMetodosPagamento() {
+		return criarQueryResultList(MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO);
+	}
+
 
 }
