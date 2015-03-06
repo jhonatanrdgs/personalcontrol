@@ -21,7 +21,8 @@
 					<div class="form-group">
 						<label class="col-md-1 control-label" for="nome">Categoria:</label>
 						<div class="col-md-8 input-icon">
-							<form:select path="categoria.id" class="form-control">
+							<form:select path="categoria.id" class="form-control" name="categoriaId">
+								<form:option value="" label="Selecione"/>
 								<form:options items="${categorias}" itemLabel="descricao" itemValue="id"/>
 							</form:select>
 						</div>
@@ -31,6 +32,7 @@
 						<label class="col-md-1 control-label" for="nome">Método de Pagamento:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="metodoPagamento.id" class="form-control" >
+								<form:option value="" label="Selecione"/>
 								<form:options items="${metodosPagamento}" itemLabel="descricao" itemValue="id"/>
 							</form:select>
 						</div>
@@ -47,13 +49,6 @@
 						<label class="col-md-1 control-label" for="nome">Valor Total:</label>
 						<div class="col-md-8 input-icon">
 							<form:input type="text" path="valorTotal"  class="form-control money"/>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Número da Parcela:</label>
-						<div class="col-md-8 input-icon">
-							<form:input type="text" path="numeroParcela" readonly="true" class="form-control"/>
 						</div>
 					</div>
 					

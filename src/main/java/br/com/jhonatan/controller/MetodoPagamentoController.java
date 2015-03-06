@@ -16,6 +16,8 @@ import br.com.jhonatan.service.MetodoPagamentoService;
 @Controller
 public class MetodoPagamentoController {
 	
+	//TODO colocar os return como constantes
+	
 	@Autowired
 	private MetodoPagamentoService metodoPagamentoService;
 

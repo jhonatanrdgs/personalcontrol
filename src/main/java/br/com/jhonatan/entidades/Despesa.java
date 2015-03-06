@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -84,22 +85,24 @@ public class Despesa implements Serializable {
 	@Column(name = "valor_total", nullable = false, precision = 10)
 	private Double valorTotal;
 	
-	@Column(name = "numero_parcela", nullable = false)
-	private Integer numeroParcela;
-	
-	@Column(name = "total_parcelas", nullable = false)
-	private Integer totalParcelas;
-	
 	@Column(name = "descricao", nullable = false, length = 100)
 	private String descricao;
+	
+	@Column(name="total_parcelas")
+	private Integer totalParcelas;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data", nullable = false, length = 13)
 	private Date data;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesa")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesa", cascade=CascadeType.ALL)
 	private Set<DespesaCarro> despesasCarro;
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL)
+	private Set<ParcelaDespesa> parcelas;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -157,22 +160,6 @@ public class Despesa implements Serializable {
 		this.valorTotal = valorTotal;
 	}
 
-	public Integer getNumeroParcela() {
-		return numeroParcela;
-	}
-
-	public void setNumeroParcela(Integer numeroParcela) {
-		this.numeroParcela = numeroParcela;
-	}
-
-	public Integer getTotalParcelas() {
-		return totalParcelas;
-	}
-
-	public void setTotalParcelas(Integer totalParcelas) {
-		this.totalParcelas = totalParcelas;
-	}
-
 	public String getDescricao() {
 		return descricao;
 	}
@@ -197,5 +184,21 @@ public class Despesa implements Serializable {
 		this.despesasCarro = despesasCarro;
 	}
 
+	public Integer getTotalParcelas() {
+		return totalParcelas;
+	}
+
+	public void setTotalParcelas(Integer totalParcelas) {
+		this.totalParcelas = totalParcelas;
+	}
+
+	public Set<ParcelaDespesa> getParcelas() {
+		return parcelas;
+	}
+
+	public void setParcelas(Set<ParcelaDespesa> parcelas) {
+		this.parcelas = parcelas;
+	}
+	
 
 }

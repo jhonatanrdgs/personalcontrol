@@ -16,6 +16,8 @@ import br.com.jhonatan.service.CategoriaService;
 @Controller
 public class CategoriaController {
 	
+	//TODO colocar os return como constantes
+	
 	@Autowired
 	private CategoriaService categoriaService;
 	

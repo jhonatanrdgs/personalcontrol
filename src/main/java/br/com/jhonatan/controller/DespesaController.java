@@ -22,12 +22,11 @@ import br.com.jhonatan.service.MetodoPagamentoService;
 @Controller
 public class DespesaController {
 	
-	//TODO selecione nas listas
-	//TODO form validation
+	private static final String LIST_PAGE = "despesa/listDespesa";
+	private static final String EDIT_PAGE = "despesa/editDespesa";
+	
+	//TODO ajuste do layout do form validation
 	//TODO na edição, não poder editar a quantidade de parcelas, caso contrário, terá que remover todas as parcelas e criar novamente
-	//TODO colocar valor da parcela na entidade (estou pensando em criar uma nova tabela para armazenar as parcelas, ficando com os valores:
-	// valorParcela, numeroParcela, data(sempre um mês depois da compra ou da parcela anterior) e idDespesa.. 
-	// ai na Despesa colocar somente a lista de Parcelas)
 	
 	@Autowired
 	private DespesaService despesaService;
@@ -42,16 +41,16 @@ public class DespesaController {
 	public String listDespesas(ModelMap map) {
 		montaDTO(map);
 		montarCombos(map);
-		return "despesa/listDespesa";
+		return LIST_PAGE;
 	}
 
 	@RequestMapping(value="/despesa/search")
 	public String search(@ModelAttribute("despesaForm") DespesaDTO despesaDTO, ModelMap map) {
-		List<Despesa> despesas = despesaService.pesquisarDespesas(despesaDTO);
+		List<Despesa> despesas = despesaService.pesquisarDespesas(despesaDTO);//TODO bug na busca sem datas, não está trazendo de todas se as datas estiverem null
 		map.addAttribute("resultado", despesas);
 		montarCombos(map);
 		montaDTO(map);
-		return "despesa/listDespesa";
+		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/despesa/newDespesa")
@@ -59,11 +58,10 @@ public class DespesaController {
 		//TODO totalParcelas só deve aparecer caso seja compra parcelada
 		//TODO questão do grupo
 		Despesa despesa = new Despesa();
-		despesa.setNumeroParcela(1);//Sempre é a primeira parcela se estou criando uma
 		despesa.setData(new Date());
 		map.addAttribute("despesaForm", despesa);
 		montarCombos(map);
-		return "despesa/editDespesa";
+		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/despesa/save")
@@ -71,7 +69,7 @@ public class DespesaController {
 		despesaService.salvarOuAtualizar(despesa);
 		//TODO mensagem de sucesso
 		montaDTO(map);
-		return "despesa/listDespesa";
+		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/despesa/edit", method=RequestMethod.GET)
@@ -79,7 +77,7 @@ public class DespesaController {
 		Despesa despesa = despesaService.findByIdFetched(id);
 		map.addAttribute("despesaForm", despesa);
 		montarCombos(map);
-		return "despesa/editDespesa";
+		return EDIT_PAGE;
 	}
 	
 	private void montaDTO(ModelMap map) {

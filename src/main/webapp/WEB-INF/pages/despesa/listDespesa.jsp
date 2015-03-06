@@ -21,6 +21,7 @@
 						<label class="col-md-1 control-label" for="nome">Categoria:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="categoriaId" class="form-control">
+								<form:option value="" label="Selecione"/>
 								<form:options items="${categorias}" itemLabel="descricao" itemValue="id"/>
 							</form:select>
 						</div>
@@ -30,6 +31,7 @@
 						<label class="col-md-1 control-label" for="nome">Método de Pagamento:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="metodoPagamentoId" class="form-control" >
+								<form:option value="" label="Selecione"/>
 								<form:options items="${metodosPagamento}" itemLabel="descricao" itemValue="id"/>
 							</form:select>
 						</div>
