@@ -1,6 +1,5 @@
 package br.com.jhonatan.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jhonatan.dao.DespesaDAO;
 import br.com.jhonatan.dao.UsuarioDAO;
+import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.Usuario;
 
@@ -34,16 +34,19 @@ public class DespesaServiceImp implements DespesaService {
 		}
 	}
 
-
 	@Override
-	public List<Despesa> pesquisarDespesas(String descricao, Long idCategoria,
-			Long idMetodoPagamento, Date inicio, Date fim) {
-		return despesaDAO.pesquisarDespesas(descricao, idCategoria, idMetodoPagamento, inicio, fim);
+	public List<Despesa> pesquisarDespesas(DespesaDTO despesaDTO) {
+		return despesaDAO.pesquisarDespesas(despesaDTO);
 	}
 
 	@Override
 	public Despesa findById(Long id) {
 		return despesaDAO.findById(Despesa.class, id);
+	}
+
+	@Override
+	public Despesa findByIdFetched(Long id) {
+		return despesaDAO.findByIdFetched(id);
 	}
 
 }

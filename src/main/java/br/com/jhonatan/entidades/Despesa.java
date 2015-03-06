@@ -29,12 +29,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NamedQueries({
 	
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA,
-			query="from Despesa d inner join d.categoria c"
-					+ " inner join d.metodoPagamento mp"
+			query="select d from Despesa d "
+					+ " join fetch d.categoria c"
+					+ " join fetch d.metodoPagamento mp"
 					+ " where (d.descricao like concat('%', ?1, '%') or ?1 is null)"
 					+ " and (c.id = ?2 or ?2 is null)"
 					+ " and (mp.id = ?3 or ?3 is null)"
-					+ " and (d.data between ?4 and ?5 or ?4 is null)")
+					+ " and (d.data between ?4 and ?5)"),
+					
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESA_POR_ID_FETCH, 
+		query="select d from Despesa d "
+				+ " join fetch d.categoria c"
+				+ " join fetch d.metodoPagamento mp"
+				+ " join fetch d.usuario u"
+				+ " where d.id = ?1")
 	
 })
 
@@ -45,6 +53,8 @@ public class Despesa implements Serializable {
 	private static final long serialVersionUID = 8987183170531571355L;
 
 	public static final String CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA = "despesa.consultarDespesasPorDescricaoCategoriaMetodoPgData";
+
+	public static final String CONSULTAR_DESPESA_POR_ID_FETCH = "despesa.consultarDespesaPorIdFetch";
 
 	@Id
 	@GeneratedValue(generator="despesa_seq", strategy=GenerationType.SEQUENCE)

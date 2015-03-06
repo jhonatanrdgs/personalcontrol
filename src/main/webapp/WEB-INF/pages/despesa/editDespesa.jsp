@@ -6,6 +6,7 @@
     <tiles:putAttribute name="body">
 		<form:form class="form-horizontal" action="save" method="post" commandName="despesaForm" id="formDespesa">
 			<form:hidden  path="id" class="form-control"  />
+			<form:hidden path="usuario.id" class="form-control" />
 			<div class="row container-center_80 well">
 			<h4>Cadastro de Despesas</h4>
 				<div class="col-lg-7 div-center">
@@ -70,7 +71,13 @@
 						</div>
 					</div>
 					
-					<input type="submit" value="Salvar" class="btn btn-primary"/>
+					<div class="form-group">
+						<div class="col-md-12" style="text-align:center">
+							<input type="submit" value="Salvar" class="btn btn-primary"/>
+							<a href="<c:url value="/despesa/listDespesas" />" class="btn btn-default">Voltar</a>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 			

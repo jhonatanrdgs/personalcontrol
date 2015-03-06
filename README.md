@@ -26,3 +26,6 @@ http://getbootstrap.com/css/
 
 JQuery mask input
 https://github.com/igorescobar/jQuery-Mask-Plugin
+
+Lazy Exception (Usei a opção de fetch, porque não gera o efeito N+1)
+http://uaihebert.com/four-solutions-to-the-lazyinitializationexception/
