@@ -6,19 +6,19 @@
     <tiles:putAttribute name="body">
     
 		<form:form class="form-horizontal" action="search" method="get" commandName="despesaForm">
-			<div class="row container-center_60 navbar-default">
+			<div class="row container-center_80 navbar-default">
 				<h4>Consulta de Despesas</h4>
 				<div class="col-lg-7 div-center">
 					<br/>
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Nome:</label>
+						<label class="col-md-2 control-label" for="nome">Nome:</label>
 						<div class="col-md-8">
 							<form:input type="text" path="descricao" class="form-control" id="nome"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Categoria:</label>
+						<label class="col-md-2 control-label" for="nome">Categoria:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="categoriaId" class="form-control">
 								<form:option value="" label="Selecione"/>
@@ -28,7 +28,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Método de Pagamento:</label>
+						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="metodoPagamentoId" class="form-control" >
 								<form:option value="" label="Selecione"/>
@@ -38,14 +38,14 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Início:</label>
+						<label class="col-md-2 control-label" for="nome">Início:</label>
 						<div class="col-md-8 input-icon">
 							<form:input type="text" path="inicio" class="form-control date" />
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Fim:</label>
+						<label class="col-md-2 control-label" for="nome">Fim:</label>
 						<div class="col-md-8 input-icon">
 							<form:input type="text" path="fim" class="form-control date" />
 						</div>

@@ -15,7 +15,11 @@
 							<form:input type="text" path="descricao" class="form-control"  />
 						</div>
 					</div>
-					<input type="submit" value="Salvar" class="btn btn-primary"/>
+					<div class="form-group">
+						<div class="col-md-12" style="text-align:center">
+							<input type="submit" value="Salvar" class="btn btn-primary"/>
+							<a href="<c:url value="/categoria/listCategoria" />" class="btn btn-default">Voltar</a>
+					</div>
 				</div>
 			</div>
 			

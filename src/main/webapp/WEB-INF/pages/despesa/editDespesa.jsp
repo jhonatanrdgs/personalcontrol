@@ -12,14 +12,14 @@
 				<div class="col-lg-7 div-center">
 					<br/>
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="descricao">Nome:</label>
+						<label class="col-md-2 control-label" for="descricao">Nome:</label>
 						<div class="col-md-8 input-icon">
-							<form:input type="text" path="descricao" class="form-control"  />
+							<form:input type="text" path="descricao" class="form-control" />
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Categoria:</label>
+						<label class="col-md-2 control-label" for="categoria.id">Categoria:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="categoria.id" class="form-control" name="categoriaId">
 								<form:option value="" label="Selecione"/>
@@ -29,7 +29,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Método de Pagamento:</label>
+						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="metodoPagamento.id" class="form-control" >
 								<form:option value="" label="Selecione"/>
@@ -39,28 +39,28 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Parcelada:</label>
+						<label class="col-md-2 control-label" for="parcelada">Parcelada:</label>
 						<div class="col-md-8 input-icon">
-							<form:checkbox path="parcelada"  class="form-control"/>
+							<form:checkbox path="parcelada" disabled="${despesaForm.id != null}" />
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Valor Total:</label>
+						<label class="col-md-2 control-label" for="nome">Valor Total:</label>
 						<div class="col-md-8 input-icon">
 							<form:input type="text" path="valorTotal"  class="form-control money"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Total de Parcelas:</label>
+						<label class="col-md-2 control-label" for="nome">Total de Parcelas:</label>
 						<div class="col-md-8 input-icon">
-							<form:input type="number" path="totalParcelas" class="form-control"/>
+							<form:input type="number" path="totalParcelas" class="form-control" readonly="${despesaForm.id != null}"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Data da despesa:</label>
+						<label class="col-md-2 control-label" for="nome">Data da despesa:</label>
 						<div class="col-md-8 input-icon">
 							<form:input type="text" path="data" class="form-control date" />
 						</div>

@@ -9,9 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -56,16 +53,6 @@ public class Usuario implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	private Set<Despesa> despesas;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuario_grupo", schema = "personal_control", 
-		joinColumns = { 
-			@JoinColumn(name = "id_usuario", nullable = false, updatable = false, columnDefinition="int") 
-		}, 
-		inverseJoinColumns = { 
-			@JoinColumn(name = "id_grupo", nullable = false, updatable = false, columnDefinition="int") 
-		})
-	private Set<Grupo> grupos;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	private Set<Rendimento> rendimentos;
@@ -124,14 +111,6 @@ public class Usuario implements Serializable {
 
 	public void setDespesas(Set<Despesa> despesas) {
 		this.despesas = despesas;
-	}
-
-	public Set<Grupo> getGrupos() {
-		return grupos;
-	}
-
-	public void setGrupos(Set<Grupo> grupos) {
-		this.grupos = grupos;
 	}
 
 	public Set<Rendimento> getRendimentos() {

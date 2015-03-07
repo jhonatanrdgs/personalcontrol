@@ -58,7 +58,4 @@ public class CategoriaController {
 		return "categoria/editCategoria";
 	}
 	
-	//TODO btn voltar
-	
-
 }

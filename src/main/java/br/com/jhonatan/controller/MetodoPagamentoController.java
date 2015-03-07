@@ -56,6 +56,4 @@ public class MetodoPagamentoController {
 		return "metodoPagamento/editMetodoPagamento";
 	}
 	
-	//TODO btn voltar
-	
 }

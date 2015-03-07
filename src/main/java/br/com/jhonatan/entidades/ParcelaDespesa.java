@@ -28,7 +28,7 @@ public class ParcelaDespesa implements Serializable {
 	@Column(name = "id_parcela_despesa", unique = true, nullable = false, columnDefinition="bigserial")
 	private Long id;
 	
-	@Column(name="valor_parcela", nullable=false)
+	@Column(name="valor_parcela", nullable=false, precision=10, scale=2, columnDefinition="Decimal(10,2)")
 	private Double valorParcela;
 	
 	@Column(name="numero_parcela", nullable=false)

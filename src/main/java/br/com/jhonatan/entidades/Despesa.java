@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -49,6 +51,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "despesa", schema = "personal_control")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Despesa implements Serializable {
 
 	private static final long serialVersionUID = 8987183170531571355L;
@@ -68,10 +71,6 @@ public class Despesa implements Serializable {
 	private Categoria categoria;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_grupo", columnDefinition="int")
-	private Grupo grupo;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_metodo_pagamento", nullable = false, columnDefinition="int")
 	private MetodoPagamento metodoPagamento;
 	
@@ -82,7 +81,7 @@ public class Despesa implements Serializable {
 	@Column(name = "parcelada", nullable = false)
 	private boolean parcelada;
 	
-	@Column(name = "valor_total", nullable = false, precision = 10)
+	@Column(name = "valor_total", nullable = false, precision=10, scale=2, columnDefinition="Decimal(10,2)")
 	private Double valorTotal;
 	
 	@Column(name = "descricao", nullable = false, length = 100)
@@ -95,9 +94,6 @@ public class Despesa implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data", nullable = false, length = 13)
 	private Date data;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesa", cascade=CascadeType.ALL)
-	private Set<DespesaCarro> despesasCarro;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL)
 	private Set<ParcelaDespesa> parcelas;
@@ -118,14 +114,6 @@ public class Despesa implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public Grupo getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
 	}
 
 	public MetodoPagamento getMetodoPagamento() {
@@ -174,14 +162,6 @@ public class Despesa implements Serializable {
 
 	public void setData(Date data) {
 		this.data = data;
-	}
-
-	public Set<DespesaCarro> getDespesasCarro() {
-		return despesasCarro;
-	}
-
-	public void setDespesasCarro(Set<DespesaCarro> despesasCarro) {
-		this.despesasCarro = despesasCarro;
 	}
 
 	public Integer getTotalParcelas() {

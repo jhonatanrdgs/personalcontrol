@@ -25,9 +25,6 @@ public class DespesaController {
 	private static final String LIST_PAGE = "despesa/listDespesa";
 	private static final String EDIT_PAGE = "despesa/editDespesa";
 	
-	//TODO ajuste do layout do form validation
-	//TODO na edição, não poder editar a quantidade de parcelas, caso contrário, terá que remover todas as parcelas e criar novamente
-	
 	@Autowired
 	private DespesaService despesaService;
 	
@@ -55,10 +52,10 @@ public class DespesaController {
 	
 	@RequestMapping(value="/despesa/newDespesa")
 	public String newDespesa(ModelMap map) {
-		//TODO totalParcelas só deve aparecer caso seja compra parcelada
 		//TODO questão do grupo
 		Despesa despesa = new Despesa();
 		despesa.setData(new Date());
+		despesa.setTotalParcelas(1);
 		map.addAttribute("despesaForm", despesa);
 		montarCombos(map);
 		return EDIT_PAGE;

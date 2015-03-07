@@ -1,18 +1,12 @@
 package br.com.jhonatan.entidades;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -20,41 +14,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "despesa_carro", schema = "personal_control")
-public class DespesaCarro implements Serializable {//TODO isso com a despesa pode ser herança, fica melhor
+@PrimaryKeyJoinColumn(name="id_despesa")  
+public class DespesaCarro extends Despesa {
 
 	private static final long serialVersionUID = 598761704442941495L;
 
-	@Id
-	@GeneratedValue(generator="despesa_carro_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="despesa_carro_seq", sequenceName="despesa_carro_id_despesa_carro_seq", schema="personal_control")
-	@Column(name = "id_despesa_carro", unique = true, nullable = false, columnDefinition="bigserial")
-	private Long id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_despesa", nullable = false, columnDefinition="int")
-	private Despesa despesa;
-	
 	@Column(name = "km", nullable = false, length = 6)
 	private String km;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesaCarro")
 	private Set<ItemDespesaCarro> itemDespesaCarros;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Despesa getDespesa() {
-		return despesa;
-	}
-
-	public void setDespesa(Despesa despesa) {
-		this.despesa = despesa;
-	}
 
 	public String getKm() {
 		return km;
