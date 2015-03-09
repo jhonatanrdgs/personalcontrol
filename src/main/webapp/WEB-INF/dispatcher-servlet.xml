@@ -1,102 +1,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- xmlns:mvc="http://www.springframework.org/schema/mvc"
- xmlns:context="http://www.springframework.org/schema/context"
- xmlns:tx="http://www.springframework.org/schema/tx"
- xmlns:sec="http://www.springframework.org/schema/security"
  xsi:schemaLocation="http://www.springframework.org/schema/beans
- http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
- http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
- http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
- http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
- http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+ http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
  
-	<context:component-scan base-package="br.com.jhonatan" />
+	<import resource="config/general.xml" />
 	
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" id="handlerMapping">
-        <property name="alwaysUseFullPath" value="true">
-		</property>
-	</bean>
+	<import resource="config/ds_config.xml" />
 	
-	<mvc:annotation-driven />
+	<import resource="config/tiles.xml" />
 	
-	<mvc:resources mapping="/resources/**" location="/resources/" />
- 	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
-	
-	<!-- Database connection -->
-	<bean id="postgresDS" class="org.springframework.jndi.JndiObjectFactoryBean">
-    	 <property name="jndiName">
-        <value>java:comp/env/jdbc/PostgreSQLDS</value>
-    </property>
-	</bean>
-	
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
- 		<property name="dataSource" ref="postgresDS" />
-  			<property name="jpaVendorAdapter">
-  				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-  		</property>
-  		<property name="jpaProperties">
-        	<props>
-            	<prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-            </props>
-        </property>
-	</bean>
-
-	<!-- gerenciamento da transação pelo spring -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory"/>
-	</bean>  
-
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<!-- Tiles -->
-	<bean id="tilesConfigurer"
-        class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles/tiles-definitions.xml</value>
-            </list>
-        </property>
-    </bean>
-
-	<!-- Security -->
-	<sec:http auto-config="true" use-expressions="true">
-		<sec:intercept-url pattern="/logged**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/categoria/**" access="hasRole('ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/metodoPagamento/**" access="hasRole('ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/despesa/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
- 
-		<!-- access denied page -->
-		<sec:access-denied-handler error-page="/403" />
- 
-		<sec:form-login login-page="/login" 
-		    default-target-url="/logged" 
-			authentication-failure-url="/login?error" 
-			username-parameter="username"
-			password-parameter="password" />
-		<sec:logout logout-success-url="/login?logout"  />
-		<!-- enable csrf protection -->
-		<sec:csrf/>
-	</sec:http>
- 
-	<!-- Select users and user_roles from database -->
-	<sec:authentication-manager>
-	  <sec:authentication-provider>
-	  	<sec:password-encoder hash="md5"/> 
-		<sec:jdbc-user-service data-source-ref="postgresDS"
-		  users-by-username-query="select login as username, senha as password, ativo as enabled from personal_control.usuario where  login = ?"
-		  authorities-by-username-query="select login as username, permissao as role from personal_control.usuario where login = ?  " />
-	  </sec:authentication-provider>
-	</sec:authentication-manager>
+	<import resource="config/security.xml" />
 	
 </beans>
