@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.service.MetodoPagamentoService;
+import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 public class MetodoPagamentoController {
@@ -33,6 +34,9 @@ public class MetodoPagamentoController {
 	public String search(@ModelAttribute("metodoPagamentoForm") MetodoPagamento metodoPagamento, ModelMap map) {
 		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarMetodosPagamento(metodoPagamento.getDescricao());
 		map.addAttribute("resultado", metodosPagamento);
+		if (metodosPagamento.isEmpty()) {
+			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
+		}
 		return LIST_PAGE; 
 	}
 	
@@ -46,7 +50,7 @@ public class MetodoPagamentoController {
 	@RequestMapping(value="/metodoPagamento/save")
 	public String save(@ModelAttribute("metodoPagamentoForm") MetodoPagamento metodoPagamento, ModelMap map) {
 		metodoPagamentoService.salvarOuAtualizar(metodoPagamento);
-		//TODO mensagem de sucesso
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE; 
 	}
 	

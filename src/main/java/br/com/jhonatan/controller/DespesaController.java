@@ -18,12 +18,12 @@ import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.service.CategoriaService;
 import br.com.jhonatan.service.DespesaService;
 import br.com.jhonatan.service.MetodoPagamentoService;
+import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 public class DespesaController {
 	
 	//TODO validação de campos obrigatórios do lado da controller ou service
-	//TODO controller genérica
 	//TODO layout das telas de consulta e cadastro
 	
 	private static final String LIST_PAGE = "despesa/listDespesa";
@@ -39,7 +39,7 @@ public class DespesaController {
 	private MetodoPagamentoService metodoPagamentoService;
 
 	@RequestMapping(value="/despesa/listDespesas")
-	public String listDespesas(ModelMap map) {
+	public String listar(ModelMap map) {
 		montaDTO(map);
 		montarCombos(map);
 		return LIST_PAGE;
@@ -50,7 +50,7 @@ public class DespesaController {
 		List<Despesa> despesas = despesaService.pesquisarDespesas(despesaDTO);
 		map.addAttribute("resultado", despesas);
 		if (despesas.isEmpty()) {
-			map.addAttribute("alerta", "Nenhum registro encontrado!");
+			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
 		}
 		montarCombos(map);
 		montaDTO(map);
@@ -72,7 +72,7 @@ public class DespesaController {
 	public String save(@ModelAttribute("despesaForm") Despesa despesa, ModelMap map) {
 		despesaService.salvarOuAtualizar(despesa);
 		montaDTO(map);
-		map.addAttribute("sucesso", "Registro inserido/Atualizado com sucesso!");
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE;
 	}
 	

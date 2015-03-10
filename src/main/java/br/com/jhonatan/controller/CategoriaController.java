@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.jhonatan.entidades.Categoria;
 import br.com.jhonatan.service.CategoriaService;
+import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 public class CategoriaController {
@@ -34,7 +35,9 @@ public class CategoriaController {
 		List<Categoria> categorias = categoriaService.pesquisarCategorias(categoria.getDescricao());
 		map.addAttribute("resultado", categorias);
 		//TODO paginação
-		//TODO mensagem se não achar nada
+		if (categorias.isEmpty()) {
+			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
+		}
 		return LIST_PAGE;
 	}
 	
@@ -48,7 +51,7 @@ public class CategoriaController {
 	@RequestMapping(value="/categoria/save")
 	public String saveCategoria(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
 		categoriaService.salvarOuAtualizar(categoria);
-		//TODO mensagem de sucesso
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE; 
 	}
 	
