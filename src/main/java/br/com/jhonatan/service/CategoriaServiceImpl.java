@@ -37,9 +37,14 @@ public class CategoriaServiceImpl implements CategoriaService {
 	public List<Categoria> pesquisarTodasCategoriasAtivas() {
 		return categoriaDao.pesquisarTodasCategoriasAtivas();
 	}
-	
-	
-	
+
+	public CategoriaDAO getCategoriaDao() {
+		return categoriaDao;
+	}
+
+	public void setCategoriaDao(CategoriaDAO categoriaDao) {
+		this.categoriaDao = categoriaDao;
+	}
 	
 	
 }

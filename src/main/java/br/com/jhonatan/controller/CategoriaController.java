@@ -59,4 +59,12 @@ public class CategoriaController {
 		return EDIT_PAGE;
 	}
 	
+	public CategoriaService getCategoriaService() {
+		return categoriaService;
+	}
+
+	public void setCategoriaService(CategoriaService categoriaService) {
+		this.categoriaService = categoriaService;
+	}
+	
 }
