@@ -12,13 +12,6 @@
 
 			<h3>Entre com seu usuário e senha</h3>
 
-			<c:if test="${not empty error}">
-				<p class="bg-danger">${error}</p>
-			</c:if>
-			<c:if test="${not empty msg}">
-				<p class="bg-success">${msg}</p>
-			</c:if>
-
 			<form name='loginForm' action="<c:url value='j_spring_security_check' />" method='POST' class="form-horizontal">
 
 				<div class="form-group">

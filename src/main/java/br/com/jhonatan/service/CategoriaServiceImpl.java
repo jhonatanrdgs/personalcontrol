@@ -34,8 +34,8 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
-	public List<Categoria> pesquisarTodasCategorias() {
-		return categoriaDao.pesquisarTodasCategorias();
+	public List<Categoria> pesquisarTodasCategoriasAtivas() {
+		return categoriaDao.pesquisarTodasCategoriasAtivas();
 	}
 	
 	

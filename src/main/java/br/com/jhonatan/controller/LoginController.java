@@ -15,11 +15,11 @@ public class LoginController {
  
 	  ModelAndView model = new ModelAndView();
 	  if (error != null) {
-		model.addObject("error", "Usuário e senha inválidos!");
+		model.addObject("erro", "Usuário e senha inválidos!");
 	  }
  
 	  if (logout != null) {
-		model.addObject("msg", "Deslogado com sucesso!");
+		model.addObject("sucesso", "Deslogado com sucesso!");
 	  }
 	  model.setViewName("login");
  

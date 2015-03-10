@@ -35,8 +35,8 @@ public class MetodoPagamentoServiceImp implements MetodoPagamentoService {
 	}
 
 	@Override
-	public List<MetodoPagamento> pesquisarTodosMetodosPagamento() {
-		return metodoPagamentoDao.pesquisarTodosMetodosPagamento();
+	public List<MetodoPagamento> pesquisarTodosMetodosPagamentoAtivos() {
+		return metodoPagamentoDao.pesquisarTodosMetodosPagamentoAtivos();
 	}
 	
 	

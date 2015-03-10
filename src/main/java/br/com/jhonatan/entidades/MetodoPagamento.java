@@ -24,7 +24,7 @@ import javax.persistence.Table;
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO,
 			query="from MetodoPagamento mp where mp.descricao like concat('%', ?1, '%') or ?1 is null"),
 			
-	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO, query="from MetodoPagamento mp")
+	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true")
 })
 
 @Entity
@@ -35,7 +35,11 @@ public class MetodoPagamento implements Serializable {
 
 	public static final String CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO = "metodoPagamento.consultarMetodosPagamentoPorDescricao";
 
-	public static final String CONSULTAR_TODOS_METODOS_PAGAMENTO = "metodoPagamento.consultarTodosMetodosPagamento";
+	public static final String CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS = "metodoPagamento.consultarTodosMetodosPagamentoAtivos";
+	
+	public MetodoPagamento() {
+		this.ativo = true;
+	}
 
 	@Id
 	@GeneratedValue(generator="metodo_pagamento_seq", strategy=GenerationType.SEQUENCE)
@@ -45,6 +49,9 @@ public class MetodoPagamento implements Serializable {
 	
 	@Column(name = "descricao", nullable = false, length = 100)
 	private String descricao;
+	
+	@Column(name="ativo", nullable = false)
+	private boolean ativo;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "metodoPagamento")
 	private Set<Despesa> despesas;
@@ -63,6 +70,14 @@ public class MetodoPagamento implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public Set<Despesa> getDespesas() {

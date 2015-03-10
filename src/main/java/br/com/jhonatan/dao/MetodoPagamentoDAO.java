@@ -14,6 +14,6 @@ public interface MetodoPagamentoDAO {
 	
 	public MetodoPagamento findById(Class<MetodoPagamento> classe, Long id);
 
-	public List<MetodoPagamento> pesquisarTodosMetodosPagamento();
+	public List<MetodoPagamento> pesquisarTodosMetodosPagamentoAtivos();
 	
 }

@@ -24,6 +24,23 @@
         	<sec:authorize access="isAuthenticated()">
             	<tiles:insertAttribute name="menu" />
             </sec:authorize>
+            
+            	<c:if test="${sucesso != null}">
+            		<div style="width: 50%; margin: 0 auto; text-align: center;">
+						<p class="bg-success" style="line-height:50px;">${sucesso}</p>
+					</div>
+				</c:if>
+				<c:if test="${alerta != null}">
+					<div style="width: 50%; margin: 0 auto; text-align: center;">
+						<p class="bg-warning" style="line-height:50px;">${alerta}</p>
+					</div>
+				</c:if>
+				<c:if test="${erro != null}">
+					<div style="width: 50%; margin: 0 auto; text-align: center;">
+						<p class="bg-danger" style="line-height:50px;">${erro}</p>
+					</div>
+				</c:if>
+            
             <tiles:insertAttribute name="body" />
         </div>
         <tiles:insertAttribute name="footer" />

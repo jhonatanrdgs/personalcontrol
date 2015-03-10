@@ -12,6 +12,6 @@ public interface CategoriaService {
 
 	public Categoria pesquisarPorId(Long id);
 
-	public List<Categoria> pesquisarTodasCategorias();
+	public List<Categoria> pesquisarTodasCategoriasAtivas();
 
 }

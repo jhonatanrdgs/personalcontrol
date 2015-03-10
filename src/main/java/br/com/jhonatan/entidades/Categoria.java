@@ -21,7 +21,7 @@ import javax.persistence.Table;
 	@NamedQuery(name=Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, 
 			query="from Categoria c where descricao like concat('%', ?1, '%') or ?1 is null"),
 	
-	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS, query="from Categoria c")
+	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true")
 	
 })
 
@@ -31,7 +31,11 @@ public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 4064100564382874653L;
 	public static final String CONSULTAR_CATEGORIAS_POR_DESCRICAO = "categoria.consultarCategoriasPorDescricao";
-	public static final String CONSULTAR_TODAS_CATEGORIAS = "categoria.consultareTodasCategorias";
+	public static final String CONSULTAR_TODAS_CATEGORIAS_ATIVAS = "categoria.consultarTodasCategoriasAtivas";
+	
+	public Categoria() {
+		this.ativo = true;
+	}
 
 	@Id
 	@GeneratedValue(generator="categoria_sequence", strategy=GenerationType.SEQUENCE)
@@ -41,6 +45,9 @@ public class Categoria implements Serializable {
 	
 	@Column(name = "descricao", nullable = false, length = 100)
 	private String descricao;
+	
+	@Column(name="ativo", nullable = false)
+	private boolean ativo;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
 	private Set<Despesa> despesas;
@@ -59,6 +66,14 @@ public class Categoria implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public Set<Despesa> getDespesas() {

@@ -15,7 +15,8 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	@Override
 	public List<Despesa> pesquisarDespesas(DespesaDTO despesaDTO) {
 		return criarQueryResultList(Despesa.CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA,
-				despesaDTO.getDescricao(), despesaDTO.getCategoriaId(), despesaDTO.getMetodoPagamentoId(), despesaDTO.getInicio(), despesaDTO.getFim());
+				despesaDTO.getDescricao(), despesaDTO.getCategoriaId(), despesaDTO.getMetodoPagamentoId(), 
+				despesaDTO.getInicioFormatado(), despesaDTO.getFimFormatado());
 	}
 	
 	public Despesa findByIdFetched(Long id) {

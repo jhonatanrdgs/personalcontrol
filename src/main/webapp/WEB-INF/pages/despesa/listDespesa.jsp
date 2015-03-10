@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
  
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
@@ -8,6 +9,7 @@
 		<form:form class="form-horizontal" action="search" method="get" commandName="despesaForm">
 			<div class="row container-center_80 navbar-default">
 				<h4>Consulta de Despesas</h4>
+				
 				<div class="col-lg-7 div-center">
 					<br/>
 					<div class="form-group">
@@ -64,12 +66,30 @@
 								<label>Descrição</label>
 							</th>
 							<th class="info">
+								<label>Categoria</label>
+							</th>
+							<th class="info">
+								<label>Método Pagamento</label>
+							</th>
+							<th class="info">
+								<label>Data</label>
+							</th>
+							<th class="info">
 								<label>Ações</label>
 							</th>
 							<c:forEach items="${resultado}" var="it">
 								<tr class="active">
-									<td width="80%">
+									<td width="20%">
 										<span>${it.descricao}</span>
+									</td>
+									<td width="20%">
+										<span>${it.categoria.descricao}</span>
+									</td>
+									<td width="20%">
+										<span>${it.metodoPagamento.descricao}</span>
+									</td>
+									<td width="20%">
+										<span><fmt:formatDate value="${it.data}" pattern="dd/MM/yyyy" /></span>
 									</td>
 									<td  style="text-align:center;width:20%">
 										<a href="<c:url value="/despesa/edit?despesaId=${it.id}" />" class="btn btn-success">Editar</a>

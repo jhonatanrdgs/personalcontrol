@@ -12,6 +12,6 @@ public interface MetodoPagamentoService {
 	
 	public MetodoPagamento findById(Long id);
 
-	public List<MetodoPagamento> pesquisarTodosMetodosPagamento();
+	public List<MetodoPagamento> pesquisarTodosMetodosPagamentoAtivos();
 
 }

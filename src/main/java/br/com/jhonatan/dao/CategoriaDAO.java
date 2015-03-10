@@ -14,6 +14,6 @@ public interface CategoriaDAO {
 
 	public Categoria findById(Class<Categoria> classe, Long id);
 
-	public List<Categoria> pesquisarTodasCategorias();
+	public List<Categoria> pesquisarTodasCategoriasAtivas();
 
 }

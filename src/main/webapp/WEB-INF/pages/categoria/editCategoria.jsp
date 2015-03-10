@@ -15,6 +15,14 @@
 							<form:input type="text" path="descricao" class="form-control"  />
 						</div>
 					</div>
+					
+					<div class="form-group">
+						<label class="col-md-1 control-label" for="descricao">Ativa:</label>
+						<div class="col-md-8 input-icon">
+							<form:checkbox path="ativo"  />
+						</div>
+					</div>
+					
 					<div class="form-group">
 						<div class="col-md-12" style="text-align:center">
 							<input type="submit" value="Salvar" class="btn btn-primary"/>

@@ -16,7 +16,8 @@ import br.com.jhonatan.service.CategoriaService;
 @Controller
 public class CategoriaController {
 	
-	//TODO colocar os return como constantes
+	private static final String LIST_PAGE = "categoria/listCategoria";
+	private static final String EDIT_PAGE = "categoria/editCategoria";
 	
 	@Autowired
 	private CategoriaService categoriaService;
@@ -25,7 +26,7 @@ public class CategoriaController {
 	public String listDespesas(ModelMap map) {
 		Categoria categoriaForm = new Categoria();    
 	    map.addAttribute("categoriaForm", categoriaForm);
-		return "categoria/listCategoria";
+		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/categoria/search")
@@ -34,28 +35,28 @@ public class CategoriaController {
 		map.addAttribute("resultado", categorias);
 		//TODO paginação
 		//TODO mensagem se não achar nada
-		return "categoria/listCategoria"; 
+		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/categoria/newCategoria")
 	public String newCategoria(ModelMap map) {
 		Categoria categoriaForm = new Categoria();    
 	    map.addAttribute("categoriaForm", categoriaForm);
-		return "categoria/editCategoria";
+		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/categoria/save")
 	public String saveCategoria(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
 		categoriaService.salvarOuAtualizar(categoria);
 		//TODO mensagem de sucesso
-		return "categoria/listCategoria"; 
+		return LIST_PAGE; 
 	}
 	
 	@RequestMapping(value="/categoria/edit", method=RequestMethod.GET)
 	public String prepareEdit(@RequestParam("categoriaId") Long id, ModelMap map) {
 		Categoria categoria = categoriaService.pesquisarPorId(id);
 		map.addAttribute("categoriaForm", categoria);
-		return "categoria/editCategoria";
+		return EDIT_PAGE;
 	}
 	
 }

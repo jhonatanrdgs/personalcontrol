@@ -16,7 +16,8 @@ import br.com.jhonatan.service.MetodoPagamentoService;
 @Controller
 public class MetodoPagamentoController {
 	
-	//TODO colocar os return como constantes
+	private static final String LIST_PAGE = "metodoPagamento/listMetodoPagamento";
+	private static final String EDIT_PAGE = "metodoPagamento/editMetodoPagamento";
 	
 	@Autowired
 	private MetodoPagamentoService metodoPagamentoService;
@@ -25,35 +26,35 @@ public class MetodoPagamentoController {
 	public String listMetodosPagamento(ModelMap map) {
 		MetodoPagamento metodoPg = new MetodoPagamento();
 		map.addAttribute("metodoPagamentoForm", metodoPg);
-		return "metodoPagamento/listMetodoPagamento";
+		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/metodoPagamento/search")
 	public String search(@ModelAttribute("metodoPagamentoForm") MetodoPagamento metodoPagamento, ModelMap map) {
 		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarMetodosPagamento(metodoPagamento.getDescricao());
 		map.addAttribute("resultado", metodosPagamento);
-		return "metodoPagamento/listMetodoPagamento"; 
+		return LIST_PAGE; 
 	}
 	
 	@RequestMapping(value="/metodoPagamento/newMetodoPagamento")
 	public String newMetodoPagamento(ModelMap map) {
 		MetodoPagamento metodoPg = new MetodoPagamento();
 		map.addAttribute("metodoPagamentoForm", metodoPg);
-		return "metodoPagamento/editMetodoPagamento";
+		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/metodoPagamento/save")
 	public String save(@ModelAttribute("metodoPagamentoForm") MetodoPagamento metodoPagamento, ModelMap map) {
 		metodoPagamentoService.salvarOuAtualizar(metodoPagamento);
 		//TODO mensagem de sucesso
-		return "metodoPagamento/listMetodoPagamento"; 
+		return LIST_PAGE; 
 	}
 	
 	@RequestMapping(value="/metodoPagamento/edit", method=RequestMethod.GET)
 	public String edit(@RequestParam("metodoPagamentoId") Long id, ModelMap map) {
 		MetodoPagamento metodoPg = metodoPagamentoService.findById(id);
 		map.addAttribute("metodoPagamentoForm", metodoPg);
-		return "metodoPagamento/editMetodoPagamento";
+		return EDIT_PAGE;
 	}
 	
 }

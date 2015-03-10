@@ -22,6 +22,10 @@ import br.com.jhonatan.service.MetodoPagamentoService;
 @Controller
 public class DespesaController {
 	
+	//TODO validação de campos obrigatórios do lado da controller ou service
+	//TODO controller genérica
+	//TODO layout das telas de consulta e cadastro
+	
 	private static final String LIST_PAGE = "despesa/listDespesa";
 	private static final String EDIT_PAGE = "despesa/editDespesa";
 	
@@ -43,8 +47,11 @@ public class DespesaController {
 
 	@RequestMapping(value="/despesa/search")
 	public String search(@ModelAttribute("despesaForm") DespesaDTO despesaDTO, ModelMap map) {
-		List<Despesa> despesas = despesaService.pesquisarDespesas(despesaDTO);//TODO bug na busca sem datas, não está trazendo de todas se as datas estiverem null
+		List<Despesa> despesas = despesaService.pesquisarDespesas(despesaDTO);
 		map.addAttribute("resultado", despesas);
+		if (despesas.isEmpty()) {
+			map.addAttribute("alerta", "Nenhum registro encontrado!");
+		}
 		montarCombos(map);
 		montaDTO(map);
 		return LIST_PAGE;
@@ -64,8 +71,8 @@ public class DespesaController {
 	@RequestMapping(value="/despesa/save")
 	public String save(@ModelAttribute("despesaForm") Despesa despesa, ModelMap map) {
 		despesaService.salvarOuAtualizar(despesa);
-		//TODO mensagem de sucesso
 		montaDTO(map);
+		map.addAttribute("sucesso", "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE;
 	}
 	
@@ -83,8 +90,8 @@ public class DespesaController {
 	}
 	
 	private void montarCombos(ModelMap map) {
-		List<Categoria> categorias = categoriaService.pesquisarTodasCategorias();//TODO, colocar categorias ativas somente, refatorar
-		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarTodosMetodosPagamento();//TODO, colocar metodos de pagamento ativos somente, refatorar
+		List<Categoria> categorias = categoriaService.pesquisarTodasCategoriasAtivas();
+		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarTodosMetodosPagamentoAtivos();
 		map.addAttribute("categorias", categorias);
 		map.addAttribute("metodosPagamento", metodosPagamento);
 	}
