@@ -1,8 +1,15 @@
 $(document).ready(function () {
+	var inicioSplit =  $("#inicio").val().split("/");
+	var dateInicio = new Date(inicioSplit[2], inicioSplit[1] - 1, inicioSplit[0]);
+	
+	var fimSplit =  $("#fim").val().split("/");
+	var dateFim = new Date(fimSplit[2], fimSplit[1] - 1, fimSplit[0]);
+	
 	$.ajax({
 		// have to use synchronous here, else the function 
 		// will return before the data is fetched
 		url: "graficoPizza",
+		data: {inicio: dateInicio, fim: dateFim },
 		dataType:"json",
 		success: function(data) {
 			montaGraficoPizza(data);

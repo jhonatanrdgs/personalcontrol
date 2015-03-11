@@ -33,6 +33,22 @@ public class GenericDAO<T> implements Serializable {
 			q.setParameter(i+1, params[i]);
 		}
 		return (List<T>)q.getResultList();
+	}
+	
+	/**
+	 * Usar com cuidado, pois está sem tipagem.
+	 * @param nQuery
+	 * @param params
+	 * @return
+	 */
+	//TODO ver se dá para refatorar
+	@SuppressWarnings("rawtypes")
+	public List criarQueryResultListSemTipagem(String nQuery, Object... params) {
+		Query q = entityManager.createNamedQuery(nQuery);
+		for (int i = 0; i < params.length; i++) {
+			q.setParameter(i+1, params[i]);
+		}
+		return q.getResultList();
 		
 	}
 	

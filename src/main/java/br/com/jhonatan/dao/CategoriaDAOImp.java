@@ -1,9 +1,11 @@
 package br.com.jhonatan.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.entidades.Categoria;
 
 @Repository
@@ -20,6 +22,15 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 	public List<Categoria> pesquisarTodasCategoriasAtivas() {
 		return criarQueryResultList(Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS);
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(Date inicio, Date fim) {
+		//TODO ver forma de listar compras parceladas
+		return criarQueryResultListSemTipagem(Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, inicio, fim);
+	}
+	
+	
 	
 	
 }

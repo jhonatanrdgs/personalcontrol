@@ -21,7 +21,14 @@ import javax.persistence.Table;
 	@NamedQuery(name=Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, 
 			query="from Categoria c where descricao like concat('%', ?1, '%') or ?1 is null"),
 	
-	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true")
+	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true"),
+	
+	@NamedQuery(name=Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, 
+		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(d.valorTotal)) from Categoria c"
+				+ " join c.despesas d"
+				+ " where d.data between ?1 and ?2 "
+				+ " and c.ativo = true"
+				+ " group by c.descricao")
 	
 })
 
@@ -32,6 +39,7 @@ public class Categoria implements Serializable {
 	private static final long serialVersionUID = 4064100564382874653L;
 	public static final String CONSULTAR_CATEGORIAS_POR_DESCRICAO = "categoria.consultarCategoriasPorDescricao";
 	public static final String CONSULTAR_TODAS_CATEGORIAS_ATIVAS = "categoria.consultarTodasCategoriasAtivas";
+	public static final String CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS = "categoria.consultarDespesasPorCategoria";
 	
 	public Categoria() {
 		this.ativo = true;

@@ -1,11 +1,13 @@
 package br.com.jhonatan.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jhonatan.dao.CategoriaDAO;
+import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.entidades.Categoria;
 
 @Service
@@ -36,6 +38,11 @@ public class CategoriaServiceImpl implements CategoriaService {
 	@Override
 	public List<Categoria> pesquisarTodasCategoriasAtivas() {
 		return categoriaDao.pesquisarTodasCategoriasAtivas();
+	}
+	
+	@Override
+	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(Date inicio, Date fim) {
+		return categoriaDao.pesquisarDespesasPorCategoriasAtivas(inicio, fim);
 	}
 
 	public CategoriaDAO getCategoriaDao() {
