@@ -33,5 +33,11 @@ public class RelatorioController {
 		resultado.add(c2);
 		return resultado;
 	}
+	
+	//TODO gastos por mês
+	//TODO gastos fixos
+	//TODO total gasto por mês (grafico de linha)
+	//TODO rendimentos x gastos
+	
 
 }
