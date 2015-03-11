@@ -10,10 +10,17 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js" />" > </script>
     <script src="<c:url value="/resources/js/jquery.mask.min.js" />" > </script>
-        <script src="<c:url value="/resources/js/maskmoney.min.js" />" > </script>
+    <script src="<c:url value="/resources/js/maskmoney.min.js" />" > </script>
     <script src="<c:url value="/resources/js/masks.js" />" > </script>
+    <script src="<c:url value="/resources/js/jquery.jqplot.min.js" />" > </script>
+    <script src="<c:url value="/resources/js/jqplot.barRenderer.min.js" />" > </script>
+    <script src="<c:url value="/resources/js/jqplot.categoryAxisRenderer.min.js" />" > </script>
+    <script src="<c:url value="/resources/js/jqplot.pointLabels.min.js" />" > </script>
+    
+    
     <link type="text/css" href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" />
     <link type="text/css" href="<c:url value="/resources/css/custom.css" />" rel="stylesheet" />
+    <link type="text/css" href="<c:url value="/resources/css/jquery.jqplot.min.css" />" rel="stylesheet" />
     
 </head>
 <body>

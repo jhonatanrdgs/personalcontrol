@@ -33,3 +33,6 @@ http://uaihebert.com/four-solutions-to-the-lazyinitializationexception/
 Métricas
 http://metrics.sourceforge.net/
 http://docs.sonarqube.org/display/SONAR/Installing+SonarQube+in+Eclipse
+
+Jquery Graphics
+http://www.jqplot.com/
