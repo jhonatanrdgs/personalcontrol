@@ -53,7 +53,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "despesa", schema = "personal_control")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Despesa implements Serializable {
-	//TODO despesa fixa
 
 	private static final long serialVersionUID = 8987183170531571355L;
 
@@ -95,6 +94,9 @@ public class Despesa implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data", nullable = false, length = 13)
 	private Date data;
+	
+	@Column(name="fixa", nullable=false)
+	private boolean fixa;//TODO se for fixa tem que aparecer nos relatórios... (fixa não gera parcela, então em relatorios é date(periodo) ou fixa)
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL)
 	private Set<ParcelaDespesa> parcelas;
@@ -180,6 +182,13 @@ public class Despesa implements Serializable {
 	public void setParcelas(Set<ParcelaDespesa> parcelas) {
 		this.parcelas = parcelas;
 	}
-	
 
+	public boolean isFixa() {
+		return fixa;
+	}
+
+	public void setFixa(boolean fixa) {
+		this.fixa = fixa;
+	}
+	
 }

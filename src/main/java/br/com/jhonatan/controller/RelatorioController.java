@@ -20,9 +20,6 @@ public class RelatorioController {
 	@Autowired
 	private CategoriaService categoriaService;
 	
-	//TODO colocar período
-	//TODO arrumar, pois o service está como impl e no dao está como imp
-	
 	@RequestMapping(value="/relatorios/iniciar")
 	public String init(ModelMap map) {
 		Date inicio = DateUtil.getPrimeiroDiaMes(new Date());

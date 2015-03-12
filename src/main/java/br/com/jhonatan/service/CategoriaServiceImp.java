@@ -11,7 +11,7 @@ import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.entidades.Categoria;
 
 @Service
-public class CategoriaServiceImpl implements CategoriaService {
+public class CategoriaServiceImp implements CategoriaService {
 	
 	@Autowired
 	private CategoriaDAO categoriaDao;
