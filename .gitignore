@@ -4,3 +4,4 @@
 .project
 .metadata
 .tern-project
+/test-output/
