@@ -53,6 +53,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "despesa", schema = "personal_control")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Despesa implements Serializable {
+	//TODO despesa fixa
 
 	private static final long serialVersionUID = 8987183170531571355L;
 
