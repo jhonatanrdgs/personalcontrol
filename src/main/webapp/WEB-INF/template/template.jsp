@@ -17,7 +17,6 @@
     <script src="<c:url value="/resources/js/jqplot.barRenderer.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jqplot.categoryAxisRenderer.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jqplot.pointLabels.min.js" />" > </script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script> 
     
     <script src="<c:url value="/resources/js/dateFormat.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jquery-dateFormat.min.js" />" > </script>
