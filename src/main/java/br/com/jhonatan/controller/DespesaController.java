@@ -1,11 +1,15 @@
 package br.com.jhonatan.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +41,7 @@ public class DespesaController {
 	
 	@Autowired
 	private MetodoPagamentoService metodoPagamentoService;
-
+	
 	@RequestMapping(value="/despesa/listDespesas")
 	public String listar(ModelMap map) {
 		montaDTO(map);
@@ -94,6 +98,12 @@ public class DespesaController {
 		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarTodosMetodosPagamentoAtivos();
 		map.addAttribute("categorias", categorias);
 		map.addAttribute("metodosPagamento", metodosPagamento);
+	}
+	
+	@InitBinder     
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		binder.registerCustomEditor(Date.class, null, new CustomDateEditor(dateFormat, true));
 	}
 	
 }

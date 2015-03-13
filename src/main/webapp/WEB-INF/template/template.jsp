@@ -8,6 +8,7 @@
     <title>Personal Control</title>
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="<c:url value="/resources/js/jquery-ui.min.js" />" > </script>
     <script src="<c:url value="/resources/js/bootstrap.js" />" > </script>
     <script src="<c:url value="/resources/js/jquery.mask.min.js" />" > </script>
     <script src="<c:url value="/resources/js/maskmoney.min.js" />" > </script>

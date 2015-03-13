@@ -1,5 +1,15 @@
 $(document).ready(function () {
 	
+	$.validator.methods.date = function(value, element) {
+		try {
+			$.datepicker.parseDate("dd/mm/yy", value);
+			return true;
+		}
+		catch(err) {
+		    return false;
+		}
+    };
+	
 	$('input[name=parcelada]').click(function() {
 		if (this.checked) {
 			$('#totalParcelas').attr('value','');
@@ -30,7 +40,8 @@ $(document).ready(function () {
 				required:true
 			},
 			data: {
-				required:true
+				required:true,
+				date: true
 			}
 
 		},
@@ -51,7 +62,8 @@ $(document).ready(function () {
 				required: "Total de parcelas &eacute; de preenchimento Obrigat&oacute;rio"
 			},
 			data: {
-				required:"Data &eacute; de preenchimento Obrigat&oacute;rio"
+				required:"Data &eacute; de preenchimento Obrigat&oacute;rio",
+				date: "Data inv&aacute;lida"
 			}
 		},
 		errorClass: "control-label",

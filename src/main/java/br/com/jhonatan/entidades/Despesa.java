@@ -91,12 +91,13 @@ public class Despesa implements Serializable {
 	private Integer totalParcelas;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data", nullable = false, length = 13)
 	private Date data;
 	
 	@Column(name="fixa", nullable=false)
 	private boolean fixa;//TODO se for fixa tem que aparecer nos relatórios... (fixa não gera parcela, então em relatorios é date(periodo) ou fixa)
+	//TODO se despesa fixa, tenho que ter um botão de inativar(ou excluir) a mesma na tela de consulta de despesas
+	//TODO Botão de excluir/inativar em todas as telas
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL)
 	private Set<ParcelaDespesa> parcelas;

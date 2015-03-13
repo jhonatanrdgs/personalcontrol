@@ -36,3 +36,6 @@ http://docs.sonarqube.org/display/SONAR/Installing+SonarQube+in+Eclipse
 
 Jquery Graphics
 http://www.jqplot.com/
+
+Jquery UI (somente parte de date picker)
+http://jqueryui.com/
