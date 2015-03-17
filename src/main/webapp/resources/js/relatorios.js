@@ -39,13 +39,23 @@ function montaGraficoPizza(data) {
 	        }
 		},
 		
+		axesDefaults: {
+	        tickRenderer: $.jqplot.CanvasAxisTickRenderer
+	        
+	    },
+		
 		rendererOptions: {
 			barMargin: 30
 		},
+		
 		axes:{
 			xaxis:{
 				renderer: $.jqplot.CategoryAxisRenderer,
-				ticks: categorias
+				ticks: categorias,
+				tickOptions: {
+			          angle: -40,
+			          fontFamily: 'Georgia'
+			        }
 			}
 		}
 	})
