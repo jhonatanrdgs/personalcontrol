@@ -23,6 +23,13 @@
 						<input type="text" value="${fimFormatada}" class="form-control date" id="fim" name="fim" />
 					</div>
 				</div>
+				<br />
+				<div class="form-group">
+					<div class="col-md-12" style="text-align:center">
+						<button id="reload" class="btn btn-primary">Atualizar</button>
+					</div>
+				</div>
+				
 				<br/>
 				<br/>
 			</div>

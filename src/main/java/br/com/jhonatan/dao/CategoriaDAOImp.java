@@ -26,7 +26,6 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(Date inicio, Date fim) {
-		//TODO ver forma de listar compras parceladas
 		return criarQueryResultListSemTipagem(Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, inicio, fim);
 	}
 	

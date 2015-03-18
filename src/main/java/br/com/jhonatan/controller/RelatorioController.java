@@ -34,7 +34,6 @@ public class RelatorioController {
 	public @ResponseBody List<RelatorioDespesaPorCategoriaDTO> montarDadosGraficoPizzaJson(
 			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
 		List<RelatorioDespesaPorCategoriaDTO> resultado = categoriaService.pesquisarDespesasPorCategoriasAtivas(inicio, fim);
-		//TODO nenhum dado encontrado, tem que ser na tela
 		return resultado;
 	}
 	

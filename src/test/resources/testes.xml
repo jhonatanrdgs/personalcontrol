@@ -26,7 +26,7 @@
 	<bean id="postgresDS"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="org.postgresql.Driver"
-		p:url="jdbc:postgresql://localhost:5432/personal_control" p:username="postgres"
+		p:url="jdbc:postgresql://localhost:5432/personalcontrol" p:username="postgres"
 		p:password="postgres" />
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

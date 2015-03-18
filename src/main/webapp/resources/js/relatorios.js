@@ -1,4 +1,15 @@
+var plot = null;
 $(document).ready(function () {
+	chamadaAjax();
+	
+	$("#reload").click(function() {
+		chamadaAjax();
+	})
+
+
+});
+
+function chamadaAjax() {
 	var inicioSplit =  $("#inicio").val().split("/");
 	var dateInicio = new Date(inicioSplit[2], inicioSplit[1] - 1, inicioSplit[0]);
 	
@@ -6,18 +17,23 @@ $(document).ready(function () {
 	var dateFim = new Date(fimSplit[2], fimSplit[1] - 1, fimSplit[0]);
 	
 	$.ajax({
-		// have to use synchronous here, else the function 
-		// will return before the data is fetched
+		//Precisa ser sincrono, senão ele tenta montar o gráfico com resultado vazio
 		url: "graficoPizza",
 		data: {inicio: dateInicio, fim: dateFim },
 		dataType:"json",
 		success: function(data) {
-			montaGraficoPizza(data);
+			if (data.length == 0 ) {
+				alert("Nenhum resultado encontrado para o per\u00edodo informado");
+				plot.destroy();
+			} else {
+				if (plot) {
+					plot.destroy();
+				}
+				montaGraficoPizza(data);
+			}
 		}
 	});
-
-
-});
+}
 
 
 function montaGraficoPizza(data) {
@@ -30,7 +46,7 @@ function montaGraficoPizza(data) {
 		categorias.push([data[i].categoria]);
 	} 
 
-	plot2 = $.jqplot('gastosPorCategoria',[valor],{
+	plot = $.jqplot('gastosPorCategoria',[valor],{
 		seriesDefaults:{
 			renderer:$.jqplot.BarRenderer,
 			pointLabels: { show: true, formatString: "R$ %'.2f"  },
