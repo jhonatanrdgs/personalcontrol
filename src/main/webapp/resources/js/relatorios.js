@@ -1,4 +1,6 @@
-var plot = null;
+var graficoPizza = null;
+var comprasParceladas = null;
+
 $(document).ready(function () {
 	chamadaAjax();
 	
@@ -24,10 +26,10 @@ function chamadaAjax() {
 		success: function(data) {
 			if (data.length == 0 ) {
 				alert("Nenhum resultado encontrado para o per\u00edodo informado");
-				plot.destroy();
+				graficoPizza.destroy();
 			} else {
-				if (plot) {
-					plot.destroy();
+				if (graficoPizza) {
+					graficoPizza.destroy();
 				}
 				montaGraficoPizza(data);
 			}
@@ -46,7 +48,7 @@ function montaGraficoPizza(data) {
 		categorias.push([data[i].categoria]);
 	} 
 
-	plot = $.jqplot('gastosPorCategoria',[valor],{
+	graficoPizza = $.jqplot('gastosPorCategoria',[valor],{
 		seriesDefaults:{
 			renderer:$.jqplot.BarRenderer,
 			pointLabels: { show: true, formatString: "R$ %'.2f"  },

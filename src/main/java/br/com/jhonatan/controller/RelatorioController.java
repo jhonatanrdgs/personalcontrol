@@ -10,15 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
-import br.com.jhonatan.service.CategoriaService;
+import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
+import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
+import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
+import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
+import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
+import br.com.jhonatan.service.RelatorioService;
 import br.com.jhonatan.util.DateUtil;
 
 @Controller
 public class RelatorioController {
 	
+	//TODO criar uma service por conjunto de negócio ou por menu
+	//TODO criar entidade genérica
+	
 	@Autowired
-	private CategoriaService categoriaService;
+	private RelatorioService relatorioService;
 	
 	@RequestMapping(value="/relatorios/iniciar")
 	public String init(ModelMap map) {
@@ -30,21 +39,56 @@ public class RelatorioController {
 		return "/relatorios/relatorios";
 	}
 	
+	//TODO colocar no inicio da tela
+	//- total gasto no mês
+	//- total de despesas fixas
+	//- total de despesas variáveis
+	//- relatórios
+	
 	@RequestMapping(value="/relatorios/graficoPizza", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioDespesaPorCategoriaDTO> montarDadosGraficoPizzaJson(
 			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
-		List<RelatorioDespesaPorCategoriaDTO> resultado = categoriaService.pesquisarDespesasPorCategoriasAtivas(inicio, fim);
-		return resultado;
+		return relatorioService.pesquisarDadosRelatorioDespesasPorCategoriasAtivas(inicio, fim);
 	}
 	
-	//TODO gastos por mês
-	//TODO relatorio de compras parceladas
-	//TODO gastos fixos
-	//TODO total gasto por mês (grafico de linha)
-	//TODO rendimentos x gastos
-	//TODO gastos por metodo de pagamento
+	//TODO relatorio de compras parceladas (tem filtro de data)
+	@RequestMapping(value="/relatorios/comprasParceladas", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioComprasParceladasDTO> montarDadosComprasParceladasJson(
+			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
+		return relatorioService.pesquisarDadosRelatorioComprasParceladas(inicio, fim);
+	}
 	
-	//TODO todos os relatórios, com exceção do gastos por mês devem ter filtro de datas, sendo que a data na hora de abrir a tela deve ser o mês atual
+	//TODO gastos por metodo de pagamento (tem filtro de data)
+	@RequestMapping(value="/relatorios/gastosPorMetodoPagamento", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioGastosPorMetodoPagamentoDTO> montarDadosGastosPorMetodoPagamentoJson(
+			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
+		return relatorioService.pesquisarDadosRelatorioGastosPorMetodoPagamento(inicio, fim);
+	}
 	
+	//TODO gastos variáveis (com filtro de data)
+	@RequestMapping(value="/relatorios/gastosVariaveis", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioGastosVariaveisDTO> montarDadosGastosVariaveisJson(
+			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
+		return relatorioService.pesquisarDadosRelatorioGastosVariaveis(inicio, fim);
+	}
+	
+	//TODO gastos fixos (sem filtro de data)
+	@RequestMapping(value="/relatorios/gastosFixos", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioGastosFixosDTO> montarDadosGastosFixosJson() {
+		return relatorioService.pesquisarDadosRelatorioGastosFixos();
+	}
+	
+	
+	//TODO gastos(total) por mês (sem filtro de data, gráfico de linha)
+	@RequestMapping(value="/relatorios/gastosPorMes", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioTotalGastosMensaisDTO> montarDadosGastosMensaisJson() {
+		return relatorioService.pesquisarDadosRelatorioGastosMensais();
+	}
+	
+	//TODO rendimentos x gastos (sem filtro de data, mostrar por uma quantidade de meses, padrão 12)
+	@RequestMapping(value="/relatorios/rendimentosGastos", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioRendimentoGastosDTO> montarDadosRendimentosGastosJson() {
+		return relatorioService.pesquisarDadosRelatorioRendimentosGastos();//TODO não foi criado na service ainda
+	}
 
 }

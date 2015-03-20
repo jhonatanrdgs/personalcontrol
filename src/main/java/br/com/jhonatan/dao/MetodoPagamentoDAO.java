@@ -1,7 +1,9 @@
 package br.com.jhonatan.dao;
 
+import java.util.Date;
 import java.util.List;
 
+import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.entidades.MetodoPagamento;
 
 public interface MetodoPagamentoDAO {
@@ -15,5 +17,7 @@ public interface MetodoPagamentoDAO {
 	public MetodoPagamento findById(Class<MetodoPagamento> classe, Long id);
 
 	public List<MetodoPagamento> pesquisarTodosMetodosPagamentoAtivos();
+
+	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(Date inicio, Date fim);
 	
 }

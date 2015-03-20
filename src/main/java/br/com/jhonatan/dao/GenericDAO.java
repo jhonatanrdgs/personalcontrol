@@ -65,6 +65,18 @@ public class GenericDAO<T> implements Serializable {
 		}
 	}
 	
+	public Double criarQuerySingleResultSomatorio(String nQuery, Object... params) {
+		Query q = entityManager.createNamedQuery(nQuery);
+		for (int i = 0; i < params.length; i++) {
+			q.setParameter(i+1, params[i]);
+		}
+		try {
+			return (Double)q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
 	public T findById(Class<T> classe, Long id) {
 		return this.entityManager.find(classe, id);
 	}

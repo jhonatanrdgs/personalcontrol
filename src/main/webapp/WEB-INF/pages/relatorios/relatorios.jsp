@@ -41,6 +41,11 @@
 			<div id="gastosPorCategoria" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
+		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+			<p class="bg-primary">Compras Parceladas</p>
+			<div id="comprasParceladas" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+		</div>
+		
 		<script src="<c:url value="/resources/js/relatorios.js" />"	type="text/javascript">
 			
 		</script>

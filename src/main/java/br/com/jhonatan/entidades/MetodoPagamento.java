@@ -24,7 +24,15 @@ import javax.persistence.Table;
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO,
 			query="from MetodoPagamento mp where mp.descricao like concat('%', ?1, '%') or ?1 is null"),
 			
-	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true")
+	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true"),
+	
+	@NamedQuery(name=MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO,
+			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.descricao, sum(p.valorParcela)) from MetodoPagamento mp"
+					+ " join mp.despesas d"
+					+ " join d.parcelas p"
+					+ " where mp.ativo = true"
+					+ " and p.dataParcela between ?1 and ?2 "
+					+ " group by mp.descricao")
 })
 
 @Entity
@@ -36,6 +44,8 @@ public class MetodoPagamento implements Serializable {
 	public static final String CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO = "metodoPagamento.consultarMetodosPagamentoPorDescricao";
 
 	public static final String CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS = "metodoPagamento.consultarTodosMetodosPagamentoAtivos";
+
+	public static final String CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO = "metodoPagamento.consultarDespesasPorMetodoPagamentoAtivo";
 	
 	public MetodoPagamento() {
 		this.ativo = true;
