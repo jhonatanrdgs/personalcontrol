@@ -46,6 +46,31 @@
 			<div id="comprasParceladas" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
+		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+			<p class="bg-primary">Gastos por método de pagamento</p>
+			<div id="gastosPorMetodoPagamento" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+		</div>
+		
+		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+			<p class="bg-primary">Gastos variáveis</p>
+			<div id="gastosVariaveis" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+		</div>
+		
+		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+			<p class="bg-primary">Gastos fixos</p>
+			<div id="gastosFixos" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+		</div>
+		
+		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+			<p class="bg-primary">Gastos por Mês</p>
+			<div id="gastosPorMes" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+		</div>
+		
+		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+			<p class="bg-primary">Rendimentos x Gastos</p>
+			<div id="rendimentosGastos" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+		</div>
+		
 		<script src="<c:url value="/resources/js/relatorios.js" />"	type="text/javascript">
 			
 		</script>

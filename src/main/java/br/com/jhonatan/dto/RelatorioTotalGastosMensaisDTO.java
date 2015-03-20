@@ -3,6 +3,8 @@ package br.com.jhonatan.dto;
 import java.io.Serializable;
 
 public class RelatorioTotalGastosMensaisDTO implements Serializable {
+	
+	//TODO ordenar esse relatorio por mes/ano
 
 	private static final long serialVersionUID = -5176624512076395580L;
 	
@@ -50,7 +52,7 @@ public class RelatorioTotalGastosMensaisDTO implements Serializable {
 	}
 	
 	public Double getValorTotal() {
-		return this.valorDespesasFixas + this.valorDespesasVariaveis;
+		return this.valorDespesasFixas != null ? this.valorDespesasFixas : 0D + this.valorDespesasVariaveis;
 	}
 
 }

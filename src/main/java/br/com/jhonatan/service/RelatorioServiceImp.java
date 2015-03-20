@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 import br.com.jhonatan.dao.CategoriaDAO;
 import br.com.jhonatan.dao.DespesaDAO;
 import br.com.jhonatan.dao.MetodoPagamentoDAO;
+import br.com.jhonatan.dao.RendimentoDAO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
-import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
-import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
+import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
+import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 
 @Service
 public class RelatorioServiceImp implements RelatorioService {
@@ -28,6 +29,9 @@ public class RelatorioServiceImp implements RelatorioService {
 	
 	@Autowired
 	private MetodoPagamentoDAO metodoPagamentoDAO;
+	
+	@Autowired
+	private RendimentoDAO rendimentoDAO;
 
 	@Override
 	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDadosRelatorioDespesasPorCategoriasAtivas(Date inicio, Date fim) {
@@ -56,7 +60,10 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioTotalGastosMensaisDTO> pesquisarDadosRelatorioGastosMensais() {
-		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes();
+		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda..
+				//a questão é se tiver dados somente em uma lista.
+		//TODO trazer ultimos 12 meses
+		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes();//TODO Fazer ordenação
 		for (RelatorioTotalGastosMensaisDTO dto : list) {
 			dto.setValorDespesasFixas(despesaDAO.pesquisarDespesasFixasMesAno(dto.getMes(), dto.getAno()));
 		}
@@ -65,8 +72,15 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioRendimentoGastosDTO> pesquisarDadosRelatorioRendimentosGastos() {
-		// TODO Auto-generated method stub
-		return null;
+		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda.. 
+				//a questão é se tiver dados somente em uma lista.
+		//TODO trazer ultimos 12 meses
+		List<RelatorioRendimentoGastosDTO> list = despesaDAO.pesquisarValorDespesasPorMesRelatorioRendimentos();//TODO fazer ordenação
+		for (RelatorioRendimentoGastosDTO dto : list) {
+			dto.setDespesas(dto.getDespesas() != null ? dto.getDespesas() : 0D + despesaDAO.pesquisarDespesasFixasMesAno(dto.getMes(), dto.getAno()));
+			dto.setRendimentos(rendimentoDAO.pesquisarRendimentosPorMes());
+		}
+		return list;
 	}
 	
 }

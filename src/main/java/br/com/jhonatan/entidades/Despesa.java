@@ -67,10 +67,18 @@ import javax.persistence.TemporalType;
 					+ " and EXTRACT(MONTH from data) = ?1 and EXTRACT(YEAR from data) = ?2"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO,
-			query="select sum(p.valorParcela) from Despesa d "
+			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(p.valorParcela)) from Despesa d "
 					+ " join d.parcelas p"
 					+ " where d.fixa = false"
-					+ " and d.data between ?1 and ?2")
+					+ " and d.data between ?1 and ?2"
+					+ " group by d.descricao"),
+					
+	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
+			query="select new br.com.jhonatan.dto.RelatorioRendimentoGastosDTO"
+					+ " (EXTRACT(MONTH FROM d.data) as mes, EXTRACT(YEAR FROM d.data) as ano, sum(p.valorParcela)) "
+					+ " from Despesa d"
+					+ " join d.parcelas p"
+					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui
 	
 })
 
@@ -94,6 +102,8 @@ public class Despesa implements Serializable {
 	public static final String CONSULTAR_DESPESAS_FIXAS_MES_ANO = "despesa.consultarDespesasFixasMesAno";
 
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarDespesasVariaveisPeriodo";
+
+	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentoss";
 
 	@Id
 	@GeneratedValue(generator="despesa_seq", strategy=GenerationType.SEQUENCE)

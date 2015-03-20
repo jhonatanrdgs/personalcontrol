@@ -9,6 +9,7 @@ import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
+import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.entidades.Despesa;
 
@@ -50,6 +51,12 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	@Override
 	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes() {
 		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos() {
+		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS);
 	}
 
 	@Override
