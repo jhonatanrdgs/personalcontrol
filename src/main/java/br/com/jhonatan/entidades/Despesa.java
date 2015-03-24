@@ -62,9 +62,8 @@ import javax.persistence.TemporalType;
 					+ " join d.parcelas p"
 					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui
 					
-	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_FIXAS_MES_ANO,
-			query="select sum(d.valorTotal) from Despesa d where d.fixa = true"
-					+ " and EXTRACT(MONTH from data) = ?1 and EXTRACT(YEAR from data) = ?2"),
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_FIXAS,
+			query="select sum(d.valorTotal) from Despesa d where d.fixa = true"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO,
 			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(p.valorParcela)) from Despesa d "
@@ -99,7 +98,7 @@ public class Despesa implements Serializable {
 
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES = "despesa.consultarValorTotalDespesasMes";
 
-	public static final String CONSULTAR_DESPESAS_FIXAS_MES_ANO = "despesa.consultarDespesasFixasMesAno";
+	public static final String CONSULTAR_DESPESAS_FIXAS = "despesa.consultarDespesasFixasMesAno";
 
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarDespesasVariaveisPeriodo";
 

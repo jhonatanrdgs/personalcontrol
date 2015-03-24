@@ -2,7 +2,7 @@ package br.com.jhonatan.dto;
 
 import java.io.Serializable;
 
-public class RelatorioRendimentoGastosDTO implements Serializable {
+public class RelatorioRendimentoGastosDTO implements Serializable, Comparable<RelatorioRendimentoGastosDTO> {
 	
 	private static final long serialVersionUID = 8764665624238789280L;
 	
@@ -48,5 +48,16 @@ public class RelatorioRendimentoGastosDTO implements Serializable {
 	public void setDespesas(Double despesas) {
 		this.despesas = despesas;
 	}
+
+	@Override
+	public int compareTo(RelatorioRendimentoGastosDTO o) {
+		if (this.ano == o.getAno()) {
+			return ((Integer)this.mes).compareTo(o.getMes());
+		} else {
+			return ((Integer)this.ano).compareTo(o.getAno());
+		}
+	}
+	
+	
 	
 }

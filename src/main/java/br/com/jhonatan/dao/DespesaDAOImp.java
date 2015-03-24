@@ -60,8 +60,8 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	}
 
 	@Override
-	public Double pesquisarDespesasFixasMesAno(int mes, int ano) {
-		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_FIXAS_MES_ANO, mes, ano);
+	public Double pesquisarSomatorioDespesasFixas() {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_FIXAS);
 	}
 	
 }

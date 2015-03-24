@@ -29,7 +29,7 @@ public interface DespesaDAO {
 
 	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes();
 
-	public Double pesquisarDespesasFixasMesAno(int mes, int ano);
+	public Double pesquisarSomatorioDespesasFixas();
 
 	public List<RelatorioGastosVariaveisDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
 

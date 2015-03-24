@@ -37,7 +37,7 @@
 		<br/>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Gastos por categoria</p>
+			<p class="bg-primary">Gastos (Variáveis) por categoria </p>
 			<div id="gastosPorCategoria" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
@@ -47,13 +47,13 @@
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Gastos por método de pagamento</p>
+			<p class="bg-primary">Gastos (Variáveis) por método de pagamento</p>
 			<div id="gastosPorMetodoPagamento" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
-		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+		<div class="form-group" style="width: 80%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Gastos variáveis</p>
-			<div id="gastosVariaveis" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+			<div id="gastosVariaveis" style="width: 80% height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
@@ -62,12 +62,12 @@
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Gastos por Mês</p>
+			<p class="bg-primary">Gastos por Mês (Fixos + Variáveis)</p>
 			<div id="gastosPorMes" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Rendimentos x Gastos</p>
+			<p class="bg-primary">Rendimentos x Gastos (Fixos + Variáveis)</p>
 			<div id="rendimentosGastos" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		

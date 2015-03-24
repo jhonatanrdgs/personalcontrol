@@ -2,10 +2,8 @@ package br.com.jhonatan.dto;
 
 import java.io.Serializable;
 
-public class RelatorioTotalGastosMensaisDTO implements Serializable {
+public class RelatorioTotalGastosMensaisDTO implements Serializable, Comparable<RelatorioTotalGastosMensaisDTO> {
 	
-	//TODO ordenar esse relatorio por mes/ano
-
 	private static final long serialVersionUID = -5176624512076395580L;
 	
 	private int mes;
@@ -52,7 +50,18 @@ public class RelatorioTotalGastosMensaisDTO implements Serializable {
 	}
 	
 	public Double getValorTotal() {
-		return this.valorDespesasFixas != null ? this.valorDespesasFixas : 0D + this.valorDespesasVariaveis;
+		return (this.valorDespesasFixas != null ? this.valorDespesasFixas : 0D) + this.valorDespesasVariaveis;
 	}
+
+	@Override
+	public int compareTo(RelatorioTotalGastosMensaisDTO o) {
+		if (this.ano == o.getAno()) {
+			return ((Integer)this.mes).compareTo(o.getMes());
+		} else {
+			return ((Integer)this.ano).compareTo(o.getAno());
+		}
+	}
+	
+	
 
 }

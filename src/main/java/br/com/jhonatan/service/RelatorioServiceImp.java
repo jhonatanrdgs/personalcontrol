@@ -1,5 +1,6 @@
 package br.com.jhonatan.service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -63,10 +64,11 @@ public class RelatorioServiceImp implements RelatorioService {
 		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda..
 				//a questão é se tiver dados somente em uma lista.
 		//TODO trazer ultimos 12 meses
-		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes();//TODO Fazer ordenação
+		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes();
 		for (RelatorioTotalGastosMensaisDTO dto : list) {
-			dto.setValorDespesasFixas(despesaDAO.pesquisarDespesasFixasMesAno(dto.getMes(), dto.getAno()));
+			dto.setValorDespesasFixas(despesaDAO.pesquisarSomatorioDespesasFixas());
 		}
+		Collections.sort(list);
 		return list;
 	}
 
@@ -75,11 +77,12 @@ public class RelatorioServiceImp implements RelatorioService {
 		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda.. 
 				//a questão é se tiver dados somente em uma lista.
 		//TODO trazer ultimos 12 meses
-		List<RelatorioRendimentoGastosDTO> list = despesaDAO.pesquisarValorDespesasPorMesRelatorioRendimentos();//TODO fazer ordenação
+		List<RelatorioRendimentoGastosDTO> list = despesaDAO.pesquisarValorDespesasPorMesRelatorioRendimentos();
 		for (RelatorioRendimentoGastosDTO dto : list) {
-			dto.setDespesas(dto.getDespesas() != null ? dto.getDespesas() : 0D + despesaDAO.pesquisarDespesasFixasMesAno(dto.getMes(), dto.getAno()));
+			dto.setDespesas(dto.getDespesas() != null ? dto.getDespesas() : 0D + despesaDAO.pesquisarSomatorioDespesasFixas());
 			dto.setRendimentos(rendimentoDAO.pesquisarRendimentosPorMes());
 		}
+		Collections.sort(list);
 		return list;
 	}
 	
