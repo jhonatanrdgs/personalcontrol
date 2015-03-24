@@ -18,6 +18,7 @@ import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
+import br.com.jhonatan.util.NumberUtil;
 
 @Service
 public class RelatorioServiceImp implements RelatorioService {
@@ -33,6 +34,15 @@ public class RelatorioServiceImp implements RelatorioService {
 	
 	@Autowired
 	private RendimentoDAO rendimentoDAO;
+	
+	@Override
+	public Double[] pesquisarResumo(Date inicio, Date fim) {
+		Double totalGastosVariaveisPeriodo = NumberUtil.normalizarDouble(despesaDAO.pesquisarTotalGastosVariaveisPeriodo(inicio, fim), 2);
+		Double totalGastosFixos = NumberUtil.normalizarDouble(despesaDAO.pesquisarSomatorioDespesasFixas(), 2);
+		Double totalGastos  = (totalGastosVariaveisPeriodo != null ? totalGastosVariaveisPeriodo : 0D) + (totalGastosFixos != null ? totalGastosFixos : 0D);
+		totalGastos = NumberUtil.normalizarDouble(totalGastos, 2);
+		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos};
+	}
 
 	@Override
 	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDadosRelatorioDespesasPorCategoriasAtivas(Date inicio, Date fim) {

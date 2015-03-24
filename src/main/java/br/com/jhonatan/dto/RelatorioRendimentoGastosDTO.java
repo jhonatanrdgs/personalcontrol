@@ -34,7 +34,7 @@ public class RelatorioRendimentoGastosDTO implements Serializable, Comparable<Re
 	}
 
 	public Double getRendimentos() {
-		return rendimentos;//TODO if null, retorna 0, olhar outros relatorios e tbm Service
+		return rendimentos;
 	}
 
 	public void setRendimentos(Double rendimentos) {

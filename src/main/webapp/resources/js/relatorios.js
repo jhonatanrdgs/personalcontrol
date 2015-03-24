@@ -15,6 +15,7 @@ $(document).ready(function () {
 	chamadaAjax("comprasParceladas", montraGraficoComprasParceladas);
 	chamadaAjax("gastosPorMetodoPagamento", montaGraficoGastosPorMetodoPagamento);
 	chamadaAjax("gastosVariaveis", montaGraficoGastosVariaveis);
+	chamadaAjax("resumo", montaResumo);
 	
 	chamadaAjaxSemData("gastosFixos", montaGraficoGastosFixos);
 	chamadaAjaxSemData("gastosPorMes", montaGraficoGastosPorMes);
@@ -414,4 +415,11 @@ function montaGraficoRendimentosGastos(data) {
 			}
 		}
 	})
+}
+
+function montaResumo(data) {
+	$("#totalGastosPeriodo").html(data[0]);
+	$("#totalGastosVariaveisPeriodo").html(data[1]);
+	$("#totalGastosFixos").html(data[2]);
+	
 }

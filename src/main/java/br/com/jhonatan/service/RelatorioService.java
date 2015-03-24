@@ -27,4 +27,6 @@ public interface RelatorioService {
 
 	List<RelatorioGastosVariaveisDTO> pesquisarDadosRelatorioGastosVariaveis(Date inicio, Date fim);
 
+	Double[] pesquisarResumo(Date inicio, Date fim);
+
 }

@@ -35,4 +35,6 @@ public interface DespesaDAO {
 
 	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos();
 
+	public Double pesquisarTotalGastosVariaveisPeriodo(Date inicio, Date fim);
+
 }

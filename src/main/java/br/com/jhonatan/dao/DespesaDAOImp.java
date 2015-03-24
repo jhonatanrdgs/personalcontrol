@@ -63,5 +63,16 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	public Double pesquisarSomatorioDespesasFixas() {
 		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_FIXAS);
 	}
+
+	@Override
+	public Double pesquisarTotalGastosVariaveisPeriodo(Date inicio, Date fim) {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM, inicio, fim);
+	}
+
+	
+	
+
+	
+	
 	
 }

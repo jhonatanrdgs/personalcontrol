@@ -40,11 +40,11 @@ public class RelatorioController {
 		return "/relatorios/relatorios";
 	}
 	
-	//TODO colocar no inicio da tela
-	//- total gasto no mês
-	//- total de despesas fixas
-	//- total de despesas variáveis
-	//- relatórios
+	@RequestMapping(value="/relatorios/resumo", headers="Accept=application/json")
+	public @ResponseBody Double[] montarResumoJson(@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
+		return relatorioService.pesquisarResumo(inicio, fim);
+	}
+	
 	
 	@RequestMapping(value="/relatorios/graficoPizza", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioDespesaPorCategoriaDTO> montarDadosGraficoPizzaJson(

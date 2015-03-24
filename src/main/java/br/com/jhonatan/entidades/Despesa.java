@@ -78,6 +78,12 @@ import javax.persistence.TemporalType;
 					+ " from Despesa d"
 					+ " join d.parcelas p"
 					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui
+					
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM,
+			query="select sum(pd.valorParcela) as valor from ParcelaDespesa pd "
+					+ " join pd.despesa d"
+					+ " where d.fixa = false"
+					+ " and d.data between ?1 and ?2")
 	
 })
 
@@ -103,6 +109,9 @@ public class Despesa implements Serializable {
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarDespesasVariaveisPeriodo";
 
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentoss";
+
+	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
+
 
 	@Id
 	@GeneratedValue(generator="despesa_seq", strategy=GenerationType.SEQUENCE)

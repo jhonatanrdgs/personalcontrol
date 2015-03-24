@@ -37,6 +37,24 @@
 		<br/>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+			<p class="bg-primary">Resumo</p>
+			<div id="resumo" style="width: 600px; position: relative;margin:auto;">
+				<div>
+					<label>Total de Gastos no Período:</label>
+					<span id="totalGastosPeriodo"></span>
+				</div>
+				<div>
+					<label>Total de Gastos Variáveis no Período:</label>
+					<span id="totalGastosVariaveisPeriodo"></span>
+				</div>
+				<div>
+					<label>Total de Gastos Fixos:</label>
+					<span id="totalGastosFixos"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Gastos (Variáveis) por categoria </p>
 			<div id="gastosPorCategoria" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
