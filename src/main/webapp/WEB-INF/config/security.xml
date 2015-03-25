@@ -13,6 +13,7 @@
 		<sec:intercept-url pattern="/despesa/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/relatorios/**" access="hasRole('ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/rendimento/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/despesaCarro/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
  
 		<!-- access denied page -->
 		<sec:access-denied-handler error-page="/403" />

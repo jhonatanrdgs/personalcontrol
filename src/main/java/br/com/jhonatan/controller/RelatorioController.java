@@ -24,6 +24,7 @@ import br.com.jhonatan.util.DateUtil;
 public class RelatorioController {
 	
 	//TODO mensagem de nenhum dado encontrado está aparecendo duplicada na tela, por causa das várias chamadas js
+	//TODO colocar o relatorio de despesa total (do mês atual) na home
 	
 	@Autowired
 	private RelatorioService relatorioService;
