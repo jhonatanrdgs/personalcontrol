@@ -18,6 +18,7 @@ import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
+import br.com.jhonatan.util.DateUtil;
 import br.com.jhonatan.util.NumberUtil;
 
 @Service
@@ -73,8 +74,11 @@ public class RelatorioServiceImp implements RelatorioService {
 	public List<RelatorioTotalGastosMensaisDTO> pesquisarDadosRelatorioGastosMensais() {
 		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda..
 				//a questão é se tiver dados somente em uma lista.
-		//TODO trazer ultimos 12 meses
-		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes();
+		
+		Date seisMesesAtras = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
+		Date seisMesesAFrente = DateUtil.getPrimeiroDiaMes(DateUtil.adicionarMeses(new Date(), 6));
+		
+		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes(seisMesesAtras, seisMesesAFrente);
 		for (RelatorioTotalGastosMensaisDTO dto : list) {
 			dto.setValorDespesasFixas(despesaDAO.pesquisarSomatorioDespesasFixas());
 		}
@@ -86,10 +90,17 @@ public class RelatorioServiceImp implements RelatorioService {
 	public List<RelatorioRendimentoGastosDTO> pesquisarDadosRelatorioRendimentosGastos() {
 		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda.. 
 				//a questão é se tiver dados somente em uma lista.
-		//TODO trazer ultimos 12 meses
-		List<RelatorioRendimentoGastosDTO> list = despesaDAO.pesquisarValorDespesasPorMesRelatorioRendimentos();
+		
+		Date seisMesesAtras = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
+		Date seisMesesAFrente = DateUtil.getPrimeiroDiaMes(DateUtil.adicionarMeses(new Date(), 6));
+		
+		List<RelatorioRendimentoGastosDTO> list = despesaDAO.pesquisarValorDespesasPorMesRelatorioRendimentos(seisMesesAtras, seisMesesAFrente);
+		Double totalDespesasFixas = despesaDAO.pesquisarSomatorioDespesasFixas();
+		if (totalDespesasFixas == null) {
+			totalDespesasFixas = 0D;
+		}
 		for (RelatorioRendimentoGastosDTO dto : list) {
-			dto.setDespesas(dto.getDespesas() != null ? dto.getDespesas() : 0D + despesaDAO.pesquisarSomatorioDespesasFixas());
+			dto.setDespesas(dto.getDespesas() != null ? dto.getDespesas() + totalDespesasFixas : 0D + totalDespesasFixas);
 			dto.setRendimentos(rendimentoDAO.pesquisarRendimentosPorMes());
 		}
 		Collections.sort(list);

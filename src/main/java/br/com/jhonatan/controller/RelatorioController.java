@@ -25,6 +25,8 @@ public class RelatorioController {
 	
 	//TODO mensagem de nenhum dado encontrado está aparecendo duplicada na tela, por causa das várias chamadas js
 	
+	//TODO revisar os dados de todos os relatórios a fim de saber se estão corretos.
+	
 	@Autowired
 	private RelatorioService relatorioService;
 	

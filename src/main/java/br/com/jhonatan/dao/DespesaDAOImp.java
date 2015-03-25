@@ -49,14 +49,14 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes() {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES);
+	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes(Date seisMesesAtras, Date seisMesesAFrente) {
+		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES, seisMesesAtras, seisMesesAFrente);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos() {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS);
+	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos(Date seisMesesAtras, Date seisMesesAFrente) {
+		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS, seisMesesAtras, seisMesesAFrente);
 	}
 
 	@Override
