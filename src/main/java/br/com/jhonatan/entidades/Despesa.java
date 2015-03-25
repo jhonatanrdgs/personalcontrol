@@ -57,7 +57,7 @@ import javax.persistence.TemporalType;
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES,
 			query="select new br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO"
-					+ " (EXTRACT(MONTH FROM d.data) as mes, EXTRACT(YEAR FROM d.data) as ano, sum(p.valorParcela)) "
+					+ " (EXTRACT(MONTH FROM p.dataParcela) as mes, EXTRACT(YEAR FROM p.dataParcela) as ano, sum(p.valorParcela)) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
 					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui

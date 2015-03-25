@@ -29,6 +29,7 @@ $(document).ready(function () {
 		chamadaAjax("gastosPorMetodoPagamento", montaGraficoGastosPorMetodoPagamento);
 		chamadaAjax("gastosVariaveis", montaGraficoGastosVariaveis);
 		chamadaAjax("gastosFixos", montaGraficoGastosFixos);
+		chamadaAjax("resumo", montaResumo);
 	})
 });
 
