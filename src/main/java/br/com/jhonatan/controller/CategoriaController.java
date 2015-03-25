@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.jhonatan.entidades.Categoria;
-import br.com.jhonatan.service.CategoriaService;
+import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
@@ -21,7 +21,7 @@ public class CategoriaController {
 	private static final String EDIT_PAGE = "categoria/editCategoria";
 	
 	@Autowired
-	private CategoriaService categoriaService;
+	private CadastrosGeraisService cadastrosGeraisService;
 	
 	@RequestMapping(value="/categoria/listCategoria")
 	public String listDespesas(ModelMap map) {
@@ -32,7 +32,7 @@ public class CategoriaController {
 	
 	@RequestMapping(value="/categoria/search")
 	public String search(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
-		List<Categoria> categorias = categoriaService.pesquisarCategorias(categoria.getDescricao());
+		List<Categoria> categorias = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao());
 		map.addAttribute("resultado", categorias);
 		//TODO paginação
 		if (categorias.isEmpty()) {
@@ -50,24 +50,16 @@ public class CategoriaController {
 	
 	@RequestMapping(value="/categoria/save")
 	public String saveCategoria(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
-		categoriaService.salvarOuAtualizar(categoria);
+		cadastrosGeraisService.salvarOuAtualizarCategoria(categoria);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE; 
 	}
 	
 	@RequestMapping(value="/categoria/edit", method=RequestMethod.GET)
 	public String prepareEdit(@RequestParam("categoriaId") Long id, ModelMap map) {
-		Categoria categoria = categoriaService.pesquisarPorId(id);
+		Categoria categoria = cadastrosGeraisService.pesquisarPorId(id);
 		map.addAttribute("categoriaForm", categoria);
 		return EDIT_PAGE;
-	}
-	
-	public CategoriaService getCategoriaService() {
-		return categoriaService;
-	}
-
-	public void setCategoriaService(CategoriaService categoriaService) {
-		this.categoriaService = categoriaService;
 	}
 	
 }

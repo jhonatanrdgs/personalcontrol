@@ -19,9 +19,8 @@ import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.Categoria;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.MetodoPagamento;
-import br.com.jhonatan.service.CategoriaService;
+import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.service.DespesaService;
-import br.com.jhonatan.service.MetodoPagamentoService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
@@ -37,10 +36,7 @@ public class DespesaController {
 	private DespesaService despesaService;
 	
 	@Autowired
-	private CategoriaService categoriaService;
-	
-	@Autowired
-	private MetodoPagamentoService metodoPagamentoService;
+	private CadastrosGeraisService cadastrosGeraisService;
 	
 	@RequestMapping(value="/despesa/listDespesas")
 	public String listar(ModelMap map) {
@@ -94,8 +90,8 @@ public class DespesaController {
 	}
 	
 	private void montarCombos(ModelMap map) {
-		List<Categoria> categorias = categoriaService.pesquisarTodasCategoriasAtivas();
-		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarTodosMetodosPagamentoAtivos();
+		List<Categoria> categorias = cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
+		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
 		map.addAttribute("categorias", categorias);
 		map.addAttribute("metodosPagamento", metodosPagamento);
 	}

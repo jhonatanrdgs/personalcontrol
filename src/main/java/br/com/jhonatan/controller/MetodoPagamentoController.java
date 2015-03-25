@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.jhonatan.entidades.MetodoPagamento;
-import br.com.jhonatan.service.MetodoPagamentoService;
+import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
@@ -21,7 +21,7 @@ public class MetodoPagamentoController {
 	private static final String EDIT_PAGE = "metodoPagamento/editMetodoPagamento";
 	
 	@Autowired
-	private MetodoPagamentoService metodoPagamentoService;
+	private CadastrosGeraisService cadastrosGeraisService;
 
 	@RequestMapping(value="/metodoPagamento/listMetodosPagamento")
 	public String listMetodosPagamento(ModelMap map) {
@@ -32,7 +32,7 @@ public class MetodoPagamentoController {
 	
 	@RequestMapping(value="/metodoPagamento/search")
 	public String search(@ModelAttribute("metodoPagamentoForm") MetodoPagamento metodoPagamento, ModelMap map) {
-		List<MetodoPagamento> metodosPagamento = metodoPagamentoService.pesquisarMetodosPagamento(metodoPagamento.getDescricao());
+		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarMetodosPagamento(metodoPagamento.getDescricao());
 		map.addAttribute("resultado", metodosPagamento);
 		if (metodosPagamento.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
@@ -49,14 +49,14 @@ public class MetodoPagamentoController {
 	
 	@RequestMapping(value="/metodoPagamento/save")
 	public String save(@ModelAttribute("metodoPagamentoForm") MetodoPagamento metodoPagamento, ModelMap map) {
-		metodoPagamentoService.salvarOuAtualizar(metodoPagamento);
+		cadastrosGeraisService.salvarOuAtualizarMetodoPagamento(metodoPagamento);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE; 
 	}
 	
 	@RequestMapping(value="/metodoPagamento/edit", method=RequestMethod.GET)
 	public String edit(@RequestParam("metodoPagamentoId") Long id, ModelMap map) {
-		MetodoPagamento metodoPg = metodoPagamentoService.findById(id);
+		MetodoPagamento metodoPg = cadastrosGeraisService.findById(id);
 		map.addAttribute("metodoPagamentoForm", metodoPg);
 		return EDIT_PAGE;
 	}

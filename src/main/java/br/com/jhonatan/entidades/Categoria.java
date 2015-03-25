@@ -35,7 +35,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categoria", schema = "personal_control")
-public class Categoria implements Serializable {
+public class Categoria extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 4064100564382874653L;
 	public static final String CONSULTAR_CATEGORIAS_POR_DESCRICAO = "categoria.consultarCategoriasPorDescricao";

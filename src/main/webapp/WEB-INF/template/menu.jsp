@@ -9,11 +9,11 @@
       <ul class="nav navbar-nav">
       	<li><a href="#">Página Inicial</a></li>
      	<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Geral<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastros Gerais<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="<c:url value="/categoria/listCategoria" />">Categorias</a></li>
             <li class="divider"></li>
-            <li><a href="#">Rendimentos</a></li>
+            <li><a href="<c:url value="/rendimento/listRendimento" />">Rendimentos</a></li>
             <li class="divider"></li>
             <li><a href="<c:url value="/metodoPagamento/listMetodosPagamento" />">Métodos de Pagamento</a></li>
           </ul>

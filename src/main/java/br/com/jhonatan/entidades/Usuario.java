@@ -24,7 +24,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario", schema = "personal_control")
-public class Usuario implements Serializable {
+public class Usuario extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 129310144023328222L;
 
@@ -54,9 +54,6 @@ public class Usuario implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	private Set<Despesa> despesas;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	private Set<Rendimento> rendimentos;
-
 	public Long getId() {
 		return id;
 	}
@@ -111,14 +108,6 @@ public class Usuario implements Serializable {
 
 	public void setDespesas(Set<Despesa> despesas) {
 		this.despesas = despesas;
-	}
-
-	public Set<Rendimento> getRendimentos() {
-		return rendimentos;
-	}
-
-	public void setRendimentos(Set<Rendimento> rendimentos) {
-		this.rendimentos = rendimentos;
 	}
 
 }

@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -22,17 +19,22 @@ import javax.persistence.Table;
 @NamedQueries({
 	
 	@NamedQuery(name=Rendimento.CONSULTAR_RENDIMENTOS, 
-			query="select sum(r.valor) from Rendimento r")
+			query="select sum(r.valor) from Rendimento r"),
+			
+	@NamedQuery(name=Rendimento.CONSULTAR_RENDIMENTOS_POR_PESSOA,
+			query="select r from Rendimento r where r.nomePessoa like concat('%', ?1, '%') or ?1 is null")
 	
 })
 
 @Entity
 @Table(name = "rendimento", schema = "personal_control")
-public class Rendimento implements Serializable {
+public class Rendimento extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -3336005467530312440L;
 
 	public static final String CONSULTAR_RENDIMENTOS = "rendimento.consultarRendimentos";
+
+	public static final String CONSULTAR_RENDIMENTOS_POR_PESSOA = "rendimento.consultarRendimentoPorPessoa";
 
 	@Id
 	@GeneratedValue(generator="rendimento_seq", strategy=GenerationType.SEQUENCE)
@@ -40,9 +42,8 @@ public class Rendimento implements Serializable {
 	@Column(name = "id_rendimento", unique = true, nullable = false, columnDefinition="bigserial")
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_usuario", columnDefinition="int")
-	private Usuario usuario;
+	@Column(name="nome_pessoa")
+	private String nomePessoa;
 	
 	@Column(name = "valor", precision = 10)
 	private Double valor;
@@ -55,12 +56,12 @@ public class Rendimento implements Serializable {
 		this.id = id;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public String getNomePessoa() {
+		return nomePessoa;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setNomePessoa(String nomePessoa) {
+		this.nomePessoa = nomePessoa;
 	}
 
 	public Double getValor() {

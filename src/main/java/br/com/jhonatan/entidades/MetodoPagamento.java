@@ -37,7 +37,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "metodo_pagamento", schema = "personal_control")
-public class MetodoPagamento implements Serializable {
+public class MetodoPagamento extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 5099386082815919390L;
 

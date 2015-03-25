@@ -23,8 +23,6 @@ import br.com.jhonatan.util.DateUtil;
 @Controller
 public class RelatorioController {
 	
-	//TODO criar uma service por conjunto de negócio ou por menu
-	//TODO criar entidade genérica
 	//TODO mensagem de nenhum dado encontrado está aparecendo duplicada na tela, por causa das várias chamadas js
 	
 	@Autowired

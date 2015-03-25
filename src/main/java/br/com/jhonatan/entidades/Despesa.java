@@ -90,7 +90,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "despesa", schema = "personal_control")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Despesa implements Serializable {
+public class Despesa extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 8987183170531571355L;
 
