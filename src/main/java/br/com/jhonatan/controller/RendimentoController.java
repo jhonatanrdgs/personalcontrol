@@ -24,7 +24,7 @@ public class RendimentoController {
 	private CadastrosGeraisService cadastrosGeraisService;
 	
 	@RequestMapping(value="/rendimento/listRendimento")
-	public String listMetodosPagamento(ModelMap map) {
+	public String listRendimento(ModelMap map) {
 		Rendimento rendimento = new Rendimento();
 		map.addAttribute("rendimentoForm", rendimento);
 		return LIST_PAGE;
@@ -41,7 +41,7 @@ public class RendimentoController {
 	}
 	
 	@RequestMapping(value="/rendimento/newRendimento")
-	public String newMetodoPagamento(ModelMap map) {
+	public String newRendimento(ModelMap map) {
 		Rendimento rendimento = new Rendimento();
 		map.addAttribute("rendimentoForm", rendimento);
 		return EDIT_PAGE;
