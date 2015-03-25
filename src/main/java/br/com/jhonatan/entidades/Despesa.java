@@ -69,7 +69,7 @@ import javax.persistence.TemporalType;
 			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(p.valorParcela)) from Despesa d "
 					+ " join d.parcelas p"
 					+ " where d.fixa = false"
-					+ " and d.data between ?1 and ?2"
+					+ " and p.dataParcela between ?1 and ?2"
 					+ " group by d.descricao"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
