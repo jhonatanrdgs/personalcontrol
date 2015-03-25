@@ -29,6 +29,7 @@ import javax.persistence.Table;
 				+ " join d.parcelas p "
 				+ " where p.dataParcela between ?1 and ?2 "
 				+ " and c.ativo = true"
+				+ " and d.fixa = false"
 				+ " group by c.descricao")
 	
 })

@@ -57,9 +57,10 @@ import javax.persistence.TemporalType;
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES,
 			query="select new br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO"
-					+ " (EXTRACT(MONTH FROM d.data) as mes, EXTRACT(YEAR FROM d.data) as ano, sum(p.valorParcela)) "
+					+ " (EXTRACT(MONTH FROM p.dataParcela) as mes, EXTRACT(YEAR FROM p.dataParcela) as ano, sum(p.valorParcela)) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
+					+ " where p.dataParcela between ?1 and ?2"
 					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_FIXAS,
@@ -69,21 +70,22 @@ import javax.persistence.TemporalType;
 			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(p.valorParcela)) from Despesa d "
 					+ " join d.parcelas p"
 					+ " where d.fixa = false"
-					+ " and d.data between ?1 and ?2"
+					+ " and p.dataParcela between ?1 and ?2"
 					+ " group by d.descricao"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
 			query="select new br.com.jhonatan.dto.RelatorioRendimentoGastosDTO"
-					+ " (EXTRACT(MONTH FROM d.data) as mes, EXTRACT(YEAR FROM d.data) as ano, sum(p.valorParcela)) "
+					+ " (EXTRACT(MONTH FROM p.dataParcela) as mes, EXTRACT(YEAR FROM p.dataParcela) as ano, sum(p.valorParcela)) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
+					+ " where p.dataParcela between ?1 and ?2"
 					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM,
 			query="select sum(pd.valorParcela) as valor from ParcelaDespesa pd "
 					+ " join pd.despesa d"
 					+ " where d.fixa = false"
-					+ " and d.data between ?1 and ?2")
+					+ " and pd.dataParcela between ?1 and ?2")
 	
 })
 

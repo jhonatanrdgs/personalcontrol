@@ -19,5 +19,19 @@ public class DateUtil {
 		c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
 		return c.getTime();
 	}
+	
+	public static Date subtrairMeses(Date date, int meses) {
+		Calendar c = new GregorianCalendar();
+		c.setTime(date);
+		c.add(Calendar.MONTH, -meses);
+		return c.getTime();
+	}
+	
+	public static Date adicionarMeses(Date date, int meses) {
+		Calendar c = new GregorianCalendar();
+		c.setTime(date);
+		c.add(Calendar.MONTH, meses);
+		return c.getTime();
+	}
 
 }

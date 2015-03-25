@@ -27,13 +27,13 @@ public interface DespesaDAO {
 
 	public List<RelatorioGastosFixosDTO> pesquisarDespesasFixas();
 
-	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes();
+	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes(Date seisMesesAtras, Date seisMesesAFrente);
 
 	public Double pesquisarSomatorioDespesasFixas();
 
 	public List<RelatorioGastosVariaveisDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
 
-	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos();
+	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos(Date seisMesesAtras, Date seisMesesAFrente);
 
 	public Double pesquisarTotalGastosVariaveisPeriodo(Date inicio, Date fim);
 
