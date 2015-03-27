@@ -24,7 +24,8 @@ import br.com.jhonatan.util.DateUtil;
 public class RelatorioController {
 	
 	//TODO mensagem de nenhum dado encontrado está aparecendo duplicada na tela, por causa das várias chamadas js
-	
+	//TODO colocar o relatorio de despesa total (do mês atual) na home
+	//TODO escopo nas controller
 	//TODO revisar os dados de todos os relatórios a fim de saber se estão corretos.
 	
 	@Autowired
