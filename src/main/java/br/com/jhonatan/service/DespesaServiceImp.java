@@ -28,12 +28,13 @@ public class DespesaServiceImp implements DespesaService {
 
 	@Override
 	public void salvarOuAtualizar(Despesa despesa) {
-		
 		if (despesa.getId() == null) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			Usuario usuario = usuarioDAO.pesquisarUsuarioPorLogin(authentication.getName());
 			despesa.setUsuario(usuario);
-			despesa.setParcelas(montarListaParcelas(despesa));
+			if (!despesa.isFixa()) {//Fixa não tem parcela
+				despesa.setParcelas(montarListaParcelas(despesa));
+			}
 			despesaDAO.salvar(despesa);
 		} else {
 			despesaDAO.atualizar(despesa);
