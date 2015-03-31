@@ -21,6 +21,28 @@ $(document).ready(function () {
 		
 	});
 	
+	$("#add").click(function() {
+		var desc = $("#desc").val();
+		var value = $("#val").val();
+		$.ajax({
+			
+			url: "add",
+			data: {descricao: desc, valor: value },
+			dataType:"json",
+			success: function(data) {
+				var html = "<table  class='table table-bordered'>";
+				html += "<th class='info'>Descri\u00e7\u00e3o</th><th class='info'>Valor</th>";
+				for (var i = 0; i < data.length; i++) {
+					html += "<tr><td>" + data[i].descricao + "</td><td>" + data[i].valorItem + "</td></tr>";
+				}
+				html += "</table>";
+				$("#tableItens").html(html);
+				//callback(data);
+			}
+		});
+		
+	})
+	
 	$(".form-horizontal").validate({
 
 		rules: {

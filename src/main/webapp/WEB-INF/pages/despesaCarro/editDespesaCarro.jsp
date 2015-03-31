@@ -20,13 +20,6 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="fixa">Despesa Fixa?</label>
-						<div class="col-md-8 input-icon">
-							<form:checkbox path="fixa" />
-						</div>
-					</div>
-					
-					<div class="form-group">
 						<label class="col-md-2 control-label" for="categoria.id">Categoria:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="categoria.id" class="form-control" name="categoriaId">
@@ -80,6 +73,32 @@
 							<form:input type="text" path="km" class="form-control" />
 						</div>
 					</div>
+				
+				<div style="background-color: #f5f5f5; border: 1px solid #e3e3e3; margin-bottom:20px;">
+					<label>Itens</label>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="desc">Descrição:</label>
+						<div class="col-md-8 input-icon">
+							<input type="text" id="desc" class="form-control"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="val">Valor:</label>
+						<div class="col-md-8 input-icon">
+							<input type="text" id="val" class="form-control money"/>
+						</div>
+					</div>	
+					
+					<div class="form-group">
+						<div class="col-md-12" style="text-align:center">
+							<a href="#" id="add" class="btn btn-default">Adicionar Item</a>
+						</div>
+					</div>
+					
+					<div id="tableItens" style="width:80%; margin:auto" ></div>
+					
+				</div>
 					
 					<div class="form-group">
 						<div class="col-md-12" style="text-align:center">
