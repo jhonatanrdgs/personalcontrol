@@ -35,10 +35,10 @@ $(document).ready(function () {
 
 function carregaDatas() {
 	var inicioSplit =  $("#inicio").val().split("/");
-	dateInicio = new Date(inicioSplit[2], inicioSplit[1] - 1, inicioSplit[0]);
+	dateInicio = inicioSplit[2] + "/" + inicioSplit[1] + "/" + inicioSplit[0];//Ano mes dia
 	
 	var fimSplit =  $("#fim").val().split("/");
-	dateFim = new Date(fimSplit[2], fimSplit[1] - 1, fimSplit[0]);
+	dateFim = fimSplit[2] + '/' + fimSplit[1] + '/' + fimSplit[0];//Ano mes dia
 }
 
 function chamadaAjax(url, callback) {
