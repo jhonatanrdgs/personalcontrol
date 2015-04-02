@@ -76,7 +76,7 @@ public class RelatorioServiceImp implements RelatorioService {
 				//a questão é se tiver dados somente em uma lista.
 		
 		Date seisMesesAtras = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
-		Date seisMesesAFrente = DateUtil.getPrimeiroDiaMes(DateUtil.adicionarMeses(new Date(), 6));
+		Date seisMesesAFrente = DateUtil.getUltimoDiaMes(DateUtil.adicionarMeses(new Date(), 6));
 		
 		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes(seisMesesAtras, seisMesesAFrente);
 		for (RelatorioTotalGastosMensaisDTO dto : list) {
@@ -92,7 +92,7 @@ public class RelatorioServiceImp implements RelatorioService {
 				//a questão é se tiver dados somente em uma lista.
 		
 		Date seisMesesAtras = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
-		Date seisMesesAFrente = DateUtil.getPrimeiroDiaMes(DateUtil.adicionarMeses(new Date(), 6));
+		Date seisMesesAFrente = DateUtil.getUltimoDiaMes(DateUtil.adicionarMeses(new Date(), 6));
 		
 		List<RelatorioRendimentoGastosDTO> list = despesaDAO.pesquisarValorDespesasPorMesRelatorioRendimentos(seisMesesAtras, seisMesesAFrente);
 		Double totalDespesasFixas = despesaDAO.pesquisarSomatorioDespesasFixas();
