@@ -84,9 +84,9 @@
 			<div id="gastosPorMes" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
-		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+		<div class="form-group" style="width: 70%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Rendimentos x Gastos (Fixos + Variáveis)</p>
-			<div id="rendimentosGastos" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+			<div id="rendimentosGastos" style="width: 70%; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
 		<script src="<c:url value="/resources/js/relatorios.js" />"	type="text/javascript">
