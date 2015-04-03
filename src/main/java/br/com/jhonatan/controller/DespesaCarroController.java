@@ -77,6 +77,8 @@ public class DespesaCarroController {
 	public String save(@ModelAttribute("despesaCarroForm") DespesaCarro despesaCarro, ModelMap map) {
 		despesaCarroService.salvarOuAtualizarDespesasCarro(despesaCarro, itens);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
+		DespesaDTO dto = new DespesaDTO();
+		map.addAttribute("despesaCarroForm", dto);
 		return LIST_PAGE; 
 	}
 	

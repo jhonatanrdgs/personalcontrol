@@ -5,3 +5,6 @@
 .metadata
 .tern-project
 /test-output/
+target
+.settings/*
+!.settings/.jsdtscope

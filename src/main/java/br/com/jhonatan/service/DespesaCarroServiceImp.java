@@ -21,6 +21,9 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
+	
+	@Autowired
+	private DespesaService despesaService;
 
 	@Override
 	public List<DespesaCarro> pesquisarDespesasCarro(DespesaDTO despesaCarro) {
@@ -30,9 +33,9 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 	@Override
 	public void salvarOuAtualizarDespesasCarro(DespesaCarro despesaCarro, List<ItemDespesaCarro> itens) {
 		despesaCarro.setUsuario(usuarioDAO.pesquisarUsuarioPorLogin(SecurityContextHolder.getContext().getAuthentication().getName()));
-		//TODO ver parcelado, ou se posso juntar isso com a despesa
+		
 		if (despesaCarro.getId() == null) {
-			
+			despesaCarro.setParcelas(despesaService.montarListaParcelas(despesaCarro));//TODO melhorar isso, passar para aspecto (proxy)
 			for (ItemDespesaCarro item : itens) {
 				item.setDespesaCarro(despesaCarro);
 			}

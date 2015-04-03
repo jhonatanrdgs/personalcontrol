@@ -56,7 +56,7 @@ public class DespesaServiceImp implements DespesaService {
 		return despesaDAO.findByIdFetched(id);
 	}
 	
-	private Set<ParcelaDespesa> montarListaParcelas(Despesa despesa) {
+	public Set<ParcelaDespesa> montarListaParcelas(Despesa despesa) {
 		Set<ParcelaDespesa> parcelas = new HashSet<ParcelaDespesa>();
 		Calendar data = new GregorianCalendar();
 		data.setTime(despesa.getData());
