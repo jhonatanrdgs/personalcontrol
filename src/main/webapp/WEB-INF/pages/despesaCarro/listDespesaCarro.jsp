@@ -19,7 +19,39 @@
 						</div>
 					</div>
 					
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="nome">Categoria:</label>
+						<div class="col-md-8 input-icon">
+							<form:select path="categoriaId" class="form-control">
+								<form:option value="" label="Selecione"/>
+								<form:options items="${categorias}" itemLabel="descricao" itemValue="id"/>
+							</form:select>
+						</div>
+					</div>
 					
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
+						<div class="col-md-8 input-icon">
+							<form:select path="metodoPagamentoId" class="form-control" >
+								<form:option value="" label="Selecione"/>
+								<form:options items="${metodosPagamento}" itemLabel="descricao" itemValue="id"/>
+							</form:select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="nome">Início:</label>
+						<div class="col-md-8 input-icon">
+							<form:input type="text" path="inicio" class="form-control date" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="nome">Fim:</label>
+						<div class="col-md-8 input-icon">
+							<form:input type="text" path="fim" class="form-control date" />
+						</div>
+					</div>
 					
 					
 					

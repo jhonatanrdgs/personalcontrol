@@ -2,6 +2,7 @@ package br.com.jhonatan.entidades;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +17,13 @@ import javax.persistence.Table;
  */
 @NamedQueries( {
 	@NamedQuery(name=DespesaCarro.CONSULTAR_DESPESA_CARRO_POR_DESCRICAO,
-		query="select dc from DespesaCarro dc where dc.descricao like concat('%', ?1, '%') or ?1 is null")
+		query="select dc from DespesaCarro dc"
+				+ " join fetch dc.categoria c"
+				+ " join fetch dc.metodoPagamento mp"
+				+ " where (dc.descricao like concat('%', ?1, '%') or ?1 is null)"
+				+ " and (c.id = ?2 or ?2 is null)"
+				+ " and (mp.id = ?3 or ?3 is null)"
+				+ " and (dc.data between ?4 and ?5)")
 
 })
 
@@ -32,7 +39,7 @@ public class DespesaCarro extends Despesa {
 	@Column(name = "km", nullable = false, length = 6)
 	private String km;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesaCarro")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesaCarro", cascade=CascadeType.ALL)
 	private Set<ItemDespesaCarro> itemDespesaCarros;
 
 	public String getKm() {

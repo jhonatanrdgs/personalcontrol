@@ -13,19 +13,17 @@
     <script src="<c:url value="/resources/js/jquery.mask.min.js" />" > </script>
     <script src="<c:url value="/resources/js/maskmoney.min.js" />" > </script>
     <script src="<c:url value="/resources/js/masks.js" />" > </script>
-    
     <script src="<c:url value="/resources/js/jquery.jqplot.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jqplot.barRenderer.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jqplot.categoryAxisRenderer.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jqplot.pointLabels.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jqplot.canvasAxisTickRenderer.min.js" />" > </script>
-    
-     <script src="<c:url value="/resources/js/jqplot.dateAxisRenderer.min.js" />" > </script>
-     <script src="<c:url value="/resources/js/jqplot.canvasTextRenderer.min.js" />" > </script>
-    
-    
+    <script src="<c:url value="/resources/js/jqplot.dateAxisRenderer.min.js" />" > </script>
+    <script src="<c:url value="/resources/js/jqplot.canvasTextRenderer.min.js" />" > </script>
     <script src="<c:url value="/resources/js/dateFormat.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jquery-dateFormat.min.js" />" > </script>
+    <script src="<c:url value="/resources/js/jquery.numeric.min.js" />" > </script>
+    
     
     <link type="text/css" href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" />
     <link type="text/css" href="<c:url value="/resources/css/custom.css" />" rel="stylesheet" />

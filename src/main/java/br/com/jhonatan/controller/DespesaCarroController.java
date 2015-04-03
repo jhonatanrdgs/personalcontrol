@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.jhonatan.dto.DespesaDTO;
+import br.com.jhonatan.entidades.Categoria;
 import br.com.jhonatan.entidades.DespesaCarro;
 import br.com.jhonatan.entidades.ItemDespesaCarro;
+import br.com.jhonatan.entidades.MetodoPagamento;
+import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.service.DespesaCarroService;
 import br.com.jhonatan.util.MensagemUtil;
 
@@ -23,23 +27,27 @@ public class DespesaCarroController {
 	private static final String LIST_PAGE = "despesaCarro/listDespesaCarro";
 	private static final String EDIT_PAGE = "despesaCarro/editDespesaCarro";
 	
-	//TODO itemDespesaCarro
-	//TODO dto para a tela de consulta 
+	//TODO maxlenght nos campos
 	
 	@Autowired
 	private DespesaCarroService despesaCarroService;
+	
+	@Autowired
+	private CadastrosGeraisService cadastrosGeraisService;
+	
 	private List<ItemDespesaCarro> itens;
 	
 	@RequestMapping(value="/despesaCarro/listDespesaCarro")
 	public String listDespesaCarro(ModelMap map) {
-		DespesaCarro despesaCarro = new DespesaCarro();
-		map.addAttribute("despesaCarroForm", despesaCarro);
+		DespesaDTO dto = new DespesaDTO();
+		map.addAttribute("despesaCarroForm", dto);
+		montarCombos(map);
 		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/despesaCarro/search")
-	public String search(@ModelAttribute("despesaCarroForm") DespesaCarro despesaCarro, ModelMap map) {
-		List<DespesaCarro> despesasCarro = despesaCarroService.pesquisarDespesasCarro(despesaCarro.getDescricao());
+	public String search(@ModelAttribute("despesaCarroForm") DespesaDTO despesaCarro, ModelMap map) {
+		List<DespesaCarro> despesasCarro = despesaCarroService.pesquisarDespesasCarro(despesaCarro);
 		map.addAttribute("resultado", despesasCarro);
 		if (despesasCarro.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
@@ -51,6 +59,7 @@ public class DespesaCarroController {
 	public String newDespesaCarro(ModelMap map) {
 		DespesaCarro despesaCarro = new DespesaCarro();
 		map.addAttribute("despesaCarroForm", despesaCarro);
+		montarCombos(map);
 		itens = new ArrayList<ItemDespesaCarro>();
 		return EDIT_PAGE;
 	}
@@ -75,7 +84,15 @@ public class DespesaCarroController {
 	public String edit(@RequestParam("despesaCarroId") Long id, ModelMap map) {
 		DespesaCarro despesaCarro = despesaCarroService.findDespesasCarroById(id);
 		map.addAttribute("despesaCarroForm", despesaCarro);
+		montarCombos(map);
 		return EDIT_PAGE;
+	}
+	
+	private void montarCombos(ModelMap map) {
+		List<Categoria> categorias = cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
+		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
+		map.addAttribute("categorias", categorias);
+		map.addAttribute("metodosPagamento", metodosPagamento);
 	}
 
 }

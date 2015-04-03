@@ -70,7 +70,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="km">Km:</label>
 						<div class="col-md-8 input-icon">
-							<form:input type="text" path="km" class="form-control" />
+							<form:input type="text" path="km" class="form-control numeric" maxlength="6" />
 						</div>
 					</div>
 				
