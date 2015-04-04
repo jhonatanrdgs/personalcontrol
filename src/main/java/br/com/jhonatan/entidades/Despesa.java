@@ -55,13 +55,11 @@ import javax.persistence.TemporalType;
 			query="select new br.com.jhonatan.dto.RelatorioGastosFixosDTO(d.descricao, d.valorTotal) from Despesa d"
 					+ " where d.fixa = true"),
 					
-	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES,
-			query="select new br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO"
-					+ " (EXTRACT(MONTH FROM p.dataParcela) as mes, EXTRACT(YEAR FROM p.dataParcela) as ano, sum(p.valorParcela)) "
+	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES,
+			query="select sum(p.valorParcela) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
-					+ " where p.dataParcela between ?1 and ?2"
-					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui
+					+ " where p.dataParcela between ?1 and ?2"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_FIXAS,
 			query="select sum(d.valorTotal) from Despesa d where d.fixa = true"),
@@ -74,12 +72,10 @@ import javax.persistence.TemporalType;
 					+ " group by d.descricao"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
-			query="select new br.com.jhonatan.dto.RelatorioRendimentoGastosDTO"
-					+ " (EXTRACT(MONTH FROM p.dataParcela) as mes, EXTRACT(YEAR FROM p.dataParcela) as ano, sum(p.valorParcela)) "
+			query="select sum(p.valorParcela) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
-					+ " where p.dataParcela between ?1 and ?2"
-					+ " group by col_0_0_, col_1_0_"),//TODO corrigir esse group by, pois o "as alias" não está funcionando aqui
+					+ " where p.dataParcela between ?1 and ?2"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM,
 			query="select sum(pd.valorParcela) as valor from ParcelaDespesa pd "
@@ -104,7 +100,7 @@ public class Despesa extends BaseEntity implements Serializable {
 
 	public static final String CONSULTAR_GASTOS_FIXOS = "despesa.consultarGastosFixos";
 
-	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES = "despesa.consultarValorTotalDespesasMes";
+	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES = "despesa.consultarValorTotalDespesasMes";
 
 	public static final String CONSULTAR_DESPESAS_FIXAS = "despesa.consultarDespesasFixasMesAno";
 
@@ -150,7 +146,7 @@ public class Despesa extends BaseEntity implements Serializable {
 	private Date data;
 	
 	@Column(name="fixa", nullable=false)
-	private boolean fixa;//TODO se for fixa tem que aparecer nos relatórios... (fixa não gera parcela, então em relatorios é date(periodo) ou fixa)
+	private boolean fixa;//fixa não gera parcela, então em relatorios é date(periodo) ou fixa
 	//TODO se despesa fixa, tenho que ter um botão de inativar(ou excluir) a mesma na tela de consulta de despesas
 	//TODO Botão de excluir/inativar em todas as telas
 	

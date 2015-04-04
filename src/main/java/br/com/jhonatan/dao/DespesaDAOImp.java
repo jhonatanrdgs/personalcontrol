@@ -9,8 +9,6 @@ import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
-import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
-import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 @Repository
@@ -47,32 +45,14 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_GASTOS_FIXOS);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes(Date seisMesesAtras, Date seisMesesAFrente) {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES, seisMesesAtras, seisMesesAFrente);
+	public Double pesquisarValorDespesasPorMes(Date inicio, Date fim) {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES, inicio, fim);
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos(Date seisMesesAtras, Date seisMesesAFrente) {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS, seisMesesAtras, seisMesesAFrente);
-	}
-
 	@Override
 	public Double pesquisarSomatorioDespesasFixas() {
 		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_FIXAS);
 	}
-
-	@Override
-	public Double pesquisarTotalGastosVariaveisPeriodo(Date inicio, Date fim) {
-		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM, inicio, fim);
-	}
-
-	
-	
-
-	
-	
 	
 }

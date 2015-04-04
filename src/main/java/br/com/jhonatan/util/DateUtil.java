@@ -33,5 +33,17 @@ public class DateUtil {
 		c.add(Calendar.MONTH, meses);
 		return c.getTime();
 	}
+	
+	public static int getMes(Date data) {
+		Calendar c = new GregorianCalendar();
+		c.setTime(data);
+		return c.get(Calendar.MONTH) + 1;
+	}
+	
+	public static int getAno(Date data) {
+		Calendar c = new GregorianCalendar();
+		c.setTime(data);
+		return c.get(Calendar.YEAR);
+	}
 
 }

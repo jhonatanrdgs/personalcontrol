@@ -23,10 +23,7 @@ import br.com.jhonatan.util.DateUtil;
 @Controller
 public class RelatorioController {
 	
-	//TODO mensagem de nenhum dado encontrado está aparecendo duplicada na tela, por causa das várias chamadas js
-	//TODO colocar o relatorio de despesa total (do mês atual) na home
 	//TODO escopo nas controller
-	//TODO revisar os dados de todos os relatórios a fim de saber se estão corretos.
 	
 	@Autowired
 	private RelatorioService relatorioService;
@@ -80,7 +77,6 @@ public class RelatorioController {
 		return relatorioService.pesquisarDadosRelatorioGastosFixos();
 	}
 	
-	
 	@RequestMapping(value="/relatorios/gastosPorMes", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioTotalGastosMensaisDTO> montarDadosGastosMensaisJson() {
 		return relatorioService.pesquisarDadosRelatorioGastosMensais();
@@ -91,5 +87,6 @@ public class RelatorioController {
 	public @ResponseBody List<RelatorioRendimentoGastosDTO> montarDadosRendimentosGastosJson() {
 		return relatorioService.pesquisarDadosRelatorioRendimentosGastos();
 	}
-
+	
+	
 }

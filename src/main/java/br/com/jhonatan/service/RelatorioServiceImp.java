@@ -1,6 +1,6 @@
 package br.com.jhonatan.service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,11 +38,22 @@ public class RelatorioServiceImp implements RelatorioService {
 	
 	@Override
 	public Double[] pesquisarResumo(Date inicio, Date fim) {
-		Double totalGastosVariaveisPeriodo = NumberUtil.normalizarDouble(despesaDAO.pesquisarTotalGastosVariaveisPeriodo(inicio, fim), 2);
-		Double totalGastosFixos = NumberUtil.normalizarDouble(despesaDAO.pesquisarSomatorioDespesasFixas(), 2);
-		Double totalGastos  = (totalGastosVariaveisPeriodo != null ? totalGastosVariaveisPeriodo : 0D) + (totalGastosFixos != null ? totalGastosFixos : 0D);
+		Double totalGastosVariaveisPeriodo = despesaDAO.pesquisarValorDespesasPorMes(inicio, fim);
+		totalGastosVariaveisPeriodo = NumberUtil.zeroIfNull(totalGastosVariaveisPeriodo);
+		totalGastosVariaveisPeriodo = NumberUtil.normalizarDouble(totalGastosVariaveisPeriodo, 2);
+		
+		Double totalGastosFixos = despesaDAO.pesquisarSomatorioDespesasFixas();
+		totalGastosFixos = NumberUtil.zeroIfNull(totalGastosFixos);
+		totalGastosFixos = NumberUtil.normalizarDouble(totalGastosFixos, 2);
+		
+		Double totalGastos  = totalGastosVariaveisPeriodo + totalGastosFixos;
 		totalGastos = NumberUtil.normalizarDouble(totalGastos, 2);
-		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos};
+		
+		Double rendimentos = rendimentoDAO.pesquisarRendimentosPorMes();
+		Double percentualComprometido = (totalGastos / rendimentos) * 100; 
+		percentualComprometido = NumberUtil.normalizarDouble(percentualComprometido, 2);
+		
+		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos, percentualComprometido};
 	}
 
 	@Override
@@ -72,38 +83,43 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioTotalGastosMensaisDTO> pesquisarDadosRelatorioGastosMensais() {
-		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda..
-				//a questão é se tiver dados somente em uma lista.
+		Date inicio = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
 		
-		Date seisMesesAtras = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
-		Date seisMesesAFrente = DateUtil.getUltimoDiaMes(DateUtil.adicionarMeses(new Date(), 6));
-		
-		List<RelatorioTotalGastosMensaisDTO> list = despesaDAO.pesquisarValorDespesasPorMes(seisMesesAtras, seisMesesAFrente);
-		for (RelatorioTotalGastosMensaisDTO dto : list) {
-			dto.setValorDespesasFixas(despesaDAO.pesquisarSomatorioDespesasFixas());
+		List<RelatorioTotalGastosMensaisDTO> list = new ArrayList<RelatorioTotalGastosMensaisDTO>();
+		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
+		for (int i = 0; i < 13; i++) {
+			Date fim = DateUtil.getUltimoDiaMes(inicio);
+			RelatorioTotalGastosMensaisDTO dto = new RelatorioTotalGastosMensaisDTO();
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorDespesasPorMes(inicio, fim));
+			dto.setValorDespesasVariaveis(valorVariavelMensal);
+			dto.setValorDespesasFixas(valorDespesasFixas);
+			dto.setMes(DateUtil.getMes(inicio));
+			dto.setAno(DateUtil.getAno(fim));
+			list.add(dto);
+			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
-		Collections.sort(list);
+		
 		return list;
 	}
 
 	@Override
 	public List<RelatorioRendimentoGastosDTO> pesquisarDadosRelatorioRendimentosGastos() {
-		//TODO verificar, pois se eu não trazer a primeira lista, ele não traz a segunda.. 
-				//a questão é se tiver dados somente em uma lista.
+		Date inicio = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
 		
-		Date seisMesesAtras = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
-		Date seisMesesAFrente = DateUtil.getUltimoDiaMes(DateUtil.adicionarMeses(new Date(), 6));
-		
-		List<RelatorioRendimentoGastosDTO> list = despesaDAO.pesquisarValorDespesasPorMesRelatorioRendimentos(seisMesesAtras, seisMesesAFrente);
-		Double totalDespesasFixas = despesaDAO.pesquisarSomatorioDespesasFixas();
-		if (totalDespesasFixas == null) {
-			totalDespesasFixas = 0D;
+		List<RelatorioRendimentoGastosDTO> list = new ArrayList<RelatorioRendimentoGastosDTO>();
+		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
+		Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes());
+		for (int i = 0; i < 13; i++) {
+			Date fim = DateUtil.getUltimoDiaMes(inicio);
+			RelatorioRendimentoGastosDTO dto = new RelatorioRendimentoGastosDTO();
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorDespesasPorMes(inicio, fim));
+			dto.setDespesas(valorVariavelMensal + valorDespesasFixas);
+			dto.setRendimentos(rendimentos);
+			dto.setMes(DateUtil.getMes(inicio));
+			dto.setAno(DateUtil.getAno(inicio));
+			list.add(dto);
+			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
-		for (RelatorioRendimentoGastosDTO dto : list) {
-			dto.setDespesas(dto.getDespesas() != null ? dto.getDespesas() + totalDespesasFixas : 0D + totalDespesasFixas);
-			dto.setRendimentos(rendimentoDAO.pesquisarRendimentosPorMes());
-		}
-		Collections.sort(list);
 		return list;
 	}
 	

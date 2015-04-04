@@ -51,6 +51,10 @@
 					<label>Total de Gastos Fixos:</label>
 					<span id="totalGastosFixos"></span>
 				</div>
+				<div>
+					<label>Renda Comprometida:</label>
+					<span id="rendaComprometida"></span>
+				</div>
 			</div>
 		</div>
 		
@@ -77,16 +81,6 @@
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Gastos fixos</p>
 			<div id="gastosFixos" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
-		</div>
-		
-		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Gastos por Mês (Fixos + Variáveis)</p>
-			<div id="gastosPorMes" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
-		</div>
-		
-		<div class="form-group" style="width: 70%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Rendimentos x Gastos (Fixos + Variáveis)</p>
-			<div id="rendimentosGastos" style="width: 70%; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
 		<script src="<c:url value="/resources/js/relatorios.js" />"	type="text/javascript">

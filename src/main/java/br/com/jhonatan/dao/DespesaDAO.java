@@ -7,8 +7,6 @@ import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
-import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
-import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 public interface DespesaDAO {
@@ -27,14 +25,11 @@ public interface DespesaDAO {
 
 	public List<RelatorioGastosFixosDTO> pesquisarDespesasFixas();
 
-	public List<RelatorioTotalGastosMensaisDTO> pesquisarValorDespesasPorMes(Date seisMesesAtras, Date seisMesesAFrente);
+	public Double pesquisarValorDespesasPorMes(Date inicio, Date fim);
 
 	public Double pesquisarSomatorioDespesasFixas();
 
 	public List<RelatorioGastosVariaveisDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
 
-	public List<RelatorioRendimentoGastosDTO> pesquisarValorDespesasPorMesRelatorioRendimentos(Date seisMesesAtras, Date seisMesesAFrente);
-
-	public Double pesquisarTotalGastosVariaveisPeriodo(Date inicio, Date fim);
 
 }

@@ -7,8 +7,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      	<li><a href="<c:url value="/logged"/>">Página Inicial</a></li>
-     	<li class="dropdown">
+      	<li class="menu"><a href="<c:url value="/logged"/>">Página Inicial</a></li>
+     	<li class="dropdown menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastros Gerais<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="<c:url value="/categoria/listCategoria" />">Categorias</a></li>
@@ -18,9 +18,9 @@
             <li><a href="<c:url value="/metodoPagamento/listMetodosPagamento" />">Métodos de Pagamento</a></li>
           </ul>
         </li>
-        <li class="active"><a href="<c:url value="/despesa/listDespesas" />">Despesas<span class="sr-only">(current)</span></a></li>
-        <li><a href="<c:url value="/despesaCarro/listDespesaCarro" />">Despesas Carro</a></li>
-        <li><a href="<c:url value="/relatorios/iniciar" />">Relatórios</a></li>
+        <li class="menu"><a href="<c:url value="/despesa/listDespesas" />">Despesas<span class="sr-only">(current)</span></a></li>
+        <li class="menu"><a href="<c:url value="/despesaCarro/listDespesaCarro" />">Despesas Carro</a></li>
+        <li class="menu"><a href="<c:url value="/relatorios/iniciar" />">Relatórios</a></li>
         
       </ul>
       

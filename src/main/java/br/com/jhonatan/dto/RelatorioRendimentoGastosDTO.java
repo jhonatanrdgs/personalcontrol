@@ -11,6 +11,8 @@ public class RelatorioRendimentoGastosDTO implements Serializable, Comparable<Re
 	private Double rendimentos;
 	private Double despesas;
 	
+	public RelatorioRendimentoGastosDTO() {}
+	
 	public RelatorioRendimentoGastosDTO(int mes, int ano, Double despesas) {
 		this.mes = mes;
 		this.ano = ano;

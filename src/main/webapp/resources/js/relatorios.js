@@ -16,11 +16,7 @@ $(document).ready(function () {
 	chamadaAjax("gastosPorMetodoPagamento", montaGraficoGastosPorMetodoPagamento);
 	chamadaAjax("gastosVariaveis", montaGraficoGastosVariaveis);
 	chamadaAjax("resumo", montaResumo);
-	
 	chamadaAjaxSemData("gastosFixos", montaGraficoGastosFixos);
-	chamadaAjaxSemData("gastosPorMes", montaGraficoGastosPorMes);
-	chamadaAjaxSemData("rendimentosGastos", montaGraficoRendimentosGastos);
-	
 	
 	$("#reload").click(function() {
 		carregaDatas();
@@ -67,7 +63,7 @@ function chamadaAjaxSemData(url, callback) {
 
 function montaGraficoPizza(data) {
 	if (data.length == 0) {
-		alert('Nenhum resultado para o per\u00edodo informado!');
+		$("#gastosPorCategoria").html("Nenhum resultado encontrado para o per\u00edodo informado");
 		return;
 	}
 	if (graficoPizza) {
@@ -116,7 +112,7 @@ function montaGraficoPizza(data) {
 
 function montraGraficoComprasParceladas(data) {
 	if (data.length == 0) {
-		alert('Nenhum resultado para o per\u00edodo informado!');
+		$("#comprasParceladas").html("Nenhum resultado encontrado para o per\u00edodo informado");
 		return;
 	}
 	if (comprasParceladas) {
@@ -166,7 +162,7 @@ function montraGraficoComprasParceladas(data) {
 
 function montaGraficoGastosPorMetodoPagamento(data) {
 	if (data.length == 0) {
-		alert('Nenhum resultado para o per\u00edodo informado!');
+		$("#gastosPorMetodoPagamento").html("Nenhum resultado encontrado para o per\u00edodo informado");
 		return;
 	}
 	if (gastosPorMetodoPagamento) {
@@ -215,7 +211,7 @@ function montaGraficoGastosPorMetodoPagamento(data) {
 
 function montaGraficoGastosVariaveis(data) {
 	if (data.length == 0) {
-		alert('Nenhum resultado para o per\u00edodo informado!');
+		$("#gastosVariaveis").html("Nenhum resultado encontrado para o per\u00edodo informado");
 		return;
 	}
 	if (gastosVariaveis) {
@@ -265,7 +261,7 @@ function montaGraficoGastosVariaveis(data) {
 
 function montaGraficoGastosFixos(data) {
 	if (data.length == 0) {
-		alert('Nenhum resultado para o per\u00edodo informado!');
+		$("#gastosFixos").html("Nenhum resultado encontrado");
 		return;
 	}
 	if (gastosFixos) {
@@ -314,7 +310,7 @@ function montaGraficoGastosFixos(data) {
 
 function montaGraficoGastosPorMes(data) {
 	if (data.length == 0) {
-		alert('Nenhum resultado para o per\u00edodo informado!');
+		$("#gastosPorMes").html("Nenhum resultado encontrado para o per\u00edodo informado");
 		return;
 	}
 	if (gastosPorMes) {
@@ -363,7 +359,7 @@ function montaGraficoGastosPorMes(data) {
 
 function montaGraficoRendimentosGastos(data) {
 	if (data.length == 0) {
-		alert('Nenhum resultado para o per\u00edodo informado!');
+		$("#rendimentoGastos").html("Nenhum resultado encontrado para o per\u00edodo informado");
 		return;
 	}
 	if (rendimentosGastos) {
@@ -422,5 +418,5 @@ function montaResumo(data) {
 	$("#totalGastosPeriodo").html(data[0]);
 	$("#totalGastosVariaveisPeriodo").html(data[1]);
 	$("#totalGastosFixos").html(data[2]);
-	
+	$("#rendaComprometida").html(data[3]  + " %");
 }

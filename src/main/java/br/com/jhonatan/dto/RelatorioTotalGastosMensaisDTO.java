@@ -11,6 +11,8 @@ public class RelatorioTotalGastosMensaisDTO implements Serializable, Comparable<
 	private Double valorDespesasVariaveis;
 	private Double valorDespesasFixas;
 	
+	public RelatorioTotalGastosMensaisDTO() {}
+	
 	public RelatorioTotalGastosMensaisDTO(int mes, int ano, Double valorDespesasVariaveis) {
 		this.mes = mes;
 		this.ano = ano;
@@ -50,7 +52,7 @@ public class RelatorioTotalGastosMensaisDTO implements Serializable, Comparable<
 	}
 	
 	public Double getValorTotal() {
-		return (this.valorDespesasFixas != null ? this.valorDespesasFixas : 0D) + this.valorDespesasVariaveis;
+		return this.valorDespesasFixas + this.valorDespesasVariaveis;
 	}
 
 	@Override
