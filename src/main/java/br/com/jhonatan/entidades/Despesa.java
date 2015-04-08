@@ -89,7 +89,7 @@ import javax.persistence.TemporalType;
 @Table(name = "despesa", schema = "personal_control")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Despesa extends BaseEntity implements Serializable {
-
+	
 	private static final long serialVersionUID = 8987183170531571355L;
 
 	public static final String CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA = "despesa.consultarDespesasPorDescricaoCategoriaMetodoPgData";
