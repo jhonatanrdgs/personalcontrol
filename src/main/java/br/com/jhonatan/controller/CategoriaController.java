@@ -3,6 +3,7 @@ package br.com.jhonatan.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
+@Scope("request")
 public class CategoriaController {
 	
 	private static final String LIST_PAGE = "categoria/listCategoria";
@@ -32,7 +34,7 @@ public class CategoriaController {
 	
 	@RequestMapping(value="/categoria/search")
 	public String search(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
-		List<Categoria> categorias = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao());
+		List<Categoria> categorias = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao(), categoria.isAtivo());
 		map.addAttribute("resultado", categorias);
 		//TODO paginação
 		if (categorias.isEmpty()) {
@@ -60,6 +62,22 @@ public class CategoriaController {
 		Categoria categoria = cadastrosGeraisService.pesquisarPorId(id);
 		map.addAttribute("categoriaForm", categoria);
 		return EDIT_PAGE;
+	}
+	
+	@RequestMapping(value="/categoria/delete")
+	public String remove(@RequestParam("categoriaId") Long id, ModelMap map) {
+		cadastrosGeraisService.excluirCategoria(id);
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro Inativado com sucesso!");
+		map.addAttribute("categoriaForm", new Categoria());
+		return LIST_PAGE;
+	}
+	
+	@RequestMapping(value="/categoria/ativar")
+	public String ativar(@RequestParam("categoriaId") Long id, ModelMap map) {
+		cadastrosGeraisService.ativarCategoria(id);
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro Ativado com sucesso!");
+		map.addAttribute("categoriaForm", new Categoria());
+		return LIST_PAGE;
 	}
 	
 }

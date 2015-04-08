@@ -14,8 +14,8 @@ public class MetodoPagamentoDAOImp extends GenericDAO<MetodoPagamento> implement
 	private static final long serialVersionUID = 6033640884934226485L;
 
 	@Override
-	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao) {
-		return criarQueryResultList(MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO, descricao);
+	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao, boolean ativo) {
+		return criarQueryResultList(MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO, ativo, descricao);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public interface MetodoPagamentoDAO {
 	
 	public void atualizar(MetodoPagamento metodoPagamento);
 	
-	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao);
+	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao, boolean ativo);
 	
 	public MetodoPagamento findById(Class<MetodoPagamento> classe, Long id);
 

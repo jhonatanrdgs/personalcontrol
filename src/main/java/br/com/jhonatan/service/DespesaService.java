@@ -17,6 +17,8 @@ public interface DespesaService {
 
 	public Despesa findByIdFetched(Long id);
 	
-	public Set<ParcelaDespesa> montarListaParcelas(Despesa despesa); 
+	public Set<ParcelaDespesa> montarListaParcelas(Despesa despesa);
+
+	public void excluirDespesa(Long id); 
 
 }

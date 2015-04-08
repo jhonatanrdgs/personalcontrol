@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	
 	@NamedQuery(name=Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, 
-			query="from Categoria c where descricao like concat('%', ?1, '%') or ?1 is null"),
+			query="from Categoria c where ativo = ?1 and (descricao like concat('%', ?2, '%') or ?2 is null)"),
 	
 	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true"),
 	

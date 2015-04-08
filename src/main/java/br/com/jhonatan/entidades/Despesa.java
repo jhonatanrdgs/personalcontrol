@@ -147,10 +147,8 @@ public class Despesa extends BaseEntity implements Serializable {
 	
 	@Column(name="fixa", nullable=false)
 	private boolean fixa;//fixa não gera parcela, então em relatorios é date(periodo) ou fixa
-	//TODO se despesa fixa, tenho que ter um botão de inativar(ou excluir) a mesma na tela de consulta de despesas
-	//TODO Botão de excluir/inativar em todas as telas
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL, orphanRemoval=true)
 	private Set<ParcelaDespesa> parcelas;
 	
 	

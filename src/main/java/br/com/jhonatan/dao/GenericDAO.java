@@ -26,6 +26,10 @@ public class GenericDAO<T> implements Serializable {
 		entityManager.merge(entidade);
 	}
 	
+	public void excluir(T entidade) {
+		entityManager.remove(entidade);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<T> criarQueryResultList(String nQuery, Object... params) {
 		Query q = entityManager.createNamedQuery(nQuery);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.jhonatan.dao.DespesaCarroDAO;
 import br.com.jhonatan.dao.UsuarioDAO;
@@ -55,7 +56,13 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 	public DespesaCarro findDespesasCarroById(Long id) {
 		return despesaCarroDAO.findById(DespesaCarro.class, id);
 	}
-	
+
+	@Override
+	@Transactional
+	public void excluir(Long id) {
+		DespesaCarro despesaCarro = despesaCarroDAO.findById(DespesaCarro.class, id);
+		despesaCarroDAO.excluir(despesaCarro);
+	}
 	
 
 }

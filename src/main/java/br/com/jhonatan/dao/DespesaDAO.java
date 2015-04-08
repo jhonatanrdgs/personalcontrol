@@ -31,5 +31,7 @@ public interface DespesaDAO {
 
 	public List<RelatorioGastosVariaveisDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
 
+	public void excluir(Despesa despesa);
+
 
 }

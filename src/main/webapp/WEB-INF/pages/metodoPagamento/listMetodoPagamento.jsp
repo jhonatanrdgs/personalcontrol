@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
  
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
@@ -16,6 +16,12 @@
 							<form:input type="text" path="descricao" class="form-control" id="nome"/>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label" for="ativa">Ativo:</label>
+						<div class="col-md-8">
+							<form:checkbox path="ativo" id="ativa"/>
+						</div>
+					</div>
 					
 					<div class="form-group">
 						<div class="col-md-12" style="text-align:center">
@@ -26,19 +32,34 @@
 					
 					<c:if test="${not empty resultado}">
 						<table class="table table-bordered">
-							<th class="info">
-								<label>Descrição</label>
-							</th>
-							<th class="info">
-								<label>Ações</label>
-							</th>
+							<tr>
+								<th class="info">
+									<label>Descrição</label>
+								</th>
+
+								<th class="info" colspan="2">
+									<label>Ações</label>
+								</th>
+							</tr>
 							<c:forEach items="${resultado}" var="it">
 								<tr class="active">
-									<td width="80%">
+									<td width="70%">
 										<span>${it.descricao}</span>
 									</td>
-									<td  style="text-align:center;width:20%">
+									<td  style="text-align:center;width:15'%">
 										<a href="<c:url value="/metodoPagamento/edit?metodoPagamentoId=${it.id}" />" class="btn btn-success">Editar</a>
+									</td>
+									<td style="text-align:center;width:15%">
+										<c:choose>
+											<c:when test="${it.ativo}">
+												<a href="<c:url value="/metodoPagamento/delete?metodoPagamentoId=${it.id}" />" 
+												class="btn btn-success" onclick="return confirm('Deseja realmente inativar o registro?')">Inativar</a>
+											</c:when>
+											<c:otherwise>
+												<a href="<c:url value="/metodoPagamento/ativar?metodoPagamentoId=${it.id}" />" 
+												class="btn btn-success"  onclick="return confirm('Deseja realmente ativar o registro?')">Ativar</a>
+											</c:otherwise>
+										</c:choose>
 									</td>
 								</tr>
 							</c:forEach>

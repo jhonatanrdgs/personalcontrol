@@ -15,4 +15,6 @@ public interface DespesaCarroDAO {
 
 	DespesaCarro findById(Class<DespesaCarro> class1, Long id);
 
+	void excluir(DespesaCarro despesaCarro);
+
 }

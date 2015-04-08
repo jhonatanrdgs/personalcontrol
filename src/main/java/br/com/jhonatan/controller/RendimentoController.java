@@ -3,6 +3,7 @@ package br.com.jhonatan.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
+@Scope("request")
 public class RendimentoController {
 	
 	private static final String LIST_PAGE = "rendimento/listRendimento";
@@ -59,6 +61,14 @@ public class RendimentoController {
 		Rendimento rendimento = cadastrosGeraisService.findRendimentoById(id);
 		map.addAttribute("rendimentoForm", rendimento);
 		return EDIT_PAGE;
+	}
+	
+	@RequestMapping(value="/rendimento/delete")
+	public String remove(@RequestParam("rendimentoId") Long id, ModelMap map) {
+		cadastrosGeraisService.excluirRendimento(id);
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro Excluído com sucesso!");
+		map.addAttribute("rendimentoForm", new Rendimento());
+		return LIST_PAGE;
 	}
 	
 

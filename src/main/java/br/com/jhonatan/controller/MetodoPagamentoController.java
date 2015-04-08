@@ -3,6 +3,7 @@ package br.com.jhonatan.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
+@Scope("request")
 public class MetodoPagamentoController {
 	
 	private static final String LIST_PAGE = "metodoPagamento/listMetodoPagamento";
@@ -32,7 +34,7 @@ public class MetodoPagamentoController {
 	
 	@RequestMapping(value="/metodoPagamento/search")
 	public String search(@ModelAttribute("metodoPagamentoForm") MetodoPagamento metodoPagamento, ModelMap map) {
-		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarMetodosPagamento(metodoPagamento.getDescricao());
+		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarMetodosPagamento(metodoPagamento.getDescricao(), metodoPagamento.isAtivo());
 		map.addAttribute("resultado", metodosPagamento);
 		if (metodosPagamento.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
@@ -59,6 +61,22 @@ public class MetodoPagamentoController {
 		MetodoPagamento metodoPg = cadastrosGeraisService.findById(id);
 		map.addAttribute("metodoPagamentoForm", metodoPg);
 		return EDIT_PAGE;
+	}
+	
+	@RequestMapping(value="/metodoPagamento/delete")
+	public String remove(@RequestParam("metodoPagamentoId") Long id, ModelMap map) {
+		cadastrosGeraisService.excluirMetodoPagamento(id);
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro Inativado com sucesso!");
+		map.addAttribute("metodoPagamentoForm", new MetodoPagamento());
+		return LIST_PAGE;
+	}
+	
+	@RequestMapping(value="/metodoPagamento/ativar")
+	public String ativar(@RequestParam("metodoPagamentoId") Long id, ModelMap map) {
+		cadastrosGeraisService.ativarMetodoPagamento(id);
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro Ativado com sucesso!");
+		map.addAttribute("metodoPagamentoForm", new MetodoPagamento());
+		return LIST_PAGE;
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,7 @@ import br.com.jhonatan.service.DespesaCarroService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
+@Scope("session")
 public class DespesaCarroController {
 	
 	private static final String LIST_PAGE = "despesaCarro/listDespesaCarro";
@@ -88,6 +90,15 @@ public class DespesaCarroController {
 		map.addAttribute("despesaCarroForm", despesaCarro);
 		montarCombos(map);
 		return EDIT_PAGE;
+	}
+	
+	@RequestMapping(value="/despesaCarro/delete")
+	public String remove(@RequestParam("despesaCarroId") Long id, ModelMap map) {
+		despesaCarroService.excluir(id);
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro Excluído com sucesso!");
+		map.addAttribute("despesaCarroForm", new DespesaDTO());
+		montarCombos(map);
+		return LIST_PAGE;
 	}
 	
 	private void montarCombos(ModelMap map) {

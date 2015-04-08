@@ -17,4 +17,6 @@ public interface RendimentoDAO {
 
 	List<Rendimento> pesquisarRendimentosPorPessoa(String nomePessoa);
 
+	void excluir(Rendimento rendimento);
+
 }

@@ -50,7 +50,12 @@ public class RelatorioServiceImp implements RelatorioService {
 		totalGastos = NumberUtil.normalizarDouble(totalGastos, 2);
 		
 		Double rendimentos = rendimentoDAO.pesquisarRendimentosPorMes();
-		Double percentualComprometido = (totalGastos / rendimentos) * 100; 
+		Double percentualComprometido = null;
+		if (rendimentos != null) {
+			percentualComprometido = (totalGastos / rendimentos) * 100;
+		} else {
+			percentualComprometido = 0D;
+		}
 		percentualComprometido = NumberUtil.normalizarDouble(percentualComprometido, 2);
 		
 		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos, percentualComprometido};

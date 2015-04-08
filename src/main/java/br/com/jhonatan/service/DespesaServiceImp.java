@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.jhonatan.dao.DespesaDAO;
 import br.com.jhonatan.dao.UsuarioDAO;
@@ -56,6 +57,14 @@ public class DespesaServiceImp implements DespesaService {
 		return despesaDAO.findByIdFetched(id);
 	}
 	
+	@Override
+	@Transactional
+	public void excluirDespesa(Long id) {
+		Despesa despesa = despesaDAO.findById(Despesa.class, id);
+		despesaDAO.excluir(despesa);
+		
+	}
+
 	public Set<ParcelaDespesa> montarListaParcelas(Despesa despesa) {
 		Set<ParcelaDespesa> parcelas = new HashSet<ParcelaDespesa>();
 		Calendar data = new GregorianCalendar();

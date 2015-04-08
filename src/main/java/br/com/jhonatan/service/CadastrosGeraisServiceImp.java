@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.jhonatan.dao.CategoriaDAO;
 import br.com.jhonatan.dao.MetodoPagamentoDAO;
@@ -34,8 +35,8 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
-	public List<Categoria> pesquisarCategorias(String descricao) {
-		return categoriaDao.pesquisarCategorias(descricao);
+	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa) {
+		return categoriaDao.pesquisarCategorias(descricao, ativa);
 	}
 
 	@Override
@@ -59,8 +60,8 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
-	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao) {
-		return metodoPagamentoDao.pesquisarMetodosPagamento(descricao);
+	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao, boolean ativo) {
+		return metodoPagamentoDao.pesquisarMetodosPagamento(descricao, ativo);
 	}
 
 	@Override
@@ -92,6 +93,42 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	public List<Rendimento> pesquisarRendimentos(String nomePessoa) {
 		return rendimentoDao.pesquisarRendimentosPorPessoa(nomePessoa);
 	}
-	
 
+	@Override
+	public void excluirCategoria(Long id) {
+		Categoria categoria = categoriaDao.findById(Categoria.class, id);
+		categoria.setAtivo(false);
+		categoriaDao.atualizar(categoria);
+	}
+
+	@Override
+	public void ativarCategoria(Long id) {
+		Categoria categoria = categoriaDao.findById(Categoria.class, id);
+		categoria.setAtivo(true);
+		categoriaDao.atualizar(categoria);
+	}
+
+	@Override
+	@Transactional
+	public void excluirRendimento(Long id) {
+		Rendimento rendimento = rendimentoDao.findById(Rendimento.class, id);
+		rendimentoDao.excluir(rendimento);
+	}
+
+	@Override
+	public void excluirMetodoPagamento(Long id) {
+		MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
+		metodoPagamento.setAtivo(false);
+		metodoPagamentoDao.atualizar(metodoPagamento);
+	}
+
+	@Override
+	public void ativarMetodoPagamento(Long id) {
+		MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
+		metodoPagamento.setAtivo(true);
+		metodoPagamentoDao.atualizar(metodoPagamento);
+	}
+	
+	
+	
 }

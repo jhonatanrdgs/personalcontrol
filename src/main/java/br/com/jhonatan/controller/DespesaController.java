@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -24,6 +25,7 @@ import br.com.jhonatan.service.DespesaService;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
+@Scope("request")
 public class DespesaController {
 	
 	//TODO validação de campos obrigatórios do lado da controller ou service
@@ -59,7 +61,6 @@ public class DespesaController {
 	
 	@RequestMapping(value="/despesa/newDespesa")
 	public String newDespesa(ModelMap map) {
-		//TODO questão do grupo
 		Despesa despesa = new Despesa();
 		despesa.setData(new Date());
 		despesa.setTotalParcelas(1);
@@ -82,6 +83,15 @@ public class DespesaController {
 		map.addAttribute("despesaForm", despesa);
 		montarCombos(map);
 		return EDIT_PAGE;
+	}
+	
+	@RequestMapping(value="/despesa/delete")
+	public String remove(@RequestParam("despesaId") Long id, ModelMap map) {
+		despesaService.excluirDespesa(id);
+		MensagemUtil.adicionaMensagemSucesso(map, "Registro Excluído com sucesso!");
+		montaDTO(map);
+		montarCombos(map);
+		return LIST_PAGE;
 	}
 	
 	private void montaDTO(ModelMap map) {

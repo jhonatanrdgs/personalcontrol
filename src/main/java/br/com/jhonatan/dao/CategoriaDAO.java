@@ -12,7 +12,7 @@ public interface CategoriaDAO {
 	
 	public void atualizar(Categoria categoria);
 
-	public List<Categoria> pesquisarCategorias(String descricao);
+	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa);
 
 	public Categoria findById(Class<Categoria> classe, Long id);
 

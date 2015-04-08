@@ -14,4 +14,6 @@ public interface DespesaCarroService {
 
 	DespesaCarro findDespesasCarroById(Long id);
 
+	void excluir(Long id);
+
 }
