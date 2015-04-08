@@ -4,7 +4,11 @@
 
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
-		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 		<div class="row container-center_80 navbar-default" style="width: 40% !important;">
 				<div class="col-lg-4 div-center">
 		<h1>Bem vindo!</h1>
@@ -27,7 +31,7 @@
 						<input type='password' name='password' id="pw" class="form-control"/>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" style="text-align: center;">
 					<input name="submit" type="submit" class="btn btn-primary" value="Login" />
 				</div>
 
