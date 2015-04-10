@@ -2,6 +2,9 @@ package br.com.jhonatan.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import br.com.jhonatan.entidades.Categoria;
 import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.entidades.Rendimento;
@@ -11,7 +14,7 @@ public interface CadastrosGeraisService {
 	//TODO pensar em modo de isso ficar genérico
 	public void salvarOuAtualizarCategoria(Categoria categoria);
 
-	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa);
+	public Page<Categoria> pesquisarCategorias(String descricao, boolean ativa, Pageable pageable);
 
 	public Categoria pesquisarPorId(Long id);
 

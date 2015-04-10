@@ -3,6 +3,7 @@ package br.com.jhonatan.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
@@ -14,7 +15,7 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 	private static final long serialVersionUID = 974619289469912497L;
 
 	@Override
-	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa) {
+	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa, Pageable pageable) {
 		return criarQueryResultList(Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, ativa, descricao);
 	}
 

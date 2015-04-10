@@ -1,6 +1,8 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
  
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
@@ -31,7 +33,8 @@
 						</div>
 					</div>
 					
-					<c:if test="${not empty resultado}">
+
+					<c:if test="${not empty page}">
 						<table class="table table-bordered">
 							<tr>
 								<th class="info">
@@ -42,7 +45,7 @@
 									<label>Ações</label>
 								</th>
 							</tr>
-							<c:forEach items="${resultado}" var="it">
+							<c:forEach items="${page.content}" var="it">
 								<tr class="active">
 									<td width="70%">
 										<span>${it.descricao}</span>
@@ -63,8 +66,41 @@
 										</c:choose>
 									</td>
 								</tr>
+
 							</c:forEach>
 						</table>
+						
+														<!-- Pagination Bar -->
+<div th:fragment='paginationbar'>
+  <div class='pagination pagination-centered'>
+    <ul>
+      <li th:class='${page.firstPage}? 'disabled' : '''>
+        <span th:if='${page.firstPage}'> First</span>
+        <a th:if='${not page.firstPage}' th:href='@{${page.url}(page.page=1,page.size=${page.size})}'> First</a>
+      </li>
+      <li th:class='${page.hasPreviousPage}? '' : 'disabled''>
+        <span th:if='${not page.hasPreviousPage}'>«</span>
+        <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page.page=${page.number-1},page.size=${page.size})}' title='Go to previous page'>«</a>
+      </li>
+      <li th:each='item : ${page.items}' th:class='${item.current}? 'active' : '''>
+        <span th:if='${item.current}' th:text='${item.number}'>1</span>
+        <a th:if='${not item.current}' th:href='@{${page.url}(page.page=${item.number},page.size=${page.size})}'><span th:text='${item.number}'>1</span></a>
+      </li>
+      <li th:class='${page.hasNextPage}? '' : 'disabled''>
+        <span th:if='${not page.hasNextPage}'>»</span>
+        <a th:if='${page.hasNextPage}' href="/personalControl/categoria/search?page.page=${page.number+1}&page.size=${page.size}" title='Go to next page'>»</a>
+        
+        
+
+      </li>
+      <li th:class='${page.lastPage}? 'disabled' : '''>
+        <span th:if='${page.lastPage}'>Last </span>
+        <a th:if='${not page.lastPage}' th:href='@{${page.url}(page.page=${page.totalPages},page.size=${page.size})}'>Last </a>
+      </li>
+    </ul>
+  </div>
+</div>
+						
 					</c:if>
 				</div>
 			</div>

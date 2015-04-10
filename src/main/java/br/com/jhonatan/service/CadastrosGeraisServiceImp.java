@@ -3,10 +3,13 @@ package br.com.jhonatan.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.jhonatan.dao.CategoriaDAO;
+import br.com.jhonatan.dao.JPADAO;
 import br.com.jhonatan.dao.MetodoPagamentoDAO;
 import br.com.jhonatan.dao.RendimentoDAO;
 import br.com.jhonatan.entidades.Categoria;
@@ -24,6 +27,9 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	
 	@Autowired
 	private RendimentoDAO rendimentoDao;
+	
+	@Autowired
+	private JPADAO dao;
 
 	@Override
 	public void salvarOuAtualizarCategoria(Categoria categoria) {
@@ -35,8 +41,9 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
-	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa) {
-		return categoriaDao.pesquisarCategorias(descricao, ativa);
+	public Page<Categoria> pesquisarCategorias(String descricao, boolean ativa, Pageable pageable) {
+		Page<Categoria> lista = dao.pesquisarCategorias(descricao, ativa, pageable);
+		return lista;
 	}
 
 	@Override
