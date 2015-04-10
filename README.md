@@ -39,3 +39,6 @@ http://www.jqplot.com/
 
 Jquery UI (somente parte de date picker)
 http://jqueryui.com/
+
+Paginação
+http://datatables.net/

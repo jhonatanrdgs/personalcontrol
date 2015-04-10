@@ -31,16 +31,23 @@
 					</div>
 					
 					<c:if test="${not empty resultado}">
-						<table class="table table-bordered">
+						<table class="table table-bordered paginated">
+						<thead>
 							<tr>
 								<th class="info">
 									<label>Descrição</label>
 								</th>
 
-								<th class="info" colspan="2">
+								<th class="info" >
+									<label>Ações</label>
+								</th>
+								
+								<th class="info" >
 									<label>Ações</label>
 								</th>
 							</tr>
+							</thead>
+							<tbody>
 							<c:forEach items="${resultado}" var="it">
 								<tr class="active">
 									<td width="70%">
@@ -63,6 +70,7 @@
 									</td>
 								</tr>
 							</c:forEach>
+							</tbody>
 						</table>
 					</c:if>
 				</div>

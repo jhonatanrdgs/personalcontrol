@@ -34,18 +34,24 @@
 					</div>
 					
 
-					<c:if test="${not empty page}">
-						<table class="table table-bordered">
+					<c:if test="${not empty resultado}">
+						<table class="table table-bordered paginated">
+							<thead>
 							<tr>
 								<th class="info">
 									<label>Descrição</label>
 								</th>
 							
-								<th class="info" colspan="2">
+								<th class="info" >
+									<label>Ações</label>
+								</th>
+								<th class="info">
 									<label>Ações</label>
 								</th>
 							</tr>
-							<c:forEach items="${page.content}" var="it">
+							</thead>
+							<tbody>
+							<c:forEach items="${resultado}" var="it">
 								<tr class="active">
 									<td width="70%">
 										<span>${it.descricao}</span>
@@ -68,39 +74,8 @@
 								</tr>
 
 							</c:forEach>
+							</tbody>
 						</table>
-						
-														<!-- Pagination Bar -->
-<div th:fragment='paginationbar'>
-  <div class='pagination pagination-centered'>
-    <ul>
-      <li th:class='${page.firstPage}? 'disabled' : '''>
-        <span th:if='${page.firstPage}'> First</span>
-        <a th:if='${not page.firstPage}' th:href='@{${page.url}(page.page=1,page.size=${page.size})}'> First</a>
-      </li>
-      <li th:class='${page.hasPreviousPage}? '' : 'disabled''>
-        <span th:if='${not page.hasPreviousPage}'>«</span>
-        <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page.page=${page.number-1},page.size=${page.size})}' title='Go to previous page'>«</a>
-      </li>
-      <li th:each='item : ${page.items}' th:class='${item.current}? 'active' : '''>
-        <span th:if='${item.current}' th:text='${item.number}'>1</span>
-        <a th:if='${not item.current}' th:href='@{${page.url}(page.page=${item.number},page.size=${page.size})}'><span th:text='${item.number}'>1</span></a>
-      </li>
-      <li th:class='${page.hasNextPage}? '' : 'disabled''>
-        <span th:if='${not page.hasNextPage}'>»</span>
-        <a th:if='${page.hasNextPage}' href="/personalControl/categoria/search?page.page=${page.number+1}&page.size=${page.size}" title='Go to next page'>»</a>
-        
-        
-
-      </li>
-      <li th:class='${page.lastPage}? 'disabled' : '''>
-        <span th:if='${page.lastPage}'>Last </span>
-        <a th:if='${not page.lastPage}' th:href='@{${page.url}(page.page=${page.totalPages},page.size=${page.size})}'>Last </a>
-      </li>
-    </ul>
-  </div>
-</div>
-						
 					</c:if>
 				</div>
 			</div>

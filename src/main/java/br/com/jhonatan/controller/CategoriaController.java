@@ -1,8 +1,9 @@
 package br.com.jhonatan.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.jhonatan.entidades.Categoria;
-import br.com.jhonatan.paginador.PageWrapper;
 import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.util.MensagemUtil;
 
@@ -35,20 +35,11 @@ public class CategoriaController {
 	
 	@RequestMapping(value="/categoria/search")
 	public String search(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map, Pageable pageable) {
-		PageWrapper<Categoria> page = new PageWrapper<Categoria>
-		            (cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao(), categoria.isAtivo(), pageable), "/categoria/search");
+		List<Categoria> resultado = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao(), categoria.isAtivo());
 		
-		//TODO já passar a url da linha de cima com os paramentros que preciso
-		//ex.: /categoria/search?descricao=tal&ativo=false.. ai na tela eu monto o page...
-		//Dá para fazer isso dentro do page wrapper.. e para ficar genérico, é bom usar um dto para consulta, ai adiciono os campos por
-		//reflection na url, ai se aparecer mais um é só mudar no dto que automaticamente ele vai pra url..
-		//Page<Categoria> categorias = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao(), categoria.isAtivo(), pageable);
-		//Nisso tudo eu usei o Spring data e esse tutorial.. colocar no readme...http://www.javacodegeeks.com/2013/03/implement-bootstrap-pagination-with-spring-data-and-thymeleaf.html
-		//Tbm ver se continuo com o spring data (general.xml e JPADAO) ou não
+		map.addAttribute("resultado", resultado);
 		
-		map.addAttribute("page", page);
-		
-		if (page.getContent().isEmpty()) {
+		if (resultado.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
 		}
 		return LIST_PAGE;
