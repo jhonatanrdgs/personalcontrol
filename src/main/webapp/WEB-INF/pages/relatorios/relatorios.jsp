@@ -73,9 +73,9 @@
 			<div id="gastosPorMetodoPagamento" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
-		<div class="form-group" style="width: 80%;margin:0 auto;text-align: center;">
+		<div class="form-group" style="width: 95%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Gastos variáveis</p>
-			<div id="gastosVariaveis" style="width: 80% height: 350px; position: relative;margin:auto;"></div>
+			<div id="gastosVariaveis" style="width: 95% height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
