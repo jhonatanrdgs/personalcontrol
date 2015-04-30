@@ -38,6 +38,7 @@ public class DespesaServiceImp implements DespesaService {
 			}
 			despesaDAO.salvar(despesa);
 		} else {
+			despesa.setParcelas(montarListaParcelas(despesa));
 			despesaDAO.atualizar(despesa);
 		}
 	}
