@@ -33,10 +33,13 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 
 	@Override
 	public void salvarOuAtualizarDespesasCarro(DespesaCarro despesaCarro, List<ItemDespesaCarro> itens) {
-		despesaCarro.setUsuario(usuarioDAO.pesquisarUsuarioPorLogin(SecurityContextHolder.getContext().getAuthentication().getName()));
+		if (despesaCarro.getTotalParcelas() > 1) {
+			despesaCarro.setParcelada(true);
+		}
 		
+		despesaCarro.setUsuario(usuarioDAO.pesquisarUsuarioPorLogin(SecurityContextHolder.getContext().getAuthentication().getName()));
+		despesaCarro.setParcelas(despesaService.montarListaParcelas(despesaCarro));
 		if (despesaCarro.getId() == null) {
-			despesaCarro.setParcelas(despesaService.montarListaParcelas(despesaCarro));//TODO melhorar isso, passar para aspecto (proxy)
 			for (ItemDespesaCarro item : itens) {
 				item.setDespesaCarro(despesaCarro);
 			}
@@ -46,7 +49,6 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 			despesaCarro.getItemDespesaCarros().addAll(itens);
 			despesaCarroDAO.salvar(despesaCarro);
 		} else {
-			//TODO itens no atualizar
 			despesaCarroDAO.atualizar(despesaCarro);
 		}
 		

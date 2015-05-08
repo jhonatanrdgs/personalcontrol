@@ -419,4 +419,12 @@ function montaResumo(data) {
 	$("#totalGastosVariaveisPeriodo").html(data[1]);
 	$("#totalGastosFixos").html(data[2]);
 	$("#rendaComprometida").html(data[3]  + " %");
+	$("#rendaComprometida").css("font-weight", "700");
+	if (data[3] <= 60) {
+		$("#rendaComprometida").css("color", "green");
+	} else if (data[3] > 60 && data[3] < 75) {
+		$("#rendaComprometida").css("color", "#FFCC00");
+	} else {
+		$("#rendaComprometida").css("color", "red");
+	}
 }

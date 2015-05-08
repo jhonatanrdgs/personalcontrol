@@ -56,7 +56,7 @@ public class CategoriaController {
 	public String saveCategoria(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
 		cadastrosGeraisService.salvarOuAtualizarCategoria(categoria);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
-		return LIST_PAGE; 
+		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/categoria/edit", method=RequestMethod.GET)

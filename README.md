@@ -42,3 +42,6 @@ http://jqueryui.com/
 
 Paginação
 http://datatables.net/
+
+
+No futuro fazer validação do lado da controller

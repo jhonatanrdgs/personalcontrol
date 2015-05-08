@@ -12,7 +12,7 @@
 					<div class="form-group">
 						<label class="col-md-1 control-label" for="nomePessoa">Nome:</label>
 						<div class="col-md-8 input-icon">
-							<form:input type="text" path="nomePessoa" class="form-control"  />
+							<form:input type="text" path="nomePessoa" class="form-control" maxlength="100" />
 						</div>
 					</div>
 					

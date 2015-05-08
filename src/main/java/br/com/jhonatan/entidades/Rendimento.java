@@ -42,10 +42,10 @@ public class Rendimento extends BaseEntity implements Serializable {
 	@Column(name = "id_rendimento", unique = true, nullable = false, columnDefinition="bigserial")
 	private Long id;
 	
-	@Column(name="nome_pessoa")
+	@Column(name="nome_pessoa", length=100, nullable=false)
 	private String nomePessoa;
 	
-	@Column(name = "valor", precision = 10)
+	@Column(name = "valor", precision = 10, nullable=false)
 	private Double valor;
 
 	public Long getId() {

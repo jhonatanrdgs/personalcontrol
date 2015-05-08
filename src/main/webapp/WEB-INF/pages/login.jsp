@@ -21,14 +21,14 @@
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="usuario">Usuário:</label>
 					<div class="col-md-10">
-						<input type='text' name='username' value='' id="usuario" class="form-control">
+						<input type='text' name='username' value='' id="usuario" class="form-control" maxlength="100">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="pw">Senha:</label>
 					<div class="col-md-10">
-						<input type='password' name='password' id="pw" class="form-control"/>
+						<input type='password' name='password' id="pw" class="form-control" maxlength="100"/>
 					</div>
 				</div>
 				<div class="form-group" style="text-align: center;">

@@ -15,7 +15,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Nome:</label>
 						<div class="col-md-8">
-							<form:input type="text" path="descricao" class="form-control" id="nome"/>
+							<form:input type="text" path="descricao" class="form-control" id="nome" maxlength="100"/>
 						</div>
 					</div>
 					
@@ -41,14 +41,12 @@
 					
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Início:</label>
-						<div class="col-md-8 input-icon">
+						<div class="col-md-3 input-icon">
 							<form:input type="text" path="inicio" class="form-control date" />
 						</div>
-					</div>
 					
-					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Fim:</label>
-						<div class="col-md-8 input-icon">
+						<div class="col-md-3 input-icon">
 							<form:input type="text" path="fim" class="form-control date" />
 						</div>
 					</div>

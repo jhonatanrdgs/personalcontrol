@@ -1,6 +1,7 @@
 package br.com.jhonatan.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,6 @@ public class DespesaCarroController {
 	
 	private static final String LIST_PAGE = "despesaCarro/listDespesaCarro";
 	private static final String EDIT_PAGE = "despesaCarro/editDespesaCarro";
-	
-	//TODO maxlenght nos campos
 	
 	@Autowired
 	private DespesaCarroService despesaCarroService;
@@ -60,6 +59,8 @@ public class DespesaCarroController {
 	@RequestMapping(value="/despesaCarro/newDespesaCarro")
 	public String newDespesaCarro(ModelMap map) {
 		DespesaCarro despesaCarro = new DespesaCarro();
+		despesaCarro.setData(new Date());//TODO a data tá vindo errada na tela
+		despesaCarro.setTotalParcelas(1);
 		map.addAttribute("despesaCarroForm", despesaCarro);
 		montarCombos(map);
 		itens = new ArrayList<ItemDespesaCarro>();

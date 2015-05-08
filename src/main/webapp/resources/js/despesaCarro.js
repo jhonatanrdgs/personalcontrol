@@ -10,17 +10,6 @@ $(document).ready(function () {
 		}
     };
 	
-	$('input[name=parcelada]').click(function() {
-		if (this.checked) {
-			$('#totalParcelas').attr('value','');
-			$('#totalParcelas').removeAttr('readonly');
-		} else {
-			$('#totalParcelas').attr('value', 1);
-			$('#totalParcelas').attr('readonly', true);
-		}
-		
-	});
-	
 	$("#add").click(function() {
 		var desc = $("#desc").val();
 		var value = $("#val").val();

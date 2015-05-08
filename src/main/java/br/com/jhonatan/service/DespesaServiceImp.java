@@ -29,6 +29,9 @@ public class DespesaServiceImp implements DespesaService {
 
 	@Override
 	public void salvarOuAtualizar(Despesa despesa) {
+		if (despesa.getTotalParcelas() > 1) {
+			despesa.setParcelada(true);
+		}
 		if (despesa.getId() == null) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			Usuario usuario = usuarioDAO.pesquisarUsuarioPorLogin(authentication.getName());

@@ -13,7 +13,7 @@
 					<div class="form-group">
 						<label class="col-md-1 control-label" for="nome">Nome:</label>
 						<div class="col-md-8">
-							<form:input type="text" path="descricao" class="form-control" id="nome"/>
+							<form:input type="text" path="descricao" class="form-control" id="nome" maxlength="100"/>
 						</div>
 					</div>
 					<div class="form-group">

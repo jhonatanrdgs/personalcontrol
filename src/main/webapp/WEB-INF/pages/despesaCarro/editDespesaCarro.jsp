@@ -15,7 +15,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="descricao">Nome:</label>
 						<div class="col-md-8 input-icon">
-							<form:input type="text" path="descricao" class="form-control" />
+							<form:input type="text" path="descricao" class="form-control" maxlength="100"/>
 						</div>
 					</div>
 					
@@ -40,29 +40,18 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="parcelada">Parcelada:</label>
-						<div class="col-md-8 input-icon">
-							<form:checkbox path="parcelada" disabled="${despesaForm.id != null}" />
-						</div>
-					</div>
-					
-					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Valor Total:</label>
-						<div class="col-md-8 input-icon">
+						<div class="col-md-2 input-icon">
 							<form:input type="text" path="valorTotal"  class="form-control money"/>
 						</div>
-					</div>
 					
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Total de Parcelas:</label>
-						<div class="col-md-8 input-icon">
-							<form:input type="number" path="totalParcelas" class="form-control" readonly="${despesaForm.id != null}"/>
+						<label class="col-md-1 control-label" for="totalParcelas">Qtd Par:</label>
+						<div class="col-md-1 input-icon">
+							<form:input type="number" path="totalParcelas" class="form-control" />
 						</div>
-					</div>
 					
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Data da despesa:</label>
-						<div class="col-md-8 input-icon">
+						<label class="col-md-2 control-label" for="data">Data da despesa:</label>
+						<div class="col-md-2 input-icon">
 							<form:input type="text" path="data" class="form-control date" />
 						</div>
 					</div>
@@ -79,7 +68,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="desc">Descrição:</label>
 						<div class="col-md-8 input-icon">
-							<input type="text" id="desc" class="form-control"/>
+							<input type="text" id="desc" class="form-control" maxlength="100"/>
 						</div>
 					</div>
 					

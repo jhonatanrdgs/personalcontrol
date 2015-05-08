@@ -35,7 +35,7 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 	private Integer numeroParcela;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="data_parcela")
+	@Column(name="data_parcela", nullable=false)
 	private Date dataParcela;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

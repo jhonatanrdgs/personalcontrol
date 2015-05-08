@@ -28,9 +28,6 @@ import br.com.jhonatan.util.MensagemUtil;
 @Scope("request")
 public class DespesaController {
 	
-	//TODO validação de campos obrigatórios do lado da controller ou service (hibernate validator)
-	//TODO layout das telas de consulta e cadastro
-	
 	private static final String LIST_PAGE = "despesa/listDespesa";
 	private static final String EDIT_PAGE = "despesa/editDespesa";
 	
