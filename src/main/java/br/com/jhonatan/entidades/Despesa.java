@@ -94,21 +94,13 @@ public class Despesa extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 8987183170531571355L;
 
 	public static final String CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA = "despesa.consultarDespesasPorDescricaoCategoriaMetodoPgData";
-
 	public static final String CONSULTAR_DESPESA_POR_ID_FETCH = "despesa.consultarDespesaPorIdFetch";
-
 	public static final String CONSULTAR_DESPESAS_PARCELADAS_PERIODO = "despesa.consultarDespesasParceladasPeriodo";
-
 	public static final String CONSULTAR_GASTOS_FIXOS = "despesa.consultarGastosFixos";
-
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES = "despesa.consultarValorTotalDespesasMes";
-
 	public static final String CONSULTAR_DESPESAS_FIXAS = "despesa.consultarDespesasFixasMesAno";
-
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarDespesasVariaveisPeriodo";
-
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentoss";
-
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
 
 
