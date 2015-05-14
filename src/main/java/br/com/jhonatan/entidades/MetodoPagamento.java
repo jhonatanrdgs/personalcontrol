@@ -43,9 +43,7 @@ public class MetodoPagamento extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 5099386082815919390L;
 
 	public static final String CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO = "metodoPagamento.consultarMetodosPagamentoPorDescricao";
-
 	public static final String CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS = "metodoPagamento.consultarTodosMetodosPagamentoAtivos";
-
 	public static final String CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO = "metodoPagamento.consultarDespesasPorMetodoPagamentoAtivo";
 	
 	public MetodoPagamento() {
