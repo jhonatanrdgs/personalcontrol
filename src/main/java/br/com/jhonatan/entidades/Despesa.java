@@ -43,7 +43,7 @@ import javax.persistence.TemporalType;
 				+ " join fetch d.categoria c"
 				+ " join fetch d.metodoPagamento mp"
 				+ " join fetch d.usuario u"
-				+ " join fetch d.parcelas p"
+				+ " left join fetch d.parcelas p"
 				+ " where d.id = ?1"),
 				
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PARCELADAS_PERIODO,
