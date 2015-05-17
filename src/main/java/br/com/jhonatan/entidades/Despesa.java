@@ -53,9 +53,9 @@ import javax.persistence.TemporalType;
 				+ " where d.id = ?1"),
 				
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PARCELADAS_PERIODO,
-		query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, p.valorParcela) from Despesa d"
+		query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, d.valorParcela) from Despesa d"
 				+ " join d.parcelas p"
-				+ " where d.parcelada = true"
+				+ " where d.totalParcelas > 1"
 				+ " and p.dataParcela between ?1 and ?2"),
 				
 	@NamedQuery(name=Despesa.CONSULTAR_GASTOS_FIXOS,
@@ -63,7 +63,7 @@ import javax.persistence.TemporalType;
 					+ " where d.fixa = true"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES,
-			query="select sum(p.valorParcela) "
+			query="select sum(d.valorParcela) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
 					+ " where p.dataParcela between ?1 and ?2"),
@@ -72,20 +72,20 @@ import javax.persistence.TemporalType;
 			query="select sum(d.valorTotal) from Despesa d where d.fixa = true"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO,
-			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(p.valorParcela)) from Despesa d "
+			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(d.valorParcela)) from Despesa d "
 					+ " join d.parcelas p"
 					+ " where d.fixa = false"
 					+ " and p.dataParcela between ?1 and ?2"
 					+ " group by d.descricao"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
-			query="select sum(p.valorParcela) "
+			query="select sum(d.valorParcela) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
 					+ " where p.dataParcela between ?1 and ?2"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM,
-			query="select sum(pd.valorParcela) as valor from ParcelaDespesa pd "
+			query="select sum(d.valorParcela) as valor from ParcelaDespesa pd "
 					+ " join pd.despesa d"
 					+ " where d.fixa = false"
 					+ " and pd.dataParcela between ?1 and ?2")
@@ -106,7 +106,7 @@ public class Despesa extends BaseEntity implements Serializable {
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES = "despesa.consultarValorTotalDespesasMes";
 	public static final String CONSULTAR_DESPESAS_FIXAS = "despesa.consultarDespesasFixasMesAno";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarDespesasVariaveisPeriodo";
-	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentoss";
+	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentos";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
 
 
@@ -128,9 +128,6 @@ public class Despesa extends BaseEntity implements Serializable {
 	@JoinColumn(name = "id_usuario", nullable = false, columnDefinition="int")
 	private Usuario usuario;
 	
-	@Column(name = "parcelada", nullable = false)
-	private boolean parcelada;
-	
 	@Column(name = "valor_total", nullable = false, precision=10, scale=2, columnDefinition="Decimal(10,2)")
 	private Double valorTotal;
 	
@@ -143,6 +140,9 @@ public class Despesa extends BaseEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data", nullable = false, length = 13)
 	private Date data;
+	
+	@Column(name="valor_parcela", nullable = true, precision=10, scale=2, columnDefinition="Decimal(10,2)")
+	private Double valorParcela;
 	
 	@Column(name="fixa", nullable=false)
 	private boolean fixa;//fixa não gera parcela, então em relatorios é date(periodo) ou fixa
@@ -182,14 +182,6 @@ public class Despesa extends BaseEntity implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public boolean isParcelada() {
-		return parcelada;
-	}
-
-	public void setParcelada(boolean parcelada) {
-		this.parcelada = parcelada;
 	}
 
 	public Double getValorTotal() {
@@ -238,6 +230,14 @@ public class Despesa extends BaseEntity implements Serializable {
 
 	public void setFixa(boolean fixa) {
 		this.fixa = fixa;
+	}
+
+	public Double getValorParcela() {
+		return valorParcela;
+	}
+
+	public void setValorParcela(Double valorParcela) {
+		this.valorParcela = valorParcela;
 	}
 	
 }

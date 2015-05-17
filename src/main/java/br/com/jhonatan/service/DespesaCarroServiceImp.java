@@ -33,10 +33,6 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 
 	@Override
 	public void salvarOuAtualizarDespesasCarro(DespesaCarro despesaCarro, List<ItemDespesaCarro> itens) {
-		if (despesaCarro.getTotalParcelas() > 1) {
-			despesaCarro.setParcelada(true);
-		}
-		
 		despesaCarro.setUsuario(usuarioDAO.pesquisarUsuarioPorLogin(SecurityContextHolder.getContext().getAuthentication().getName()));
 		despesaCarro.setParcelas(despesaService.montarListaParcelas(despesaCarro));
 		if (despesaCarro.getId() == null) {

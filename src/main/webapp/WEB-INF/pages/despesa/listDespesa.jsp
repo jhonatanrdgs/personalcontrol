@@ -77,13 +77,16 @@
 								<th class="info">
 									<label>Data</label>
 								</th>
-
 								<th class="info">
-									<label>Ações</label>
+									<label>Valor total</label>
 								</th>
 								<th class="info">
 									<label>Ações</label>
 								</th>
+								<th class="info">
+									<label>Ações</label>
+								</th>
+								
 							</tr>
 							</thead>
 							<tbody>
@@ -98,8 +101,11 @@
 									<td width="20%">
 										<span>${it.metodoPagamento.descricao}</span>
 									</td>
-									<td width="20%">
+									<td width="10%">
 										<span><fmt:formatDate value="${it.data}" pattern="dd/MM/yyyy" /></span>
+									</td>
+									<td width="10%">
+										<span>${it.valorTotal}</span>
 									</td>
 									<td  style="text-align:center;width:20%">
 										<a href="<c:url value="/despesa/edit?despesaId=${it.id}" />" class="btn btn-success">Editar</a>

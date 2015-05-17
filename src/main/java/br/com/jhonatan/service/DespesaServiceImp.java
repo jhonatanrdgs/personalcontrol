@@ -18,6 +18,7 @@ import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.ParcelaDespesa;
 import br.com.jhonatan.entidades.Usuario;
+import br.com.jhonatan.util.NumberUtil;
 
 @Service
 public class DespesaServiceImp implements DespesaService {
@@ -29,9 +30,7 @@ public class DespesaServiceImp implements DespesaService {
 
 	@Override
 	public void salvarOuAtualizar(Despesa despesa) {
-		if (despesa.getTotalParcelas() > 1) {
-			despesa.setParcelada(true);
-		}
+		despesa.setValorParcela(NumberUtil.normalizarDouble(despesa.getValorTotal() / despesa.getTotalParcelas(), 2));
 		if (despesa.getId() == null) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			Usuario usuario = usuarioDAO.pesquisarUsuarioPorLogin(authentication.getName());
@@ -73,13 +72,11 @@ public class DespesaServiceImp implements DespesaService {
 		Set<ParcelaDespesa> parcelas = new HashSet<ParcelaDespesa>();
 		Calendar data = new GregorianCalendar();
 		data.setTime(despesa.getData());
-		Double valorParcela = despesa.getValorTotal() / despesa.getTotalParcelas();
 		for (int i = 0; i < despesa.getTotalParcelas(); i++) {
 			ParcelaDespesa parcela = new ParcelaDespesa();
 			parcela.setDataParcela(data.getTime());
 			parcela.setDespesa(despesa);
 			parcela.setNumeroParcela(i + 1);
-			parcela.setValorParcela(valorParcela);
 			parcelas.add(parcela);
 			
 			data.add(Calendar.MONTH, 1);

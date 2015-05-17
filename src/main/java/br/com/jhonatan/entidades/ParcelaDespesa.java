@@ -28,9 +28,6 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 	@Column(name = "id_parcela_despesa", unique = true, nullable = false, columnDefinition="bigserial")
 	private Long id;
 	
-	@Column(name="valor_parcela", nullable=false, precision=10, scale=2, columnDefinition="Decimal(10,2)")
-	private Double valorParcela;
-	
 	@Column(name="numero_parcela", nullable=false)
 	private Integer numeroParcela;
 	
@@ -41,14 +38,6 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_despesa", columnDefinition="int")
 	private Despesa despesa;
-
-	public Double getValorParcela() {
-		return valorParcela;
-	}
-
-	public void setValorParcela(Double valorParcela) {
-		this.valorParcela = valorParcela;
-	}
 
 	public Integer getNumeroParcela() {
 		return numeroParcela;
