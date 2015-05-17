@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,8 +32,6 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 
 	@Override
 	public void salvarOuAtualizarDespesasCarro(DespesaCarro despesaCarro, List<ItemDespesaCarro> itens) {
-		despesaCarro.setUsuario(usuarioDAO.pesquisarUsuarioPorLogin(SecurityContextHolder.getContext().getAuthentication().getName()));
-		despesaCarro.setParcelas(despesaService.montarListaParcelas(despesaCarro));
 		if (despesaCarro.getId() == null) {
 			for (ItemDespesaCarro item : itens) {
 				item.setDespesaCarro(despesaCarro);

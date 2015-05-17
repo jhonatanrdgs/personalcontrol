@@ -7,49 +7,12 @@
     <tiles:putAttribute name="body">
 		<form:form class="form-horizontal" action="save" method="post" commandName="despesaCarroForm" id="formDespesa">
 			<form:hidden  path="id" class="form-control"  />
-			<form:hidden path="usuario.id" class="form-control" />
 			<div class="row container-center_80 well">
-			<h4>Cadastro de Despesas</h4>
+			<h4>Cadastro de despesas do carro</h4>
 				<div class="col-lg-7 div-center">
 					<br/>
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="descricao">Nome:</label>
-						<div class="col-md-8 input-icon">
-							<form:input type="text" path="descricao" class="form-control" maxlength="100"/>
-						</div>
-					</div>
 					
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="categoria.id">Categoria:</label>
-						<div class="col-md-8 input-icon">
-							<form:select path="categoria.id" class="form-control" name="categoriaId">
-								<form:option value="" label="Selecione"/>
-								<form:options items="${categorias}" itemLabel="descricao" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
-						<div class="col-md-8 input-icon">
-							<form:select path="metodoPagamento.id" class="form-control" >
-								<form:option value="" label="Selecione"/>
-								<form:options items="${metodosPagamento}" itemLabel="descricao" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Valor Total:</label>
-						<div class="col-md-2 input-icon">
-							<form:input type="text" path="valorTotal"  class="form-control money"/>
-						</div>
-					
-						<label class="col-md-1 control-label" for="totalParcelas">Qtd Par:</label>
-						<div class="col-md-1 input-icon">
-							<form:input type="number" path="totalParcelas" class="form-control" />
-						</div>
-					
 						<label class="col-md-2 control-label" for="data">Data da despesa:</label>
 						<div class="col-md-2 input-icon">
 							<form:input type="text" path="data" class="form-control date" />

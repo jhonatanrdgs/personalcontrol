@@ -12,32 +12,6 @@
 				
 				<div class="col-lg-7 div-center">
 					<br/>
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Nome:</label>
-						<div class="col-md-8">
-							<form:input type="text" path="descricao" class="form-control" id="nome" maxlength="100"/>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Categoria:</label>
-						<div class="col-md-8 input-icon">
-							<form:select path="categoriaId" class="form-control">
-								<form:option value="" label="Selecione"/>
-								<form:options items="${categorias}" itemLabel="descricao" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
-						<div class="col-md-8 input-icon">
-							<form:select path="metodoPagamentoId" class="form-control" >
-								<form:option value="" label="Selecione"/>
-								<form:options items="${metodosPagamento}" itemLabel="descricao" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
 					
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Início:</label>
@@ -65,17 +39,8 @@
 							<thead>
 							<tr>
 								<th class="info">
-									<label>Descrição</label>
+									<label>Valor total</label>
 								</th>
-							
-								<th class="info">
-									<label>Categoria</label>
-								</th>
-							
-								<th class="info">
-									<label>Método Pagamento</label>
-								</th>
-							
 								<th class="info">
 									<label>Data</label>
 								</th>
@@ -91,16 +56,10 @@
 							<tbody>
 							<c:forEach items="${resultado}" var="it">
 								<tr class="active">
-									<td width="20%">
-										<span>${it.descricao}</span>
+									<td width="40%">
+										<span>${it.valorTotal}</span>
 									</td>
-									<td width="20%">
-										<span>${it.categoria.descricao}</span>
-									</td>
-									<td width="20%">
-										<span>${it.metodoPagamento.descricao}</span>
-									</td>
-									<td width="20%">
+									<td width="40%">
 										<span><fmt:formatDate value="${it.data}" pattern="dd/MM/yyyy" /></span>
 									</td>
 									<td  style="text-align:center;width:20%">

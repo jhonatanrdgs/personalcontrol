@@ -60,7 +60,6 @@ public class DespesaCarroController {
 	public String newDespesaCarro(ModelMap map) {
 		DespesaCarro despesaCarro = new DespesaCarro();
 		despesaCarro.setData(new Date());//TODO a data tá vindo errada na tela
-		despesaCarro.setTotalParcelas(1);
 		map.addAttribute("despesaCarroForm", despesaCarro);
 		montarCombos(map);
 		itens = new ArrayList<ItemDespesaCarro>();

@@ -24,6 +24,8 @@ import br.com.jhonatan.util.NumberUtil;
 @Service
 public class RelatorioServiceImp implements RelatorioService {
 	
+	//TODO revisar todas as queries
+	
 	@Autowired
 	private CategoriaDAO categoriaDAO;
 	
