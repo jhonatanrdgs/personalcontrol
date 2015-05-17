@@ -59,7 +59,7 @@ public class DespesaCarroController {
 	@RequestMapping(value="/despesaCarro/newDespesaCarro")
 	public String newDespesaCarro(ModelMap map) {
 		DespesaCarro despesaCarro = new DespesaCarro();
-		despesaCarro.setData(new Date());//TODO a data tá vindo errada na tela
+		despesaCarro.setData(new Date());
 		map.addAttribute("despesaCarroForm", despesaCarro);
 		montarCombos(map);
 		itens = new ArrayList<ItemDespesaCarro>();
