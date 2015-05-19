@@ -14,9 +14,7 @@ public class DespesaCarroDAOImp extends GenericDAO<DespesaCarro> implements Desp
 
 	@Override
 	public List<DespesaCarro> pesquisarDespesasCarro(DespesaDTO despesaCarro) {
-		//TODO revisar essa query
-		return criarQueryResultList(DespesaCarro.CONSULTAR_DESPESA_CARRO_POR_DESCRICAO,
-				despesaCarro.getInicioFormatado(), despesaCarro.getFimFormatado());
+		return criarQueryResultList(DespesaCarro.CONSULTAR_DESPESA_CARRO_PERIODO, despesaCarro.getInicioFormatado(), despesaCarro.getFimFormatado());
 	}
 	
 }

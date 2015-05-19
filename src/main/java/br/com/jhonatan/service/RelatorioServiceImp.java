@@ -65,6 +65,9 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDadosRelatorioDespesasPorCategoriasAtivas(Date inicio, Date fim) {
+		//TODO trazer todas as despesas que não tenham parcelas...
+		//TODO depois trazer as parceladas daquela categoria..., tomar cuidado, pois se não trazer na primeira consulta, não vai trazer da segunda
+		//TODO colocar na descrição do relatório que são despesas parcelas E não parceladas
 		return categoriaDAO.pesquisarDespesasPorCategoriasAtivas(inicio, fim);
 	}
 
@@ -75,6 +78,9 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDadosRelatorioGastosPorMetodoPagamento(Date inicio, Date fim) {
+		//TODO trazer todas as despesas que não tenham parcelas...
+		//TODO depois trazer as parceladas daquele método de pagamento..., tomar cuidado, pois se não trazer na primeira consulta, não vai trazer da segunda
+		//TODO colocar na descrição do relatório que são despesas parcelas E não parceladas
 		return metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(inicio, fim);
 	}
 	

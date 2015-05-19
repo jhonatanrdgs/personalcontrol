@@ -29,7 +29,4 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 		return criarQueryResultListSemTipagem(Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, inicio, fim);
 	}
 	
-	
-	
-	
 }

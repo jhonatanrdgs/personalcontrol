@@ -26,9 +26,9 @@ import javax.persistence.Table;
 	@NamedQuery(name=Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS,
 		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(d.valorParcela)) from Categoria c"
 				+ " join c.despesas d"
-				+ " join d.parcelas p "
-				+ " where p.dataParcela between ?1 and ?2 "
-				+ " and c.ativo = true"
+				+ " left join d.parcelas p "
+				+ " where c.ativo = true "
+				+ " and (p.dataParcela between ?1 and ?2) or (d.data between ?1 and ?2 and d.parcelas is empty)"
 				+ " and d.fixa = false"
 				+ " group by c.descricao")
 	
