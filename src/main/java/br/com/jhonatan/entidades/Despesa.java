@@ -63,7 +63,7 @@ import javax.persistence.TemporalType;
 	@NamedQuery(name=Despesa.CONSULTAR_SOMATORIO_DESPESAS_FIXAS,
 			query="select sum(d.valorTotal) from Despesa d where d.fixa = true"),
 					
-	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO,
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO, 
 			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(d.valorParcela)) from Despesa d "
 					+ " where d.fixa = false and d.parcelas is empty"
 					+ " and d.data between ?1 and ?2"
