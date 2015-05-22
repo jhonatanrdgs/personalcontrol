@@ -55,7 +55,7 @@ import javax.persistence.TemporalType;
 					+ " where d.fixa = true"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES,
-			query="select sum(p.valorParcela) "
+			query="select sum(p.valorParcela) "//TODO está errado aqui, está trazendo somente o somatório das parceladas
 					+ " from Despesa d"
 					+ " left join d.parcelas p"
 					+ " where (p.dataParcela between ?1 and ?2) or (d.data between ?1 and ?2 and d.parcelas is empty)"),

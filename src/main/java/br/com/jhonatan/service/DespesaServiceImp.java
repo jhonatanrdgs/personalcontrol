@@ -26,20 +26,21 @@ public class DespesaServiceImp implements DespesaService {
 	@Autowired
 	private DespesaDAO despesaDAO;
 	
-	@Autowired UsuarioDAO usuarioDAO;
+	@Autowired 
+	private UsuarioDAO usuarioDAO;
 
 	@Override
 	public void salvarOuAtualizar(Despesa despesa) {
+		if (!despesa.isFixa() && despesa.getTotalParcelas() > 1) {//Fixa não tem parcela - Somente totalParcelas > 1 tem parcelaDespesa
+			despesa.setParcelas(montarListaParcelas(despesa));
+		}
+		
 		if (despesa.getId() == null) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			Usuario usuario = usuarioDAO.pesquisarUsuarioPorLogin(authentication.getName());
 			despesa.setUsuario(usuario);
-			if (!despesa.isFixa()) {//Fixa não tem parcela
-				despesa.setParcelas(montarListaParcelas(despesa));
-			}
 			despesaDAO.salvar(despesa);
 		} else {
-			despesa.setParcelas(montarListaParcelas(despesa));
 			despesaDAO.atualizar(despesa);
 		}
 	}
@@ -67,7 +68,7 @@ public class DespesaServiceImp implements DespesaService {
 		
 	}
 
-	public Set<ParcelaDespesa> montarListaParcelas(Despesa despesa) {
+	private Set<ParcelaDespesa> montarListaParcelas(Despesa despesa) {
 		Set<ParcelaDespesa> parcelas = new HashSet<ParcelaDespesa>();
 		Calendar data = new GregorianCalendar();
 		Double valorParcela = NumberUtil.normalizarDouble(despesa.getValorTotal() / despesa.getTotalParcelas(), 2);
