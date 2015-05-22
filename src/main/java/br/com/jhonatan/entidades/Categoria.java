@@ -24,7 +24,7 @@ import javax.persistence.Table;
 	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true order by descricao"),
 	
 	@NamedQuery(name=Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS,
-		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(d.valorParcela)) from Categoria c"
+		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(p.valorParcela)) from Categoria c"
 				+ " join c.despesas d"
 				+ " left join d.parcelas p "
 				+ " where c.ativo = true "
