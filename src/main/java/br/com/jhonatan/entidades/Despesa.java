@@ -46,7 +46,7 @@ import javax.persistence.TemporalType;
 				+ " where d.id = ?1"),
 				
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PARCELADAS_PERIODO,
-		query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, d.valorParcela) from ParcelaDespesa pd"
+		query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, pd.valorParcela) from ParcelaDespesa pd"
 				+ " inner join pd.despesa d"
 				+ " where pd.dataParcela between ?1 and ?2"),
 				
@@ -55,7 +55,7 @@ import javax.persistence.TemporalType;
 					+ " where d.fixa = true"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES,
-			query="select sum(d.valorParcela) "
+			query="select sum(p.valorParcela) "//TODO está errado aqui, está trazendo somente o somatório das parceladas
 					+ " from Despesa d"
 					+ " left join d.parcelas p"
 					+ " where (p.dataParcela between ?1 and ?2) or (d.data between ?1 and ?2 and d.parcelas is empty)"),
@@ -63,20 +63,20 @@ import javax.persistence.TemporalType;
 	@NamedQuery(name=Despesa.CONSULTAR_SOMATORIO_DESPESAS_FIXAS,
 			query="select sum(d.valorTotal) from Despesa d where d.fixa = true"),
 					
-	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO,
-			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(d.valorParcela)) from Despesa d "
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO,//TODO tá errado isso aqui, tem que criar um DTO pra esse cara
+			query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, sum(d.valorTotal)) from Despesa d "
 					+ " where d.fixa = false and d.parcelas is empty"
 					+ " and d.data between ?1 and ?2"
 					+ " group by d.descricao"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
-			query="select sum(d.valorParcela) "
+			query="select sum(p.valorParcela) "
 					+ " from Despesa d"
 					+ " join d.parcelas p"
 					+ " where p.dataParcela between ?1 and ?2"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM,
-			query="select sum(d.valorParcela) as valor from ParcelaDespesa pd "
+			query="select sum(pd.valorParcela) as valor from ParcelaDespesa pd "
 					+ " join pd.despesa d"
 					+ " where d.fixa = false"
 					+ " and pd.dataParcela between ?1 and ?2")
@@ -131,9 +131,6 @@ public class Despesa extends BaseEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data", nullable = false, length = 13)
 	private Date data;
-	
-	@Column(name="valor_parcela", nullable = true, precision=10, scale=2, columnDefinition="Decimal(10,2)")
-	private Double valorParcela;
 	
 	@Column(name="fixa", nullable=false)
 	private boolean fixa;//fixa não gera parcela, então em relatorios é date(periodo) ou fixa
@@ -223,12 +220,5 @@ public class Despesa extends BaseEntity implements Serializable {
 		this.fixa = fixa;
 	}
 
-	public Double getValorParcela() {
-		return valorParcela;
-	}
-
-	public void setValorParcela(Double valorParcela) {
-		this.valorParcela = valorParcela;
-	}
 	
 }

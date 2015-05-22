@@ -27,7 +27,7 @@ import javax.persistence.Table;
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true order by descricao"),
 	
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO,
-			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.descricao, sum(d.valorParcela)) from MetodoPagamento mp"
+			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.descricao, sum(p.valorParcela)) from MetodoPagamento mp"
 					+ " join mp.despesas d"
 					+ " left join d.parcelas p"
 					+ " where mp.ativo = true"

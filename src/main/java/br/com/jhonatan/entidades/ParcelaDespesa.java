@@ -35,6 +35,9 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 	@Column(name="data_parcela", nullable=false)
 	private Date dataParcela;
 	
+	@Column(name="valor_parcela", nullable = true, precision=10, scale=2, columnDefinition="Decimal(10,2)")
+	private Double valorParcela;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_despesa", columnDefinition="int")
 	private Despesa despesa;
@@ -65,6 +68,14 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Double getValorParcela() {
+		return valorParcela;
+	}
+
+	public void setValorParcela(Double valorParcela) {
+		this.valorParcela = valorParcela;
 	}
 	
 }
