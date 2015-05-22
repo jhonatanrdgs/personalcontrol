@@ -46,13 +46,20 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	}
 
 	@Override
-	public Double pesquisarValorDespesasPorMes(Date inicio, Date fim) {
-		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES, inicio, fim);
+	public Double pesquisarValorTotalDespesasParceladasPeriodo(Date inicio, Date fim) {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_PARCELADAS_PERIODO, inicio, fim);
 	}
 	
 	@Override
 	public Double pesquisarSomatorioDespesasFixas() {
 		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_SOMATORIO_DESPESAS_FIXAS);
 	}
+
+	@Override
+	public Double pesquisarValorTotalDespesasNaoParceladasPeriodo(Date inicio,	Date fim) {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_NAO_PARCELADAS_PERIODO, inicio, fim);
+	}
+	
+	
 	
 }

@@ -64,7 +64,7 @@
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Gastos (Variáveis) por método de pagamento</p>
+			<p class="bg-primary">Gastos (Variáveis) por método de pagamento</p> 
 			<div id="gastosPorMetodoPagamento" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
 		</div>
 		
