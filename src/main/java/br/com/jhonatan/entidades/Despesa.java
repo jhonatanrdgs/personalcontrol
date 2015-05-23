@@ -11,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -84,7 +82,6 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "despesa", schema = "personal_control")
-@Inheritance(strategy=InheritanceType.JOINED)
 public class Despesa extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 8987183170531571355L;
