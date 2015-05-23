@@ -31,7 +31,7 @@ public class DespesaServiceImp implements DespesaService {
 
 	@Override
 	public void salvarOuAtualizar(Despesa despesa) {
-		if (!despesa.isFixa() && despesa.getTotalParcelas() > 1) {//Fixa não tem parcela - Somente totalParcelas > 1 tem parcelaDespesa
+		if (!despesa.isFixa()) {//Fixa não tem parcela
 			despesa.setParcelas(montarListaParcelas(despesa));
 		}
 		

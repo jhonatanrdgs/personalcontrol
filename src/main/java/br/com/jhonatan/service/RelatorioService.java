@@ -7,7 +7,7 @@ import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 
@@ -25,7 +25,7 @@ public interface RelatorioService {
 
 	List<RelatorioRendimentoGastosDTO> pesquisarDadosRelatorioRendimentosGastos();
 
-	List<RelatorioGastosVariaveisDTO> pesquisarDadosRelatorioGastosVariaveis(Date inicio, Date fim);
+	List<RelatorioComprasNaoParceladasDTO> pesquisarDadosRelatorioGastosVariaveis(Date inicio, Date fim);
 
 	Double[] pesquisarResumo(Date inicio, Date fim);
 

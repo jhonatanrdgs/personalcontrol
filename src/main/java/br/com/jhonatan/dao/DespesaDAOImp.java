@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
-import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 @Repository
@@ -35,7 +35,7 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioGastosVariaveisDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim) {
+	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim) {
 		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO, inicio, fim);
 	}
 
@@ -46,8 +46,8 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	}
 
 	@Override
-	public Double pesquisarValorTotalDespesasParceladasPeriodo(Date inicio, Date fim) {
-		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_PARCELADAS_PERIODO, inicio, fim);
+	public Double pesquisarValorTotalDespesasVariaveisPeriodo(Date inicio, Date fim) {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_PERIODO, inicio, fim);
 	}
 	
 	@Override
@@ -55,11 +55,5 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_SOMATORIO_DESPESAS_FIXAS);
 	}
 
-	@Override
-	public Double pesquisarValorTotalDespesasNaoParceladasPeriodo(Date inicio,	Date fim) {
-		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_NAO_PARCELADAS_PERIODO, inicio, fim);
-	}
-	
-	
 	
 }

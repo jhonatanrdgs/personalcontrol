@@ -15,7 +15,7 @@ import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.service.RelatorioService;
@@ -66,7 +66,7 @@ public class RelatorioController {
 	
 	
 	@RequestMapping(value="/relatorios/gastosVariaveis", headers="Accept=application/json")
-	public @ResponseBody List<RelatorioGastosVariaveisDTO> montarDadosGastosVariaveisJson(
+	public @ResponseBody List<RelatorioComprasNaoParceladasDTO> montarDadosGastosVariaveisJson(
 			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
 		return relatorioService.pesquisarDadosRelatorioGastosVariaveis(inicio, fim);
 	}

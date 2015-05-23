@@ -29,9 +29,9 @@ import javax.persistence.Table;
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO,
 			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.descricao, sum(p.valorParcela)) from MetodoPagamento mp"
 					+ " join mp.despesas d"
-					+ " left join d.parcelas p"
+					+ " join d.parcelas p"
 					+ " where mp.ativo = true"
-					+ " and (p.dataParcela between ?1 and ?2) or (d.data between ?1 and ?2 and d.parcelas is empty)"
+					+ " and p.dataParcela between ?1 and ?2"
 					+ " and d.fixa = false"
 					+ " group by mp.descricao")
 })

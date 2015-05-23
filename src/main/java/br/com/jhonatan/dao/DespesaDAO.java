@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
-import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 public interface DespesaDAO {
@@ -25,15 +25,12 @@ public interface DespesaDAO {
 
 	public List<RelatorioGastosFixosDTO> pesquisarDespesasFixas();
 
-	public Double pesquisarValorTotalDespesasParceladasPeriodo(Date inicio, Date fim);
+	public Double pesquisarValorTotalDespesasVariaveisPeriodo(Date inicio, Date fim);
 
 	public Double pesquisarSomatorioDespesasFixas();
 
-	public List<RelatorioGastosVariaveisDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
+	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
 
 	public void excluir(Despesa despesa);
-
-	public Double pesquisarValorTotalDespesasNaoParceladasPeriodo(Date inicio,	Date fim);
-
 
 }

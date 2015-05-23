@@ -15,7 +15,7 @@ import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioGastosVariaveisDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.util.DateUtil;
@@ -23,8 +23,6 @@ import br.com.jhonatan.util.NumberUtil;
 
 @Service
 public class RelatorioServiceImp implements RelatorioService {
-	
-	//TODO revisar todas as queries
 	
 	@Autowired
 	private CategoriaDAO categoriaDAO;
@@ -40,7 +38,8 @@ public class RelatorioServiceImp implements RelatorioService {
 	
 	@Override
 	public Double[] pesquisarResumo(Date inicio, Date fim) {
-		Double totalGastosVariaveisPeriodo = montarValoresDespesasVariaveisMensais(inicio, fim);
+		Double totalGastosVariaveisPeriodo = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisPeriodo(inicio, fim));
+		totalGastosVariaveisPeriodo = NumberUtil.normalizarDouble(totalGastosVariaveisPeriodo, 2);
 		
 		Double totalGastosFixos = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
 		totalGastosFixos = NumberUtil.normalizarDouble(totalGastosFixos, 2);
@@ -57,28 +56,21 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDadosRelatorioDespesasPorCategoriasAtivas(Date inicio, Date fim) {
-		
-		//TODO trazer todas as despesas que não tenham parcelas...
-		//TODO depois trazer as parceladas daquela categoria..., tomar cuidado, pois se não trazer na primeira consulta, não vai trazer da segunda
-		//TODO colocar na descrição do relatório que são despesas parcelas E não parceladas
 		return categoriaDAO.pesquisarDespesasPorCategoriasAtivas(inicio, fim);
 	}
 
 	@Override
-	public List<RelatorioComprasParceladasDTO> pesquisarDadosRelatorioComprasParceladas(Date inicio, Date fim) {
-		return despesaDAO.pesquisarDespesasParceladasPeriodo(inicio, fim);
-	}
-
-	@Override
 	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDadosRelatorioGastosPorMetodoPagamento(Date inicio, Date fim) {
-		//TODO trazer todas as despesas que não tenham parcelas...
-		//TODO depois trazer as parceladas daquele método de pagamento..., tomar cuidado, pois se não trazer na primeira consulta, não vai trazer da segunda
-		//TODO colocar na descrição do relatório que são despesas parcelas E não parceladas
 		return metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(inicio, fim);
 	}
 	
 	@Override
-	public List<RelatorioGastosVariaveisDTO> pesquisarDadosRelatorioGastosVariaveis(Date inicio, Date fim) {
+	public List<RelatorioComprasParceladasDTO> pesquisarDadosRelatorioComprasParceladas(Date inicio, Date fim) {
+		return despesaDAO.pesquisarDespesasParceladasPeriodo(inicio, fim);
+	}
+	
+	@Override
+	public List<RelatorioComprasNaoParceladasDTO> pesquisarDadosRelatorioGastosVariaveis(Date inicio, Date fim) {
 		return despesaDAO.pesquisarDespesasVariaveisPeriodo(inicio, fim);
 	}
 
@@ -96,7 +88,7 @@ public class RelatorioServiceImp implements RelatorioService {
 		for (int i = 0; i < 13; i++) {
 			Date fim = DateUtil.getUltimoDiaMes(inicio);
 			RelatorioTotalGastosMensaisDTO dto = new RelatorioTotalGastosMensaisDTO();
-			Double valorVariavelMensal = montarValoresDespesasVariaveisMensais(inicio, fim);
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisPeriodo(inicio, fim));
 			dto.setValorDespesasVariaveis(valorVariavelMensal);
 			dto.setValorDespesasFixas(valorDespesasFixas);
 			dto.setMes(DateUtil.getMes(inicio));
@@ -118,7 +110,7 @@ public class RelatorioServiceImp implements RelatorioService {
 		for (int i = 0; i < 13; i++) {
 			Date fim = DateUtil.getUltimoDiaMes(inicio);
 			RelatorioRendimentoGastosDTO dto = new RelatorioRendimentoGastosDTO();
-			Double valorVariavelMensal = montarValoresDespesasVariaveisMensais(inicio, fim);
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisPeriodo(inicio, fim));
 			dto.setDespesas(valorVariavelMensal + valorDespesasFixas);
 			dto.setRendimentos(rendimentos);
 			dto.setMes(DateUtil.getMes(inicio));
@@ -127,12 +119,6 @@ public class RelatorioServiceImp implements RelatorioService {
 			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
 		return list;
-	}
-	
-	private Double montarValoresDespesasVariaveisMensais(Date inicio, Date fim) {
-		Double valorTotalComprasParceladas = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasParceladasPeriodo(inicio, fim));
-		Double valorTotalComprasNaoParceladas = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasNaoParceladasPeriodo(inicio, fim));
-		return NumberUtil.normalizarDouble(valorTotalComprasParceladas + valorTotalComprasNaoParceladas, 2);
 	}
 	
 }

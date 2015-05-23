@@ -8,7 +8,7 @@ import br.com.jhonatan.entidades.Despesa;
 public interface DespesaService {
 	
 	/**
-	 * Somente despesas com totalParcelas > 1 que tem relacionamento com parcelaDespesa
+	 * Todas as despesas tem relacionamento com parcela_despesa
 	 * @param despesa
 	 */
 	//TODO melhorar documentação
