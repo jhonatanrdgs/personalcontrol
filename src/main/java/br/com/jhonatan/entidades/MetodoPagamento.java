@@ -30,8 +30,7 @@ import javax.persistence.Table;
 			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.descricao, sum(p.valorParcela)) from MetodoPagamento mp"
 					+ " join mp.despesas d"
 					+ " join d.parcelas p"
-					+ " where mp.ativo = true"
-					+ " and p.dataParcela between ?1 and ?2"
+					+ " where p.dataParcela between ?1 and ?2"
 					+ " and d.fixa = false"
 					+ " group by mp.descricao")
 })

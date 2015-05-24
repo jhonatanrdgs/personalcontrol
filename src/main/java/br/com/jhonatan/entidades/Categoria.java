@@ -27,8 +27,7 @@ import javax.persistence.Table;
 		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(p.valorParcela)) from Categoria c"
 				+ " join c.despesas d"
 				+ " join d.parcelas p"
-				+ " where c.ativo = true "
-				+ " and p.dataParcela between ?1 and ?2"
+				+ " where p.dataParcela between ?1 and ?2"
 				+ " and d.fixa = false"
 				+ " group by c.descricao")
 	
