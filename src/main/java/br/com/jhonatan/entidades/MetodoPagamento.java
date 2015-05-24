@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO,
-			query="from MetodoPagamento mp where ativo = ?1 and (mp.descricao like concat('%', ?2, '%') or ?2 is null)"),
+			query="from MetodoPagamento mp where ativo = ?1 and (upper(mp.descricao) like concat('%', upper(?2), '%') or ?2 is null)"),
 			
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true order by descricao"),
 	

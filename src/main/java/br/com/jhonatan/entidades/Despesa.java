@@ -30,7 +30,7 @@ import javax.persistence.TemporalType;
 			query="select d from Despesa d "
 					+ " join fetch d.categoria c"
 					+ " join fetch d.metodoPagamento mp"
-					+ " where (d.descricao like concat('%', ?1, '%') or ?1 is null)"
+					+ " where (upper(d.descricao) like concat('%', upper(?1), '%') or ?1 is null)"
 					+ " and (c.id = ?2 or ?2 is null)"
 					+ " and (mp.id = ?3 or ?3 is null)"
 					+ " and (d.data between ?4 and ?5)"),

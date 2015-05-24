@@ -22,7 +22,7 @@ import javax.persistence.Table;
 			query="select sum(r.valor) from Rendimento r"),
 			
 	@NamedQuery(name=Rendimento.CONSULTAR_RENDIMENTOS_POR_PESSOA,
-			query="select r from Rendimento r where r.nomePessoa like concat('%', ?1, '%') or ?1 is null")
+			query="select r from Rendimento r where upper(r.nomePessoa) like concat('%', upper(?1), '%') or ?1 is null")
 	
 })
 
