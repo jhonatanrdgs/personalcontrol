@@ -23,7 +23,7 @@ import br.com.jhonatan.util.DateUtil;
 
 @Controller
 @Scope("request")
-public class RelatorioController {
+public class RelatorioGraficoController {
 	
 	@Autowired
 	private RelatorioService relatorioService;

@@ -1,8 +1,15 @@
 package br.com.jhonatan.util;
 
+import java.text.DateFormatSymbols;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class DateUtil {
 
@@ -44,6 +51,26 @@ public class DateUtil {
 		Calendar c = new GregorianCalendar();
 		c.setTime(data);
 		return c.get(Calendar.YEAR);
+	}
+	
+	public static List<String> getMeses() {
+		Locale localeBrasil = new Locale("pt", "br");
+		String[] arrayMeses = DateFormatSymbols.getInstance(localeBrasil).getMonths();
+		List<String> meses = new ArrayList<String>(Arrays.asList(arrayMeses));
+		meses.remove(12);//Removendo mês fantasma
+		return meses;
+	}
+
+	public static List<Integer> get5AnosAtras5anosAFrente() {
+		Calendar c = new GregorianCalendar();
+		Integer anoAtual = c.get(Calendar.YEAR);
+		Set<Integer> anos = new TreeSet<Integer>();
+		anos.add(anoAtual);
+		for (int i = 1; i < 6; i++) {
+			anos.add(anoAtual - i);
+			anos.add(anoAtual + i);
+		}
+		return new ArrayList<Integer>(anos);
 	}
 
 }
