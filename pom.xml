@@ -235,6 +235,13 @@
 			<version>3.2.3.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>5.6.0</version>
+		</dependency>
+		
 
 		<!-- Jackson JSON Mapper -->
 		
