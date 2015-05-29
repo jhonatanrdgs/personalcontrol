@@ -52,9 +52,6 @@ public class RelatorioPDFController {
 		} catch (Exception e) {
 			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e.getCause());
 		}
-		
-		//System.out.println(relatorioForm);
-		
 		return PAGE;
 	}
 
@@ -63,7 +60,7 @@ public class RelatorioPDFController {
 		Map<String,Object> params = new HashMap<String,Object>();
 
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());//TODO erro aqui... Caused by: java.lang.ClassNotFoundException: org.codehaus.groovy.control.CompilationFailedException
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
 
 		response.setContentType("application/x-pdf");
 		response.setHeader("Content-disposition", "inline; filename=helloWorldReport.pdf");
