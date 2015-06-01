@@ -33,7 +33,6 @@
 						</div>
 					</div>
 					
-
 					<c:if test="${not empty resultado}">
 						<table class="table table-bordered paginated">
 							<thead>
