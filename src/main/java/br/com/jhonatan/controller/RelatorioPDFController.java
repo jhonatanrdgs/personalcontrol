@@ -47,6 +47,9 @@ public class RelatorioPDFController {
 		//TODO trazer os dados, e no relatório agrupar por categoria (colocar o total de cada categoria)
 		//TODO colocar o número da parcela na frente do nome do gasto. Ex.: Tenis (1/12)
 		
+		//TODO arrumar pom (tem duas versões do spring)
+		//TODO arrumar questão de ter a mesma config de banco no persistence e no ds
+		
 		try {
 			gerarPDF(response);
 		} catch (Exception e) {
