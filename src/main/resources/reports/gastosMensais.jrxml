@@ -3,33 +3,202 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.Integer"/>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<field name="nomeDespesa" class="java.lang.String"/>
+	<field name="valorTotalDespesa" class="java.lang.Double"/>
+	<field name="valorParcela" class="java.lang.Double"/>
+	<field name="numeroParcela" class="java.lang.Integer"/>
+	<field name="totalParcelas" class="java.lang.Integer"/>
+	<field name="nomeCategoria" class="java.lang.String"/>
+	<variable name="valorParcela_1" class="java.lang.Double" resetType="Group" resetGroup="groupCategoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorParcela}]]></variableExpression>
+	</variable>
+	<variable name="sumValorTotalParcelas" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorParcela}]]></variableExpression>
+	</variable>
+	<group name="groupCategoria">
+		<groupExpression><![CDATA[$F{nomeCategoria}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<staticText>
+					<reportElement x="0" y="22" width="214" height="28" uuid="546713d9-458d-4c49-9b77-8ccc226c8e7e"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Nome]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="214" y="22" width="100" height="28" uuid="f614f2ee-8d8d-40ef-8d8f-a68ef136407c"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Valor Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="314" y="22" width="100" height="28" uuid="4e764ae5-5eb6-49ca-96d5-e389e8d1db5e"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Valor Parcela]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="414" y="22" width="70" height="28" uuid="862281a4-0c26-4b79-8b63-5584eea19a6f"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Número Parcela]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="484" y="22" width="71" height="28" uuid="ea8cfd44-6b8d-4ebe-b695-107f104d435a"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total de Parcelas]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="57" y="1" width="498" height="20" uuid="064e255b-a068-4b0f-9be9-de2c398aeff7"/>
+					<textElement>
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nomeCategoria}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="1" width="57" height="20" uuid="b52c3c0e-2c65-4213-8963-e3c8acd44d8f"/>
+					<textElement>
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Categoria:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="36">
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="455" y="10" width="100" height="20" uuid="cd112842-63c5-41ab-8eab-6919e098347a"/>
+					<textElement>
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{valorParcela_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="414" y="10" width="41" height="20" uuid="dfd3b9fc-de01-4080-9a6f-9753dd85be18"/>
+					<textElement>
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="223" y="34" width="100" height="20" uuid="3ecbf9c4-ac73-491f-8dec-753351ea15b2"/>
-				<text><![CDATA[bla bla bla]]></text>
+				<reportElement x="0" y="15" width="555" height="37" uuid="32fdb65c-d2f3-4d64-a70f-9781f8a4063f"/>
+				<textElement textAlignment="Center">
+					<font size="16" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Relatório de Gastos Variáveis Mensais]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="52" width="555" height="20" uuid="4065d16e-f890-4d94-ab22-8ba6c62f9483"/>
+				<textElement textAlignment="Center">
+					<font size="12" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{mes} + 1) + "/" + $P{ano}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="5" width="214" height="20" uuid="31c29e56-81a2-4320-ad90-78648d7d84a0"/>
+				<textFieldExpression><![CDATA[$F{nomeDespesa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="214" y="5" width="100" height="20" uuid="9dad53bb-7e83-4230-92d9-6420fb76b3d1"/>
+				<textFieldExpression><![CDATA[$F{valorTotalDespesa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="314" y="5" width="100" height="20" uuid="ba52168a-82c5-477f-b01c-c0c5c39090ec"/>
+				<textFieldExpression><![CDATA[$F{valorParcela}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="5" width="70" height="20" uuid="3b0ea9ca-a62b-48bd-b0de-940849124d61"/>
+				<textFieldExpression><![CDATA[$F{numeroParcela}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="484" y="5" width="71" height="20" uuid="c705213d-3329-48f5-88f3-c798055a591d"/>
+				<textFieldExpression><![CDATA[$F{totalParcelas}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="14" width="100" height="20" uuid="cd610fc3-cd99-4ee1-b6bb-1ec8b1f1e2ea"/>
+				<textElement>
+					<font pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumValorTotalParcelas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="14" width="61" height="20" uuid="0f631062-1cee-40a6-9ab8-7cae1f247fd9"/>
+				<textElement>
+					<font pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total Geral:]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

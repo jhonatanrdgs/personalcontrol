@@ -2,7 +2,8 @@ package br.com.jhonatan.dto;
 
 public class FormRelatorioDTO {
 	
-	public Integer mes;
+	private Integer mes;
+	private Integer ano;
 
 	public Integer getMes() {
 		return mes;
@@ -11,5 +12,14 @@ public class FormRelatorioDTO {
 	public void setMes(Integer mes) {
 		this.mes = mes;
 	}
+
+	public Integer getAno() {
+		return ano;
+	}
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
+	}
+	
 	
 }

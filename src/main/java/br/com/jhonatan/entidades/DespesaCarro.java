@@ -29,7 +29,9 @@ import br.com.jhonatan.util.NumberUtil;
  */
 @NamedQueries( {
 	@NamedQuery(name=DespesaCarro.CONSULTAR_DESPESA_CARRO_PERIODO,
-		query="select dc from DespesaCarro dc join fetch dc.itemDespesaCarros where dc.data between ?1 and ?2")
+		query="select distinct dc from DespesaCarro dc "
+				+ " join fetch dc.itemDespesaCarros idc "
+				+ " where dc.data between ?1 and ?2")
 
 })
 

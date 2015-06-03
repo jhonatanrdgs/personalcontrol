@@ -13,8 +13,8 @@
 				<div class="col-lg-7 div-center">
 					<br/>
 					<div class="form-group">
-						<label class="col-md-1 control-label" for="nome">Mês:</label>
-						<div class="col-md-8">
+						<label class="col-md-1 control-label" for="mes">Mês:</label>
+						<div class="col-md-5">
 							<form:select path="mes" class="form-control">
 								<form:option value="" label="Selecione"/>
 								<c:forEach items="${meses}" var="item" varStatus="it">
@@ -22,9 +22,19 @@
 								</c:forEach>
 							</form:select>
 						</div>
+						
+						<label class="col-md-1 control-label" for="ano">Ano:</label>
+						<div class="col-md-5">
+							<form:select path="ano" class="form-control">
+								<form:option value="" label="Selecione"/>
+								<c:forEach items="${anos}" var="item">
+									<form:option value="${item}" label="${item}" />
+								</c:forEach>
+							</form:select>
+						</div>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group" style="text-align: center;">
 						<input type="submit" value="Gerar" class="btn btn-primary"/>
 					</div>
 				</div>

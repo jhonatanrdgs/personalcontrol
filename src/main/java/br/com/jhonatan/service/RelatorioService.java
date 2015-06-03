@@ -3,11 +3,13 @@ package br.com.jhonatan.service;
 import java.util.Date;
 import java.util.List;
 
+import br.com.jhonatan.dto.FormRelatorioDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
+import br.com.jhonatan.dto.RelatorioPDFDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 
@@ -70,5 +72,12 @@ public interface RelatorioService {
 	 * @return Array de double, sendo: 1 - Total de Gastos Geral, 2 - Total de gastos variáveis (parcelados e não parcelados), 3 - Total de gastos fixos, 4 - Percentual de renda comprometido  
 	 */
 	Double[] pesquisarResumo(Date inicio, Date fim);
+	
+	/**
+	 * Retorna todas as despesas de um determinado periodo
+	 * @param relatorioForm
+	 * @return
+	 */
+	List<RelatorioPDFDTO> pesquisarDespesasPeriodo(FormRelatorioDTO relatorioForm);
 
 }

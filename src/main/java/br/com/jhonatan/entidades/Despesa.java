@@ -76,7 +76,14 @@ import javax.persistence.TemporalType;
 			query="select sum(pd.valorParcela) as valor from ParcelaDespesa pd "
 					+ " join pd.despesa d"
 					+ " where d.fixa = false"
-					+ " and pd.dataParcela between ?1 and ?2")
+					+ " and pd.dataParcela between ?1 and ?2"),
+					
+					
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PERIODO, //TODO arrumar o nome disso, não tras as fixas
+			query="select new br.com.jhonatan.dto.RelatorioPDFDTO(d.descricao, d.valorTotal, p.valorParcela, p.numeroParcela, d.totalParcelas, d.categoria.descricao) "
+					+ " from Despesa d"
+					+ " inner join d.parcelas p"
+					+ " where p.dataParcela between ?1 and ?2 order by d.categoria.id")
 					
 })
 
@@ -95,6 +102,7 @@ public class Despesa extends BaseEntity implements Serializable {
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarDespesasVariaveisPeriodo";
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentos";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
+	public static final String CONSULTAR_DESPESAS_PERIODO = "despesa.consultarDespesasPeriodo";
 
 
 	@Id

@@ -11,11 +11,13 @@ import br.com.jhonatan.dao.CategoriaDAO;
 import br.com.jhonatan.dao.DespesaDAO;
 import br.com.jhonatan.dao.MetodoPagamentoDAO;
 import br.com.jhonatan.dao.RendimentoDAO;
+import br.com.jhonatan.dto.FormRelatorioDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
+import br.com.jhonatan.dto.RelatorioPDFDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.util.DateUtil;
@@ -120,5 +122,14 @@ public class RelatorioServiceImp implements RelatorioService {
 		}
 		return list;
 	}
+
+	@Override
+	public List<RelatorioPDFDTO> pesquisarDespesasPeriodo(FormRelatorioDTO relatorioForm) {
+		Date inicio = DateUtil.getPrimeiroDiaMes(relatorioForm.getMes(), relatorioForm.getAno());
+		Date fim = DateUtil.getUltimoDiaMes(relatorioForm.getMes(), relatorioForm.getAno());
+		return despesaDAO.pesquisarDespesasPeriodo(inicio, fim);
+	}
+	
+	
 	
 }

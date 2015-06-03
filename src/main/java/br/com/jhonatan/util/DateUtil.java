@@ -72,5 +72,21 @@ public class DateUtil {
 		}
 		return new ArrayList<Integer>(anos);
 	}
+	
+	public static Date getPrimeiroDiaMes(Integer mes, Integer ano) {
+		Calendar c = new GregorianCalendar();
+		c.set(Calendar.MONTH, mes);
+		c.set(Calendar.YEAR, ano);
+		c.set(Calendar.DAY_OF_MONTH, 1);
+		return c.getTime();
+	}
+	
+	public static Date getUltimoDiaMes(Integer mes, Integer ano) {
+		Calendar c = new GregorianCalendar();
+		c.set(Calendar.MONTH, mes);
+		c.set(Calendar.YEAR, ano);
+		c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+		return c.getTime();
+	}
 
 }

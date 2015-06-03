@@ -4,9 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.jhonatan.dto.DespesaDTO;
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
-import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
+import br.com.jhonatan.dto.RelatorioPDFDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 public interface DespesaDAO {
@@ -32,5 +33,7 @@ public interface DespesaDAO {
 	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
 
 	public void excluir(Despesa despesa);
+
+	public List<RelatorioPDFDTO> pesquisarDespesasPeriodo(Date inicio, Date fim);
 
 }
