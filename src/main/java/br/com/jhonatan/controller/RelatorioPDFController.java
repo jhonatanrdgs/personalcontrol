@@ -49,6 +49,9 @@ public class RelatorioPDFController {
 		
 		//TODO arrumar pom (tem duas versões do spring)
 		//TODO arrumar questão de ter a mesma config de banco no persistence e no ds
+		//TODO bug na despesa carro, se coloco acento nos itens mata formatação..
+		//TODO poder editar/excluir os esquemas da despesacarro
+		//TODO arrumar tela de consulta da despesaCarro (dados de resultado não estão vindo corretamente)
 		
 		try {
 			gerarPDF(response);
