@@ -8,18 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jhonatan.dao.CategoriaDAO;
+import br.com.jhonatan.dao.DespesaCarroDAO;
 import br.com.jhonatan.dao.DespesaDAO;
 import br.com.jhonatan.dao.MetodoPagamentoDAO;
 import br.com.jhonatan.dao.RendimentoDAO;
 import br.com.jhonatan.dto.FormRelatorioDTO;
+import br.com.jhonatan.dto.ItemDespesaCarroDTO;
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
+import br.com.jhonatan.dto.RelatorioDespesaCarroPdfDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
+import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioPDFDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
+import br.com.jhonatan.entidades.DespesaCarro;
+import br.com.jhonatan.entidades.ItemDespesaCarro;
 import br.com.jhonatan.util.DateUtil;
 import br.com.jhonatan.util.NumberUtil;
 
@@ -37,6 +42,9 @@ public class RelatorioServiceImp implements RelatorioService {
 	
 	@Autowired
 	private RendimentoDAO rendimentoDAO;
+	
+	@Autowired
+	private DespesaCarroDAO despesaCarroDAO;
 	
 	@Override
 	public Double[] pesquisarResumo(Date inicio, Date fim) {
@@ -124,11 +132,28 @@ public class RelatorioServiceImp implements RelatorioService {
 	}
 
 	@Override
-	public List<RelatorioPDFDTO> pesquisarDespesasPeriodo(FormRelatorioDTO relatorioForm) {
+	public List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensais(FormRelatorioDTO relatorioForm) {
 		Date inicio = DateUtil.getPrimeiroDiaMes(relatorioForm.getMes(), relatorioForm.getAno());
 		Date fim = DateUtil.getUltimoDiaMes(relatorioForm.getMes(), relatorioForm.getAno());
 		return despesaDAO.pesquisarDespesasPeriodo(inicio, fim);
 	}
+
+	@Override
+	public List<RelatorioDespesaCarroPdfDTO> pesquisarDadosRelatorioDespesaCarro() {
+		List<DespesaCarro> list = despesaCarroDAO.pesquisarDespesasCarroPeriodo(); 
+		List<RelatorioDespesaCarroPdfDTO> dtos = new ArrayList<RelatorioDespesaCarroPdfDTO>();
+		for (DespesaCarro dc : list) {
+			RelatorioDespesaCarroPdfDTO dto = new RelatorioDespesaCarroPdfDTO(dc.getKm(), dc.getData());
+			for (ItemDespesaCarro idc : dc.getItemDespesaCarros()) {
+				ItemDespesaCarroDTO idcDTO = new ItemDespesaCarroDTO(idc.getDescricao(), idc.getValorItem());
+				dto.getItensDespesaCarro().add(idcDTO);
+			}
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+	
+	
 	
 	
 	

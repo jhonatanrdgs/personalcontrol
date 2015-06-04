@@ -1,6 +1,6 @@
 package br.com.jhonatan.dto;
 
-public class RelatorioPDFDTO {
+public class RelatorioGastosMensaisPdfDTO {
 	
 	private String nomeDespesa;
 	private Double valorTotalDespesa;
@@ -9,7 +9,7 @@ public class RelatorioPDFDTO {
 	private Integer totalParcelas;
 	private String nomeCategoria;
 	
-	public RelatorioPDFDTO(String nomeDespesa, Double valorTotalDespesa, Double valorParcela, 
+	public RelatorioGastosMensaisPdfDTO(String nomeDespesa, Double valorTotalDespesa, Double valorParcela, 
 			Integer numeroParcela, Integer totalParcelas, String nomeCategoria) {
 		
 		this.nomeDespesa = nomeDespesa;

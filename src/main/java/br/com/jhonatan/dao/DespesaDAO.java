@@ -7,7 +7,7 @@ import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
-import br.com.jhonatan.dto.RelatorioPDFDTO;
+import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 public interface DespesaDAO {
@@ -34,6 +34,6 @@ public interface DespesaDAO {
 
 	public void excluir(Despesa despesa);
 
-	public List<RelatorioPDFDTO> pesquisarDespesasPeriodo(Date inicio, Date fim);
+	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodo(Date inicio, Date fim);
 
 }

@@ -17,4 +17,6 @@ public interface DespesaCarroDAO {
 
 	void excluir(DespesaCarro despesaCarro);
 
+	List<DespesaCarro> pesquisarDespesasCarroPeriodo();
+
 }

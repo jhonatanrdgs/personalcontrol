@@ -7,9 +7,9 @@
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     
-		<form:form class="form-horizontal" action="relatorioPDF/imprimir" method="get" commandName="relatorioForm">
+		<form:form class="form-horizontal" action="relatorioPDF/imprimirGastosMensais" method="get" commandName="relatorioForm">
 			<div class="row container-center_60 navbar-default">
-				<h4>Relatório de despesas mensais (PDF)</h4>
+				<h4>Relatórios em PDF</h4>
 				<div class="col-lg-7 div-center">
 					<br/>
 					<div class="form-group">
@@ -35,12 +35,24 @@
 					</div>
 					
 					<div class="form-group" style="text-align: center;">
-						<input type="submit" value="Gerar" class="btn btn-primary"/>
+						<input type="submit" value="Gerar Gastos Mensais" class="btn btn-primary"/>
+						
 					</div>
 				</div>
 			</div>
 		
 		</form:form>
+		
+		<form action="<c:url value="/relatorioPDF/imprimirDespesasCarro" />">
+			<div class="row container-center_60 navbar-default">
+				<div class="col-lg-7 div-center">
+					<br/>
+					<div class="form-group" style="text-align: center;">
+						<input type="submit" value="Gerar Despesas Carro" class="btn btn-primary" name="despesasCarro"/>
+					</div>
+				</div>
+			</div>
+		</form>
 		
 	</tiles:putAttribute>
 </tiles:insertDefinition>

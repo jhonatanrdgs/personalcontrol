@@ -26,7 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.jhonatan.dto.FormRelatorioDTO;
-import br.com.jhonatan.dto.RelatorioPDFDTO;
+import br.com.jhonatan.dto.RelatorioDespesaCarroPdfDTO;
+import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.service.RelatorioService;
 import br.com.jhonatan.util.DateUtil;
 import br.com.jhonatan.util.MensagemUtil;
@@ -48,13 +49,14 @@ public class RelatorioPDFController {
 		return PAGE;
 	}
 	
-	@RequestMapping(value="/relatorioPDF/imprimir")
+	@RequestMapping(value="/relatorioPDF/imprimirGastosMensais")
 	@ResponseBody
 	public String gerarGastosMensais(@ModelAttribute("relatorioForm") FormRelatorioDTO relatorioForm, ModelMap map, HttpServletResponse response) {
-		List<RelatorioPDFDTO> list = relatorioService.pesquisarDespesasPeriodo(relatorioForm);
+		List<RelatorioGastosMensaisPdfDTO> list = relatorioService.pesquisarDadosRelatorioGastosMensais(relatorioForm);
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("mes", relatorioForm.getMes());
 		parametros.put("ano", relatorioForm.getAno());
+		//TODO validar ano e mes obrigatórios
 		
 		//TODO arrumar pom (tem duas versões do spring)
 		//TODO arrumar questão de ter a mesma config de banco no persistence e no ds
@@ -66,6 +68,21 @@ public class RelatorioPDFController {
 		} catch (Exception e) {
 			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e.getCause());//TODO essa mensagem não está aparecendo na tela
 		}
+		return PAGE;
+	}
+	
+	@RequestMapping(value="/relatorioPDF/imprimirDespesasCarro")
+	@ResponseBody
+	public String gerarDespesasCarro(ModelMap map, HttpServletResponse response) {
+		List<RelatorioDespesaCarroPdfDTO> list = relatorioService.pesquisarDadosRelatorioDespesaCarro();
+		
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		try {
+			gerarPDF(response, list, parametros, "despesasCarro");
+		} catch (Exception e) {
+			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e.getCause());//TODO essa mensagem não está aparecendo na tela
+		}
+
 		return PAGE;
 	}
 

@@ -1,6 +1,6 @@
 package br.com.jhonatan.service;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 				item.setDespesaCarro(despesaCarro);
 			}
 			if (despesaCarro.getItemDespesaCarros() == null) {
-				despesaCarro.setItemDespesaCarros(new HashSet<ItemDespesaCarro>());
+				despesaCarro.setItemDespesaCarros(new ArrayList<ItemDespesaCarro>());
 			}
 			despesaCarro.getItemDespesaCarros().addAll(itens);
 			despesaCarroDAO.salvar(despesaCarro);

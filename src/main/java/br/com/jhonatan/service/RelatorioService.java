@@ -6,10 +6,11 @@ import java.util.List;
 import br.com.jhonatan.dto.FormRelatorioDTO;
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
+import br.com.jhonatan.dto.RelatorioDespesaCarroPdfDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
+import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioPDFDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 
@@ -78,6 +79,8 @@ public interface RelatorioService {
 	 * @param relatorioForm
 	 * @return
 	 */
-	List<RelatorioPDFDTO> pesquisarDespesasPeriodo(FormRelatorioDTO relatorioForm);
+	List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensais(FormRelatorioDTO relatorioForm);
+
+	List<RelatorioDespesaCarroPdfDTO> pesquisarDadosRelatorioDespesaCarro();
 
 }

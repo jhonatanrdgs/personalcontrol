@@ -80,7 +80,7 @@ import javax.persistence.TemporalType;
 					
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PERIODO, //TODO arrumar o nome disso, não tras as fixas
-			query="select new br.com.jhonatan.dto.RelatorioPDFDTO(d.descricao, d.valorTotal, p.valorParcela, p.numeroParcela, d.totalParcelas, d.categoria.descricao) "
+			query="select new br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO(d.descricao, d.valorTotal, p.valorParcela, p.numeroParcela, d.totalParcelas, d.categoria.descricao) "
 					+ " from Despesa d"
 					+ " inner join d.parcelas p"
 					+ " where p.dataParcela between ?1 and ?2 order by d.categoria.id")

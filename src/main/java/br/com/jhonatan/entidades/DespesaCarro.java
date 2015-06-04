@@ -2,7 +2,7 @@ package br.com.jhonatan.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,7 +31,12 @@ import br.com.jhonatan.util.NumberUtil;
 	@NamedQuery(name=DespesaCarro.CONSULTAR_DESPESA_CARRO_PERIODO,
 		query="select distinct dc from DespesaCarro dc "
 				+ " join fetch dc.itemDespesaCarros idc "
-				+ " where dc.data between ?1 and ?2")
+				+ " where dc.data between ?1 and ?2"),
+				
+	@NamedQuery(name=DespesaCarro.CONSULTAR_TODAS_DESPESAS_CARRO,
+			query="select distinct dc from DespesaCarro dc "
+					+ " join fetch dc.itemDespesaCarros idc")
+				
 
 })
 
@@ -42,7 +47,8 @@ public class DespesaCarro implements Serializable {
 	private static final long serialVersionUID = 598761704442941495L;
 
 	public static final String CONSULTAR_DESPESA_CARRO_PERIODO = "despesaCarro.consultarDespesaCarroPeriodo";
-	
+	public static final String CONSULTAR_TODAS_DESPESAS_CARRO = "despesaCarro.consultarTodas";
+
 	@Id
 	@GeneratedValue(generator="despesa_carro_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="despesa_carro_seq", sequenceName="despesa_carro_id_despesa_carro_seq", schema="personal_control")
@@ -50,7 +56,7 @@ public class DespesaCarro implements Serializable {
 	private Long id;
 
 	@Column(name = "km", nullable = false, length = 6)
-	private String km;
+	private String km;//TODO km nao é string
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="data")
@@ -58,7 +64,7 @@ public class DespesaCarro implements Serializable {
 	private Date data;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesaCarro", cascade=CascadeType.ALL)
-	private Set<ItemDespesaCarro> itemDespesaCarros;
+	private List<ItemDespesaCarro> itemDespesaCarros;
 	
 	public Long getId() {
 		return id;
@@ -76,11 +82,11 @@ public class DespesaCarro implements Serializable {
 		this.km = km;
 	}
 
-	public Set<ItemDespesaCarro> getItemDespesaCarros() {
+	public List<ItemDespesaCarro> getItemDespesaCarros() {
 		return itemDespesaCarros;
 	}
 
-	public void setItemDespesaCarros(Set<ItemDespesaCarro> itemDespesaCarros) {
+	public void setItemDespesaCarros(List<ItemDespesaCarro> itemDespesaCarros) {
 		this.itemDespesaCarros = itemDespesaCarros;
 	}
 
