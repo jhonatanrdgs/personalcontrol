@@ -39,6 +39,8 @@ public interface DespesaService {
 	 * Exclui uma despesa do banco de dados
 	 * @param id - id da despesa
 	 */
-	public void excluirDespesa(Long id); 
+	public void excluirDespesa(Long id);
+
+	public List<Despesa> pesquisarDespesasParceladas(); 
 
 }

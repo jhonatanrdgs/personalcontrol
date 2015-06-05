@@ -40,7 +40,7 @@
 			<subreport>
 				<reportElement x="2" y="25" width="553" height="21" uuid="c90a9c5d-42db-4dc6-bedd-bc75ba4cbc18"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{itensDespesaCarro})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "despesasCarro_sub_item_despesa.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["/reports/despesasCarro_sub_item_despesa.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
 				<reportElement x="152" y="0" width="28" height="20" uuid="19b52052-84b2-4ba1-b53f-e8e1cfb04a82"/>
