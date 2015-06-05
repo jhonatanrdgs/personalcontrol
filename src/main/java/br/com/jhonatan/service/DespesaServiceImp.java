@@ -33,6 +33,8 @@ public class DespesaServiceImp implements DespesaService {
 	public void salvarOuAtualizar(Despesa despesa) {
 		if (!despesa.isFixa()) {//Fixa não tem parcela
 			despesa.setParcelas(montarListaParcelas(despesa));
+		} else {
+			despesa.setParcelas(new HashSet<ParcelaDespesa>());
 		}
 		
 		if (despesa.getId() == null) {
