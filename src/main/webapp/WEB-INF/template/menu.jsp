@@ -21,7 +21,7 @@
         <li class="menu"><a href="<c:url value="/despesa/listDespesas" />">Despesas<span class="sr-only">(current)</span></a></li>
         <li class="menu"><a href="<c:url value="/despesaCarro/listDespesaCarro" />">Despesas Carro</a></li>
         <li class="menu"><a href="<c:url value="/relatorios/iniciar" />">Relatórios</a></li>
-        <li class="menu"><a href="<c:url value="/relatorioPDF" />">Relatório despesas Mensais (PDF)</a></li>
+        <li class="menu"><a href="<c:url value="/relatorioPDF" />">Relatórios PDF</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">

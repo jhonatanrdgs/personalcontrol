@@ -38,6 +38,9 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 	@Column(name="valor_parcela", nullable = true, precision=10, scale=2, columnDefinition="Decimal(10,2)")
 	private Double valorParcela;
 	
+	@Column(name="paga")
+	private boolean paga;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_despesa", columnDefinition="int")
 	private Despesa despesa;
@@ -76,6 +79,14 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 
 	public void setValorParcela(Double valorParcela) {
 		this.valorParcela = valorParcela;
+	}
+
+	public boolean isPaga() {
+		return paga;
+	}
+
+	public void setPaga(boolean paga) {
+		this.paga = paga;
 	}
 	
 }

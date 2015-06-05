@@ -41,6 +41,4 @@ public interface DespesaService {
 	 */
 	public void excluirDespesa(Long id);
 
-	public List<Despesa> pesquisarDespesasParceladas(); 
-
 }

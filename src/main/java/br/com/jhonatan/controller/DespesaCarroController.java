@@ -66,7 +66,7 @@ public class DespesaCarroController {
 		return EDIT_PAGE;
 	}
 	
-	@RequestMapping(value="/despesaCarro/add", headers="Accept=application/json")
+	@RequestMapping(value="/despesaCarro/add", headers="Accept=application/json;charset=UTF-8", produces="text/plain;charset=UTF-8")
 	public @ResponseBody List<ItemDespesaCarro> add(@RequestParam(value="descricao") String descricao, @RequestParam(value="valor") Double valor) {
 		ItemDespesaCarro item = new ItemDespesaCarro();
 		item.setDescricao(descricao);

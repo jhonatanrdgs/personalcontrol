@@ -83,7 +83,7 @@ import javax.persistence.TemporalType;
 			query="select new br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO(d.descricao, d.valorTotal, p.valorParcela, p.numeroParcela, d.totalParcelas, d.categoria.descricao) "
 					+ " from Despesa d"
 					+ " inner join d.parcelas p"
-					+ " where p.dataParcela between ?1 and ?2 order by d.categoria.id")
+					+ " where p.dataParcela between ?1 and ?2 order by d.categoria.id"),
 					
 })
 

@@ -56,12 +56,10 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_SOMATORIO_DESPESAS_FIXAS);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodo(Date inicio, Date fim) {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_PERIODO, inicio, fim);//TODO arrumar tipo de retorno
+		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_PERIODO, inicio, fim);
 	}
-	
-	
 
-	
 }

@@ -17,7 +17,9 @@ $(document).ready(function () {
 			
 			url: "add",
 			data: {descricao: desc, valor: value },
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 			dataType:"json",
+			scriptCharset: "utf-8", 
 			success: function(data) {
 				var html = "<table  class='table table-bordered'>";
 				html += "<th class='info'>Descri\u00e7\u00e3o</th><th class='info'>Valor</th>";

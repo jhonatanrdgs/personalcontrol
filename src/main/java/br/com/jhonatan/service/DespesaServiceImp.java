@@ -70,12 +70,6 @@ public class DespesaServiceImp implements DespesaService {
 		
 	}
 	
-	@Override
-	public List<Despesa> pesquisarDespesasParceladas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private Set<ParcelaDespesa> montarListaParcelas(Despesa despesa) {
 		Set<ParcelaDespesa> parcelas = new HashSet<ParcelaDespesa>();
 		Calendar data = new GregorianCalendar();

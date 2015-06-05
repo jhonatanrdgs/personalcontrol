@@ -23,7 +23,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.jhonatan.dto.FormRelatorioDTO;
 import br.com.jhonatan.dto.RelatorioDespesaCarroPdfDTO;
@@ -43,36 +42,33 @@ public class RelatorioPDFController {
 	
 	@RequestMapping(value="/relatorioPDF")
 	public String iniciar(ModelMap map) {
-		map.addAttribute("meses", DateUtil.getMeses());
-		map.addAttribute("anos", DateUtil.get5AnosAtras5anosAFrente());
-		map.addAttribute("relatorioForm", new FormRelatorioDTO());
+		montarParametrosIniciais(map);
 		return PAGE;
 	}
-	
+
 	@RequestMapping(value="/relatorioPDF/imprimirGastosMensais")
-	@ResponseBody
 	public String gerarGastosMensais(@ModelAttribute("relatorioForm") FormRelatorioDTO relatorioForm, ModelMap map, HttpServletResponse response) {
 		List<RelatorioGastosMensaisPdfDTO> list = relatorioService.pesquisarDadosRelatorioGastosMensais(relatorioForm);
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("mes", relatorioForm.getMes());
 		parametros.put("ano", relatorioForm.getAno());
-		//TODO validar ano e mes obrigatórios
 		
 		//TODO arrumar pom (tem duas versões do spring)
 		//TODO arrumar questão de ter a mesma config de banco no persistence e no ds
 		//TODO bug na despesa carro, se coloco acento nos itens mata formatação..
 		//TODO poder editar/excluir os esquemas da despesacarro
+		//TODO logs
 		
 		try {
 			gerarPDF(response, list, parametros, "gastosMensais");
 		} catch (Exception e) {
-			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e.getCause());//TODO essa mensagem não está aparecendo na tela
+			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e);
 		}
+		montarParametrosIniciais(map);
 		return PAGE;
 	}
 	
 	@RequestMapping(value="/relatorioPDF/imprimirDespesasCarro")
-	@ResponseBody
 	public String gerarDespesasCarro(ModelMap map, HttpServletResponse response) {
 		List<RelatorioDespesaCarroPdfDTO> list = relatorioService.pesquisarDadosRelatorioDespesaCarro();
 		
@@ -80,9 +76,9 @@ public class RelatorioPDFController {
 		try {
 			gerarPDF(response, list, parametros, "despesasCarro");
 		} catch (Exception e) {
-			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e.getCause());//TODO essa mensagem não está aparecendo na tela
+			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e);
 		}
-
+		montarParametrosIniciais(map);
 		return PAGE;
 	}
 
@@ -98,6 +94,12 @@ public class RelatorioPDFController {
 
 		final OutputStream outStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+	}
+	
+	private void montarParametrosIniciais(ModelMap map) {
+		map.addAttribute("meses", DateUtil.getMeses());
+		map.addAttribute("anos", DateUtil.get5AnosAtras5anosAFrente());
+		map.addAttribute("relatorioForm", new FormRelatorioDTO());
 	}
 	
 }
