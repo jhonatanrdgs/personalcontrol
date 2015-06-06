@@ -48,12 +48,11 @@ public class RelatorioPDFController {
 
 	@RequestMapping(value="/relatorioPDF/imprimirGastosMensais")
 	public String gerarGastosMensais(@ModelAttribute("relatorioForm") FormRelatorioDTO relatorioForm, ModelMap map, HttpServletResponse response) {
-		List<RelatorioGastosMensaisPdfDTO> list = relatorioService.pesquisarDadosRelatorioGastosMensais(relatorioForm);
+		List<RelatorioGastosMensaisPdfDTO> list = relatorioService.pesquisarDadosRelatorioGastosMensaisPDF(relatorioForm);
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("mes", relatorioForm.getMes());
 		parametros.put("ano", relatorioForm.getAno());
 		
-		//TODO poder editar/excluir os esquemas da despesacarro - quando incluir tem que limpar os campos
 		//TODO log exception - redirect quando exception - log geral (criar framework)
 		
 		try {
@@ -79,7 +78,6 @@ public class RelatorioPDFController {
 		return PAGE;
 	}
 
-	//TODO pensar onde colocar este método
 	private void gerarPDF(HttpServletResponse response, List<?> dados, Map<String, Object> params, String nomeRelatorio) throws JRException, IOException {
 		InputStream jasperStream = this.getClass().getResourceAsStream("/reports/" + nomeRelatorio +".jasper");
 		JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(dados);

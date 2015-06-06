@@ -34,6 +34,6 @@ public interface DespesaDAO {
 
 	public void excluir(Despesa despesa);
 
-	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodo(Date inicio, Date fim);
+	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodoRelatorioPDF(Date inicio, Date fim);
 
 }

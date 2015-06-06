@@ -63,7 +63,7 @@ public class DespesaCarro implements Serializable {
 	private Long id;
 
 	@Column(name = "km", nullable = false, length = 6)
-	private String km;//TODO km nao é string
+	private String km;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="data")

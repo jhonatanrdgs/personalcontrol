@@ -29,7 +29,7 @@ public class AdiantamentoParcelasController {
 	@RequestMapping(value="/despesa/searchAdiantamento")
 	public String pesquisar(ModelMap map) {
 		
-		//TODO form para isso
+		
 		return LIST_PAGE;
 	}
 	
@@ -47,7 +47,9 @@ public class AdiantamentoParcelasController {
 	//Nos relatórios da página inicial (gastos por mês e Rendimento x Gastos) tem que somar as pagas e as não pagas
 	//Somente nos relatórios do menu relatórios que muda essa informação.
 	
-	//TODO criar job que seta todas as compras parceladas do mes passado como pagas
+	// criar job que seta todas as compras parceladas do mes passado como pagas
+	
+	// form para isso
 	
 
 }

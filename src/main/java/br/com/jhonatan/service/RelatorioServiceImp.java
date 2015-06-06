@@ -132,10 +132,10 @@ public class RelatorioServiceImp implements RelatorioService {
 	}
 
 	@Override
-	public List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensais(FormRelatorioDTO relatorioForm) {
+	public List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensaisPDF(FormRelatorioDTO relatorioForm) {
 		Date inicio = DateUtil.getPrimeiroDiaMes(relatorioForm.getMes(), relatorioForm.getAno());
 		Date fim = DateUtil.getUltimoDiaMes(relatorioForm.getMes(), relatorioForm.getAno());
-		return despesaDAO.pesquisarDespesasPeriodo(inicio, fim);
+		return despesaDAO.pesquisarDespesasPeriodoRelatorioPDF(inicio, fim);
 	}
 
 	@Override

@@ -79,7 +79,7 @@ public interface RelatorioService {
 	 * @param relatorioForm
 	 * @return
 	 */
-	List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensais(FormRelatorioDTO relatorioForm);
+	List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensaisPDF(FormRelatorioDTO relatorioForm);
 
 	List<RelatorioDespesaCarroPdfDTO> pesquisarDadosRelatorioDespesaCarro();
 

@@ -58,8 +58,8 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodo(Date inicio, Date fim) {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_PERIODO, inicio, fim);
+	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodoRelatorioPDF(Date inicio, Date fim) {
+		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF, inicio, fim);
 	}
 
 }

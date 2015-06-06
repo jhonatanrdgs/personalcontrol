@@ -44,7 +44,9 @@
 								<th class="info">
 									<label>Data</label>
 								</th>
-							
+								<th class="info">
+									<label>KM</label>
+								</th>
 								<th class="info">
 									<label>Ações</label>
 								</th>
@@ -56,12 +58,16 @@
 							<tbody>
 							<c:forEach items="${resultado}" var="it">
 								<tr class="active">
-									<td width="40%">
+									<td width="30%">
 										<span>${it.valorTotal}</span>
 									</td>
-									<td width="40%">
+									<td width="30%">
 										<span><fmt:formatDate value="${it.data}" pattern="dd/MM/yyyy" /></span>
 									</td>
+									<td width="20%">
+										<span>${it.km}</span>
+									</td>
+									
 									<td  style="text-align:center;width:20%">
 										<a href="<c:url value="/despesaCarro/edit?despesaCarroId=${it.id}" />" class="btn btn-success">Editar</a>
 									</td>
