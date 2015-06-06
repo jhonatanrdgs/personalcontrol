@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,7 +37,11 @@ import br.com.jhonatan.util.NumberUtil;
 				
 	@NamedQuery(name=DespesaCarro.CONSULTAR_TODAS_DESPESAS_CARRO,
 			query="select distinct dc from DespesaCarro dc "
-					+ " join fetch dc.itemDespesaCarros idc")
+					+ " join fetch dc.itemDespesaCarros idc"),
+					
+	@NamedQuery(name=DespesaCarro.CONSULTAR_DESPESA_CARRO_POR_ID_FETCHED,
+			query="select distinct dc from DespesaCarro dc "
+					+ " join fetch dc.itemDespesaCarros idc where dc.id = ?1")
 				
 
 })
@@ -48,6 +54,7 @@ public class DespesaCarro implements Serializable {
 
 	public static final String CONSULTAR_DESPESA_CARRO_PERIODO = "despesaCarro.consultarDespesaCarroPeriodo";
 	public static final String CONSULTAR_TODAS_DESPESAS_CARRO = "despesaCarro.consultarTodas";
+	public static final String CONSULTAR_DESPESA_CARRO_POR_ID_FETCHED = "despesaCarro.consultarDespesaCarroPorIdFetched";
 
 	@Id
 	@GeneratedValue(generator="despesa_carro_seq", strategy=GenerationType.SEQUENCE)
@@ -63,7 +70,25 @@ public class DespesaCarro implements Serializable {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date data;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "despesaCarro", cascade=CascadeType.ALL)
+	/**
+	 * Segundo a documentação do hibernate, é melhor usar o JoinTable para mapeamentos unidirecionais (estava tendo problemas no bidirecional)
+	 * 
+	 * 2.2.5.3.1.2. Unidirectional
+	 *	A unidirectional one to many using a foreign key column in the owned entity is not that common and not really recommended. 
+	 * We strongly advise you to use a join table for this kind of association (as explained in the next section). 
+	 * This kind of association is described through a @JoinColumn
+	 * 
+     * 2.2.5.3.1.3. Unidirectional with join table
+	 * A unidirectional one to many with join table is much preferred. This association is described through an @JoinTable.
+	 * 
+	 * @see http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/#entity-mapping-association-collections
+	 */
+	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL, orphanRemoval=true)
+	@JoinTable(
+            name="personal_control.join_despesa_carro",
+            joinColumns = @JoinColumn( name="id_despesa_carro"),
+            inverseJoinColumns = @JoinColumn( name="id_item_despesa_carro")
+    )
 	private List<ItemDespesaCarro> itemDespesaCarros;
 	
 	public Long getId() {

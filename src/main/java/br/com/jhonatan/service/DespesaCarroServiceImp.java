@@ -32,14 +32,9 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 
 	@Override
 	public void salvarOuAtualizarDespesasCarro(DespesaCarro despesaCarro, List<ItemDespesaCarro> itens) {
+		despesaCarro.setItemDespesaCarros(new ArrayList<ItemDespesaCarro>());
+		despesaCarro.getItemDespesaCarros().addAll(itens);
 		if (despesaCarro.getId() == null) {
-			for (ItemDespesaCarro item : itens) {
-				item.setDespesaCarro(despesaCarro);
-			}
-			if (despesaCarro.getItemDespesaCarros() == null) {
-				despesaCarro.setItemDespesaCarros(new ArrayList<ItemDespesaCarro>());
-			}
-			despesaCarro.getItemDespesaCarros().addAll(itens);
 			despesaCarroDAO.salvar(despesaCarro);
 		} else {
 			despesaCarroDAO.atualizar(despesaCarro);
@@ -49,7 +44,7 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 
 	@Override
 	public DespesaCarro findDespesasCarroById(Long id) {
-		return despesaCarroDAO.findById(DespesaCarro.class, id);
+		return despesaCarroDAO.findByIdFetched(id);
 	}
 
 	@Override

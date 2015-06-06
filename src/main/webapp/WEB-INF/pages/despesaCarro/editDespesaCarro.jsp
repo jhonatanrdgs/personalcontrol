@@ -13,7 +13,6 @@
 			<h4>Cadastro de despesas do carro</h4>
 				<div class="col-lg-7 div-center">
 					<br/>
-					
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="data">Data da despesa:</label>
 						<div class="col-md-2 input-icon">
@@ -50,7 +49,7 @@
 						</div>
 					</div>
 					
-					<div id="tableItens" style="width:80%; margin:auto" ></div>
+					<div id="tableItens" style="width:80%; margin:auto"></div>
 					
 				</div>
 					

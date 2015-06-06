@@ -53,7 +53,7 @@ public class RelatorioPDFController {
 		parametros.put("mes", relatorioForm.getMes());
 		parametros.put("ano", relatorioForm.getAno());
 		
-		//TODO poder editar/excluir os esquemas da despesacarro
+		//TODO poder editar/excluir os esquemas da despesacarro - quando incluir tem que limpar os campos
 		//TODO log exception - redirect quando exception - log geral (criar framework)
 		
 		try {
@@ -79,6 +79,7 @@ public class RelatorioPDFController {
 		return PAGE;
 	}
 
+	//TODO pensar onde colocar este método
 	private void gerarPDF(HttpServletResponse response, List<?> dados, Map<String, Object> params, String nomeRelatorio) throws JRException, IOException {
 		InputStream jasperStream = this.getClass().getResourceAsStream("/reports/" + nomeRelatorio +".jasper");
 		JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(dados);

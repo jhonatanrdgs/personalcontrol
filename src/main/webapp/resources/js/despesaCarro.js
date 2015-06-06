@@ -1,5 +1,18 @@
 $(document).ready(function () {
 	
+	if ($("#id").val() != "") {
+		$.ajax({
+			url: "recuperarItens",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+			dataType:"json",
+			scriptCharset: "utf-8", 
+			success: function(data) {
+				montaTabelaHTML(data);
+			}
+		});
+	}
+		
+	
 	$.validator.methods.date = function(value, element) {
 		try {
 			$.datepicker.parseDate("dd/mm/yy", value);
@@ -21,17 +34,11 @@ $(document).ready(function () {
 			dataType:"json",
 			scriptCharset: "utf-8", 
 			success: function(data) {
-				var html = "<table  class='table table-bordered'>";
-				html += "<th class='info'>Descri\u00e7\u00e3o</th><th class='info'>Valor</th>";
-				for (var i = 0; i < data.length; i++) {
-					html += "<tr><td>" + data[i].descricao + "</td><td>" + data[i].valorItem + "</td></tr>";
-				}
-				html += "</table>";
-				$("#tableItens").html(html);
-				//callback(data);
+				montaTabelaHTML(data);
 			}
 		});
-		
+		$("#desc").val("");
+		$("#val").val("");
 	})
 	
 	$(".form-horizontal").validate({
@@ -99,3 +106,27 @@ $(document).ready(function () {
 		}
 	})
 });
+
+function remover(element) {
+	var id = $(element).attr('class').split(" ")[0];
+	$("tr[id='"+id+"']").remove();
+	$.ajax({
+		url: "remover",
+		data: {index: id},
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		dataType:"json",
+		scriptCharset: "utf-8" 
+		
+	});
+}
+
+function montaTabelaHTML(data) {
+	var html = "<table  class='table table-bordered'>";
+	html += "<th class='info'>Descri\u00e7\u00e3o</th><th class='info'>Valor</th><th class='info'>A\u00e7\u00e3o</th>";
+	for (var i = 0; i < data.length; i++) {
+		html += "<tr id='" + i + "'><td>" + data[i].descricao + "</td><td>" + data[i].valorItem 
+			+ "</td><td>" + "<input type='button' value='Excluir' class='" + i + " btn btn-primary' onclick='remover(this)'/>" + "</td></tr>";
+	}
+	html += "</table>";
+	$("#tableItens").html(html);
+}

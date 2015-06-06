@@ -19,4 +19,6 @@ public interface DespesaCarroDAO {
 
 	List<DespesaCarro> pesquisarDespesasCarroPeriodo();
 
+	DespesaCarro findByIdFetched(Long id);
+
 }

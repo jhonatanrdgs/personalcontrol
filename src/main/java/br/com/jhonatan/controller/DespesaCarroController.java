@@ -75,6 +75,16 @@ public class DespesaCarroController {
 		return itens;
 	}
 	
+	@RequestMapping(value="despesaCarro/remover", headers="Accept=application/json;charset=UTF-8", produces="text/plain;charset=UTF-8")
+	public @ResponseBody void remover(@RequestParam(value="index") Integer index) {
+		itens.remove(index.intValue());
+	}
+	
+	@RequestMapping(value="despesaCarro/recuperarItens", headers="Accept=application/json;charset=UTF-8", produces="text/plain;charset=UTF-8")
+	public @ResponseBody List<ItemDespesaCarro> recuperarItens() {
+		return itens;
+	}
+	
 	@RequestMapping(value="/despesaCarro/save")
 	public String save(@ModelAttribute("despesaCarroForm") DespesaCarro despesaCarro, ModelMap map) {
 		despesaCarroService.salvarOuAtualizarDespesasCarro(despesaCarro, itens);
@@ -87,6 +97,7 @@ public class DespesaCarroController {
 	@RequestMapping(value="/despesaCarro/edit", method=RequestMethod.GET)
 	public String edit(@RequestParam("despesaCarroId") Long id, ModelMap map) {
 		DespesaCarro despesaCarro = despesaCarroService.findDespesasCarroById(id);
+		itens = despesaCarro.getItemDespesaCarros();
 		map.addAttribute("despesaCarroForm", despesaCarro);
 		montarCombos(map);
 		return EDIT_PAGE;
