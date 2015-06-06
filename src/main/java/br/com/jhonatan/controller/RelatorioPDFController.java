@@ -53,11 +53,8 @@ public class RelatorioPDFController {
 		parametros.put("mes", relatorioForm.getMes());
 		parametros.put("ano", relatorioForm.getAno());
 		
-		//TODO arrumar pom (tem duas versões do spring)
-		//TODO arrumar questão de ter a mesma config de banco no persistence e no ds
-		//TODO bug na despesa carro, se coloco acento nos itens mata formatação..
 		//TODO poder editar/excluir os esquemas da despesacarro
-		//TODO logs
+		//TODO log exception - redirect quando exception - log geral (criar framework)
 		
 		try {
 			gerarPDF(response, list, parametros, "gastosMensais");
