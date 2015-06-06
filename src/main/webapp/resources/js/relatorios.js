@@ -224,7 +224,7 @@ function montaGraficoGastosVariaveis(data) {
 	var descricao = [];
 	for (var i=0; i < data.length; i++){ 
 		valor.push([i + 1, data[i].valor]);
-		descricao.push([data[i].descricaoDespesa]);
+		descricao.push([data[i].descricao]);
 	} 
 
 	gastosVariaveis = $.jqplot('gastosVariaveis',[valor],{
