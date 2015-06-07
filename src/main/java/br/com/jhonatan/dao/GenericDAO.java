@@ -41,12 +41,6 @@ public class GenericDAO<T> implements Serializable {
 		return (List<T>)q.getResultList();
 	}
 	
-	/**
-	 * Usar com cuidado, pois está sem tipagem.
-	 * @param nQuery
-	 * @param params
-	 * @return
-	 */
 	@SuppressWarnings("unchecked")
 	public List<? extends BaseDTO> criarQueryResultListDTO(String nQuery, Object... params) {
 		Query q = entityManager.createNamedQuery(nQuery);
