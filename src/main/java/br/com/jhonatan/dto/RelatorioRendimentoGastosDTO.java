@@ -2,7 +2,7 @@ package br.com.jhonatan.dto;
 
 import java.io.Serializable;
 
-public class RelatorioRendimentoGastosDTO implements Serializable, Comparable<RelatorioRendimentoGastosDTO> {
+public class RelatorioRendimentoGastosDTO extends BaseDTO implements Serializable, Comparable<RelatorioRendimentoGastosDTO> {
 	
 	private static final long serialVersionUID = 8764665624238789280L;
 	

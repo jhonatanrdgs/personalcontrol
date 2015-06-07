@@ -1,6 +1,6 @@
 package br.com.jhonatan.dto;
 
-public class FormRelatorioDTO {
+public class FormRelatorioDTO extends BaseDTO {
 	
 	private Integer mes;
 	private Integer ano;

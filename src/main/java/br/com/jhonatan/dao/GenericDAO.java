@@ -10,6 +10,8 @@ import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.jhonatan.dto.BaseDTO;
+
 public class GenericDAO<T> implements Serializable {
 	private static final long serialVersionUID = 7279035949209212928L;
 	
@@ -45,9 +47,8 @@ public class GenericDAO<T> implements Serializable {
 	 * @param params
 	 * @return
 	 */
-	//TODO ver se dá para refatorar
-	@SuppressWarnings("rawtypes")
-	public List criarQueryResultListSemTipagem(String nQuery, Object... params) {
+	@SuppressWarnings("unchecked")
+	public List<? extends BaseDTO> criarQueryResultListDTO(String nQuery, Object... params) {
 		Query q = entityManager.createNamedQuery(nQuery);
 		for (int i = 0; i < params.length; i++) {
 			q.setParameter(i+1, params[i]);

@@ -1,6 +1,6 @@
 package br.com.jhonatan.dto;
 
-public class ItemDespesaCarroDTO {
+public class ItemDespesaCarroDTO extends BaseDTO {
 	
 	private String descricao;
 	private Double valorItem;

@@ -1,6 +1,6 @@
 package br.com.jhonatan.dto;
 
-public class RelatorioDespesaPorCategoriaDTO {
+public class RelatorioDespesaPorCategoriaDTO extends BaseDTO {
 	
 	public RelatorioDespesaPorCategoriaDTO() {
 		

@@ -6,7 +6,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class DespesaDTO {
+public class DespesaDTO extends BaseDTO {
 	
 	private String descricao;
 	private Long categoriaId;

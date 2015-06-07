@@ -26,7 +26,7 @@ public class MetodoPagamentoDAOImp extends GenericDAO<MetodoPagamento> implement
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(Date inicio, Date fim) {
-		return criarQueryResultListSemTipagem(MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO, inicio, fim);
+		return (List<RelatorioGastosPorMetodoPagamentoDTO>) criarQueryResultListDTO(MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO, inicio, fim);
 	}
 	
 	

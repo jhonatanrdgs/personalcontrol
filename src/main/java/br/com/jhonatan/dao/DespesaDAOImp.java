@@ -31,19 +31,19 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RelatorioComprasParceladasDTO> pesquisarDespesasParceladasPeriodo(Date inicio, Date fim) {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_PARCELADAS_PERIODO, inicio, fim);
+		return (List<RelatorioComprasParceladasDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_PARCELADAS_PERIODO, inicio, fim);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim) {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO, inicio, fim);
+		return (List<RelatorioComprasNaoParceladasDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO, inicio, fim);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RelatorioGastosFixosDTO> pesquisarDespesasFixas() {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_GASTOS_FIXOS);
+		return (List<RelatorioGastosFixosDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_GASTOS_FIXOS);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodoRelatorioPDF(Date inicio, Date fim) {
-		return criarQueryResultListSemTipagem(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF, inicio, fim);
+		return (List<RelatorioGastosMensaisPdfDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF, inicio, fim);
 	}
 
 }

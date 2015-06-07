@@ -2,7 +2,7 @@ package br.com.jhonatan.dto;
 
 import java.io.Serializable;
 
-public class RelatorioComprasNaoParceladasDTO implements Serializable {
+public class RelatorioComprasNaoParceladasDTO extends BaseDTO implements Serializable {
 
 	private static final long serialVersionUID = -79530805434613657L;
 	

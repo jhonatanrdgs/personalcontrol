@@ -1,6 +1,6 @@
 package br.com.jhonatan.dto;
 
-public class RelatorioGastosMensaisPdfDTO {
+public class RelatorioGastosMensaisPdfDTO extends BaseDTO {
 	
 	private String nomeDespesa;
 	private Double valorTotalDespesa;

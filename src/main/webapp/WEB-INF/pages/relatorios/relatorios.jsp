@@ -17,12 +17,13 @@
 						<input type="text" value="${inicioFormatada}" class="form-control date" id="inicio" name="inicio" />
 					</div>
 					
-					<label class="col-md-2 control-label" for="fim">à</label>
+					<label class="col-md-1 control-label" for="fim">à</label>
 					<div class="col-md-4">
 						<fmt:formatDate value="${fim}" var="fimFormatada" pattern="dd/MM/yyyy" />
 						<input type="text" value="${fimFormatada}" class="form-control date" id="fim" name="fim" />
 					</div>
 				</div>
+				<br />
 				<br />
 				<div class="form-group">
 					<div class="col-md-12" style="text-align:center">

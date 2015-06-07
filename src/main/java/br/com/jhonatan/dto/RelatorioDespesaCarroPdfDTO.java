@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class RelatorioDespesaCarroPdfDTO {
+public class RelatorioDespesaCarroPdfDTO extends BaseDTO {
 	
 	private String km;
 	private Date data;
