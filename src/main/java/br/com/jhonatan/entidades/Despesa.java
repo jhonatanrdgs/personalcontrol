@@ -52,9 +52,8 @@ import javax.persistence.TemporalType;
 			query="select new br.com.jhonatan.dto.RelatorioGastosFixosDTO(d.descricao, d.valorTotal) from Despesa d"
 					+ " where d.fixa = true"),
 					
-	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES,
-			query="select sum(p.valorParcela) from Despesa d"
-					+ " inner join d.parcelas p"
+	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES,//TODO query na entidade errada
+			query="select sum(p.valorParcela) from ParcelaDespesa p"
 					+ " where extract(month from p.dataParcela) = ?1 and extract(year from p.dataParcela) = ?2"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_SOMATORIO_DESPESAS_FIXAS,
@@ -85,6 +84,12 @@ import javax.persistence.TemporalType;
 					+ " inner join d.parcelas p"
 					+ " where p.dataParcela between ?1 and ?2 order by d.categoria.id"),
 					
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_COM_PARCELAS_PROXIMO_MES_EM_DIANTE,
+			query="select distinct d from Despesa d"
+					+ " join fetch d.parcelas p"
+					+ " where p.dataParcela >= ?1"
+					+ " and d.totalParcelas > 1 order by d.descricao")
+					
 })
 
 @Entity
@@ -103,6 +108,7 @@ public class Despesa extends BaseEntity implements Serializable {
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentos";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF = "despesa.consultarDespesasPeriodo";
+	public static final String CONSULTAR_DESPESAS_COM_PARCELAS_PROXIMO_MES_EM_DIANTE = "despesa.consultarDespesasComParcelasProximoMesEmDiante";
 
 
 	@Id

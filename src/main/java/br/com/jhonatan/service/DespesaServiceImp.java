@@ -1,6 +1,7 @@
 package br.com.jhonatan.service;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
@@ -13,11 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.jhonatan.dao.DespesaDAO;
+import br.com.jhonatan.dao.ParcelaDespesaDAO;
 import br.com.jhonatan.dao.UsuarioDAO;
 import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.ParcelaDespesa;
 import br.com.jhonatan.entidades.Usuario;
+import br.com.jhonatan.util.DateUtil;
 import br.com.jhonatan.util.NumberUtil;
 
 @Service
@@ -25,6 +28,9 @@ public class DespesaServiceImp implements DespesaService {
 	
 	@Autowired
 	private DespesaDAO despesaDAO;
+	
+	@Autowired
+	private ParcelaDespesaDAO parcelaDespesaDAO;
 	
 	@Autowired 
 	private UsuarioDAO usuarioDAO;
@@ -67,9 +73,27 @@ public class DespesaServiceImp implements DespesaService {
 	public void excluirDespesa(Long id) {
 		Despesa despesa = despesaDAO.findById(Despesa.class, id);
 		despesaDAO.excluir(despesa);
-		
 	}
 	
+	@Override
+	@Transactional
+	public void adiantarPagamentoParcela(Long idParcela) {
+		ParcelaDespesa parcela = parcelaDespesaDAO.findById(ParcelaDespesa.class, idParcela);
+		parcelaDespesaDAO.excluir(parcela);
+	}
+	
+	@Override
+	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante() {
+		Date proximoMes = DateUtil.adicionarMeses(new Date(), 1);
+		proximoMes = DateUtil.getPrimeiroDiaMes(proximoMes);
+		return despesaDAO.pesquisarDespesasComParcelasProximoMesEmDiante(proximoMes);
+	}
+	
+	@Override
+	public List<ParcelaDespesa> pesquisarParcelasDaDespesa(Long id) {
+		return parcelaDespesaDAO.pesquisarParcelasDaDespesa(id);
+	}
+
 	private Set<ParcelaDespesa> montarListaParcelas(Despesa despesa) {
 		Set<ParcelaDespesa> parcelas = new HashSet<ParcelaDespesa>();
 		Calendar data = new GregorianCalendar();

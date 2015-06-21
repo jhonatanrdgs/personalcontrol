@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.Despesa;
+import br.com.jhonatan.entidades.ParcelaDespesa;
 
 public interface DespesaService {
 	
@@ -40,5 +41,11 @@ public interface DespesaService {
 	 * @param id - id da despesa
 	 */
 	public void excluirDespesa(Long id);
+
+	public void adiantarPagamentoParcela(Long idParcela);
+
+	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante();
+
+	public List<ParcelaDespesa> pesquisarParcelasDaDespesa(Long id);
 
 }

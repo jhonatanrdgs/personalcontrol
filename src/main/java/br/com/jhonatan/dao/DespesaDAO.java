@@ -36,4 +36,6 @@ public interface DespesaDAO {
 
 	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodoRelatorioPDF(Date inicio, Date fim);
 
+	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante(Date proximoMes);
+
 }

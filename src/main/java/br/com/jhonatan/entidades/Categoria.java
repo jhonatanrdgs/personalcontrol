@@ -23,10 +23,10 @@ import javax.persistence.Table;
 	
 	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true order by descricao"),
 	
-	@NamedQuery(name=Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS,
-		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(p.valorParcela)) from Categoria c"
-				+ " join c.despesas d"
-				+ " join d.parcelas p"
+	@NamedQuery(name=Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS,//TODO query na entidade errada
+		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(p.valorParcela)) from ParcelaDespesa p"
+				+ " join p.despesa d"
+				+ " join d.categoria c"
 				+ " where extract(month from p.dataParcela) = ?1 and extract(year from p.dataParcela) = ?2"
 				+ " and d.fixa = false"
 				+ " group by c.descricao")

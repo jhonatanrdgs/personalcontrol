@@ -11,16 +11,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
+
+@NamedQueries({
+	
+	@NamedQuery(name=ParcelaDespesa.CONSULTAR_PARCELAS_POR_ID_DESPESA,
+			query="select pd from ParcelaDespesa pd"
+					+ " where pd.despesa.id = ?1 order by pd.dataParcela")
+	
+})
+
 @Entity
 @Table(name="parcela_despesa", schema="personal_control")
+@SQLDelete(sql="UPDATE personal_control.parcela_despesa SET paga = 'true' WHERE id_parcela_despesa = ?")
+@Where(clause="paga = 'false'")
 public class ParcelaDespesa extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1826390808208462216L;
+
+	public static final String CONSULTAR_PARCELAS_POR_ID_DESPESA = "parcelaDespesa.consultarParcelasPorIdDespesa";
 
 	@Id
 	@GeneratedValue(generator="parcela_despesa_seq", strategy=GenerationType.SEQUENCE)
@@ -41,6 +59,9 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_despesa", columnDefinition="int")
 	private Despesa despesa;
+	
+	@Column(name="paga")
+	private boolean paga;
 
 	public Integer getNumeroParcela() {
 		return numeroParcela;
@@ -78,4 +99,12 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 		this.valorParcela = valorParcela;
 	}
 
+	public boolean isPaga() {
+		return paga;
+	}
+
+	public void setPaga(boolean paga) {
+		this.paga = paga;
+	}
+	
 }

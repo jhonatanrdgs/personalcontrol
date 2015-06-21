@@ -62,4 +62,9 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 		return (List<RelatorioGastosMensaisPdfDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF, inicio, fim);
 	}
 
+	@Override
+	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante(Date proximoMes) {
+		return criarQueryResultList(Despesa.CONSULTAR_DESPESAS_COM_PARCELAS_PROXIMO_MES_EM_DIANTE, proximoMes);
+	}
+	
 }
