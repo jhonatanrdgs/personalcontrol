@@ -20,14 +20,12 @@ function chamadaAjaxSemData(url, callback) {
 }
 
 function chamadaAjax(url, callback) {
-	var today = new Date();
-	var firstOfMonth = today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + 1;
-	var last = new Date(today.getFullYear(),today.getMonth()+1, 0);
-	var lastOfMonth = last.getFullYear() + "/" + (today.getMonth() + 1) + "/" + last.getDate();
+	var mesParam = $("#mes").val();
+	var anoParam = $("#ano").val();
 	$.ajax({
 		//Precisa ser sincrono, senão ele tenta montar o gráfico com resultado vazio
 		url: url,
-		data: {inicio: firstOfMonth, fim: lastOfMonth },
+		data: {mes: mesParam, ano: anoParam},
 		dataType:"json",
 		success: function(data) {
 			callback(data);

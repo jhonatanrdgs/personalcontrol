@@ -6,7 +6,8 @@
 
 	<div class="container">
 		<div class="col-md-12">
-		
+		<input type="hidden" value="${mesAtual}" id="mes"/>
+		<input type="hidden" value="${anoAtual}" id="ano"/>
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Resumo Mês atual</p>
 			<div id="resumo" style="width: 600px; position: relative;margin:auto;">

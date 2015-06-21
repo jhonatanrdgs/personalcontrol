@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
-import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.service.RelatorioService;
@@ -30,45 +30,44 @@ public class RelatorioGraficoController {
 	
 	@RequestMapping(value="/relatorios/iniciar")
 	public String init(ModelMap map) {
-		Date inicio = DateUtil.getPrimeiroDiaMes(new Date());
-		Date fim = DateUtil.getUltimoDiaMes(new Date());
-
-		map.addAttribute("inicio",inicio);
-		map.addAttribute("fim", fim);
+		map.addAttribute("meses", DateUtil.getMeses());
+		map.addAttribute("anos", DateUtil.get5AnosAtras5anosAFrente());
+		map.addAttribute("mesAtual", DateUtil.getMes(new Date()));
+		map.addAttribute("anoAtual", DateUtil.getAno(new Date()));
 		return "/relatorios/relatorios";
 	}
 	
 	@RequestMapping(value="/relatorios/resumo", headers="Accept=application/json")
-	public @ResponseBody Double[] montarResumoJson(@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
-		return relatorioService.pesquisarResumo(inicio, fim);
+	public @ResponseBody Double[] montarResumoJson(@RequestParam(value="mes") int mes, @RequestParam(value="ano") int ano) {
+		return relatorioService.pesquisarResumo(mes, ano);
 	}
 	
 	
 	@RequestMapping(value="/relatorios/graficoPizza", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioDespesaPorCategoriaDTO> montarDadosGraficoPizzaJson(
-			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
-		return relatorioService.pesquisarDadosRelatorioDespesasPorCategoriasAtivas(inicio, fim);
+			@RequestParam(value="mes") int mes, @RequestParam(value="ano") int ano) {
+		return relatorioService.pesquisarDadosRelatorioDespesasPorCategoriasAtivas(mes, ano);
 	}
 	
 	
 	@RequestMapping(value="/relatorios/comprasParceladas", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioComprasParceladasDTO> montarDadosComprasParceladasJson(
-			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
-		return relatorioService.pesquisarDadosRelatorioComprasParceladas(inicio, fim);
+			@RequestParam(value="mes") int mes, @RequestParam(value="ano") int ano) {
+		return relatorioService.pesquisarDadosRelatorioComprasParceladas(mes, ano);
 	}
 	
 	
 	@RequestMapping(value="/relatorios/gastosPorMetodoPagamento", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioGastosPorMetodoPagamentoDTO> montarDadosGastosPorMetodoPagamentoJson(
-			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
-		return relatorioService.pesquisarDadosRelatorioGastosPorMetodoPagamento(inicio, fim);
+			@RequestParam(value="mes") int mes, @RequestParam(value="ano") int ano) {
+		return relatorioService.pesquisarDadosRelatorioGastosPorMetodoPagamento(mes, ano);
 	}
 	
 	
 	@RequestMapping(value="/relatorios/gastosVariaveis", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioComprasNaoParceladasDTO> montarDadosGastosVariaveisJson(
-			@RequestParam(value="inicio") Date inicio, @RequestParam(value="fim") Date fim) {
-		return relatorioService.pesquisarDadosRelatorioGastosVariaveis(inicio, fim);
+			@RequestParam(value="mes") int mes, @RequestParam(value="ano") int ano) {
+		return relatorioService.pesquisarDadosRelatorioGastosVariaveis(mes, ano);
 	}
 	
 	

@@ -1,5 +1,5 @@
-var dateInicio = null;
-var dateFim = null;
+var mesParam = null;
+var anoParam = null;
 
 var graficoPizza = null;
 var comprasParceladas = null;
@@ -30,18 +30,15 @@ $(document).ready(function () {
 });
 
 function carregaDatas() {
-	var inicioSplit =  $("#inicio").val().split("/");
-	dateInicio = inicioSplit[2] + "/" + inicioSplit[1] + "/" + inicioSplit[0];//Ano mes dia
-	
-	var fimSplit =  $("#fim").val().split("/");
-	dateFim = fimSplit[2] + '/' + fimSplit[1] + '/' + fimSplit[0];//Ano mes dia
+	mesParam = $("#mes").val();
+	anoParam = $("#ano").val();
 }
 
 function chamadaAjax(url, callback) {
 	$.ajax({
 		//Precisa ser sincrono, senão ele tenta montar o gráfico com resultado vazio
 		url: url,
-		data: {inicio: dateInicio, fim: dateFim },
+		data: {mes: mesParam, ano: anoParam },
 		dataType:"json",
 		success: function(data) {
 			callback(data);

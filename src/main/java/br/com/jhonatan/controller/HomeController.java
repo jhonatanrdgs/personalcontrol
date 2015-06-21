@@ -1,9 +1,13 @@
 package br.com.jhonatan.controller;
 
+import java.util.Date;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.com.jhonatan.util.DateUtil;
 
 /**
  * 
@@ -19,6 +23,8 @@ public class HomeController {
 	
 	@RequestMapping(value="/logged")
 	public String init(ModelMap map) {
+		map.addAttribute("mesAtual", DateUtil.getMes(new Date()));
+		map.addAttribute("anoAtual", DateUtil.getAno(new Date()));
 		return VIEW_INDEX;
 	}
 	

@@ -1,6 +1,5 @@
 package br.com.jhonatan.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
@@ -18,6 +17,6 @@ public interface CategoriaDAO {
 
 	public List<Categoria> pesquisarTodasCategoriasAtivas();
 
-	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(Date inicio, Date fim);
+	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(int mes, int ano);
 
 }

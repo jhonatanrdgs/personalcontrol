@@ -47,8 +47,8 @@ public class RelatorioServiceImp implements RelatorioService {
 	private DespesaCarroDAO despesaCarroDAO;
 	
 	@Override
-	public Double[] pesquisarResumo(Date inicio, Date fim) {
-		Double totalGastosVariaveisPeriodo = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisPeriodo(inicio, fim));
+	public Double[] pesquisarResumo(int mes, int ano) {
+		Double totalGastosVariaveisPeriodo = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
 		totalGastosVariaveisPeriodo = NumberUtil.normalizarDouble(totalGastosVariaveisPeriodo, 2);
 		
 		Double totalGastosFixos = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
@@ -65,23 +65,23 @@ public class RelatorioServiceImp implements RelatorioService {
 	}
 
 	@Override
-	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDadosRelatorioDespesasPorCategoriasAtivas(Date inicio, Date fim) {
-		return categoriaDAO.pesquisarDespesasPorCategoriasAtivas(inicio, fim);
+	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDadosRelatorioDespesasPorCategoriasAtivas(int mes, int ano) {
+		return categoriaDAO.pesquisarDespesasPorCategoriasAtivas(mes, ano);
 	}
 
 	@Override
-	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDadosRelatorioGastosPorMetodoPagamento(Date inicio, Date fim) {
-		return metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(inicio, fim);
+	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDadosRelatorioGastosPorMetodoPagamento(int mes, int ano) {
+		return metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(mes, ano);
 	}
 	
 	@Override
-	public List<RelatorioComprasParceladasDTO> pesquisarDadosRelatorioComprasParceladas(Date inicio, Date fim) {
-		return despesaDAO.pesquisarDespesasParceladasPeriodo(inicio, fim);
+	public List<RelatorioComprasParceladasDTO> pesquisarDadosRelatorioComprasParceladas(int mes, int ano) {
+		return despesaDAO.pesquisarDespesasParceladasMes(mes, ano);
 	}
 	
 	@Override
-	public List<RelatorioComprasNaoParceladasDTO> pesquisarDadosRelatorioGastosVariaveis(Date inicio, Date fim) {
-		return despesaDAO.pesquisarDespesasVariaveisPeriodo(inicio, fim);
+	public List<RelatorioComprasNaoParceladasDTO> pesquisarDadosRelatorioGastosVariaveis(int mes, int ano) {
+		return despesaDAO.pesquisarDespesasVariaveisMes(mes, ano);
 	}
 
 	@Override
@@ -95,14 +95,17 @@ public class RelatorioServiceImp implements RelatorioService {
 		
 		List<RelatorioTotalGastosMensaisDTO> list = new ArrayList<RelatorioTotalGastosMensaisDTO>();
 		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
+		
 		for (int i = 0; i < 13; i++) {
-			Date fim = DateUtil.getUltimoDiaMes(inicio);
+			int mes = DateUtil.getMes(inicio);
+			int ano = DateUtil.getAno(inicio);
+			
 			RelatorioTotalGastosMensaisDTO dto = new RelatorioTotalGastosMensaisDTO();
-			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisPeriodo(inicio, fim));
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
 			dto.setValorDespesasVariaveis(valorVariavelMensal);
 			dto.setValorDespesasFixas(valorDespesasFixas);
-			dto.setMes(DateUtil.getMes(inicio));
-			dto.setAno(DateUtil.getAno(fim));
+			dto.setMes(mes);
+			dto.setAno(ano);
 			list.add(dto);
 			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
@@ -118,13 +121,15 @@ public class RelatorioServiceImp implements RelatorioService {
 		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
 		Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes());
 		for (int i = 0; i < 13; i++) {
-			Date fim = DateUtil.getUltimoDiaMes(inicio);
+			int mes = DateUtil.getMes(inicio);
+			int ano = DateUtil.getAno(inicio);
+			
 			RelatorioRendimentoGastosDTO dto = new RelatorioRendimentoGastosDTO();
-			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisPeriodo(inicio, fim));
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
 			dto.setDespesas(valorVariavelMensal + valorDespesasFixas);
 			dto.setRendimentos(rendimentos);
-			dto.setMes(DateUtil.getMes(inicio));
-			dto.setAno(DateUtil.getAno(inicio));
+			dto.setMes(mes);
+			dto.setAno(ano);
 			list.add(dto);
 			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}

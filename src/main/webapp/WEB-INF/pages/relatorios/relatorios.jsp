@@ -11,18 +11,40 @@
 			<div class="col-lg-7 div-center">
 				<br />
 				<div class="form-group">
-					<label class="col-md-2 control-label" for="inicio">Período:</label>
-					<div class="col-md-4">
-						<fmt:formatDate value="${inicio}" var="inicioFormatada"	pattern="dd/MM/yyyy" />
-						<input type="text" value="${inicioFormatada}" class="form-control date" id="inicio" name="inicio" />
+						<label class="col-md-1 control-label" for="mes">Mês:</label>
+						<div class="col-md-5">
+							<select class="form-control" id="mes">
+								<option value="" label="Selecione"/>
+								<c:forEach items="${meses}" var="item" varStatus="it">
+									<c:choose>
+										<c:when test="${mesAtual == it.index + 1}">
+											<option value="${it.index + 1}" selected="selected">${item}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${it.index + 1}" >${item}</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</div>
+						
+						<label class="col-md-1 control-label" for="ano">Ano:</label>
+						<div class="col-md-5">
+							<select class="form-control" id="ano">
+								<option value="" label="Selecione"/>
+								<c:forEach items="${anos}" var="item">
+									<c:choose>
+										<c:when test="${anoAtual == item}">
+											<option value="${item}" selected="selected">${item}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${item}" >${item}</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</div>
 					</div>
-					
-					<label class="col-md-1 control-label" for="fim">à</label>
-					<div class="col-md-4">
-						<fmt:formatDate value="${fim}" var="fimFormatada" pattern="dd/MM/yyyy" />
-						<input type="text" value="${fimFormatada}" class="form-control date" id="fim" name="fim" />
-					</div>
-				</div>
 				<br />
 				<br />
 				<div class="form-group">

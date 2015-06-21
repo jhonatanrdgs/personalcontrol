@@ -22,15 +22,15 @@ public interface DespesaDAO {
 
 	public Despesa findByIdFetched(Long id);
 
-	public List<RelatorioComprasParceladasDTO> pesquisarDespesasParceladasPeriodo(Date inicio, Date fim);
+	public List<RelatorioComprasParceladasDTO> pesquisarDespesasParceladasMes(int mes, int ano);
 
 	public List<RelatorioGastosFixosDTO> pesquisarDespesasFixas();
 
-	public Double pesquisarValorTotalDespesasVariaveisPeriodo(Date inicio, Date fim);
+	public Double pesquisarValorTotalDespesasVariaveisMes(int mes, int ano);
 
 	public Double pesquisarSomatorioDespesasFixas();
 
-	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim);
+	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisMes(int mes, int ano);
 
 	public void excluir(Despesa despesa);
 

@@ -43,27 +43,27 @@ import javax.persistence.TemporalType;
 				+ " left join fetch d.parcelas p"
 				+ " where d.id = ?1"),
 				
-	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PARCELADAS_PERIODO,
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PARCELADAS_MES,
 		query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, pd.valorParcela) from ParcelaDespesa pd"
 				+ " inner join pd.despesa d"
-				+ " where pd.dataParcela between ?1 and ?2 and d.totalParcelas > 1"),
+				+ " where extract(month from pd.dataParcela) = ?1 and extract(year from pd.dataParcela) = ?2 and d.totalParcelas > 1"),
 				
 	@NamedQuery(name=Despesa.CONSULTAR_GASTOS_FIXOS,
 			query="select new br.com.jhonatan.dto.RelatorioGastosFixosDTO(d.descricao, d.valorTotal) from Despesa d"
 					+ " where d.fixa = true"),
 					
-	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_PERIODO,
+	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES,
 			query="select sum(p.valorParcela) from Despesa d"
 					+ " inner join d.parcelas p"
-					+ " where (p.dataParcela between ?1 and ?2)"),
+					+ " where extract(month from p.dataParcela) = ?1 and extract(year from p.dataParcela) = ?2"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_SOMATORIO_DESPESAS_FIXAS,
 			query="select sum(d.valorTotal) from Despesa d where d.fixa = true"),
 					
-	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO,
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_MES,
 			query="select new br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO(d.descricao, sum(d.valorTotal)) from Despesa d "
 					+ " where d.fixa = false and d.totalParcelas = 1"
-					+ " and d.data between ?1 and ?2"
+					+ " and extract(month from d.data) = ?1 and extract(year from d.data) = ?2"
 					+ " group by d.descricao"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
@@ -95,11 +95,11 @@ public class Despesa extends BaseEntity implements Serializable {
 
 	public static final String CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA = "despesa.consultarDespesasPorDescricaoCategoriaMetodoPgData";
 	public static final String CONSULTAR_DESPESA_POR_ID_FETCH = "despesa.consultarDespesaPorIdFetch";
-	public static final String CONSULTAR_DESPESAS_PARCELADAS_PERIODO = "despesa.consultarDespesasParceladasPeriodo";
+	public static final String CONSULTAR_DESPESAS_PARCELADAS_MES = "despesa.consultarDespesasParceladasMes";
 	public static final String CONSULTAR_GASTOS_FIXOS = "despesa.consultarGastosFixos";
-	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarValorTotalDespesasVariaveisPeriodo";
+	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES = "despesa.consultarValorTotalDespesasVariaveisMes";
 	public static final String CONSULTAR_SOMATORIO_DESPESAS_FIXAS = "despesa.consultarDespesasFixasMesAno";
-	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO = "despesa.consultarDespesasVariaveisPeriodo";
+	public static final String CONSULTAR_DESPESAS_VARIAVEIS_MES = "despesa.consultarDespesasVariaveisMes";
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentos";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF = "despesa.consultarDespesasPeriodo";

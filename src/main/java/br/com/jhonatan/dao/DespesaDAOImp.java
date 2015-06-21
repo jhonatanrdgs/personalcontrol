@@ -30,14 +30,14 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioComprasParceladasDTO> pesquisarDespesasParceladasPeriodo(Date inicio, Date fim) {
-		return (List<RelatorioComprasParceladasDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_PARCELADAS_PERIODO, inicio, fim);
+	public List<RelatorioComprasParceladasDTO> pesquisarDespesasParceladasMes(int mes, int ano) {
+		return (List<RelatorioComprasParceladasDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_PARCELADAS_MES, mes, ano);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisPeriodo(Date inicio, Date fim) {
-		return (List<RelatorioComprasNaoParceladasDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO, inicio, fim);
+	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisMes(int mes, int ano) {
+		return (List<RelatorioComprasNaoParceladasDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_VARIAVEIS_MES, mes, ano);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -47,8 +47,8 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	}
 
 	@Override
-	public Double pesquisarValorTotalDespesasVariaveisPeriodo(Date inicio, Date fim) {
-		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_PERIODO, inicio, fim);
+	public Double pesquisarValorTotalDespesasVariaveisMes(int mes, int ano) {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES, mes, ano);
 	}
 	
 	@Override

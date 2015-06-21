@@ -1,6 +1,5 @@
 package br.com.jhonatan.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -25,8 +24,8 @@ public class MetodoPagamentoDAOImp extends GenericDAO<MetodoPagamento> implement
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(Date inicio, Date fim) {
-		return (List<RelatorioGastosPorMetodoPagamentoDTO>) criarQueryResultListDTO(MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO, inicio, fim);
+	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(int mes, int ano) {
+		return (List<RelatorioGastosPorMetodoPagamentoDTO>) criarQueryResultListDTO(MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO, mes, ano);
 	}
 	
 	

@@ -1,6 +1,5 @@
 package br.com.jhonatan.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -25,8 +24,8 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(Date inicio, Date fim) {
-		return (List<RelatorioDespesaPorCategoriaDTO>) criarQueryResultListDTO(Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, inicio, fim);
+	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(int mes, int ano) {
+		return (List<RelatorioDespesaPorCategoriaDTO>) criarQueryResultListDTO(Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, mes, ano);
 	}
 	
 }
