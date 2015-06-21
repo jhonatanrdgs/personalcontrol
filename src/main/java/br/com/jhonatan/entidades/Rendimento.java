@@ -47,7 +47,7 @@ public class Rendimento extends BaseEntity implements Serializable {
 	
 	@Column(name = "valor", precision = 10, nullable=false)
 	private Double valor;
-
+	
 	public Long getId() {
 		return id;
 	}
