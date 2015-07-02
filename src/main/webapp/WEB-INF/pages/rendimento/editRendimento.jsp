@@ -23,6 +23,20 @@
 						</div>
 					</div>
 					
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="dataInicio">Inicio:</label>
+						<div class="col-md-2 input-icon">
+							<form:input type="text" path="dataInicio" class="form-control date" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="dataFim">Fim:</label>
+						<div class="col-md-2 input-icon">
+							<form:input type="text" path="dataFim" class="form-control date" />
+						</div>
+					</div>
+					
 					
 					<div class="form-group">
 						<div class="col-md-12" style="text-align:center">

@@ -57,7 +57,8 @@ public class RelatorioServiceImp implements RelatorioService {
 		Double totalGastos  = totalGastosVariaveisPeriodo + totalGastosFixos;
 		totalGastos = NumberUtil.normalizarDouble(totalGastos, 2);
 		
-		Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes());
+		Date data = DateUtil.getPrimeiroDiaMes(mes, ano);
+		Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(data));
 		Double percentualComprometido = (totalGastos / rendimentos) * 100;
 		percentualComprometido = NumberUtil.normalizarDouble(percentualComprometido, 2);
 		
@@ -119,8 +120,8 @@ public class RelatorioServiceImp implements RelatorioService {
 		
 		List<RelatorioRendimentoGastosDTO> list = new ArrayList<RelatorioRendimentoGastosDTO>();
 		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
-		Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes());
 		for (int i = 0; i < 13; i++) {
+			Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(inicio));
 			int mes = DateUtil.getMes(inicio);
 			int ano = DateUtil.getAno(inicio);
 			

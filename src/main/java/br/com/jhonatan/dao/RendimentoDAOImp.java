@@ -1,5 +1,6 @@
 package br.com.jhonatan.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -12,8 +13,8 @@ public class RendimentoDAOImp extends GenericDAO<Rendimento> implements Rendimen
 	private static final long serialVersionUID = -7521216311941883574L;
 
 	@Override
-	public Double pesquisarRendimentosPorMes() {
-		return criarQuerySingleResultSomatorio(Rendimento.CONSULTAR_RENDIMENTOS);
+	public Double pesquisarRendimentosPorMes(Date data) {
+		return criarQuerySingleResultSomatorio(Rendimento.CONSULTAR_RENDIMENTOS, data);
 	}
 
 	@Override

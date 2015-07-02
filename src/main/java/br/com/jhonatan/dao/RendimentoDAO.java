@@ -1,5 +1,6 @@
 package br.com.jhonatan.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.jhonatan.entidades.Rendimento;
@@ -7,7 +8,7 @@ import br.com.jhonatan.entidades.Rendimento;
 
 public interface RendimentoDAO {
 
-	Double pesquisarRendimentosPorMes();
+	Double pesquisarRendimentosPorMes(Date data);
 
 	void salvar(Rendimento rendimento);
 
