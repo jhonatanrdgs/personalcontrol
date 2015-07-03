@@ -11,7 +11,9 @@ import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
+import br.com.jhonatan.dto.RelatorioSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
+import br.com.jhonatan.entidades.Despesa;
 
 public interface RelatorioService {
 
@@ -81,5 +83,7 @@ public interface RelatorioService {
 	List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensaisPDF(FormRelatorioDTO relatorioForm);
 
 	List<RelatorioDespesaCarroPdfDTO> pesquisarDadosRelatorioDespesaCarro();
+
+	List<RelatorioSimuladorRendimentoGastoDTO> montarRelatorioSimulacaoGastos(Despesa despesa);
 
 }

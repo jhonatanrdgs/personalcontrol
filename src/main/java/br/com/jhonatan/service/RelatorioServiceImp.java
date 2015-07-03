@@ -22,7 +22,9 @@ import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
+import br.com.jhonatan.dto.RelatorioSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
+import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.DespesaCarro;
 import br.com.jhonatan.entidades.ItemDespesaCarro;
 import br.com.jhonatan.util.DateUtil;
@@ -97,7 +99,7 @@ public class RelatorioServiceImp implements RelatorioService {
 		List<RelatorioTotalGastosMensaisDTO> list = new ArrayList<RelatorioTotalGastosMensaisDTO>();
 		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
 		
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i <= 12; i++) {
 			int mes = DateUtil.getMes(inicio);
 			int ano = DateUtil.getAno(inicio);
 			
@@ -120,7 +122,7 @@ public class RelatorioServiceImp implements RelatorioService {
 		
 		List<RelatorioRendimentoGastosDTO> list = new ArrayList<RelatorioRendimentoGastosDTO>();
 		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i <= 12; i++) {
 			Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(inicio));
 			int mes = DateUtil.getMes(inicio);
 			int ano = DateUtil.getAno(inicio);
@@ -158,9 +160,32 @@ public class RelatorioServiceImp implements RelatorioService {
 		}
 		return dtos;
 	}
-	
-	
-	
-	
+
+	@Override
+	public List<RelatorioSimuladorRendimentoGastoDTO> montarRelatorioSimulacaoGastos(Despesa despesa) {
+		Date inicio = DateUtil.getPrimeiroDiaMes(despesa.getData());
+		
+		List<RelatorioSimuladorRendimentoGastoDTO> list = new ArrayList<RelatorioSimuladorRendimentoGastoDTO>();
+		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
+		
+		Double valorParcelaDespesa = despesa.getValorTotal() / despesa.getTotalParcelas();
+		
+		for (int i = 0; i < despesa.getTotalParcelas(); i++) {
+			Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(inicio));
+			int mes = DateUtil.getMes(inicio);
+			int ano = DateUtil.getAno(inicio);
+			
+			RelatorioSimuladorRendimentoGastoDTO dto = new RelatorioSimuladorRendimentoGastoDTO();
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
+			dto.setDespesasNaoSimuladas(valorVariavelMensal + valorDespesasFixas);
+			dto.setDespesasSimuladas(valorVariavelMensal + valorDespesasFixas + valorParcelaDespesa);
+			dto.setRendimentos(rendimentos);
+			dto.setMes(mes);
+			dto.setAno(ano);
+			list.add(dto);
+			inicio = DateUtil.adicionarMeses(inicio, 1);
+		}
+		return list;
+	}
 	
 }
