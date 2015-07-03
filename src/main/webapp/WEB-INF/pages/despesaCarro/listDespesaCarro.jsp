@@ -16,12 +16,12 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Início:</label>
 						<div class="col-md-3 input-icon">
-							<form:input type="text" path="inicio" class="form-control date" />
+							<form:input type="text" path="inicio" class="form-control mask_date" />
 						</div>
 					
 						<label class="col-md-2 control-label" for="nome">Fim:</label>
 						<div class="col-md-3 input-icon">
-							<form:input type="text" path="fim" class="form-control date" />
+							<form:input type="text" path="fim" class="form-control mask_date" />
 						</div>
 					</div>
 					

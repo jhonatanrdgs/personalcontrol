@@ -8,6 +8,10 @@ $(document).ready(function () {
 		},
 		valor: {
 			required: true
+		},
+		dataInicio: {
+			required:true,
+			date: true
 		}
 	},
 	messages: {
@@ -16,6 +20,10 @@ $(document).ready(function () {
 		},
 		valor: {
 			required: "Valor &eacute; de preenchimento Obrigat&oacute;rio"
+		},
+		dataInicio: {
+			required:"Data &eacute; de preenchimento Obrigat&oacute;rio",
+			date: "Data inv&aacute;lida"
 		}
 	},
 	errorClass: "control-label",

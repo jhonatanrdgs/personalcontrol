@@ -59,7 +59,7 @@
 					
 						<label class="col-md-2 control-label" for="nome">Data da despesa:</label>
 						<div class="col-md-2 input-icon">
-							<form:input type="text" path="data" class="form-control date" />
+							<form:input type="text" path="data" class="form-control mask_date" />
 						</div>
 					</div>
 					
