@@ -18,10 +18,6 @@
 		<sec:intercept-url pattern="/adiantamento/**" access="hasRole('ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/simulacao/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 		
-		<sec:headers>
-			<sec:frame-options policy="SAMEORIGIN" />
-		</sec:headers>
- 
 		<!-- access denied page -->
 		<sec:access-denied-handler error-page="/403" />
  
