@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ClickjackFilter implements Filter 
 {
 
-    private String mode = "DENY";
+    private String mode = "SAMEORIGIN";
     	
     /**
      * Add X-FRAME-OPTIONS response header to tell IE8 (and any other browsers who

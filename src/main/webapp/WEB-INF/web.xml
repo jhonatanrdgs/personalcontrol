@@ -51,7 +51,7 @@
         <filter-class>br.com.jhonatan.util.ClickjackFilter</filter-class>
         <init-param>
             <param-name>mode</param-name>
-            <param-value>DENY</param-value>
+            <param-value>SAMEORIGIN</param-value>
         </init-param>
     </filter>
     
