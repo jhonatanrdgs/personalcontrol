@@ -48,4 +48,6 @@ public interface DespesaService {
 
 	public List<ParcelaDespesa> pesquisarParcelasDaDespesa(Long id);
 
+	public void adiantarPagamentoTodasParcelas(Long idDespesa);
+
 }

@@ -18,7 +18,7 @@
 						<div class="col-md-8">
 							<form:select  path="id" class="form-control" >
 								<form:option value="" label="Selecione" />
-								<form:options items="${despesas}" itemValue="id" itemLabel="descricao"/>
+								<form:options items="${despesas}" itemValue="id" itemLabel="descricao" />
 							</form:select>
 						</div>
 					</div>
@@ -34,7 +34,7 @@
 							<thead>
 							<tr>
 								<th class="info">
-									<label>Data Vencimento</label>
+									<label>Data de Vencimento</label>
 								</th>
 								
 								<th class="info">
@@ -62,6 +62,9 @@
 							</c:forEach>
 							</tbody>
 						</table>
+						<div style="text-align: center;">
+							<a href="<c:url value="/adiantamento/adiantarTodas?idDespesa=${idDespesa}" />" class="btn btn-success">Adiantar Todas</a>
+						</div>
 					</c:if>
 				</div>
 			</div>

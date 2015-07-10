@@ -46,7 +46,6 @@ public class SimulacaoGastosController {
 	
 	@RequestMapping(value="/simulacao/simular")
 	public String simular(@ModelAttribute("simuladorForm") Despesa despesa, ModelMap map) {
-		//TODO colocar na tela um gráfico só, com 3 linhas (rendimentos, gastos sem simulação e gastos com simulação)
 		dados = relatorioService.montarRelatorioSimulacaoGastos(despesa);
 		return PAGE;
 	}

@@ -83,6 +83,15 @@ public class DespesaServiceImp implements DespesaService {
 	}
 	
 	@Override
+	@Transactional
+	public void adiantarPagamentoTodasParcelas(Long idDespesa) {
+		List<ParcelaDespesa> parcelas = parcelaDespesaDAO.pesquisarParcelasDaDespesa(idDespesa);
+		for (ParcelaDespesa pd : parcelas) {
+			parcelaDespesaDAO.excluir(pd);
+		}
+	}
+
+	@Override
 	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante() {
 		Date proximoMes = DateUtil.adicionarMeses(new Date(), 1);
 		proximoMes = DateUtil.getPrimeiroDiaMes(proximoMes);
