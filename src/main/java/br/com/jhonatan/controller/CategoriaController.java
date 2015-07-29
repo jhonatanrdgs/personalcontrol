@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +33,7 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(value="/categoria/search")
-	public String search(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map, Pageable pageable) {
+	public String search(@ModelAttribute("categoriaForm") Categoria categoria, ModelMap map) {
 		List<Categoria> resultado = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao(), categoria.isAtivo());
 		
 		map.addAttribute("resultado", resultado);
