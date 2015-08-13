@@ -3,6 +3,7 @@ package br.com.jhonatan.service;
 import java.util.List;
 
 import br.com.jhonatan.dto.FormRelatorioDTO;
+import br.com.jhonatan.dto.RelatorioBarraSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaCarroPdfDTO;
@@ -11,7 +12,7 @@ import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
-import br.com.jhonatan.dto.RelatorioSimuladorRendimentoGastoDTO;
+import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.entidades.Despesa;
 
@@ -84,6 +85,8 @@ public interface RelatorioService {
 
 	List<RelatorioDespesaCarroPdfDTO> pesquisarDadosRelatorioDespesaCarro();
 
-	List<RelatorioSimuladorRendimentoGastoDTO> montarRelatorioSimulacaoGastos(Despesa despesa);
+	List<RelatorioLinhaSimuladorRendimentoGastoDTO> montarRelatorioLinhaSimulacaoGastos(Despesa despesa);
+
+	List<RelatorioBarraSimuladorRendimentoGastoDTO> montarRelatorioBarraSimulacaoGastos(Despesa despesa);
 
 }

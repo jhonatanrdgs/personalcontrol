@@ -1,4 +1,5 @@
-var simulacaoRendimentosGastos = null;
+var simulacaoLinhaRendimentoGastos = null;
+var simulacaoBarraRendimentoGastos = null;
 
 $(document).ready(function () {
 	
@@ -18,12 +19,7 @@ $(document).ready(function () {
 			descricao: {
 				required: true
 			},
-			"categoria.id": {
-				required:true
-			},
-			"metodoPagamento.id": {
-				required:true
-			},
+			
 			valorTotal: {
 				required:true
 			},
@@ -39,12 +35,6 @@ $(document).ready(function () {
 		messages: {
 			descricao: {
 				required: "Nome &eacute; de preenchimento Obrigat&oacute;rio"
-			},
-			"categoria.id": {
-				required: "Categoria &eacute; de preenchimento Obrigat&oacute;rio"
-			},
-			"metodoPagamento.id": {
-				required: "M&eacute;todo de Pagamento &eacute; de preenchimento Obrigat&oacute;rio"
 			},
 			valorTotal: {
 				required: "Valor Total &eacute; de preenchimento Obrigat&oacute;rio"
@@ -73,10 +63,19 @@ $(document).ready(function () {
 	
 	$.ajax({
 		//Precisa ser sincrono, senão ele tenta montar o gráfico com resultado vazio
-		url: "getDados",
+		url: "getDadosRelatorioLinha",
 		dataType:"json",
 		success: function(data) {
-			montaSimulacaoRendimentosGastos(data);
+			montaSimulacaoLinhaRendimentosGastos(data);
+		}
+	})
+	
+	$.ajax({
+		//Precisa ser sincrono, senão ele tenta montar o gráfico com resultado vazio
+		url: "getDadosRelatorioBarra",
+		dataType:"json",
+		success: function(data) {
+			montaSimulacaoBarraRendimentosGastos(data);
 		}
 	})
 	
@@ -84,10 +83,10 @@ $(document).ready(function () {
 	
 });
 
-function montaSimulacaoRendimentosGastos(data) {
+function montaSimulacaoLinhaRendimentosGastos(data) {
 	
-	if (simulacaoRendimentosGastos) {
-		simulacaoRendimentosGastos.destroy();
+	if (simulacaoLinhaRendimentoGastos) {
+		simulacaoLinhaRendimentoGastos.destroy();
 	}
 	
 	$.jqplot.sprintf.thousandsSeparator = '.';
@@ -103,7 +102,7 @@ function montaSimulacaoRendimentosGastos(data) {
 		periodo.push([data[i].mes + "/" + data[i].ano]);
 	} 
 
-	simulacaoRendimentosGastos = $.jqplot('simulacaoRendimentosGastos', [rendimento, gastosNaoSimulados, gastosSimulados],{
+	simulacaoLinhaRendimentoGastos = $.jqplot('simulacaoLinhaRendimentoGastos', [rendimento, gastosNaoSimulados, gastosSimulados],{
 		seriesDefaults:{
 			renderer: $.jqplot.CanvasAxisLabelRenderer,
 			pointLabels: { show: true, formatString: "R$ %'.2f"  },
@@ -137,5 +136,53 @@ function montaSimulacaoRendimentosGastos(data) {
 			        }
 			}
 		}
+	})
+}
+
+function montaSimulacaoBarraRendimentosGastos(data) {
+	if (simulacaoBarraRendimentoGastos) {
+		simulacaoBarraRendimentoGastos.destroy();
+	}
+	
+	var original = [];
+	var comSimulacao = [];
+	var periodo = [];
+	for (var i=0; i < data.length; i++){ 
+		original.push(data[i].percentualSemSimulacao);
+		comSimulacao.push(data[i].percentualComSimulacao);
+		periodo.push([data[i].mes + "/" + data[i].ano]);
+	} 
+
+	simulacaoBarraRendimentoGastos = $.jqplot('simulacaoBarraRendimentoGastos',[original, comSimulacao],{
+		stackSeries: true,
+        captureRightClick: true,
+        seriesDefaults:{
+            renderer:$.jqplot.BarRenderer,
+            rendererOptions: {
+                highlightMouseDown: true   
+            },
+            pointLabels: {show: true}
+        },
+        series: [ {label: 'Sem Simula\u00e7\u00e3o'}, {label: 'Com Simula\u00e7\u00e3o' }],
+        axes:{
+			xaxis:{
+				renderer: $.jqplot.CategoryAxisRenderer,
+				ticks: periodo,
+				tickOptions: {
+			          angle: -40,
+			          fontFamily: 'Georgia'
+			        }
+			},
+			yaxis: {
+                tickOptions:{
+                  formatString: "%#.2f %"
+                }
+              }
+		},
+        legend: {
+            show: true,
+            location: 'e',
+            placement: 'outside'
+        }   
 	})
 }

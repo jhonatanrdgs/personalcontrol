@@ -1,6 +1,6 @@
 package br.com.jhonatan.dto;
 
-public class RelatorioSimuladorRendimentoGastoDTO {
+public class RelatorioLinhaSimuladorRendimentoGastoDTO {
 	
 	private int mes;
 	private int ano;

@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.jhonatan.dto.RelatorioSimuladorRendimentoGastoDTO;
-import br.com.jhonatan.entidades.Categoria;
+import br.com.jhonatan.dto.RelatorioBarraSimuladorRendimentoGastoDTO;
+import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.entidades.Despesa;
-import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.service.RelatorioService;
 
@@ -30,35 +29,38 @@ public class SimulacaoGastosController {
 	@Autowired
 	private RelatorioService relatorioService;
 	
-	List<RelatorioSimuladorRendimentoGastoDTO> dados;
+	private List<RelatorioLinhaSimuladorRendimentoGastoDTO> dadosLinha;
+	
+	private List<RelatorioBarraSimuladorRendimentoGastoDTO> dadosBarra;
 	
 	@RequestMapping(value="/simulacao/iniciar")
 	public String iniciar(ModelMap map) {
-		dados = null;
+		dadosLinha = null;
+		dadosBarra = null;
 		Despesa despesa = new Despesa();
 		despesa.setData(new Date());
 		despesa.setDescricao("Despesa Simulada");
 		despesa.setTotalParcelas(1);
 		map.addAttribute("simuladorForm", despesa);
-		montarCombos(map);
 		return PAGE;
 	}
 	
 	@RequestMapping(value="/simulacao/simular")
 	public String simular(@ModelAttribute("simuladorForm") Despesa despesa, ModelMap map) {
-		dados = relatorioService.montarRelatorioSimulacaoGastos(despesa);
+		if (despesa != null && despesa.getData() != null && despesa.getValorTotal() != null) {
+			dadosLinha = relatorioService.montarRelatorioLinhaSimulacaoGastos(despesa);
+			dadosBarra = relatorioService.montarRelatorioBarraSimulacaoGastos(despesa);
+		}
 		return PAGE;
 	}
 	
-	@RequestMapping(value="/simulacao/getDados", headers="Accept=application/json")
-	public @ResponseBody List<RelatorioSimuladorRendimentoGastoDTO> getDadosSemSimulacao() {
-		return dados;
+	@RequestMapping(value="/simulacao/getDadosRelatorioLinha", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioLinhaSimuladorRendimentoGastoDTO> getDadosRelatorioLinhaSimulacao() {
+		return dadosLinha;
 	}
 	
-	private void montarCombos(ModelMap map) {
-		List<Categoria> categorias = cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
-		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
-		map.addAttribute("categorias", categorias);
-		map.addAttribute("metodosPagamento", metodosPagamento);
+	@RequestMapping(value="/simulacao/getDadosRelatorioBarra", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioBarraSimuladorRendimentoGastoDTO> getDadosRelatorioBarraSimulacao() {
+		return dadosBarra;
 	}
 }

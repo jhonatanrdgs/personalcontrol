@@ -18,26 +18,6 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="categoria.id">Categoria:</label>
-						<div class="col-md-8 input-icon">
-							<form:select path="categoria.id" class="form-control" name="categoriaId">
-								<form:option value="" label="Selecione"/>
-								<form:options items="${categorias}" itemLabel="descricao" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
-						<div class="col-md-8 input-icon">
-							<form:select path="metodoPagamento.id" class="form-control" >
-								<form:option value="" label="Selecione"/>
-								<form:options items="${metodosPagamento}" itemLabel="descricao" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
-					
-					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Valor Total:</label>
 						<div class="col-md-2 input-icon">
 							<form:input type="text" path="valorTotal"  class="form-control money"/>
@@ -65,10 +45,13 @@
 			
 			
 			<div class="form-group" style="width: 90%;margin:0 auto;text-align: center;">
-				<p class="bg-primary">Simulação Rendimentos x Gastos</p>
-				<div id="simulacaoRendimentosGastos" style="width: 1100px; height: 500px; position: relative;margin:auto;"></div>
+				<p class="bg-primary">Simulação Linha Rendimentos x Gastos</p>
+				<div id="simulacaoLinhaRendimentoGastos" style="width: 1100px; height: 500px; position: relative;margin:auto;"></div>
 			</div>
 			
+			<div class="form-group" style="width: 90%;margin:0 auto;text-align: center;">
+				<p class="bg-primary">Simulação Barra Rendimentos x Gastos</p>
+				<div id="simulacaoBarraRendimentoGastos" style="width: 1100px; height: 500px; position: relative;margin:auto;"></div>
 			</div>
 			
 		</form:form>

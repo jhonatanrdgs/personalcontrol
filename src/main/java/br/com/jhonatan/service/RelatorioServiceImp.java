@@ -14,6 +14,7 @@ import br.com.jhonatan.dao.MetodoPagamentoDAO;
 import br.com.jhonatan.dao.RendimentoDAO;
 import br.com.jhonatan.dto.FormRelatorioDTO;
 import br.com.jhonatan.dto.ItemDespesaCarroDTO;
+import br.com.jhonatan.dto.RelatorioBarraSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaCarroPdfDTO;
@@ -22,7 +23,7 @@ import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
-import br.com.jhonatan.dto.RelatorioSimuladorRendimentoGastoDTO;
+import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.DespesaCarro;
@@ -64,7 +65,10 @@ public class RelatorioServiceImp implements RelatorioService {
 		Double percentualComprometido = (totalGastos / rendimentos) * 100;
 		percentualComprometido = NumberUtil.normalizarDouble(percentualComprometido, 2);
 		
-		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos, percentualComprometido};
+		Double sobra = NumberUtil.normalizarDouble(rendimentos - totalGastos, 2);
+		
+		
+		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos, percentualComprometido, rendimentos, sobra};
 	}
 
 	@Override
@@ -162,10 +166,10 @@ public class RelatorioServiceImp implements RelatorioService {
 	}
 
 	@Override
-	public List<RelatorioSimuladorRendimentoGastoDTO> montarRelatorioSimulacaoGastos(Despesa despesa) {
+	public List<RelatorioLinhaSimuladorRendimentoGastoDTO> montarRelatorioLinhaSimulacaoGastos(Despesa despesa) {
 		Date inicio = DateUtil.getPrimeiroDiaMes(despesa.getData());
 		
-		List<RelatorioSimuladorRendimentoGastoDTO> list = new ArrayList<RelatorioSimuladorRendimentoGastoDTO>();
+		List<RelatorioLinhaSimuladorRendimentoGastoDTO> list = new ArrayList<RelatorioLinhaSimuladorRendimentoGastoDTO>();
 		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
 		
 		Double valorParcelaDespesa = despesa.getValorTotal() / despesa.getTotalParcelas();
@@ -175,7 +179,7 @@ public class RelatorioServiceImp implements RelatorioService {
 			int mes = DateUtil.getMes(inicio);
 			int ano = DateUtil.getAno(inicio);
 			
-			RelatorioSimuladorRendimentoGastoDTO dto = new RelatorioSimuladorRendimentoGastoDTO();
+			RelatorioLinhaSimuladorRendimentoGastoDTO dto = new RelatorioLinhaSimuladorRendimentoGastoDTO();
 			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
 			dto.setDespesasNaoSimuladas(valorVariavelMensal + valorDespesasFixas);
 			dto.setDespesasSimuladas(valorVariavelMensal + valorDespesasFixas + valorParcelaDespesa);
@@ -187,5 +191,37 @@ public class RelatorioServiceImp implements RelatorioService {
 		}
 		return list;
 	}
+
+	@Override
+	public List<RelatorioBarraSimuladorRendimentoGastoDTO> montarRelatorioBarraSimulacaoGastos(Despesa despesa) {
+		Date inicio = DateUtil.getPrimeiroDiaMes(despesa.getData());
+		
+		List<RelatorioBarraSimuladorRendimentoGastoDTO> list = new ArrayList<RelatorioBarraSimuladorRendimentoGastoDTO>();
+		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
+		Double valorParcela = despesa.getValorTotal() / despesa.getTotalParcelas();
+		
+		for (int i = 0; i < despesa.getTotalParcelas(); i++) {
+			Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(inicio));
+			int mes = DateUtil.getMes(inicio);
+			int ano = DateUtil.getAno(inicio);
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
+			Double totalGastos = valorDespesasFixas + valorVariavelMensal;
+			Double percentualSemSimulacao = (totalGastos / rendimentos) * 100;
+			totalGastos += valorParcela;
+			Double percentualComSimulacao = (totalGastos / rendimentos) * 100;
+			RelatorioBarraSimuladorRendimentoGastoDTO dto = new RelatorioBarraSimuladorRendimentoGastoDTO();
+			dto.setPercentualSemSimulacao(percentualSemSimulacao);
+			dto.setPercentualComSimulacao(percentualComSimulacao);
+			dto.setMes(mes);
+			dto.setAno(ano);
+			
+			list.add(dto);
+			
+			inicio = DateUtil.adicionarMeses(inicio, 1);
+		}
+		return list;
+	}
+	
+	
 	
 }

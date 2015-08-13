@@ -424,4 +424,6 @@ function montaResumo(data) {
 	} else {
 		$("#rendaComprometida").css("color", "red");
 	}
+	$("#rendimentoPeriodo").html(data[4]);
+	$("#sobra").html(data[5]);
 }

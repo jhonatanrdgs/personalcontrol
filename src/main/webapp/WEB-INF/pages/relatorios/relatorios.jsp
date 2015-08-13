@@ -67,6 +67,14 @@
 					<span id="totalGastosPeriodo"></span>
 				</div>
 				<div>
+					<label>Rendimentos no Período:</label>
+					<span id="rendimentoPeriodo"></span>
+				</div>
+				<div>
+					<label>Sobra:</label>
+					<span id="sobra"></span>
+				</div>
+				<div>
 					<label>Total de Gastos Variáveis no Período:</label>
 					<span id="totalGastosVariaveisPeriodo"></span>
 				</div>
