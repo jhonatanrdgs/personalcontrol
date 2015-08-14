@@ -71,7 +71,7 @@
 					<span id="rendimentoPeriodo"></span>
 				</div>
 				<div>
-					<label>Sobra:</label>
+					<label>Rendimentos - Gastos:</label>
 					<span id="sobra"></span>
 				</div>
 				<div>

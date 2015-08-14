@@ -1,9 +1,11 @@
 var gastosPorMes = null;
 var rendimentosGastos = null;
+var graficoPercentual12Meses = null;
 
 $(document).ready(function () {
 	chamadaAjaxSemData("relatorios/gastosPorMes", montaGraficoGastosPorMes);
 	chamadaAjaxSemData("relatorios/rendimentosGastos", montaGraficoRendimentosGastos);
+	chamadaAjaxSemData("relatorios/percentual12Meses", montaGraficoPercentual12Meses)
 	chamadaAjax("relatorios/resumo", montaResumo);
 });
 
@@ -148,4 +150,44 @@ function montaResumo(data) {
 	}
 	$("#rendimentoPeriodo").html(data[4]);
 	$("#sobra").html(data[5]);
+}
+
+function montaGraficoPercentual12Meses(data) {
+	if (graficoPercentual12Meses) {
+		graficoPercentual12Meses.destroy();
+	}
+	
+	var original = [];
+	var periodo = [];
+	for (var i=0; i < data.length; i++){ 
+		original.push(data[i].percentual);
+		periodo.push([data[i].mes + "/" + data[i].ano]);
+	} 
+
+	graficoPercentual12Meses = $.jqplot('graficoPercentual12Meses',[original],{
+		stackSeries: true,
+        captureRightClick: true,
+        seriesDefaults:{
+            renderer:$.jqplot.BarRenderer,
+            rendererOptions: {
+                highlightMouseDown: true   
+            },
+            pointLabels: {show: true}
+        },
+        axes:{
+			xaxis:{
+				renderer: $.jqplot.CategoryAxisRenderer,
+				ticks: periodo,
+				tickOptions: {
+			          angle: -40,
+			          fontFamily: 'Georgia'
+			        }
+			},
+			yaxis: {
+                tickOptions:{
+                  formatString: "%#.2f %"
+                }
+              }
+		},
+	})
 }

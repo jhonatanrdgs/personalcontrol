@@ -16,6 +16,7 @@ import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
+import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.service.RelatorioService;
@@ -85,6 +86,11 @@ public class RelatorioGraficoController {
 	@RequestMapping(value="/relatorios/rendimentosGastos", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioRendimentoGastosDTO> montarDadosRendimentosGastosJson() {
 		return relatorioService.pesquisarDadosRelatorioRendimentosGastos();
+	}
+	
+	@RequestMapping(value="/relatorios/percentual12Meses", headers="Accept=application/json")
+	public @ResponseBody List<RelatorioPercentualComprometido12MesesDTO> montarDadosPercentualComprometido12MesesJson() {
+		return relatorioService.montarRelatorioPercentualComprometido12Meses();
 	}
 	
 	

@@ -22,6 +22,7 @@ import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
+import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
@@ -221,7 +222,31 @@ public class RelatorioServiceImp implements RelatorioService {
 		}
 		return list;
 	}
-	
-	
+
+	@Override
+	public List<RelatorioPercentualComprometido12MesesDTO> montarRelatorioPercentualComprometido12Meses() {
+		Date inicio = DateUtil.getPrimeiroDiaMes(new Date());
+		
+		List<RelatorioPercentualComprometido12MesesDTO> list = new ArrayList<RelatorioPercentualComprometido12MesesDTO>();
+		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
+		
+		for (int i = 0; i < 12; i++) {
+			int mes = DateUtil.getMes(inicio);
+			int ano = DateUtil.getAno(inicio);
+			Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(inicio));
+			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
+			Double totalGastos = valorDespesasFixas + valorVariavelMensal;
+			RelatorioPercentualComprometido12MesesDTO dto = new RelatorioPercentualComprometido12MesesDTO();
+			
+			dto.setAno(ano);
+			dto.setMes(mes);
+			dto.setPercentual((totalGastos / rendimentos) * 100);
+			list.add(dto);
+			
+			inicio = DateUtil.adicionarMeses(inicio, 1);
+		}
+		
+		return list;
+	}
 	
 }

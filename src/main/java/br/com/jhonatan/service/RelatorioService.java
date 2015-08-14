@@ -11,6 +11,7 @@ import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
+import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
@@ -88,5 +89,7 @@ public interface RelatorioService {
 	List<RelatorioLinhaSimuladorRendimentoGastoDTO> montarRelatorioLinhaSimulacaoGastos(Despesa despesa);
 
 	List<RelatorioBarraSimuladorRendimentoGastoDTO> montarRelatorioBarraSimulacaoGastos(Despesa despesa);
+	
+	List<RelatorioPercentualComprometido12MesesDTO> montarRelatorioPercentualComprometido12Meses();
 
 }
