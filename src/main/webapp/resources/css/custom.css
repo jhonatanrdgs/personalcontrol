@@ -35,3 +35,34 @@
   text-align: center;
   width: 100%;
 }
+
+#resumo {
+	width: 470px;
+	border-top: 4px solid #e3e7e7;
+	height: 180px;
+	margin: 0 auto;
+}
+
+#resumo p {
+	clear: both;
+	width: 100%;
+	margin: 0;
+}
+
+#resumo span {
+	float: left;
+	padding: 0 10px;
+	border-left: 1px solid #e3e7e7;
+	border-bottom: 1px solid #e3e7e7;
+}
+
+#resumo span.col1 {
+	width: 330px;
+	text-align: left;
+}
+
+#resumo span.col2 {
+	width: 140px;
+	border-right: 1px solid #e3e7e7;
+	text-align: left;
+}

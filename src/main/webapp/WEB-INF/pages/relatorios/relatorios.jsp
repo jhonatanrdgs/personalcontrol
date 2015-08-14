@@ -61,32 +61,32 @@
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Resumo</p>
-			<div id="resumo" style="width: 600px; position: relative;margin:auto;">
-				<div>
-					<label>Total de Gastos no Período:</label>
-					<span id="totalGastosPeriodo"></span>
-				</div>
-				<div>
-					<label>Rendimentos no Período:</label>
-					<span id="rendimentoPeriodo"></span>
-				</div>
-				<div>
-					<label>Rendimentos - Gastos:</label>
-					<span id="sobra"></span>
-				</div>
-				<div>
-					<label>Total de Gastos Variáveis no Período:</label>
-					<span id="totalGastosVariaveisPeriodo"></span>
-				</div>
-				<div>
-					<label>Total de Gastos Fixos:</label>
-					<span id="totalGastosFixos"></span>
-				</div>
-				<div>
-					<label>Renda Comprometida:</label>
-					<span id="rendaComprometida"></span>
-				</div>
-			</div>
+			<div id="resumo" >
+						<p>
+							<span class="col1">Rendimentos no Período</span>
+							<span class="col2" id="rendimentoPeriodo"> </span>
+						</p>
+						<p>
+							<span class="col1">Total de Gastos Fixos</span> 
+							<span class="col2" id="totalGastosFixos"></span>
+						</p>
+						<p>
+							<span class="col1">Total de Gastos Variáveis no Período</span> 
+							<span class="col2" id="totalGastosVariaveisPeriodo"></span>
+						</p>
+						<p>
+							<span class="col1">Total de Gastos no Período</span>
+							 <span class="col2" id="totalGastosPeriodo"></span>
+						</p>
+						<p>
+							<span class="col1">Rendimentos - Gastos</span> 
+							<span class="col2" id="sobra"></span>
+						</p>
+						<p>
+							<span class="col1">Percentual Comprometido</span> 
+							<span class="col2" id="rendaComprometida"></span>
+						</p>
+					</div>
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">

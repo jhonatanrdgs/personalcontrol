@@ -426,4 +426,8 @@ function montaResumo(data) {
 	}
 	$("#rendimentoPeriodo").html(data[4]);
 	$("#sobra").html(data[5]);
+	if (data[5] < 0) {
+		$("#sobra").css("font-weight", "700");
+		$("#sobra").css("color", "red");
+	}
 }
