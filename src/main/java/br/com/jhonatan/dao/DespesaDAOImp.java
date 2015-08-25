@@ -66,5 +66,10 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante(Date proximoMes) {
 		return criarQueryResultList(Despesa.CONSULTAR_DESPESAS_COM_PARCELAS_PROXIMO_MES_EM_DIANTE, proximoMes);
 	}
+
+	@Override
+	public Double pesquisarDespessasFixasPorMetodoPagamento(Long idMetodoPagamento) {
+		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_FIXAS_POR_METODO_PAGAMENTO, idMetodoPagamento);
+	}
 	
 }

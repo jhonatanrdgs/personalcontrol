@@ -92,7 +92,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 					+ " where p.dataParcela >= ?1"
 					+ " and d.totalParcelas > 1"
 					+ " and p.paga = false"
-					+ " order by d.descricao")
+					+ " order by d.descricao"),
+					
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_FIXAS_POR_METODO_PAGAMENTO,
+			query="select sum(d.valorTotal) from Despesa d "
+					+ "inner join d.metodoPagamento mp "
+					+ "where mp.id = ?1 and d.fixa = true ")
 					
 })
 
@@ -113,6 +118,7 @@ public class Despesa extends BaseEntity implements Serializable {
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF = "despesa.consultarDespesasPeriodo";
 	public static final String CONSULTAR_DESPESAS_COM_PARCELAS_PROXIMO_MES_EM_DIANTE = "despesa.consultarDespesasComParcelasProximoMesEmDiante";
+	public static final String CONSULTAR_DESPESAS_FIXAS_POR_METODO_PAGAMENTO = "despesa.consultarDespesasFixasPorMetodoPagamento";
 
 
 	@Id

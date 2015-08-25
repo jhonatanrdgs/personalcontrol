@@ -6,7 +6,6 @@ var comprasParceladas = null;
 var gastosPorMetodoPagamento = null;
 var gastosVariaveis = null;
 var gastosFixos = null;
-var gastosPorMes = null;
 var rendimentosGastos = null;
 
 $(document).ready(function () {
@@ -296,55 +295,6 @@ function montaGraficoGastosFixos(data) {
 			xaxis:{
 				renderer: $.jqplot.CategoryAxisRenderer,
 				ticks: descricao,
-				tickOptions: {
-			          angle: -40,
-			          fontFamily: 'Georgia'
-			        }
-			}
-		}
-	})
-}
-
-function montaGraficoGastosPorMes(data) {
-	if (data.length == 0) {
-		$("#gastosPorMes").html("Nenhum resultado encontrado para o per\u00edodo informado");
-		return;
-	}
-	if (gastosPorMes) {
-		gastosPorMes.destroy();
-	}
-	
-	$.jqplot.sprintf.thousandsSeparator = '.';
-	$.jqplot.sprintf.decimalMark = ',';
-	var valor = [];
-	var periodo = [];
-	for (var i=0; i < data.length; i++){ 
-		valor.push([i + 1, data[i].valorTotal]);
-		periodo.push([data[i].mes + "/" + data[i].ano]);
-	} 
-
-	gastosPorMes = $.jqplot('gastosPorMes',[valor],{
-		seriesDefaults:{
-			renderer: $.jqplot.CanvasAxisLabelRenderer,
-			pointLabels: { show: true, formatString: "R$ %'.2f"  },
-			formatter: function(format, value){
-	            return FormatTick(format, value);
-	        }
-		},
-		
-		axesDefaults: {
-	        tickRenderer: $.jqplot.CanvasAxisTickRenderer
-	        
-	    },
-		
-		rendererOptions: {
-			barMargin: 30
-		},
-		
-		axes:{
-			xaxis:{
-				renderer: $.jqplot.CategoryAxisRenderer,
-				ticks: periodo,
 				tickOptions: {
 			          angle: -40,
 			          fontFamily: 'Georgia'

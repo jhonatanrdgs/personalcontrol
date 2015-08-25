@@ -11,10 +11,9 @@ import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
+import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
-import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
-import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 public interface RelatorioService {
@@ -48,12 +47,6 @@ public interface RelatorioService {
 	 * @return - DTO contendo todos os gastos fixos
 	 */
 	List<RelatorioGastosFixosDTO> pesquisarDadosRelatorioGastosFixos();
-
-	/**
-	 * Retorna o valor total das despesas fixas e variáveis dos últimos 12 meses
-	 * @return - DTO contendo as despesas dos ultimos 12 meses
-	 */
-	List<RelatorioTotalGastosMensaisDTO> pesquisarDadosRelatorioGastosMensais();
 
 	/**
 	 * Retorna o valor total das depesas fixas e variáveis e dos rendimentos dos últimos 12 meses

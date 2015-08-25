@@ -22,10 +22,9 @@ import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
+import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
-import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
-import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.DespesaCarro;
 import br.com.jhonatan.entidades.ItemDespesaCarro;
@@ -79,7 +78,11 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDadosRelatorioGastosPorMetodoPagamento(int mes, int ano) {
-		return metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(mes, ano);
+		List<RelatorioGastosPorMetodoPagamentoDTO> lista = metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(mes, ano);
+		for (RelatorioGastosPorMetodoPagamentoDTO dto : lista) {
+			dto.setValor(dto.getValor() + NumberUtil.zeroIfNull(despesaDAO.pesquisarDespessasFixasPorMetodoPagamento(dto.getIdMetodoPagamento())));
+		}
+		return lista;
 	}
 	
 	@Override
@@ -95,30 +98,6 @@ public class RelatorioServiceImp implements RelatorioService {
 	@Override
 	public List<RelatorioGastosFixosDTO> pesquisarDadosRelatorioGastosFixos() {
 		return despesaDAO.pesquisarDespesasFixas();
-	}
-
-	@Override
-	public List<RelatorioTotalGastosMensaisDTO> pesquisarDadosRelatorioGastosMensais() {
-		Date inicio = DateUtil.getPrimeiroDiaMes(DateUtil.subtrairMeses(new Date(), 6));
-		
-		List<RelatorioTotalGastosMensaisDTO> list = new ArrayList<RelatorioTotalGastosMensaisDTO>();
-		Double valorDespesasFixas = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
-		
-		for (int i = 0; i <= 12; i++) {
-			int mes = DateUtil.getMes(inicio);
-			int ano = DateUtil.getAno(inicio);
-			
-			RelatorioTotalGastosMensaisDTO dto = new RelatorioTotalGastosMensaisDTO();
-			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
-			dto.setValorDespesasVariaveis(valorVariavelMensal);
-			dto.setValorDespesasFixas(valorDespesasFixas);
-			dto.setMes(mes);
-			dto.setAno(ano);
-			list.add(dto);
-			inicio = DateUtil.adicionarMeses(inicio, 1);
-		}
-		
-		return list;
 	}
 
 	@Override

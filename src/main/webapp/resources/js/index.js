@@ -1,9 +1,7 @@
-var gastosPorMes = null;
 var rendimentosGastos = null;
 var graficoPercentual12Meses = null;
 
 $(document).ready(function () {
-	chamadaAjaxSemData("relatorios/gastosPorMes", montaGraficoGastosPorMes);
 	chamadaAjaxSemData("relatorios/rendimentosGastos", montaGraficoRendimentosGastos);
 	chamadaAjaxSemData("relatorios/percentual12Meses", montaGraficoPercentual12Meses)
 	chamadaAjax("relatorios/resumo", montaResumo);
@@ -33,52 +31,6 @@ function chamadaAjax(url, callback) {
 			callback(data);
 		}
 	});
-}
-
-function montaGraficoGastosPorMes(data) {
-	
-	if (gastosPorMes) {
-		gastosPorMes.destroy();
-	}
-	
-	$.jqplot.sprintf.thousandsSeparator = '.';
-	$.jqplot.sprintf.decimalMark = ',';
-	var valor = [];
-	var periodo = [];
-	for (var i=0; i < data.length; i++){ 
-		valor.push([i + 1, data[i].valorTotal]);
-		periodo.push([data[i].mes + "/" + data[i].ano]);
-	} 
-
-	gastosPorMes = $.jqplot('gastosPorMes',[valor],{
-		seriesDefaults:{
-			renderer: $.jqplot.CanvasAxisLabelRenderer,
-			pointLabels: { show: true, formatString: "R$ %'.2f"  },
-			formatter: function(format, value){
-	            return FormatTick(format, value);
-	        }
-		},
-		
-		axesDefaults: {
-	        tickRenderer: $.jqplot.CanvasAxisTickRenderer
-	        
-	    },
-		
-		rendererOptions: {
-			barMargin: 30
-		},
-		
-		axes:{
-			xaxis:{
-				renderer: $.jqplot.CategoryAxisRenderer,
-				ticks: periodo,
-				tickOptions: {
-			          angle: -40,
-			          fontFamily: 'Georgia'
-			        }
-			}
-		}
-	})
 }
 
 function montaGraficoRendimentosGastos(data) {

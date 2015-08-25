@@ -38,4 +38,6 @@ public interface DespesaDAO {
 
 	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante(Date proximoMes);
 
+	public Double pesquisarDespessasFixasPorMetodoPagamento(Long idMetodoPagamento);
+
 }

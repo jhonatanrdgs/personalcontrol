@@ -27,12 +27,11 @@ import javax.persistence.Table;
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true order by descricao"),
 	
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO,//TODO query na entidade errada
-			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.descricao, sum(p.valorParcela)) from ParcelaDespesa p"
+			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.id, mp.descricao, sum(p.valorParcela)) from ParcelaDespesa p"
 					+ " join p.despesa d"
 					+ " join d.metodoPagamento mp"
 					+ " where extract(month from p.dataParcela) = ?1 and extract(year from p.dataParcela) = ?2"
-					+ " and d.fixa = false"
-					+ " group by mp.descricao")
+					+ " group by mp.id, mp.descricao")
 })
 
 @Entity

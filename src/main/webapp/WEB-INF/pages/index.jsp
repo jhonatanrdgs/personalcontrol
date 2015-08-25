@@ -40,11 +40,6 @@
 					</div>
 				</div>
 
-				<div class="form-group" style="width: 1000px; margin: 0 auto; text-align: center;">
-					<p class="bg-primary">Gastos por Mês (Fixos + Variáveis)</p>
-					<div id="gastosPorMes" style="width: 1000px; height: 350px; position: relative; margin: auto;"></div>
-				</div>
-
 				<div class="form-group" style="width: 1100px; margin: 0 auto; text-align: center;">
 					<p class="bg-primary">Rendimentos x Gastos (Fixos + Variáveis)</p>
 					<div id="rendimentosGastos" style="width: 1100px; height: 350px; position: relative; margin: auto;"></div>

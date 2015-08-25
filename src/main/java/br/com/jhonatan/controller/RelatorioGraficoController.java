@@ -18,7 +18,6 @@ import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
-import br.com.jhonatan.dto.RelatorioTotalGastosMensaisDTO;
 import br.com.jhonatan.service.RelatorioService;
 import br.com.jhonatan.util.DateUtil;
 
@@ -43,13 +42,11 @@ public class RelatorioGraficoController {
 		return relatorioService.pesquisarResumo(mes, ano);
 	}
 	
-	
 	@RequestMapping(value="/relatorios/graficoPizza", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioDespesaPorCategoriaDTO> montarDadosGraficoPizzaJson(
 			@RequestParam(value="mes") int mes, @RequestParam(value="ano") int ano) {
 		return relatorioService.pesquisarDadosRelatorioDespesasPorCategoriasAtivas(mes, ano);
 	}
-	
 	
 	@RequestMapping(value="/relatorios/comprasParceladas", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioComprasParceladasDTO> montarDadosComprasParceladasJson(
@@ -57,13 +54,11 @@ public class RelatorioGraficoController {
 		return relatorioService.pesquisarDadosRelatorioComprasParceladas(mes, ano);
 	}
 	
-	
 	@RequestMapping(value="/relatorios/gastosPorMetodoPagamento", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioGastosPorMetodoPagamentoDTO> montarDadosGastosPorMetodoPagamentoJson(
 			@RequestParam(value="mes") int mes, @RequestParam(value="ano") int ano) {
 		return relatorioService.pesquisarDadosRelatorioGastosPorMetodoPagamento(mes, ano);
 	}
-	
 	
 	@RequestMapping(value="/relatorios/gastosVariaveis", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioComprasNaoParceladasDTO> montarDadosGastosVariaveisJson(
@@ -71,17 +66,10 @@ public class RelatorioGraficoController {
 		return relatorioService.pesquisarDadosRelatorioGastosVariaveis(mes, ano);
 	}
 	
-	
 	@RequestMapping(value="/relatorios/gastosFixos", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioGastosFixosDTO> montarDadosGastosFixosJson() {
 		return relatorioService.pesquisarDadosRelatorioGastosFixos();
 	}
-	
-	@RequestMapping(value="/relatorios/gastosPorMes", headers="Accept=application/json")
-	public @ResponseBody List<RelatorioTotalGastosMensaisDTO> montarDadosGastosMensaisJson() {
-		return relatorioService.pesquisarDadosRelatorioGastosMensais();
-	}
-	
 	
 	@RequestMapping(value="/relatorios/rendimentosGastos", headers="Accept=application/json")
 	public @ResponseBody List<RelatorioRendimentoGastosDTO> montarDadosRendimentosGastosJson() {
