@@ -381,6 +381,6 @@ function montaResumo(data) {
 		$("#sobra").css("color", "red");
 	} else {
 		$("#sobra").css("font-weight", "normal");
-		$("#sobra").css("color", "#333;");
+		$("#sobra").css("color", "#333");
 	}
 }
