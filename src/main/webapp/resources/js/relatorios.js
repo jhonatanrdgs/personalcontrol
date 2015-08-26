@@ -379,5 +379,8 @@ function montaResumo(data) {
 	if (data[5] < 0) {
 		$("#sobra").css("font-weight", "700");
 		$("#sobra").css("color", "red");
+	} else {
+		$("#sobra").css("font-weight", "normal");
+		$("#sobra").css("color", "#333;");
 	}
 }
