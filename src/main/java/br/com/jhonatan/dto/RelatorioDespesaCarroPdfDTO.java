@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.jhonatan.util.NumberUtil;
+
 public class RelatorioDespesaCarroPdfDTO extends BaseDTO {
 	
 	private String km;
@@ -31,9 +33,15 @@ public class RelatorioDespesaCarroPdfDTO extends BaseDTO {
 	public List<ItemDespesaCarroDTO> getItensDespesaCarro() {
 		return itensDespesaCarro;
 	}
-	public void setItensDespesaCarro(List<ItemDespesaCarroDTO> itensDespesaCarro) {
-		this.itensDespesaCarro = itensDespesaCarro;
+	public Double getValorTotal() {
+		Double valorTotal = 0D;
+		for (ItemDespesaCarroDTO dto : itensDespesaCarro) {
+			valorTotal += dto.getValorItem();
+		}
+		return NumberUtil.normalizarDouble(valorTotal, 2);
 	}
+	
+	
 	
 	
 

@@ -37,7 +37,7 @@ import br.com.jhonatan.util.NumberUtil;
 				
 	@NamedQuery(name=DespesaCarro.CONSULTAR_TODAS_DESPESAS_CARRO,
 			query="select distinct dc from DespesaCarro dc "
-					+ " join fetch dc.itemDespesaCarros idc"),
+					+ " join fetch dc.itemDespesaCarros idc order by dc.km"),
 					
 	@NamedQuery(name=DespesaCarro.CONSULTAR_DESPESA_CARRO_POR_ID_FETCHED,
 			query="select distinct dc from DespesaCarro dc "
