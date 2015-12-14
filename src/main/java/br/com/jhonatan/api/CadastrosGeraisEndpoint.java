@@ -22,14 +22,14 @@ public class CadastrosGeraisEndpoint {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getCategorias", headers="Accept=application/json")
 	public @ResponseBody List<Categoria> categorias() {
-		return null;
-		//TODO depois da segurança return cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
+		//TODO lazy exception
+		return cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getMetodosPagamento", headers="Accept=application/json")
 	public @ResponseBody List<MetodoPagamento> metodosPagamento() {
-		return null;
-		//TODO depois da segurança return cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
+		//TODO lazy exception
+		return cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
 	}
 
 }

@@ -23,8 +23,7 @@ public class RelatorioResumoEndpoint {
 	public @ResponseBody Double[] montarResumoJson() {
 		int mes = DateUtil.getMes(new Date());
 		int ano = DateUtil.getAno(new Date());
-		//return relatorioService.pesquisarResumo(mes, ano);
-		return null;//TODO só colocar o correto depois que tiver a segurança
+		return relatorioService.pesquisarResumo(mes, ano);
 	}
 
 }
