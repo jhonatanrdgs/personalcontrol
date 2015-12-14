@@ -8,3 +8,4 @@
 target
 .settings/*
 !.settings/.jsdtscope
+/.apt_generated/
