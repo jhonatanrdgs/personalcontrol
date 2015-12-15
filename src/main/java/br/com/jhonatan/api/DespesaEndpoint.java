@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,13 +27,13 @@ public class DespesaEndpoint {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/salvarDespesa", headers="Accept=application/json")
-	public @ResponseBody boolean salvar(@RequestParam("despesa") Despesa despesa) {
+	public @ResponseBody boolean salvar(@RequestBody Despesa despesa) {
 		despesaService.salvarOuAtualizar(despesa);//TODO ver o esquema de setar usuário via rest, se funciona bacana.
 		return true;
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/atualizarDespesa", headers="Accept=application/json")
-	public @ResponseBody boolean atualizar(@RequestParam("despesa") Despesa despesa) {
+	public @ResponseBody boolean atualizar(@RequestBody Despesa despesa) {
 		despesaService.salvarOuAtualizar(despesa);//TODO ver o esquema de setar usuário via rest, se funciona bacana.
 		return true;
 	}
