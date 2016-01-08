@@ -103,7 +103,7 @@ public class DespesaController {
 		map.addAttribute("metodosPagamento", metodosPagamento);
 	}
 	
-	@InitBinder     
+	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		binder.registerCustomEditor(Date.class, null, new CustomDateEditor(dateFormat, true));

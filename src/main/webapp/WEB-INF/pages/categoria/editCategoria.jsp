@@ -4,7 +4,7 @@
  
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
-		<form:form class="form-horizontal" action="save" method="post" commandName="categoriaForm" id="formCategoria">
+		<form:form class="form-horizontal" action="save" method="post" commandName="form" id="formCategoria">
 			<form:hidden  path="id" class="form-control"  />
 			<div class="row container-center_80 well">
 				<div class="col-lg-7 div-center">

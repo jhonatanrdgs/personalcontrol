@@ -67,7 +67,6 @@ public class RelatorioServiceImp implements RelatorioService {
 		
 		Double sobra = NumberUtil.normalizarDouble(rendimentos - totalGastos, 2);
 		
-		
 		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos, percentualComprometido, rendimentos, sobra};
 	}
 
