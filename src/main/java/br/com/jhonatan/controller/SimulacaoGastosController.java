@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.jhonatan.dto.RelatorioBarraSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.entidades.Despesa;
-import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.service.RelatorioService;
 
 @Controller
@@ -22,9 +21,6 @@ import br.com.jhonatan.service.RelatorioService;
 public class SimulacaoGastosController {
 
 	private static final String PAGE = "simulacao/simulador";
-	
-	@Autowired
-	private CadastrosGeraisService cadastrosGeraisService;
 	
 	@Autowired
 	private RelatorioService relatorioService;

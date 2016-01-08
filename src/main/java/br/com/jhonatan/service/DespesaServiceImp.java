@@ -36,6 +36,7 @@ public class DespesaServiceImp implements DespesaService {
 	private UsuarioDAO usuarioDAO;
 
 	@Override
+	@Transactional
 	public void salvarOuAtualizar(Despesa despesa) {
 		if (!despesa.isFixa()) {//Fixa não tem parcela
 			despesa.setParcelas(montarListaParcelas(despesa));

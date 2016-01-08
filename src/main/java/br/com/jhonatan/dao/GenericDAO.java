@@ -8,8 +8,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import br.com.jhonatan.dto.BaseDTO;
 
 public class GenericDAO<T> implements Serializable {
@@ -18,12 +16,10 @@ public class GenericDAO<T> implements Serializable {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@Transactional
 	public void salvar(T entidade) {
 		entityManager.persist(entidade);
 	}
 	
-	@Transactional
 	public void atualizar(T entidade) {
 		entityManager.merge(entidade);
 	}

@@ -26,6 +26,7 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	private RendimentoDAO rendimentoDao;
 
 	@Override
+	@Transactional
 	public void salvarOuAtualizarCategoria(Categoria categoria) {
 		if (categoria.getId() == null) {
 			categoriaDao.salvar(categoria);
@@ -50,13 +51,13 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 	
 	@Override
+	@Transactional
 	public void salvarOuAtualizarMetodoPagamento(MetodoPagamento metodoPagamento) {
 		if (metodoPagamento.getId() == null) {
 			metodoPagamentoDao.salvar(metodoPagamento);
 		} else {
 			metodoPagamentoDao.atualizar(metodoPagamento);
 		}
-
 	}
 
 	@Override
@@ -75,13 +76,13 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
+	@Transactional
 	public void salvarOuAtualizarRendimento(Rendimento rendimento) {
 		if (rendimento.getId() == null) {
 			rendimentoDao.salvar(rendimento);
 		} else {
 			rendimentoDao.atualizar(rendimento);
 		}
-		
 	}
 
 	@Override
@@ -95,6 +96,7 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
+	@Transactional
 	public void excluirCategoria(Long id) {
 		Categoria categoria = categoriaDao.findById(Categoria.class, id);
 		categoria.setAtivo(false);
@@ -102,6 +104,7 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
+	@Transactional
 	public void ativarCategoria(Long id) {
 		Categoria categoria = categoriaDao.findById(Categoria.class, id);
 		categoria.setAtivo(true);
@@ -116,6 +119,7 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
+	@Transactional
 	public void excluirMetodoPagamento(Long id) {
 		MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
 		metodoPagamento.setAtivo(false);
@@ -123,12 +127,11 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
+	@Transactional
 	public void ativarMetodoPagamento(Long id) {
 		MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
 		metodoPagamento.setAtivo(true);
 		metodoPagamentoDao.atualizar(metodoPagamento);
 	}
-	
-	
 	
 }

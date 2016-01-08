@@ -27,8 +27,5 @@ public class MetodoPagamentoDAOImp extends GenericDAO<MetodoPagamento> implement
 	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(int mes, int ano) {
 		return (List<RelatorioGastosPorMetodoPagamentoDTO>) criarQueryResultListDTO(MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO, mes, ano);
 	}
-	
-	
-
 
 }
