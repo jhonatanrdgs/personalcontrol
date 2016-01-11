@@ -59,7 +59,7 @@ public class CategoriaController extends CrudController<Categoria> {
 	
 	@RequestMapping(value="/categoria/edit", method=RequestMethod.GET)
 	public String prepareEdit(@RequestParam("categoriaId") final Long id, final ModelMap map) {
-		Categoria categoria = cadastrosGeraisService.pesquisarPorId(id);
+		final Categoria categoria = cadastrosGeraisService.pesquisarPorId(id);
 		map.addAttribute(FORM, categoria);
 		return EDIT_PAGE;
 	}
