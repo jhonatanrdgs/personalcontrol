@@ -33,8 +33,8 @@ public class CategoriaController extends CrudController<Categoria> {
 	}
 	
 	@RequestMapping(value="/categoria/search")
-	public String search(@ModelAttribute("categoriaForm") final Categoria categoria, final ModelMap map) {
-		List<Categoria> resultado = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao(), categoria.isAtivo());
+	public String search(@ModelAttribute(FORM) final Categoria categoria, final ModelMap map) {
+		final List<Categoria> resultado = cadastrosGeraisService.pesquisarCategorias(categoria.getDescricao(), categoria.isAtivo());
 		
 		map.addAttribute("resultado", resultado);
 		
@@ -51,7 +51,7 @@ public class CategoriaController extends CrudController<Categoria> {
 	}
 	
 	@RequestMapping(value="/categoria/save")
-	public String save(@ModelAttribute("categoriaForm") final Categoria categoria, final ModelMap map) {
+	public String save(@ModelAttribute(FORM) final Categoria categoria, final ModelMap map) {
 		cadastrosGeraisService.salvarOuAtualizarCategoria(categoria);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE;
