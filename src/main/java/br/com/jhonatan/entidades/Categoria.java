@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @NamedQueries({
 	
@@ -58,6 +60,7 @@ public class Categoria extends BaseEntity implements Serializable {
 	@Column(name="ativo", nullable = false)
 	private boolean ativo;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
 	private Set<Despesa> despesas;
 
