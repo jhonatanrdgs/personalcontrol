@@ -57,6 +57,7 @@ public class Categoria extends BaseEntity implements Serializable {
 	@Column(name = "descricao", nullable = false, length = 100)
 	private String descricao;
 	
+	@JsonIgnore
 	@Column(name="ativo", nullable = false)
 	private boolean ativo;
 	
