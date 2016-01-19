@@ -50,7 +50,7 @@
 	<sec:authentication-manager id="restApi">
         <sec:authentication-provider>
             <sec:user-service>
-                <sec:user name="rest" password="rest" authorities="ROLE_REST"/>
+                <sec:user name="admin" password="rest" authorities="ROLE_REST"/>
             </sec:user-service>
         </sec:authentication-provider>
     </sec:authentication-manager>

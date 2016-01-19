@@ -26,8 +26,9 @@ public class DespesaEndpoint {
 		return despesaService.pesquisarDespesas(new DespesaDTO()); //TODO parametros
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/salvarDespesa", headers="Accept=application/json")
+	@RequestMapping(method=RequestMethod.POST, value="/salvarDespesa")
 	public @ResponseBody boolean salvar(@RequestBody Despesa despesa) {
+		//TODO usuario na despesa
 		despesaService.salvarOuAtualizar(despesa);//TODO ver o esquema de setar usuário via rest, se funciona bacana.
 		return true;
 	}
