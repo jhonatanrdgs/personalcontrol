@@ -89,9 +89,9 @@
 					</div>
 		</div>
 		
-		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
+		<div class="form-group" style="width: 95%;margin:0 auto;text-align: center;">
 			<p class="bg-primary">Gastos (Variáveis - parcelados e não parcelados) por categoria </p>
-			<div id="gastosPorCategoria" style="width: 600px; height: 350px; position: relative;margin:auto;"></div>
+			<div id="gastosPorCategoria" style="width: 95%; height: 450px; position: relative;margin:auto;"></div>
 		</div>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">

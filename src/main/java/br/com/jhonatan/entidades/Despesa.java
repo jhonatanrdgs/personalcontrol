@@ -46,7 +46,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 				+ " where d.id = ?1"),
 				
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_PARCELADAS_MES,
-		query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, pd.valorParcela) from ParcelaDespesa pd"
+		query="select new br.com.jhonatan.dto.RelatorioComprasParceladasDTO(d.descricao, pd.valorParcela, pd.numeroParcela, d.totalParcelas) from ParcelaDespesa pd"
 				+ " inner join pd.despesa d"
 				+ " where extract(month from pd.dataParcela) = ?1 and extract(year from pd.dataParcela) = ?2 and d.totalParcelas > 1"),
 				
