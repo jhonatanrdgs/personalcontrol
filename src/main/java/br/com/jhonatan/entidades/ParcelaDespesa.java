@@ -62,6 +62,15 @@ public class ParcelaDespesa extends BaseEntity implements Serializable {
 	
 	@Column(name="paga")
 	private boolean paga;
+	
+	public ParcelaDespesa() {}
+	
+	public ParcelaDespesa(Date dataParcela, Despesa despesa, double valorParcela, Integer numeroParcela) {
+		this.dataParcela = dataParcela;
+		this.despesa = despesa;
+		this.valorParcela = valorParcela;
+		this.numeroParcela = numeroParcela;
+	}
 
 	public Integer getNumeroParcela() {
 		return numeroParcela;

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.Categoria;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.MetodoPagamento;
@@ -26,8 +25,9 @@ import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 @Scope("request")
-public class DespesaController {
+public class DespesaController extends CrudController<Despesa> {
 	
+	private static final long serialVersionUID = 1L;
 	private static final String LIST_PAGE = "despesa/listDespesa";
 	private static final String EDIT_PAGE = "despesa/editDespesa";
 	
@@ -38,15 +38,15 @@ public class DespesaController {
 	private CadastrosGeraisService cadastrosGeraisService;
 	
 	@RequestMapping(value="/despesa/listDespesas")
-	public String listar(ModelMap map) {
+	public String list(ModelMap map) {
 		montaDTO(map);
 		montarCombos(map);
 		return LIST_PAGE;
 	}
 
 	@RequestMapping(value="/despesa/search")
-	public String search(@ModelAttribute("despesaForm") DespesaDTO despesaDTO, ModelMap map) {
-		List<Despesa> despesas = despesaService.pesquisarDespesas(despesaDTO);
+	public String search(@ModelAttribute("despesaForm") Despesa despesa, ModelMap map) {
+		List<Despesa> despesas = despesaService.pesquisarDespesas(despesa);
 		map.addAttribute("resultado", despesas);
 		if (despesas.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
@@ -57,7 +57,7 @@ public class DespesaController {
 	}
 	
 	@RequestMapping(value="/despesa/newDespesa")
-	public String newDespesa(ModelMap map) {
+	public String create(ModelMap map) {
 		Despesa despesa = new Despesa();
 		despesa.setData(new Date());
 		despesa.setTotalParcelas(1);
@@ -75,7 +75,7 @@ public class DespesaController {
 	}
 	
 	@RequestMapping(value="/despesa/edit", method=RequestMethod.GET)
-	public String edit(@RequestParam("despesaId") Long id, ModelMap map) {
+	public String prepareEdit(@RequestParam("despesaId") Long id, ModelMap map) {
 		Despesa despesa = despesaService.findByIdFetched(id);
 		map.addAttribute("despesaForm", despesa);
 		montarCombos(map);
@@ -92,7 +92,7 @@ public class DespesaController {
 	}
 	
 	private void montaDTO(ModelMap map) {
-		DespesaDTO despesaDTO = new DespesaDTO();
+		Despesa despesaDTO = new Despesa();
 		map.addAttribute("despesaForm", despesaDTO);
 	}
 	

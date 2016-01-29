@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.jhonatan.dto.DespesaDTO;
+import br.com.jhonatan.entidades.Categoria;
 import br.com.jhonatan.entidades.Despesa;
+import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.service.DespesaService;
 
 @Controller
@@ -23,19 +24,21 @@ public class DespesaEndpoint {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/listarDespesas", headers="Accept=application/json")
 	public @ResponseBody List<Despesa> listarDespesas() {
-		return despesaService.pesquisarDespesas(new DespesaDTO()); //TODO parametros
+		Despesa despesa = new Despesa();
+		despesa.setCategoria(new Categoria());
+		despesa.setMetodoPagamento(new MetodoPagamento());
+		return despesaService.pesquisarDespesas(despesa); //TODO parametros
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/salvarDespesa")
 	public @ResponseBody boolean salvar(@RequestBody Despesa despesa) {
-		//TODO usuario na despesa
-		despesaService.salvarOuAtualizar(despesa);//TODO ver o esquema de setar usuário via rest, se funciona bacana.
+		despesaService.salvarOuAtualizar(despesa);
 		return true;
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/atualizarDespesa", headers="Accept=application/json")
 	public @ResponseBody boolean atualizar(@RequestBody Despesa despesa) {
-		despesaService.salvarOuAtualizar(despesa);//TODO ver o esquema de setar usuário via rest, se funciona bacana.
+		despesaService.salvarOuAtualizar(despesa);
 		return true;
 	}
 	

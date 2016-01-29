@@ -2,7 +2,6 @@ package br.com.jhonatan.service;
 
 import java.util.List;
 
-import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.DespesaCarro;
 import br.com.jhonatan.entidades.ItemDespesaCarro;
 
@@ -13,7 +12,7 @@ public interface DespesaCarroService {
 	 * @param despesaCarro - parametros
 	 * @return - lista de despesas do carro
 	 */
-	List<DespesaCarro> pesquisarDespesasCarro(DespesaDTO despesaCarro);
+	List<DespesaCarro> pesquisarDespesasCarro(DespesaCarro despesaCarro);
 
 	/**
 	 * Salva ou atualiza uma despesa carro no banco de dados

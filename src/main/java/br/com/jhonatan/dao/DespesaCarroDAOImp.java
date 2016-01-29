@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.DespesaCarro;
 
 @Repository
@@ -13,7 +12,7 @@ public class DespesaCarroDAOImp extends GenericDAO<DespesaCarro> implements Desp
 	private static final long serialVersionUID = 7148714862726850718L;
 
 	@Override
-	public List<DespesaCarro> pesquisarDespesasCarro(DespesaDTO despesaCarro) {
+	public List<DespesaCarro> pesquisarDespesasCarro(DespesaCarro despesaCarro) {
 		return criarQueryResultList(DespesaCarro.CONSULTAR_DESPESA_CARRO_PERIODO, despesaCarro.getInicioFormatado(), despesaCarro.getFimFormatado());
 	}
 

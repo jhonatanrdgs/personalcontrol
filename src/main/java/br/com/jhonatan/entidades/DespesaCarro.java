@@ -1,6 +1,9 @@
 package br.com.jhonatan.entidades;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -91,12 +94,20 @@ public class DespesaCarro implements Serializable {
     )
 	private List<ItemDespesaCarro> itemDespesaCarros;
 	
+	@Transient
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date inicio;
+	
+	@Transient
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fim;
+	
+	public DespesaCarro() {
+		this.itemDespesaCarros = new ArrayList<ItemDespesaCarro>();
+	}
+	
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getKm() {
@@ -132,5 +143,44 @@ public class DespesaCarro implements Serializable {
 		return NumberUtil.normalizarDouble(valorTotal, 2);
 	}
 	
+	public Date getInicioFormatado() {
+		if (inicio == null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				inicio = sdf.parse("01/01/1970");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return inicio;
+	}
+
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
+	}
+
+	public Date getFimFormatado() {
+		if (fim == null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				fim = sdf.parse("01/01/3000");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return fim;
+	}
+	
+	public void setFim(Date fim) {
+		this.fim = fim;
+	}
+	
+	public Date getInicio() {
+		return inicio;
+	}
+
+	public Date getFim() {
+		return fim;
+	}
 
 }

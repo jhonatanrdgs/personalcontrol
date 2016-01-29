@@ -21,15 +21,11 @@ public class RelatorioDespesaCarroPdfDTO extends BaseDTO {
 	public String getKm() {
 		return km;
 	}
-	public void setKm(String km) {
-		this.km = km;
-	}
+	
 	public Date getData() {
 		return data;
 	}
-	public void setData(Date data) {
-		this.data = data;
-	}
+
 	public List<ItemDespesaCarroDTO> getItensDespesaCarro() {
 		return itensDespesaCarro;
 	}

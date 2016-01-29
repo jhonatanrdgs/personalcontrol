@@ -46,7 +46,7 @@ public class ExemploConsumer {
 
 			ObjectMapper mapper = new ObjectMapper();
 			Despesa despesa = new Despesa();
-			despesa.setId(1L);
+			//despesa.setId(1L);
 			String input = mapper.writeValueAsString(despesa);
 
 			OutputStream os = conn.getOutputStream();

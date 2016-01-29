@@ -18,26 +18,12 @@ public class RelatorioPercentualComprometido12MesesDTO {
 		return mes;
 	}
 	
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
-	
 	public int getAno() {
 		return ano;
-	}
-	
-	public void setAno(int ano) {
-		this.ano = ano;
 	}
 	
 	public Double getPercentual() {
 		return percentual;
 	}
 	
-	public void setPercentual(Double percentual) {
-		this.percentual = percentual;
-	}
-	
-	
-
 }

@@ -1,6 +1,5 @@
 package br.com.jhonatan.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.jhonatan.dao.DespesaCarroDAO;
-import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.DespesaCarro;
 import br.com.jhonatan.entidades.ItemDespesaCarro;
 
@@ -19,14 +17,13 @@ public class DespesaCarroServiceImp implements DespesaCarroService {
 	private DespesaCarroDAO despesaCarroDAO;
 	
 	@Override
-	public List<DespesaCarro> pesquisarDespesasCarro(DespesaDTO despesaCarro) {
+	public List<DespesaCarro> pesquisarDespesasCarro(DespesaCarro despesaCarro) {
 		return despesaCarroDAO.pesquisarDespesasCarro(despesaCarro);
 	}
 
 	@Override
 	@Transactional
 	public void salvarOuAtualizarDespesasCarro(DespesaCarro despesaCarro, List<ItemDespesaCarro> itens) {
-		despesaCarro.setItemDespesaCarros(new ArrayList<ItemDespesaCarro>());
 		despesaCarro.getItemDespesaCarros().addAll(itens);
 		if (despesaCarro.getId() == null) {
 			despesaCarroDAO.salvar(despesaCarro);

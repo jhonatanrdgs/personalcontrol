@@ -18,37 +18,28 @@ public class RelatorioRendimentoGastosDTO extends BaseDTO implements Serializabl
 		this.ano = ano;
 		this.despesas = despesas;
 	}
+	
+	public RelatorioRendimentoGastosDTO(int mes, int ano, Double despesas, Double rendimentos) {
+		this.mes = mes;
+		this.ano = ano;
+		this.despesas = despesas;
+		this.rendimentos = rendimentos;
+	}
 
 	public int getMes() {
 		return mes;
-	}
-
-	public void setMes(int mes) {
-		this.mes = mes;
 	}
 
 	public int getAno() {
 		return ano;
 	}
 
-	public void setAno(int ano) {
-		this.ano = ano;
-	}
-
 	public Double getRendimentos() {
 		return rendimentos;
 	}
 
-	public void setRendimentos(Double rendimentos) {
-		this.rendimentos = rendimentos;
-	}
-
 	public Double getDespesas() {
 		return despesas;
-	}
-
-	public void setDespesas(Double despesas) {
-		this.despesas = despesas;
 	}
 
 	@Override
@@ -59,7 +50,5 @@ public class RelatorioRendimentoGastosDTO extends BaseDTO implements Serializabl
 			return ((Integer)this.ano).compareTo(o.getAno());
 		}
 	}
-	
-	
 	
 }

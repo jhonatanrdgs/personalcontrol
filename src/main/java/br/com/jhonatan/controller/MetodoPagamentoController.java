@@ -17,8 +17,9 @@ import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 @Scope("request")
-public class MetodoPagamentoController {
+public class MetodoPagamentoController extends CrudController<MetodoPagamento> {
 	
+	private static final long serialVersionUID = 1L;
 	private static final String LIST_PAGE = "metodoPagamento/listMetodoPagamento";
 	private static final String EDIT_PAGE = "metodoPagamento/editMetodoPagamento";
 	
@@ -26,7 +27,7 @@ public class MetodoPagamentoController {
 	private CadastrosGeraisService cadastrosGeraisService;
 
 	@RequestMapping(value="/metodoPagamento/listMetodosPagamento")
-	public String listMetodosPagamento(ModelMap map) {
+	public String list(ModelMap map) {
 		MetodoPagamento metodoPg = new MetodoPagamento();
 		map.addAttribute("metodoPagamentoForm", metodoPg);
 		return LIST_PAGE;
@@ -43,7 +44,7 @@ public class MetodoPagamentoController {
 	}
 	
 	@RequestMapping(value="/metodoPagamento/newMetodoPagamento")
-	public String newMetodoPagamento(ModelMap map) {
+	public String create(ModelMap map) {
 		MetodoPagamento metodoPg = new MetodoPagamento();
 		map.addAttribute("metodoPagamentoForm", metodoPg);
 		return EDIT_PAGE;
@@ -57,7 +58,7 @@ public class MetodoPagamentoController {
 	}
 	
 	@RequestMapping(value="/metodoPagamento/edit", method=RequestMethod.GET)
-	public String edit(@RequestParam("metodoPagamentoId") Long id, ModelMap map) {
+	public String prepareEdit(@RequestParam("metodoPagamentoId") Long id, ModelMap map) {
 		MetodoPagamento metodoPg = cadastrosGeraisService.findById(id);
 		map.addAttribute("metodoPagamentoForm", metodoPg);
 		return EDIT_PAGE;

@@ -19,22 +19,17 @@ public class RelatorioGastosPorMetodoPagamentoDTO extends BaseDTO implements Ser
 	public String getMetodoPagamento() {
 		return metodoPagamento;
 	}
-	public void setMetodoPagamento(String metodoPagamento) {
-		this.metodoPagamento = metodoPagamento;
-	}
+
 	public Double getValor() {
 		return valor;
-	}
-	public void setValor(Double valor) {
-		this.valor = valor;
 	}
 
 	public Long getIdMetodoPagamento() {
 		return idMetodoPagamento;
 	}
 
-	public void setIdMetodoPagamento(Long idMetodoPagamento) {
-		this.idMetodoPagamento = idMetodoPagamento;
+	public void adicionarValor(double valor) {
+		this.valor += valor;
+		
 	}
-	
 }

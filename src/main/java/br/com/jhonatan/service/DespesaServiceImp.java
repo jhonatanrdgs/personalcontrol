@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.jhonatan.dao.DespesaDAO;
 import br.com.jhonatan.dao.ParcelaDespesaDAO;
 import br.com.jhonatan.dao.UsuarioDAO;
-import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.ParcelaDespesa;
 import br.com.jhonatan.entidades.Usuario;
@@ -55,8 +54,8 @@ public class DespesaServiceImp implements DespesaService {
 	}
 
 	@Override
-	public List<Despesa> pesquisarDespesas(DespesaDTO despesaDTO) {
-		return despesaDAO.pesquisarDespesas(despesaDTO);
+	public List<Despesa> pesquisarDespesas(Despesa despesa) {
+		return despesaDAO.pesquisarDespesas(despesa);
 	}
 
 	@Override
@@ -109,14 +108,9 @@ public class DespesaServiceImp implements DespesaService {
 		Calendar data = new GregorianCalendar();
 		Double valorParcela = NumberUtil.normalizarDouble(despesa.getValorTotal() / despesa.getTotalParcelas(), 2);
 		data.setTime(despesa.getData());
-		for (int i = 0; i < despesa.getTotalParcelas(); i++) {
-			ParcelaDespesa parcela = new ParcelaDespesa();
-			parcela.setDataParcela(data.getTime());
-			parcela.setDespesa(despesa);
-			parcela.setValorParcela(valorParcela);
-			parcela.setNumeroParcela(i + 1);
+		for (int nrParcela = 0; nrParcela < despesa.getTotalParcelas(); nrParcela++) {
+			ParcelaDespesa parcela = new ParcelaDespesa(data.getTime(), despesa, valorParcela, nrParcela + 1);
 			parcelas.add(parcela);
-			
 			data.add(Calendar.MONTH, 1);
 		}
 		return parcelas;

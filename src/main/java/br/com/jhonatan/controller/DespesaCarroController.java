@@ -25,8 +25,9 @@ import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 @Scope("session")
-public class DespesaCarroController {
+public class DespesaCarroController extends CrudController<DespesaCarro> {
 	
+	private static final long serialVersionUID = 1L;
 	private static final String LIST_PAGE = "despesaCarro/listDespesaCarro";
 	private static final String EDIT_PAGE = "despesaCarro/editDespesaCarro";
 	
@@ -39,7 +40,7 @@ public class DespesaCarroController {
 	private List<ItemDespesaCarro> itens;
 	
 	@RequestMapping(value="/despesaCarro/listDespesaCarro")
-	public String listDespesaCarro(ModelMap map) {
+	public String list(ModelMap map) {
 		DespesaDTO dto = new DespesaDTO();
 		map.addAttribute("despesaCarroForm", dto);
 		montarCombos(map);
@@ -47,7 +48,7 @@ public class DespesaCarroController {
 	}
 	
 	@RequestMapping(value="/despesaCarro/search")
-	public String search(@ModelAttribute("despesaCarroForm") DespesaDTO despesaCarro, ModelMap map) {
+	public String search(@ModelAttribute("despesaCarroForm") DespesaCarro despesaCarro, ModelMap map) {
 		List<DespesaCarro> despesasCarro = despesaCarroService.pesquisarDespesasCarro(despesaCarro);
 		map.addAttribute("resultado", despesasCarro);
 		if (despesasCarro.isEmpty()) {
@@ -57,7 +58,7 @@ public class DespesaCarroController {
 	}
 	
 	@RequestMapping(value="/despesaCarro/newDespesaCarro")
-	public String newDespesaCarro(ModelMap map) {
+	public String create(ModelMap map) {
 		DespesaCarro despesaCarro = new DespesaCarro();
 		despesaCarro.setData(new Date());
 		map.addAttribute("despesaCarroForm", despesaCarro);
@@ -95,7 +96,7 @@ public class DespesaCarroController {
 	}
 	
 	@RequestMapping(value="/despesaCarro/edit", method=RequestMethod.GET)
-	public String edit(@RequestParam("despesaCarroId") Long id, ModelMap map) {
+	public String prepareEdit(@RequestParam("despesaCarroId") Long id, ModelMap map) {
 		DespesaCarro despesaCarro = despesaCarroService.findDespesasCarroById(id);
 		itens = despesaCarro.getItemDespesaCarros();
 		map.addAttribute("despesaCarroForm", despesaCarro);

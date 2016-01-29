@@ -3,7 +3,6 @@ package br.com.jhonatan.dao;
 import java.util.Date;
 import java.util.List;
 
-import br.com.jhonatan.dto.DespesaDTO;
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
@@ -16,7 +15,7 @@ public interface DespesaDAO {
 	
 	public void atualizar(Despesa despesa);
 	
-	public List<Despesa> pesquisarDespesas(DespesaDTO despesaDTO);
+	public List<Despesa> pesquisarDespesas(Despesa despesa);
 	
 	public Despesa findById(Class<Despesa> classe, Long id);
 

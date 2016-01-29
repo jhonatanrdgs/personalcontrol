@@ -22,7 +22,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Categoria:</label>
 						<div class="col-md-8 input-icon">
-							<form:select path="categoriaId" class="form-control">
+							<form:select path="categoria.id" class="form-control">
 								<form:option value="" label="Selecione"/>
 								<form:options items="${categorias}" itemLabel="descricao" itemValue="id"/>
 							</form:select>
@@ -32,7 +32,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
 						<div class="col-md-8 input-icon">
-							<form:select path="metodoPagamentoId" class="form-control" >
+							<form:select path="metodoPagamento.id" class="form-control" >
 								<form:option value="" label="Selecione"/>
 								<form:options items="${metodosPagamento}" itemLabel="descricao" itemValue="id"/>
 							</form:select>

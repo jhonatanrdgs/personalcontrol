@@ -17,7 +17,9 @@ import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 @Scope("request")
-public class RendimentoController {
+public class RendimentoController extends CrudController<Rendimento> {
+	
+	private static final long serialVersionUID = -9177011140448318596L;
 	
 	private static final String LIST_PAGE = "rendimento/listRendimento";
 	private static final String EDIT_PAGE = "rendimento/editRendimento";
@@ -26,7 +28,7 @@ public class RendimentoController {
 	private CadastrosGeraisService cadastrosGeraisService;
 	
 	@RequestMapping(value="/rendimento/listRendimento")
-	public String listRendimento(ModelMap map) {
+	public String list(ModelMap map) {
 		Rendimento rendimento = new Rendimento();
 		map.addAttribute("rendimentoForm", rendimento);
 		return LIST_PAGE;
@@ -43,7 +45,7 @@ public class RendimentoController {
 	}
 	
 	@RequestMapping(value="/rendimento/newRendimento")
-	public String newRendimento(ModelMap map) {
+	public String create(ModelMap map) {
 		Rendimento rendimento = new Rendimento();
 		map.addAttribute("rendimentoForm", rendimento);
 		return EDIT_PAGE;
@@ -57,7 +59,7 @@ public class RendimentoController {
 	}
 	
 	@RequestMapping(value="/rendimento/edit", method=RequestMethod.GET)
-	public String edit(@RequestParam("rendimentoId") Long id, ModelMap map) {
+	public String prepareEdit(@RequestParam("rendimentoId") Long id, ModelMap map) {
 		Rendimento rendimento = cadastrosGeraisService.findRendimentoById(id);
 		map.addAttribute("rendimentoForm", rendimento);
 		return EDIT_PAGE;

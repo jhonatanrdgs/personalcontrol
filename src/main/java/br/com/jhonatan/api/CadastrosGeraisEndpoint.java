@@ -22,13 +22,11 @@ public class CadastrosGeraisEndpoint {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getCategorias", headers="Accept=application/json")
 	public @ResponseBody List<Categoria> categorias() {
-		//TODO lazy exception
 		return cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getMetodosPagamento", headers="Accept=application/json")
 	public @ResponseBody List<MetodoPagamento> metodosPagamento() {
-		//TODO lazy exception
 		return cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
 	}
 

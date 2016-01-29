@@ -71,10 +71,6 @@ public class MetodoPagamento extends BaseEntity implements Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getDescricao() {
 		return descricao;
 	}

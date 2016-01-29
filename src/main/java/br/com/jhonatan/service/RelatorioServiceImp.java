@@ -79,7 +79,7 @@ public class RelatorioServiceImp implements RelatorioService {
 	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDadosRelatorioGastosPorMetodoPagamento(int mes, int ano) {
 		List<RelatorioGastosPorMetodoPagamentoDTO> lista = metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(mes, ano);
 		for (RelatorioGastosPorMetodoPagamentoDTO dto : lista) {
-			dto.setValor(dto.getValor() + NumberUtil.zeroIfNull(despesaDAO.pesquisarDespessasFixasPorMetodoPagamento(dto.getIdMetodoPagamento())));
+			dto.adicionarValor(NumberUtil.zeroIfNull(despesaDAO.pesquisarDespessasFixasPorMetodoPagamento(dto.getIdMetodoPagamento())));
 		}
 		return lista;
 	}
@@ -110,12 +110,9 @@ public class RelatorioServiceImp implements RelatorioService {
 			int mes = DateUtil.getMes(inicio);
 			int ano = DateUtil.getAno(inicio);
 			
-			RelatorioRendimentoGastosDTO dto = new RelatorioRendimentoGastosDTO();
 			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
-			dto.setDespesas(valorVariavelMensal + valorDespesasFixas);
-			dto.setRendimentos(rendimentos);
-			dto.setMes(mes);
-			dto.setAno(ano);
+			Double valorDespesas = valorVariavelMensal + valorDespesasFixas;
+			RelatorioRendimentoGastosDTO dto = new RelatorioRendimentoGastosDTO(mes, ano, valorDespesas, rendimentos);
 			list.add(dto);
 			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
@@ -158,13 +155,11 @@ public class RelatorioServiceImp implements RelatorioService {
 			int mes = DateUtil.getMes(inicio);
 			int ano = DateUtil.getAno(inicio);
 			
-			RelatorioLinhaSimuladorRendimentoGastoDTO dto = new RelatorioLinhaSimuladorRendimentoGastoDTO();
 			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
-			dto.setDespesasNaoSimuladas(valorVariavelMensal + valorDespesasFixas);
-			dto.setDespesasSimuladas(valorVariavelMensal + valorDespesasFixas + valorParcelaDespesa);
-			dto.setRendimentos(rendimentos);
-			dto.setMes(mes);
-			dto.setAno(ano);
+			Double valorDespesasNaoSimuladas = valorVariavelMensal + valorDespesasFixas;
+			Double valorDespesasSimuladas = valorVariavelMensal + valorDespesasFixas + valorParcelaDespesa;
+			RelatorioLinhaSimuladorRendimentoGastoDTO dto = 
+				new RelatorioLinhaSimuladorRendimentoGastoDTO(valorDespesasNaoSimuladas, valorDespesasSimuladas, rendimentos, mes, ano);
 			list.add(dto);
 			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
@@ -188,14 +183,10 @@ public class RelatorioServiceImp implements RelatorioService {
 			Double percentualSemSimulacao = (totalGastos / rendimentos) * 100;
 			totalGastos += valorParcela;
 			Double percentualComSimulacao = (totalGastos / rendimentos) * 100;
-			RelatorioBarraSimuladorRendimentoGastoDTO dto = new RelatorioBarraSimuladorRendimentoGastoDTO();
-			dto.setPercentualSemSimulacao(percentualSemSimulacao);
-			dto.setPercentualComSimulacao(percentualComSimulacao);
-			dto.setMes(mes);
-			dto.setAno(ano);
 			
+			RelatorioBarraSimuladorRendimentoGastoDTO dto = 
+					new RelatorioBarraSimuladorRendimentoGastoDTO(percentualSemSimulacao, percentualComSimulacao, mes, ano);
 			list.add(dto);
-			
 			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
 		return list;
@@ -214,13 +205,9 @@ public class RelatorioServiceImp implements RelatorioService {
 			Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(inicio));
 			Double valorVariavelMensal = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
 			Double totalGastos = valorDespesasFixas + valorVariavelMensal;
-			RelatorioPercentualComprometido12MesesDTO dto = new RelatorioPercentualComprometido12MesesDTO();
-			
-			dto.setAno(ano);
-			dto.setMes(mes);
-			dto.setPercentual((totalGastos / rendimentos) * 100);
+			Double percentual = (totalGastos / rendimentos) * 100;
+			RelatorioPercentualComprometido12MesesDTO dto = new RelatorioPercentualComprometido12MesesDTO(ano, mes, percentual);
 			list.add(dto);
-			
 			inicio = DateUtil.adicionarMeses(inicio, 1);
 		}
 		

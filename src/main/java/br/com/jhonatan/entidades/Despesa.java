@@ -1,6 +1,8 @@
 package br.com.jhonatan.entidades;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -159,12 +162,18 @@ public class Despesa extends BaseEntity implements Serializable {
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL, orphanRemoval=true)
 	private Set<ParcelaDespesa> parcelas;
 	
+	@Transient
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date inicio;
 	
+	@Transient
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fim;
 
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -241,5 +250,46 @@ public class Despesa extends BaseEntity implements Serializable {
 		this.fixa = fixa;
 	}
 
+	public Date getInicioFormatado() {
+		if (inicio == null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				inicio = sdf.parse("01/01/1970");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return inicio;
+	}
+
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
+	}
+
+	
+	
+	public Date getFimFormatado() {
+		if (fim == null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				fim = sdf.parse("01/01/3000");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return fim;
+	}
+	
+	public void setFim(Date fim) {
+		this.fim = fim;
+	}
+
+	public Date getInicio() {
+		return inicio;
+	}
+
+	public Date getFim() {
+		return fim;
+	}
 	
 }

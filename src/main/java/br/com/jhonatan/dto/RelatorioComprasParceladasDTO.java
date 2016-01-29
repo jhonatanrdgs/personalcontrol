@@ -26,17 +26,9 @@ public class RelatorioComprasParceladasDTO extends BaseDTO implements Serializab
 	public String getDescricaoDespesa() {
 		return descricaoDespesa + " - " + nrParcela + "/"+totalParcelas;
 	}
-	public void setDescricaoDespesa(String descricaoDespesa) {
-		this.descricaoDespesa = descricaoDespesa;
-	}
+	
 	public Double getValor() {
 		return valor;
 	}
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-	
-	
-	
 
 }
