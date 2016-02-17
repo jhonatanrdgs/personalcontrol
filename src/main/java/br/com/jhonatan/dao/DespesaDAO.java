@@ -11,32 +11,32 @@ import br.com.jhonatan.entidades.Despesa;
 
 public interface DespesaDAO {
 	
-	public void salvar(Despesa despesa);
+	void salvar(Despesa despesa);
 	
-	public void atualizar(Despesa despesa);
+	void atualizar(Despesa despesa);
 	
-	public List<Despesa> pesquisarDespesas(Despesa despesa);
+	List<Despesa> pesquisarDespesas(Despesa despesa);
 	
-	public Despesa findById(Class<Despesa> classe, Long id);
+	Despesa findById(Class<Despesa> classe, Long id);
 
-	public Despesa findByIdFetched(Long id);
+	Despesa findByIdFetched(Long id);
 
-	public List<RelatorioComprasParceladasDTO> pesquisarDespesasParceladasMes(int mes, int ano);
+	List<RelatorioComprasParceladasDTO> pesquisarDespesasParceladasMes(int mes, int ano);
 
-	public List<RelatorioGastosFixosDTO> pesquisarDespesasFixas();
+	List<RelatorioGastosFixosDTO> pesquisarDespesasFixas();
 
-	public Double pesquisarValorTotalDespesasVariaveisMes(int mes, int ano);
+	Double pesquisarValorTotalDespesasVariaveisMes(int mes, int ano);
 
-	public Double pesquisarSomatorioDespesasFixas();
+	Double pesquisarSomatorioDespesasFixas();
 
-	public List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisMes(int mes, int ano);
+	List<RelatorioComprasNaoParceladasDTO> pesquisarDespesasVariaveisMes(int mes, int ano);
 
-	public void excluir(Despesa despesa);
+	void excluir(Despesa despesa);
 
-	public List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodoRelatorioPDF(Date inicio, Date fim);
+	List<RelatorioGastosMensaisPdfDTO> pesquisarDespesasPeriodoRelatorioPDF(Date inicio, Date fim);
 
-	public List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante(Date proximoMes);
+	List<Despesa> pesquisarDespesasComParcelasProximoMesEmDiante(Date proximoMes);
 
-	public Double pesquisarDespessasFixasPorMetodoPagamento(Long idMetodoPagamento);
+	Double pesquisarDespessasFixasPorMetodoPagamento(Long idMetodoPagamento);
 
 }

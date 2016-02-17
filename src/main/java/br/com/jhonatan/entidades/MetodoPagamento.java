@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "metodo_pagamento", schema = "personal_control")
-public class MetodoPagamento extends BaseEntity implements Serializable {
+public class MetodoPagamento extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 5099386082815919390L;
 

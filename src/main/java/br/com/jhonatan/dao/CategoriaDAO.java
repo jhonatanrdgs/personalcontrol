@@ -7,16 +7,16 @@ import br.com.jhonatan.entidades.Categoria;
 
 public interface CategoriaDAO {
 	
-	public void salvar(Categoria categoria);
+	void salvar(Categoria categoria);
 	
-	public void atualizar(Categoria categoria);
+	void atualizar(Categoria categoria);
 
-	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa);
+	List<Categoria> pesquisarCategorias(String descricao, boolean ativa);
 
-	public Categoria findById(Class<Categoria> classe, Long id);
+	Categoria findById(Class<Categoria> classe, Long id);
 
-	public List<Categoria> pesquisarTodasCategoriasAtivas();
+	List<Categoria> pesquisarTodasCategoriasAtivas();
 
-	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(int mes, int ano);
+	List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(int mes, int ano);
 
 }

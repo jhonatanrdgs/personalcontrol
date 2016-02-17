@@ -34,7 +34,7 @@ import org.hibernate.annotations.Where;
 @Table(name="parcela_despesa", schema="personal_control")
 @SQLDelete(sql="UPDATE personal_control.parcela_despesa SET paga = 'true' WHERE id_parcela_despesa = ?")
 @Where(clause="paga = 'false'")
-public class ParcelaDespesa extends BaseEntity implements Serializable {
+public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1826390808208462216L;
 

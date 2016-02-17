@@ -16,19 +16,19 @@ import br.com.jhonatan.util.MensagemUtil;
 @Scope("request")
 public class AdiantamentoParcelasController  {
 	
-	private final String LIST_PAGE = "adiantamento/listAdiantamentos";
+	private static final String LIST_PAGE = "adiantamento/listAdiantamentos";
 	
 	@Autowired
 	private DespesaService despesaService;
 
 	@RequestMapping(value="/adiantamento/iniciar")
-	public String iniciar(ModelMap map) {
+	public String iniciar(final ModelMap map) {
 		montarParametrosIniciais(map);
 		return LIST_PAGE;
 	}
 
 	@RequestMapping(value="/adiantamento/search")
-	public String search(@ModelAttribute(value="despesaForm") Despesa despesa, ModelMap map) {
+	public String search(@ModelAttribute(value="despesaForm") final Despesa despesa, final ModelMap map) {
 		montarParametrosIniciais(map);
 		map.addAttribute("resultado", despesaService.pesquisarParcelasDaDespesa(despesa.getId()));
 		map.addAttribute("idDespesa", despesa.getId());
@@ -36,7 +36,7 @@ public class AdiantamentoParcelasController  {
 	}
 	
 	@RequestMapping(value="/adiantamento/adiantar")
-	public String adiantarPagamentoParcela(@RequestParam(value="idParcela") Long idParcela, ModelMap map) {
+	public String adiantarPagamentoParcela(@RequestParam(value="idParcela") final Long idParcela, final ModelMap map) {
 		despesaService.adiantarPagamentoParcela(idParcela);
 		montarParametrosIniciais(map);
 		MensagemUtil.adicionaMensagemSucesso(map, "Parcela adiantada com sucesso!");
@@ -44,17 +44,16 @@ public class AdiantamentoParcelasController  {
 	}
 	
 	@RequestMapping(value="/adiantamento/adiantarTodas")
-	public String adiantarPagamentoTodasParcelas(@RequestParam(value="idDespesa") Long idDespesa, ModelMap map) {
+	public String adiantarPagamentoTodasParcelas(@RequestParam(value="idDespesa") final Long idDespesa, final ModelMap map) {
 		despesaService.adiantarPagamentoTodasParcelas(idDespesa);
 		montarParametrosIniciais(map);
 		MensagemUtil.adicionaMensagemSucesso(map, "Todas as parcelas foram adiantadas com sucesso!");
 		return LIST_PAGE;
 	}
 	
-	private void montarParametrosIniciais(ModelMap map) {
+	private void montarParametrosIniciais(final ModelMap map) {
 		map.addAttribute("despesas", despesaService.pesquisarDespesasComParcelasProximoMesEmDiante());
-		Despesa despesa = new Despesa();
-		map.addAttribute("despesaForm", despesa);
+		map.addAttribute("despesaForm", new Despesa());
 	}
 	
 }

@@ -1,5 +1,6 @@
 package br.com.jhonatan.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class SimulacaoGastosController {
 	private List<RelatorioBarraSimuladorRendimentoGastoDTO> dadosBarra;
 	
 	@RequestMapping(value="/simulacao/iniciar")
-	public String iniciar(ModelMap map) {
-		dadosLinha = null;
-		dadosBarra = null;
-		Despesa despesa = new Despesa();
+	public String iniciar(final ModelMap map) {
+		dadosLinha = new ArrayList<RelatorioLinhaSimuladorRendimentoGastoDTO>();
+		dadosBarra = new ArrayList<RelatorioBarraSimuladorRendimentoGastoDTO>();
+		final Despesa despesa = new Despesa();//TODO construtor mais elegante
 		despesa.setData(new Date());
 		despesa.setDescricao("Despesa Simulada");
 		despesa.setTotalParcelas(1);
@@ -42,7 +43,7 @@ public class SimulacaoGastosController {
 	}
 	
 	@RequestMapping(value="/simulacao/simular")
-	public String simular(@ModelAttribute("simuladorForm") Despesa despesa, ModelMap map) {
+	public String simular(@ModelAttribute("simuladorForm") final Despesa despesa, final ModelMap map) {
 		if (despesa != null && despesa.getData() != null && despesa.getValorTotal() != null) {
 			dadosLinha = relatorioService.montarRelatorioLinhaSimulacaoGastos(despesa);
 			dadosBarra = relatorioService.montarRelatorioBarraSimulacaoGastos(despesa);

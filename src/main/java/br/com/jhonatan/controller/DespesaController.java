@@ -21,11 +21,12 @@ import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.service.DespesaService;
+import br.com.jhonatan.util.Constantes;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 @Scope("request")
-public class DespesaController extends CrudController<Despesa> {
+public class DespesaController extends AbstractCrudController<Despesa> {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String LIST_PAGE = "despesa/listDespesa";
@@ -38,15 +39,15 @@ public class DespesaController extends CrudController<Despesa> {
 	private CadastrosGeraisService cadastrosGeraisService;
 	
 	@RequestMapping(value="/despesa/listDespesas")
-	public String list(ModelMap map) {
+	public String list(final ModelMap map) {
 		montaDTO(map);
 		montarCombos(map);
 		return LIST_PAGE;
 	}
 
 	@RequestMapping(value="/despesa/search")
-	public String search(@ModelAttribute("despesaForm") Despesa despesa, ModelMap map) {
-		List<Despesa> despesas = despesaService.pesquisarDespesas(despesa);
+	public String search(@ModelAttribute("despesaForm") final Despesa despesa, final ModelMap map) {
+		final List<Despesa> despesas = despesaService.pesquisarDespesas(despesa);
 		map.addAttribute("resultado", despesas);
 		if (despesas.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
@@ -57,8 +58,8 @@ public class DespesaController extends CrudController<Despesa> {
 	}
 	
 	@RequestMapping(value="/despesa/newDespesa")
-	public String create(ModelMap map) {
-		Despesa despesa = new Despesa();
+	public String create(final ModelMap map) {
+		final Despesa despesa = new Despesa();//TODO construtor mais elegante
 		despesa.setData(new Date());
 		despesa.setTotalParcelas(1);
 		map.addAttribute("despesaForm", despesa);
@@ -67,7 +68,7 @@ public class DespesaController extends CrudController<Despesa> {
 	}
 	
 	@RequestMapping(value="/despesa/save")
-	public String save(@ModelAttribute("despesaForm") Despesa despesa, ModelMap map) {
+	public String save(@ModelAttribute("despesaForm") final Despesa despesa, final ModelMap map) {
 		despesaService.salvarOuAtualizar(despesa);
 		montaDTO(map);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
@@ -75,37 +76,36 @@ public class DespesaController extends CrudController<Despesa> {
 	}
 	
 	@RequestMapping(value="/despesa/edit", method=RequestMethod.GET)
-	public String prepareEdit(@RequestParam("despesaId") Long id, ModelMap map) {
-		Despesa despesa = despesaService.findByIdFetched(id);
+	public String prepareEdit(@RequestParam("despesaId") final Long idDespesa, final ModelMap map) {
+		final Despesa despesa = despesaService.findByIdFetched(idDespesa);
 		map.addAttribute("despesaForm", despesa);
 		montarCombos(map);
 		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/despesa/delete")
-	public String remove(@RequestParam("despesaId") Long id, ModelMap map) {
-		despesaService.excluirDespesa(id);
+	public String remove(@RequestParam("despesaId") final Long idDespesa, final ModelMap map) {
+		despesaService.excluirDespesa(idDespesa);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro Excluído com sucesso!");
 		montaDTO(map);
 		montarCombos(map);
 		return LIST_PAGE;
 	}
 	
-	private void montaDTO(ModelMap map) {
-		Despesa despesaDTO = new Despesa();
-		map.addAttribute("despesaForm", despesaDTO);
+	private void montaDTO(final ModelMap map) {
+		map.addAttribute("despesaForm", new Despesa());
 	}
 	
-	private void montarCombos(ModelMap map) {
-		List<Categoria> categorias = cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
-		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
+	private void montarCombos(final ModelMap map) {
+		final List<Categoria> categorias = cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
+		final List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
 		map.addAttribute("categorias", categorias);
 		map.addAttribute("metodosPagamento", metodosPagamento);
 	}
 	
 	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	public void initBinder(final WebDataBinder binder) {
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 		binder.registerCustomEditor(Date.class, null, new CustomDateEditor(dateFormat, true));
 	}
 	

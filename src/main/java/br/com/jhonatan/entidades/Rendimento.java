@@ -17,6 +17,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.jhonatan.util.Constantes;
+
 @NamedQueries({
 	
 	@NamedQuery(name=Rendimento.CONSULTAR_RENDIMENTOS, 
@@ -30,7 +32,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "rendimento", schema = "personal_control")
-public class Rendimento extends BaseEntity implements Serializable {
+public class Rendimento extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -3336005467530312440L;
 
@@ -51,12 +53,12 @@ public class Rendimento extends BaseEntity implements Serializable {
 	private Double valor;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern=Constantes.FORMATO_DATA_PT_BR)
 	@Column(name="dt_inicio", nullable=false)
 	private Date dataInicio;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern=Constantes.FORMATO_DATA_PT_BR)
 	@Column(name="dt_fim", nullable=true)
 	private Date dataFim;
 	

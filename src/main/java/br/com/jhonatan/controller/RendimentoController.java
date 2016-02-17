@@ -17,7 +17,7 @@ import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 @Scope("request")
-public class RendimentoController extends CrudController<Rendimento> {
+public class RendimentoController extends AbstractCrudController<Rendimento> {
 	
 	private static final long serialVersionUID = -9177011140448318596L;
 	
@@ -29,14 +29,13 @@ public class RendimentoController extends CrudController<Rendimento> {
 	
 	@RequestMapping(value="/rendimento/listRendimento")
 	public String list(ModelMap map) {
-		Rendimento rendimento = new Rendimento();
-		map.addAttribute("rendimentoForm", rendimento);
+		map.addAttribute("rendimentoForm", new Rendimento());
 		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/rendimento/search")
-	public String search(@ModelAttribute("rendimentoForm") Rendimento rendimento, ModelMap map) {
-		List<Rendimento> rendimentos = cadastrosGeraisService.pesquisarRendimentos(rendimento.getNomePessoa());
+	public String search(@ModelAttribute("rendimentoForm") final Rendimento rendimento, final ModelMap map) {
+		final List<Rendimento> rendimentos = cadastrosGeraisService.pesquisarRendimentos(rendimento.getNomePessoa());
 		map.addAttribute("resultado", rendimentos);
 		if (rendimentos.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
@@ -45,28 +44,27 @@ public class RendimentoController extends CrudController<Rendimento> {
 	}
 	
 	@RequestMapping(value="/rendimento/newRendimento")
-	public String create(ModelMap map) {
-		Rendimento rendimento = new Rendimento();
-		map.addAttribute("rendimentoForm", rendimento);
+	public String create(final ModelMap map) {
+		map.addAttribute("rendimentoForm", new Rendimento());
 		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/rendimento/save")
-	public String save(@ModelAttribute("rendimentoForm") Rendimento rendimento, ModelMap map) {
+	public String save(@ModelAttribute("rendimentoForm") final Rendimento rendimento, final ModelMap map) {
 		cadastrosGeraisService.salvarOuAtualizarRendimento(rendimento);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
 		return LIST_PAGE; 
 	}
 	
 	@RequestMapping(value="/rendimento/edit", method=RequestMethod.GET)
-	public String prepareEdit(@RequestParam("rendimentoId") Long id, ModelMap map) {
-		Rendimento rendimento = cadastrosGeraisService.findRendimentoById(id);
+	public String prepareEdit(@RequestParam("rendimentoId") final Long id, final ModelMap map) {
+		final Rendimento rendimento = cadastrosGeraisService.findRendimentoById(id);
 		map.addAttribute("rendimentoForm", rendimento);
 		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/rendimento/delete")
-	public String remove(@RequestParam("rendimentoId") Long id, ModelMap map) {
+	public String remove(@RequestParam("rendimentoId") final Long id, final ModelMap map) {
 		cadastrosGeraisService.excluirRendimento(id);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro Excluído com sucesso!");
 		map.addAttribute("rendimentoForm", new Rendimento());

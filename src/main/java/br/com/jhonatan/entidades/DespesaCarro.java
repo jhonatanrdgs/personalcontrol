@@ -27,6 +27,7 @@ import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.jhonatan.util.Constantes;
 import br.com.jhonatan.util.NumberUtil;
 
 /**
@@ -70,7 +71,7 @@ public class DespesaCarro implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="data")
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern=Constantes.FORMATO_DATA_PT_BR)
 	private Date data;
 	
 	/**
@@ -95,11 +96,11 @@ public class DespesaCarro implements Serializable {
 	private List<ItemDespesaCarro> itemDespesaCarros;
 	
 	@Transient
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = Constantes.FORMATO_DATA_PT_BR)
 	private Date inicio;
 	
 	@Transient
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = Constantes.FORMATO_DATA_PT_BR)
 	private Date fim;
 	
 	public DespesaCarro() {
@@ -145,7 +146,7 @@ public class DespesaCarro implements Serializable {
 	
 	public Date getInicioFormatado() {
 		if (inicio == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				inicio = sdf.parse("01/01/1970");
 			} catch (ParseException e) {
@@ -161,7 +162,7 @@ public class DespesaCarro implements Serializable {
 
 	public Date getFimFormatado() {
 		if (fim == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				fim = sdf.parse("01/01/3000");
 			} catch (ParseException e) {

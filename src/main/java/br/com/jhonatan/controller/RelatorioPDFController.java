@@ -35,25 +35,26 @@ import br.com.jhonatan.util.MensagemUtil;
 @Scope("request")
 public class RelatorioPDFController {
 	
-	private final String PAGE = "/relatorios/relatorioPDF";
+	private static final String PAGE = "/relatorios/relatorioPDF";
 	
 	@Autowired
 	private RelatorioService relatorioService;
 	
 	@RequestMapping(value="/relatorioPDF")
-	public String iniciar(ModelMap map) {
+	public String iniciar(final ModelMap map) {
 		montarParametrosIniciais(map);
 		return PAGE;
 	}
 
 	@RequestMapping(value="/relatorioPDF/imprimirGastosMensais")
-	public String gerarGastosMensais(@ModelAttribute("relatorioForm") FormRelatorioDTO relatorioForm, ModelMap map, HttpServletResponse response) {
-		List<RelatorioGastosMensaisPdfDTO> list = relatorioService.pesquisarDadosRelatorioGastosMensaisPDF(relatorioForm);
-		Map<String, Object> parametros = new HashMap<String, Object>();
+	public String gerarGastosMensais(@ModelAttribute("relatorioForm") final FormRelatorioDTO relatorioForm, 
+			final ModelMap map, final HttpServletResponse response) {
+		final List<RelatorioGastosMensaisPdfDTO> list = relatorioService.pesquisarDadosRelatorioGastosMensaisPDF(relatorioForm);
+		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("mes", relatorioForm.getMes());
 		parametros.put("ano", relatorioForm.getAno());
 		
-		//TODO log exception - redirect quando exception - log geral (criar framework)
+		//TODO log exception - log geral (criar framework)
 		
 		try {
 			gerarPDF(response, list, parametros, "gastosMensais");
@@ -65,10 +66,10 @@ public class RelatorioPDFController {
 	}
 	
 	@RequestMapping(value="/relatorioPDF/imprimirDespesasCarro")
-	public String gerarDespesasCarro(ModelMap map, HttpServletResponse response) {
-		List<RelatorioDespesaCarroPdfDTO> list = relatorioService.pesquisarDadosRelatorioDespesaCarro();
+	public String gerarDespesasCarro(final ModelMap map, final HttpServletResponse response) {
+		final List<RelatorioDespesaCarroPdfDTO> list = relatorioService.pesquisarDadosRelatorioDespesaCarro();
 		
-		Map<String, Object> parametros = new HashMap<String, Object>();
+		final Map<String, Object> parametros = new HashMap<String, Object>();
 		try {
 			gerarPDF(response, list, parametros, "despesasCarro");
 		} catch (Exception e) {
@@ -78,12 +79,13 @@ public class RelatorioPDFController {
 		return PAGE;
 	}
 
-	private void gerarPDF(HttpServletResponse response, List<?> dados, Map<String, Object> params, String nomeRelatorio) throws JRException, IOException {
-		InputStream jasperStream = this.getClass().getResourceAsStream("/reports/" + nomeRelatorio +".jasper");
-		JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(dados);
+	private void gerarPDF(final HttpServletResponse response, final List<?> dados, 
+			final Map<String, Object> params, final String nomeRelatorio) throws JRException, IOException {
+		final InputStream jasperStream = this.getClass().getResourceAsStream("/reports/" + nomeRelatorio +".jasper");
+		final JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(dados);
 
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ds);
+		final JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+		final JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ds);
 
 		response.setContentType("application/x-pdf");
 		response.setHeader("Content-disposition", "inline; filename=" + nomeRelatorio + ".pdf");
@@ -92,7 +94,7 @@ public class RelatorioPDFController {
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
 	}
 	
-	private void montarParametrosIniciais(ModelMap map) {
+	private void montarParametrosIniciais(final ModelMap map) {
 		map.addAttribute("meses", DateUtil.getMeses());
 		map.addAttribute("anos", DateUtil.get5AnosAtras5anosAFrente());
 		map.addAttribute("relatorioForm", new FormRelatorioDTO());

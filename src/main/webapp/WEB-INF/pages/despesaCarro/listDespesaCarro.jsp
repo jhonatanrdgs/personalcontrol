@@ -6,7 +6,7 @@
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     
-		<form:form class="form-horizontal" action="search" method="get" commandName="despesaCarroForm">
+		<form:form class="form-horizontal" action="search" method="get" commandName="form">
 			<div class="row container-center_80 navbar-default">
 				<h4>Consulta de Despesas do carro</h4>
 				

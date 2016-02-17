@@ -16,7 +16,7 @@ import br.com.jhonatan.service.CadastrosGeraisService;
 @Controller
 @RequestMapping("/cadastrosGeraisApi")
 public class CadastrosGeraisEndpoint {
-	
+
 	@Autowired
 	private CadastrosGeraisService cadastrosGeraisService;
 	
@@ -29,5 +29,5 @@ public class CadastrosGeraisEndpoint {
 	public @ResponseBody List<MetodoPagamento> metodosPagamento() {
 		return cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
 	}
-
+	
 }

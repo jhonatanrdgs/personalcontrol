@@ -21,11 +21,12 @@ import br.com.jhonatan.entidades.ItemDespesaCarro;
 import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.service.CadastrosGeraisService;
 import br.com.jhonatan.service.DespesaCarroService;
+import br.com.jhonatan.util.Constantes;
 import br.com.jhonatan.util.MensagemUtil;
 
 @Controller
 @Scope("session")
-public class DespesaCarroController extends CrudController<DespesaCarro> {
+public class DespesaCarroController extends AbstractCrudController<DespesaCarro> {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String LIST_PAGE = "despesaCarro/listDespesaCarro";
@@ -40,15 +41,15 @@ public class DespesaCarroController extends CrudController<DespesaCarro> {
 	private List<ItemDespesaCarro> itens;
 	
 	@RequestMapping(value="/despesaCarro/listDespesaCarro")
-	public String list(ModelMap map) {
+	public String list(final ModelMap map) {
 		DespesaDTO dto = new DespesaDTO();
-		map.addAttribute("despesaCarroForm", dto);
+		map.addAttribute(Constantes.FORM, dto);
 		montarCombos(map);
 		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/despesaCarro/search")
-	public String search(@ModelAttribute("despesaCarroForm") DespesaCarro despesaCarro, ModelMap map) {
+	public String search(@ModelAttribute(Constantes.FORM) final DespesaCarro despesaCarro, final ModelMap map) {
 		List<DespesaCarro> despesasCarro = despesaCarroService.pesquisarDespesasCarro(despesaCarro);
 		map.addAttribute("resultado", despesasCarro);
 		if (despesasCarro.isEmpty()) {
@@ -58,18 +59,19 @@ public class DespesaCarroController extends CrudController<DespesaCarro> {
 	}
 	
 	@RequestMapping(value="/despesaCarro/newDespesaCarro")
-	public String create(ModelMap map) {
-		DespesaCarro despesaCarro = new DespesaCarro();
+	public String create(final ModelMap map) {
+		final DespesaCarro despesaCarro = new DespesaCarro();//TODO construtor mais elegante
 		despesaCarro.setData(new Date());
-		map.addAttribute("despesaCarroForm", despesaCarro);
+		map.addAttribute(Constantes.FORM, despesaCarro);
 		montarCombos(map);
 		itens = new ArrayList<ItemDespesaCarro>();
 		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/despesaCarro/add", headers="Accept=application/json;charset=UTF-8", produces="text/plain;charset=UTF-8")
-	public @ResponseBody List<ItemDespesaCarro> add(@RequestParam(value="descricao") String descricao, @RequestParam(value="valor") Double valor) {
-		ItemDespesaCarro item = new ItemDespesaCarro();
+	public @ResponseBody List<ItemDespesaCarro> add(@RequestParam(value="descricao") 
+		final String descricao, @RequestParam(value="valor") final Double valor) {
+		final ItemDespesaCarro item = new ItemDespesaCarro();//TODO construtor mais elegante
 		item.setDescricao(descricao);
 		item.setValorItem(valor);
 		itens.add(item);
@@ -77,7 +79,7 @@ public class DespesaCarroController extends CrudController<DespesaCarro> {
 	}
 	
 	@RequestMapping(value="despesaCarro/remover", headers="Accept=application/json;charset=UTF-8", produces="text/plain;charset=UTF-8")
-	public @ResponseBody void remover(@RequestParam(value="index") Integer index) {
+	public @ResponseBody void remover(@RequestParam(value="index") final Integer index) {
 		itens.remove(index.intValue());
 	}
 	
@@ -87,35 +89,34 @@ public class DespesaCarroController extends CrudController<DespesaCarro> {
 	}
 	
 	@RequestMapping(value="/despesaCarro/save")
-	public String save(@ModelAttribute("despesaCarroForm") DespesaCarro despesaCarro, ModelMap map) {
+	public String save(@ModelAttribute(Constantes.FORM) final DespesaCarro despesaCarro, final ModelMap map) {
 		despesaCarroService.salvarOuAtualizarDespesasCarro(despesaCarro, itens);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
-		DespesaDTO dto = new DespesaDTO();
-		map.addAttribute("despesaCarroForm", dto);
+		map.addAttribute(Constantes.FORM, new DespesaDTO());
 		return LIST_PAGE; 
 	}
 	
 	@RequestMapping(value="/despesaCarro/edit", method=RequestMethod.GET)
-	public String prepareEdit(@RequestParam("despesaCarroId") Long id, ModelMap map) {
-		DespesaCarro despesaCarro = despesaCarroService.findDespesasCarroById(id);
+	public String prepareEdit(@RequestParam("despesaCarroId") final Long idDespesaCarro, final ModelMap map) {
+		final DespesaCarro despesaCarro = despesaCarroService.findDespesasCarroById(idDespesaCarro);
 		itens = despesaCarro.getItemDespesaCarros();
-		map.addAttribute("despesaCarroForm", despesaCarro);
+		map.addAttribute(Constantes.FORM, despesaCarro);
 		montarCombos(map);
 		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/despesaCarro/delete")
-	public String remove(@RequestParam("despesaCarroId") Long id, ModelMap map) {
-		despesaCarroService.excluir(id);
+	public String remove(@RequestParam("despesaCarroId") final Long idDespesaCarro, final ModelMap map) {
+		despesaCarroService.excluir(idDespesaCarro);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro Excluído com sucesso!");
-		map.addAttribute("despesaCarroForm", new DespesaDTO());
+		map.addAttribute(Constantes.FORM, new DespesaDTO());
 		montarCombos(map);
 		return LIST_PAGE;
 	}
 	
-	private void montarCombos(ModelMap map) {
-		List<Categoria> categorias = cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
-		List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
+	private void montarCombos(final ModelMap map) {
+		final List<Categoria> categorias = cadastrosGeraisService.pesquisarTodasCategoriasAtivas();
+		final List<MetodoPagamento> metodosPagamento = cadastrosGeraisService.pesquisarTodosMetodosPagamentoAtivos();
 		map.addAttribute("categorias", categorias);
 		map.addAttribute("metodosPagamento", metodosPagamento);
 	}

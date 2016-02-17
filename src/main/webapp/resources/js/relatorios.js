@@ -362,25 +362,25 @@ function montaGraficoRendimentosGastos(data) {
 }
 
 function montaResumo(data) {
-	$("#totalGastosPeriodo").html(data[0]);
-	$("#totalGastosVariaveisPeriodo").html(data[1]);
-	$("#totalGastosFixos").html(data[2]);
-	$("#rendaComprometida").html(data[3]  + " %");
+	$("#totalGastosPeriodo").html(data.totalGastos);
+	$("#totalGastosVariaveisPeriodo").html(data.totalGastosVariaveisPeriodo);
+	$("#totalGastosFixos").html(data.totalGastosFixos);
+	$("#rendaComprometida").html(data.percentualComprometido + " %");
 	$("#rendaComprometida").css("font-weight", "700");
-	if (data[3] <= 60) {
+	if (data.percentualComprometido <= 60) {
 		$("#rendaComprometida").css("color", "green");
-	} else if (data[3] > 60 && data[3] < 75) {
+	} else if (data.percentualComprometido > 60 && data.percentualComprometido < 75) {
 		$("#rendaComprometida").css("color", "#FFCC00");
 	} else {
 		$("#rendaComprometida").css("color", "red");
 	}
-	$("#rendimentoPeriodo").html(data[4]);
-	$("#sobra").html(data[5]);
-	if (data[5] < 0) {
+	$("#rendimentoPeriodo").html(data.rendimentos);
+	$("#sobra").html(data.sobra);
+	if (data.sobra < 0) {
 		$("#sobra").css("font-weight", "700");
 		$("#sobra").css("color", "red");
 	} else {
 		$("#sobra").css("font-weight", "normal");
-		$("#sobra").css("color", "#333");
+		$("#sobra").css("color", "#333;");
 	}
 }

@@ -14,6 +14,7 @@ import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
+import br.com.jhonatan.dto.RelatorioResumoDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 public interface RelatorioService {
@@ -66,9 +67,9 @@ public interface RelatorioService {
 	 * Retorna o resumo de gastos de um derterminado periodo
 	 * @param mes - data de inicio
 	 * @param ano - data final
-	 * @return Array de double, sendo: 1 - Total de Gastos Geral, 2 - Total de gastos variáveis (parcelados e não parcelados), 3 - Total de gastos fixos, 4 - Percentual de renda comprometido  
+	 * @return 
 	 */
-	Double[] pesquisarResumo(int mes, int ano);
+	RelatorioResumoDTO pesquisarResumo(int mes, int ano);
 	
 	/**
 	 * Retorna todas as despesas de um determinado periodo

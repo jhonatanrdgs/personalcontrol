@@ -6,14 +6,16 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.jhonatan.util.Constantes;
+
 public class DespesaDTO extends BaseDTO {
 	
 	private String descricao;
 	private Long categoriaId;
 	private Long metodoPagamentoId;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = Constantes.FORMATO_DATA_PT_BR)
 	private Date inicio;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = Constantes.FORMATO_DATA_PT_BR)
 	private Date fim;
 	
 	public String getDescricao() {
@@ -40,7 +42,7 @@ public class DespesaDTO extends BaseDTO {
 	
 	public Date getInicioFormatado() {
 		if (inicio == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				inicio = sdf.parse("01/01/1970");
 			} catch (ParseException e) {
@@ -60,7 +62,7 @@ public class DespesaDTO extends BaseDTO {
 	
 	public Date getFimFormatado() {
 		if (fim == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				fim = sdf.parse("01/01/3000");
 			} catch (ParseException e) {

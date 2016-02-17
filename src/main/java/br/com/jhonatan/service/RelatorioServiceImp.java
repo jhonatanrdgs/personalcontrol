@@ -25,6 +25,7 @@ import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.dto.RelatorioLinhaSimuladorRendimentoGastoDTO;
 import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
+import br.com.jhonatan.dto.RelatorioResumoDTO;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.DespesaCarro;
 import br.com.jhonatan.entidades.ItemDespesaCarro;
@@ -50,24 +51,13 @@ public class RelatorioServiceImp implements RelatorioService {
 	private DespesaCarroDAO despesaCarroDAO;
 	
 	@Override
-	public Double[] pesquisarResumo(int mes, int ano) {
-		Double totalGastosVariaveisPeriodo = NumberUtil.zeroIfNull(despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano));
-		totalGastosVariaveisPeriodo = NumberUtil.normalizarDouble(totalGastosVariaveisPeriodo, 2);
-		
-		Double totalGastosFixos = NumberUtil.zeroIfNull(despesaDAO.pesquisarSomatorioDespesasFixas());
-		totalGastosFixos = NumberUtil.normalizarDouble(totalGastosFixos, 2);
-		
-		Double totalGastos  = totalGastosVariaveisPeriodo + totalGastosFixos;
-		totalGastos = NumberUtil.normalizarDouble(totalGastos, 2);
-		
+	public RelatorioResumoDTO pesquisarResumo(int mes, int ano) {
 		Date data = DateUtil.getPrimeiroDiaMes(mes - 1, ano);
-		Double rendimentos = NumberUtil.zeroIfNull(rendimentoDAO.pesquisarRendimentosPorMes(data));
-		Double percentualComprometido = (totalGastos / rendimentos) * 100;
-		percentualComprometido = NumberUtil.normalizarDouble(percentualComprometido, 2);
+		RelatorioResumoDTO dto = new RelatorioResumoDTO(
+				despesaDAO.pesquisarValorTotalDespesasVariaveisMes(mes, ano), despesaDAO.pesquisarSomatorioDespesasFixas(),
+				rendimentoDAO.pesquisarRendimentosPorMes(data));
 		
-		Double sobra = NumberUtil.normalizarDouble(rendimentos - totalGastos, 2);
-		
-		return new Double[] {totalGastos, totalGastosVariaveisPeriodo, totalGastosFixos, percentualComprometido, rendimentos, sobra};
+		return dto;
 	}
 
 	@Override

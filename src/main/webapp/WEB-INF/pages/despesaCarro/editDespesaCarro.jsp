@@ -7,7 +7,7 @@
  
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
-		<form:form class="form-horizontal" action="save" method="post" commandName="despesaCarroForm" id="formDespesa" >
+		<form:form class="form-horizontal" action="save" method="post" commandName="form" id="formDespesa" >
 			<form:hidden  path="id" class="form-control"  />
 			<div class="row container-center_80 well">
 			<h4>Cadastro de despesas do carro</h4>

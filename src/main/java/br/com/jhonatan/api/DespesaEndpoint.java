@@ -24,26 +24,26 @@ public class DespesaEndpoint {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/listarDespesas", headers="Accept=application/json")
 	public @ResponseBody List<Despesa> listarDespesas() {
-		Despesa despesa = new Despesa();
+		final Despesa despesa = new Despesa();//TODO construtor mais elegante
 		despesa.setCategoria(new Categoria());
 		despesa.setMetodoPagamento(new MetodoPagamento());
 		return despesaService.pesquisarDespesas(despesa); //TODO parametros
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/salvarDespesa")
-	public @ResponseBody boolean salvar(@RequestBody Despesa despesa) {
+	public @ResponseBody boolean salvar(@RequestBody final Despesa despesa) {
 		despesaService.salvarOuAtualizar(despesa);
 		return true;
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/atualizarDespesa", headers="Accept=application/json")
-	public @ResponseBody boolean atualizar(@RequestBody Despesa despesa) {
+	public @ResponseBody boolean atualizar(@RequestBody final Despesa despesa) {
 		despesaService.salvarOuAtualizar(despesa);
 		return true;
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/excluirDespesa", headers="Accept=application/json")
-	public @ResponseBody boolean excluir(@RequestParam("despesaId") Long despesaId) {
+	public @ResponseBody boolean excluir(@RequestParam("despesaId") final Long despesaId) {
 		despesaService.excluirDespesa(despesaId);
 		return true;
 	}

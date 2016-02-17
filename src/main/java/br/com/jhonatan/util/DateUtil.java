@@ -11,7 +11,9 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class DateUtil {
+public final class DateUtil {//Se a classe é somente utilitária e só tem métodos static, colocar como final e criar construtor privado
+	
+	private DateUtil() {}
 
 	public static Date getPrimeiroDiaMes(Date date) {
 		Calendar c = new GregorianCalendar();

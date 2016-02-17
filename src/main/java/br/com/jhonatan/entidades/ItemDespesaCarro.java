@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "item_despesa_carro", schema = "personal_control")
-public class ItemDespesaCarro extends BaseEntity implements Serializable {
+public class ItemDespesaCarro extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 4829389151584710492L;
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.jhonatan.dto.RelatorioResumoDTO;
 import br.com.jhonatan.service.RelatorioService;
 import br.com.jhonatan.util.DateUtil;
 
@@ -20,9 +21,9 @@ public class RelatorioResumoEndpoint {
 	private RelatorioService relatorioService;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/resumo", headers="Accept=application/json")
-	public @ResponseBody Double[] montarResumoJson() {
-		int mes = DateUtil.getMes(new Date());
-		int ano = DateUtil.getAno(new Date());
+	public @ResponseBody RelatorioResumoDTO montarResumoJson() {
+		final int mes = DateUtil.getMes(new Date());
+		final int ano = DateUtil.getAno(new Date());
 		return relatorioService.pesquisarResumo(mes, ano);
 	}
 
