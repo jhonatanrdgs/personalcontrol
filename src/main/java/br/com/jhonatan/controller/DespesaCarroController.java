@@ -42,15 +42,14 @@ public class DespesaCarroController extends AbstractCrudController<DespesaCarro>
 	
 	@RequestMapping(value="/despesaCarro/listDespesaCarro")
 	public String list(final ModelMap map) {
-		DespesaDTO dto = new DespesaDTO();
-		map.addAttribute(Constantes.FORM, dto);
+		map.addAttribute(Constantes.FORM, new DespesaDTO());
 		montarCombos(map);
 		return LIST_PAGE;
 	}
 	
 	@RequestMapping(value="/despesaCarro/search")
 	public String search(@ModelAttribute(Constantes.FORM) final DespesaCarro despesaCarro, final ModelMap map) {
-		List<DespesaCarro> despesasCarro = despesaCarroService.pesquisarDespesasCarro(despesaCarro);
+		final List<DespesaCarro> despesasCarro = despesaCarroService.pesquisarDespesasCarro(despesaCarro);
 		map.addAttribute("resultado", despesasCarro);
 		if (despesasCarro.isEmpty()) {
 			MensagemUtil.adicionaMensagemAlerta(map, "Nenhum registro Encontrado");
