@@ -46,7 +46,7 @@ public class DespesaController extends AbstractCrudController<Despesa> {
 	}
 
 	@RequestMapping(value="/despesa/search")
-	public String search(@ModelAttribute("despesaForm") final Despesa despesa, final ModelMap map) {
+	public String search(@ModelAttribute(Constantes.FORM) final Despesa despesa, final ModelMap map) {
 		final List<Despesa> despesas = despesaService.pesquisarDespesas(despesa);
 		map.addAttribute("resultado", despesas);
 		if (despesas.isEmpty()) {
@@ -62,13 +62,13 @@ public class DespesaController extends AbstractCrudController<Despesa> {
 		final Despesa despesa = new Despesa();//TODO construtor mais elegante
 		despesa.setData(new Date());
 		despesa.setTotalParcelas(1);
-		map.addAttribute("despesaForm", despesa);
+		map.addAttribute(Constantes.FORM, despesa);
 		montarCombos(map);
 		return EDIT_PAGE;
 	}
 	
 	@RequestMapping(value="/despesa/save")
-	public String save(@ModelAttribute("despesaForm") final Despesa despesa, final ModelMap map) {
+	public String save(@ModelAttribute(Constantes.FORM) final Despesa despesa, final ModelMap map) {
 		despesaService.salvarOuAtualizar(despesa);
 		montaDTO(map);
 		MensagemUtil.adicionaMensagemSucesso(map, "Registro inserido/Atualizado com sucesso!");
@@ -78,7 +78,7 @@ public class DespesaController extends AbstractCrudController<Despesa> {
 	@RequestMapping(value="/despesa/edit", method=RequestMethod.GET)
 	public String prepareEdit(@RequestParam("despesaId") final Long idDespesa, final ModelMap map) {
 		final Despesa despesa = despesaService.findByIdFetched(idDespesa);
-		map.addAttribute("despesaForm", despesa);
+		map.addAttribute(Constantes.FORM, despesa);
 		montarCombos(map);
 		return EDIT_PAGE;
 	}
@@ -93,7 +93,7 @@ public class DespesaController extends AbstractCrudController<Despesa> {
 	}
 	
 	private void montaDTO(final ModelMap map) {
-		map.addAttribute("despesaForm", new Despesa());
+		map.addAttribute(Constantes.FORM, new Despesa());
 	}
 	
 	private void montarCombos(final ModelMap map) {
