@@ -255,7 +255,8 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	public void setFixa(boolean fixa) {
 		this.fixa = fixa;
 	}
-
+	
+	@JsonIgnore
 	public Date getInicioFormatado() {
 		if (inicio == null) {
 			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
@@ -273,7 +274,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	}
 
 	
-	
+	@JsonIgnore
 	public Date getFimFormatado() {
 		if (fim == null) {
 			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
