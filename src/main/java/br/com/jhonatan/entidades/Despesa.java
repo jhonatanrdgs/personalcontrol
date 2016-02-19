@@ -26,6 +26,8 @@ import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.jhonatan.util.Constantes;
 
 /**
@@ -140,6 +142,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	@JoinColumn(name = "id_metodo_pagamento", nullable = false, columnDefinition="int")
 	private MetodoPagamento metodoPagamento;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario", nullable = false, columnDefinition="int")
 	private Usuario usuario;
@@ -161,6 +164,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	@Column(name="fixa", nullable=false)
 	private boolean fixa;//fixa não gera parcela, então em relatorios é date(periodo) ou fixa
 	
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="despesa", cascade=CascadeType.ALL, orphanRemoval=true)
 	private Set<ParcelaDespesa> parcelas;
 	
