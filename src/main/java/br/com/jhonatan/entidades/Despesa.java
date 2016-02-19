@@ -43,6 +43,15 @@ import br.com.jhonatan.util.Constantes;
 					+ " and (c.id = ?2 or ?2 is null)"
 					+ " and (mp.id = ?3 or ?3 is null)"
 					+ " and (d.data between ?4 and ?5)"),
+	
+	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA_ULTIMAS,
+	query="select d from Despesa d "
+			+ " join fetch d.categoria c"
+			+ " join fetch d.metodoPagamento mp"
+			+ " where (upper(d.descricao) like concat('%', upper(?1), '%') or ?1 is null)"
+			+ " and (c.id = ?2 or ?2 is null)"
+			+ " and (mp.id = ?3 or ?3 is null)"
+			+ " and (d.data between ?4 and ?5) order by d.data desc"),
 					
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESA_POR_ID_FETCH, 
 		query="select d from Despesa d "
@@ -115,6 +124,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	private static final long serialVersionUID = 8987183170531571355L;
 
 	public static final String CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA = "despesa.consultarDespesasPorDescricaoCategoriaMetodoPgData";
+	public static final String CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA_ULTIMAS = "despesa.consultarDespesasPorDescricaoCategoriaMetodoPgDataUltimas";
 	public static final String CONSULTAR_DESPESA_POR_ID_FETCH = "despesa.consultarDespesaPorIdFetch";
 	public static final String CONSULTAR_DESPESAS_PARCELADAS_MES = "despesa.consultarDespesasParceladasMes";
 	public static final String CONSULTAR_GASTOS_FIXOS = "despesa.consultarGastosFixos";
@@ -126,6 +136,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF = "despesa.consultarDespesasPeriodo";
 	public static final String CONSULTAR_DESPESAS_COM_PARCELAS_PROXIMO_MES_EM_DIANTE = "despesa.consultarDespesasComParcelasProximoMesEmDiante";
 	public static final String CONSULTAR_DESPESAS_FIXAS_POR_METODO_PAGAMENTO = "despesa.consultarDespesasFixasPorMetodoPagamento";
+	
 
 
 	@Id

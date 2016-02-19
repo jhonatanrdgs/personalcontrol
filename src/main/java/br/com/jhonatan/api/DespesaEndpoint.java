@@ -22,13 +22,13 @@ public class DespesaEndpoint {
 	@Autowired
 	private DespesaService despesaService;
 	
-	@RequestMapping(method=RequestMethod.GET, value="/listarDespesas", headers="Accept=application/json")
+	@RequestMapping(method=RequestMethod.GET, value="/listarUltimasDespesas", headers="Accept=application/json")
 	public @ResponseBody List<Despesa> listarDespesas() {
 		final Despesa despesa = new Despesa();//TODO construtor mais elegante
 		despesa.setDescricao("");
 		despesa.setCategoria(new Categoria());
 		despesa.setMetodoPagamento(new MetodoPagamento());
-		return despesaService.pesquisarDespesas(despesa); //TODO parametros
+		return despesaService.pesquisarUltimasDespesas(despesa); //TODO parametros
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/salvarDespesa")

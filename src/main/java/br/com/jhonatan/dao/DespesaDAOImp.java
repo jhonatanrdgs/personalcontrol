@@ -23,6 +23,13 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 				despesa.getInicioFormatado(), despesa.getFimFormatado());
 	}
 	
+	@Override
+	public List<Despesa> pesquisarUltimasDespesas(Despesa despesa) {
+		return criarQueryResultListWithLimit(Despesa.CONSULTAR_DESPESAS_POR_DESCRICAO_CATEGORIA_METODOPG_DATA_ULTIMAS, 10,
+				despesa.getDescricao(), despesa.getCategoria().getId(), despesa.getMetodoPagamento().getId(), 
+				despesa.getInicioFormatado(), despesa.getFimFormatado());
+	}
+
 	public Despesa findByIdFetched(Long id) {
 		return criarQuerySingleResult(Despesa.CONSULTAR_DESPESA_POR_ID_FETCH, id);
 	}

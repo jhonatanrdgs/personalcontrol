@@ -39,4 +39,6 @@ public interface DespesaDAO {
 
 	Double pesquisarDespessasFixasPorMetodoPagamento(Long idMetodoPagamento);
 
+	List<Despesa> pesquisarUltimasDespesas(Despesa despesa);
+
 }

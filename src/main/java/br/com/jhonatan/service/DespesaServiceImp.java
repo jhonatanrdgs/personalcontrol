@@ -57,6 +57,11 @@ public class DespesaServiceImp implements DespesaService {
 	public List<Despesa> pesquisarDespesas(Despesa despesa) {
 		return despesaDAO.pesquisarDespesas(despesa);
 	}
+	
+	@Override
+	public List<Despesa> pesquisarUltimasDespesas(Despesa despesa) {
+		return despesaDAO.pesquisarUltimasDespesas(despesa);
+	}
 
 	@Override
 	public Despesa findById(Long id) {
