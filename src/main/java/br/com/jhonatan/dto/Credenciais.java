@@ -4,6 +4,8 @@ public class Credenciais {
 	
 	private String user;
     private String pw;
+    
+    public Credenciais() {}
 
     public Credenciais(String user, String pw) {
         this.user = user;
