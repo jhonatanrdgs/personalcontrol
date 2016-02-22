@@ -6,4 +6,6 @@ public interface UsuarioDAO {
 
 	Usuario pesquisarUsuarioPorLogin(String login);
 
+	Usuario pesquisarUsuarioPorLoginSenha(String user, String pw);
+
 }

@@ -18,7 +18,10 @@ import javax.persistence.Table;
 @NamedQueries({
 	
 	@NamedQuery(name=Usuario.CONSULTAR_POR_LOGIN, 
-			query="from Usuario u where login = ?1")
+			query="from Usuario u where login = ?1"),
+	
+	@NamedQuery(name=Usuario.CONSULTAR_POR_LOGIN_SENHA,
+			query="from Usuario u where login = ?1 and senha = ?2")
 	
 })
 
@@ -29,6 +32,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 	private static final long serialVersionUID = 129310144023328222L;
 
 	public static final String CONSULTAR_POR_LOGIN = "usuario.consultarPorLogin";
+	public static final String CONSULTAR_POR_LOGIN_SENHA = "usuario.consultarPorLoginSenha";
 
 	@Id
 	@GeneratedValue(generator="usuario_seq", strategy=GenerationType.SEQUENCE)

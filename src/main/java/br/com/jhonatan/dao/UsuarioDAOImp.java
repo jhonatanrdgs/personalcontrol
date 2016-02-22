@@ -14,4 +14,11 @@ public class UsuarioDAOImp extends GenericDAO<Usuario> implements UsuarioDAO {
 		return criarQuerySingleResult(Usuario.CONSULTAR_POR_LOGIN, login);
 	}
 
+	@Override
+	public Usuario pesquisarUsuarioPorLoginSenha(String user, String pw) {
+		return criarQuerySingleResult(Usuario.CONSULTAR_POR_LOGIN_SENHA, user, pw);
+	}
+	
+	
+
 }
