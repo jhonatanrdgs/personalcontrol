@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.jhonatan.dto.Credenciais;
 import br.com.jhonatan.service.UsuarioService;
 
 @Controller
@@ -17,8 +18,8 @@ public class LoginEndpoint {
 	private UsuarioService usuarioService;
 
 	@RequestMapping(method=RequestMethod.POST, value="/logar")
-	public @ResponseBody boolean login(@RequestBody final String user, @RequestBody final String pw) {
-		return usuarioService.logar(user, pw);
+	public @ResponseBody boolean login(@RequestBody final Credenciais credenciais) {
+		return usuarioService.logar(credenciais.getUser(), credenciais.getPw());
 	}
 	
 }
