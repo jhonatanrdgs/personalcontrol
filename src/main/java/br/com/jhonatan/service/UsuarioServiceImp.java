@@ -13,9 +13,9 @@ public class UsuarioServiceImp implements UsuarioService {
 	private UsuarioDAO usuarioDAO;
 	
 	@Override
-	public boolean logar(String user, String pw) {
+	public Usuario logar(String user, String pw) {
 		Usuario usuario = usuarioDAO.pesquisarUsuarioPorLoginSenha(user, pw);
-		return usuario != null;
+		return usuario;
 	}
 
 }

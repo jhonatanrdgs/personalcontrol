@@ -1,7 +1,9 @@
 package br.com.jhonatan.service;
 
+import br.com.jhonatan.entidades.Usuario;
+
 public interface UsuarioService {
 
-	boolean logar(String user, String pw);
+	Usuario logar(String user, String pw);
 
 }

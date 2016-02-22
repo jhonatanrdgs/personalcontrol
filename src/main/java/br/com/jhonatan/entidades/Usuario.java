@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @NamedQueries({
 	
 	@NamedQuery(name=Usuario.CONSULTAR_POR_LOGIN, 
@@ -55,6 +57,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 	@Column(name = "permissao", nullable = false, length=20)
 	private String permissao;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	private Set<Despesa> despesas;
 	
