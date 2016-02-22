@@ -5,7 +5,7 @@
 	<tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     
-		<form:form class="form-horizontal" action="search" method="get" commandName="rendimentoForm">
+		<form:form class="form-horizontal" action="search" method="get" commandName="form">
 			<div class="row container-center_60 navbar-default">
 				<h4>Consulta de Rendimentos</h4>
 				<div class="col-lg-7 div-center">

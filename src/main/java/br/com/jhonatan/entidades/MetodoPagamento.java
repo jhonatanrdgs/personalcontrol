@@ -70,6 +70,11 @@ public class MetodoPagamento extends AbstractBaseEntity implements Serializable 
 	public Long getId() {
 		return id;
 	}
+	
+	@Deprecated//Usado somente pelo spring
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getDescricao() {
 		return descricao;

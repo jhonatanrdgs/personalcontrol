@@ -1,5 +1,7 @@
 package br.com.jhonatan.util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -7,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ErrorHandler {
 	
 	@RequestMapping(value="/error")
-	public String handleError() {
+	public String handleError(HttpServletRequest request) {
+		//TODO melhorar
 		return "error";
 	}
 

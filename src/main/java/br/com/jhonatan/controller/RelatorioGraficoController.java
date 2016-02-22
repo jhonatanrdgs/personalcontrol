@@ -20,6 +20,7 @@ import br.com.jhonatan.dto.RelatorioPercentualComprometido12MesesDTO;
 import br.com.jhonatan.dto.RelatorioRendimentoGastosDTO;
 import br.com.jhonatan.dto.RelatorioResumoDTO;
 import br.com.jhonatan.service.RelatorioService;
+import br.com.jhonatan.util.Constantes;
 import br.com.jhonatan.util.DateUtil;
 
 @Controller
@@ -31,54 +32,54 @@ public class RelatorioGraficoController {
 	
 	@RequestMapping(value="/relatorios/iniciar")
 	public String init(final ModelMap map) {
-		map.addAttribute("meses", DateUtil.getMeses());
-		map.addAttribute("anos", DateUtil.get5AnosAtras5anosAFrente());
+		map.addAttribute(Constantes.MESES, DateUtil.getMeses());
+		map.addAttribute(Constantes.ANOS, DateUtil.get5AnosAtras5anosAFrente());
 		map.addAttribute("mesAtual", DateUtil.getMes(new Date()));
 		map.addAttribute("anoAtual", DateUtil.getAno(new Date()));
 		return "/relatorios/relatorios";
 	}
 	
-	@RequestMapping(value="/relatorios/resumo", headers="Accept=application/json")
-	public @ResponseBody RelatorioResumoDTO montarResumoJson(@RequestParam(value="mes") final int mes, 
-			@RequestParam(value="ano") final int ano) {
+	@RequestMapping(value="/relatorios/resumo", headers=Constantes.ACCEPT_JSON)
+	public @ResponseBody RelatorioResumoDTO montarResumoJson(@RequestParam(value=Constantes.MES) final int mes, 
+			@RequestParam(value=Constantes.ANO) final int ano) {
 		return relatorioService.pesquisarResumo(mes, ano);
 	}
 	
-	@RequestMapping(value="/relatorios/graficoPizza", headers="Accept=application/json")
+	@RequestMapping(value="/relatorios/graficoPizza", headers=Constantes.ACCEPT_JSON)
 	public @ResponseBody List<RelatorioDespesaPorCategoriaDTO> montarDadosGraficoPizzaJson(
-			@RequestParam(value="mes") final int mes, @RequestParam(value="ano") final int ano) {
+			@RequestParam(value=Constantes.MES) final int mes, @RequestParam(value=Constantes.ANO) final int ano) {
 		return relatorioService.pesquisarDadosRelatorioDespesasPorCategoriasAtivas(mes, ano);
 	}
 	
-	@RequestMapping(value="/relatorios/comprasParceladas", headers="Accept=application/json")
+	@RequestMapping(value="/relatorios/comprasParceladas", headers=Constantes.ACCEPT_JSON)
 	public @ResponseBody List<RelatorioComprasParceladasDTO> montarDadosComprasParceladasJson(
-			@RequestParam(value="mes") final int mes, @RequestParam(value="ano") final int ano) {
+			@RequestParam(value=Constantes.MES) final int mes, @RequestParam(value=Constantes.ANO) final int ano) {
 		return relatorioService.pesquisarDadosRelatorioComprasParceladas(mes, ano);
 	}
 	
-	@RequestMapping(value="/relatorios/gastosPorMetodoPagamento", headers="Accept=application/json")
+	@RequestMapping(value="/relatorios/gastosPorMetodoPagamento", headers=Constantes.ACCEPT_JSON)
 	public @ResponseBody List<RelatorioGastosPorMetodoPagamentoDTO> montarDadosGastosPorMetodoPagamentoJson(
-			@RequestParam(value="mes") final int mes, @RequestParam(value="ano") final int ano) {
+			@RequestParam(value=Constantes.MES) final int mes, @RequestParam(value=Constantes.ANO) final int ano) {
 		return relatorioService.pesquisarDadosRelatorioGastosPorMetodoPagamento(mes, ano);
 	}
 	
-	@RequestMapping(value="/relatorios/gastosVariaveis", headers="Accept=application/json")
+	@RequestMapping(value="/relatorios/gastosVariaveis", headers=Constantes.ACCEPT_JSON)
 	public @ResponseBody List<RelatorioComprasNaoParceladasDTO> montarDadosGastosVariaveisJson(
-			@RequestParam(value="mes") final int mes, @RequestParam(value="ano") final int ano) {
+			@RequestParam(value=Constantes.MES) final int mes, @RequestParam(value=Constantes.ANO) final int ano) {
 		return relatorioService.pesquisarDadosRelatorioGastosVariaveis(mes, ano);
 	}
 	
-	@RequestMapping(value="/relatorios/gastosFixos", headers="Accept=application/json")
+	@RequestMapping(value="/relatorios/gastosFixos", headers=Constantes.ACCEPT_JSON)
 	public @ResponseBody List<RelatorioGastosFixosDTO> montarDadosGastosFixosJson() {
 		return relatorioService.pesquisarDadosRelatorioGastosFixos();
 	}
 	
-	@RequestMapping(value="/relatorios/rendimentosGastos", headers="Accept=application/json")
+	@RequestMapping(value="/relatorios/rendimentosGastos", headers=Constantes.ACCEPT_JSON)
 	public @ResponseBody List<RelatorioRendimentoGastosDTO> montarDadosRendimentosGastosJson() {
 		return relatorioService.pesquisarDadosRelatorioRendimentosGastos();
 	}
 	
-	@RequestMapping(value="/relatorios/percentual12Meses", headers="Accept=application/json")
+	@RequestMapping(value="/relatorios/percentual12Meses", headers=Constantes.ACCEPT_JSON)
 	public @ResponseBody List<RelatorioPercentualComprometido12MesesDTO> montarDadosPercentualComprometido12MesesJson() {
 		return relatorioService.montarRelatorioPercentualComprometido12Meses();
 	}

@@ -49,4 +49,6 @@ public interface DespesaService {
 
 	public void adiantarPagamentoTodasParcelas(Long idDespesa);
 
+	public List<Despesa> pesquisarUltimasDespesas(Despesa despesa);
+
 }

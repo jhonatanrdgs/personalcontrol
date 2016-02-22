@@ -38,6 +38,16 @@ public class GenericDAO<T> implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<T> criarQueryResultListWithLimit(String nQuery, int limit, Object... params) {
+		Query q = entityManager.createNamedQuery(nQuery);
+		q.setMaxResults(limit);
+		for (int i = 0; i < params.length; i++) {
+			q.setParameter(i+1, params[i]);
+		}
+		return (List<T>)q.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<? extends BaseDTO> criarQueryResultListDTO(String nQuery, Object... params) {
 		Query q = entityManager.createNamedQuery(nQuery);
 		for (int i = 0; i < params.length; i++) {

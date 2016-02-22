@@ -58,8 +58,8 @@ public class RelatorioPDFController {
 		
 		try {
 			gerarPDF(response, list, parametros, "gastosMensais");
-		} catch (Exception e) {
-			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e);
+		} catch (Exception exception) {
+			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + exception);
 		}
 		montarParametrosIniciais(map);
 		return PAGE;
@@ -72,8 +72,8 @@ public class RelatorioPDFController {
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		try {
 			gerarPDF(response, list, parametros, "despesasCarro");
-		} catch (Exception e) {
-			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + e);
+		} catch (Exception exception) {
+			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + exception);
 		}
 		montarParametrosIniciais(map);
 		return PAGE;
@@ -82,10 +82,10 @@ public class RelatorioPDFController {
 	private void gerarPDF(final HttpServletResponse response, final List<?> dados, 
 			final Map<String, Object> params, final String nomeRelatorio) throws JRException, IOException {
 		final InputStream jasperStream = this.getClass().getResourceAsStream("/reports/" + nomeRelatorio +".jasper");
-		final JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(dados);
+		final JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dados);
 
 		final JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		final JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ds);
+		final JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
 
 		response.setContentType("application/x-pdf");
 		response.setHeader("Content-disposition", "inline; filename=" + nomeRelatorio + ".pdf");
