@@ -6,7 +6,8 @@
  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
  	<sec:http create-session="stateless" pattern="/despesaApi/**" authentication-manager-ref="restApi">
-        <sec:intercept-url pattern="/despesaApi/**" access="ROLE_REST"/>
+        <sec:intercept-url pattern="/despesaApi/**" access="hasRole('ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/relatorioApi/**" access="hasRole('ROLE_ADMIN')"/>
         <sec:http-basic/>
    </sec:http>
  
@@ -49,9 +50,10 @@
 	
 	<sec:authentication-manager id="restApi">
         <sec:authentication-provider>
-            <sec:user-service>
-                <sec:user name="admin" password="rest_api_secure" authorities="ROLE_REST"/>
-            </sec:user-service>
+            <sec:password-encoder hash="md5"/> 
+				<sec:jdbc-user-service data-source-ref="postgresDS"
+		  			users-by-username-query="select login as username, senha as password, ativo as enabled from personal_control.usuario where  login = ?"
+		  			authorities-by-username-query="select login as username, permissao as role from personal_control.usuario where login = ?  " />
         </sec:authentication-provider>
     </sec:authentication-manager>
  
