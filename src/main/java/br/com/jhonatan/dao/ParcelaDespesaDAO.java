@@ -11,5 +11,7 @@ public interface ParcelaDespesaDAO {
 	void excluir(ParcelaDespesa parcela);
 
 	List<ParcelaDespesa> pesquisarParcelasDaDespesa(Long id);
+	
+	void excluirParcela(Long idParcela);
 
 }

@@ -77,6 +77,9 @@ public class DespesaServiceImp implements DespesaService {
 	@Transactional
 	public void excluirDespesa(Long id) {
 		Despesa despesa = despesaDAO.findById(Despesa.class, id);
+		for (ParcelaDespesa parcela : despesa.getParcelas()) {
+			parcelaDespesaDAO.excluirParcela(parcela.getId());
+		}
 		despesaDAO.excluir(despesa);
 	}
 	
