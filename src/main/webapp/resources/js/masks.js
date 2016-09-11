@@ -1,5 +1,8 @@
 $(document).ready(function(){
   $('.mask_date').mask('99/99/9999');
-  $('.money').maskMoney({prefix:'R$ ', allowNegative: true, thousands:'', decimal:'.', affixesStay: false});
+  $('.money').autoNumeric("init",{
+      aSep: ',',
+      aDec: '.', 
+      aSign: ''}); 
   $('.numeric').numeric();
 });

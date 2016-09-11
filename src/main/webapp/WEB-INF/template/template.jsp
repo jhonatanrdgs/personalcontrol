@@ -24,12 +24,19 @@
     <script src="<c:url value="/resources/js/jquery-dateFormat.min.js" />" > </script>
     <script src="<c:url value="/resources/js/jquery.numeric.min.js" />" > </script>
      <script src="<c:url value="/resources/js/pagination.js" />" > </script>
+     <script src="<c:url value="/resources/js/bootstrap-datepicker.min.js" />" > </script>
+     <script src="<c:url value="/resources/js/bootstrap-datepicker.pt-BR.min.js" />" > </script>
+     <script src="<c:url value="/resources/js/autoNumeric-min.js" />" > </script>
+     <script>
+     $.fn.datepicker.defaults.language = 'pt-BR';
+     </script>
     <script src="http://cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js" ></script>
     
     <link type="text/css" href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" />
     <link type="text/css" href="<c:url value="/resources/css/custom.css" />" rel="stylesheet" />
     <link type="text/css" href="<c:url value="/resources/css/jquery.jqplot.min.css" />" rel="stylesheet" />
     <link type="text/css" href="http://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="<c:url value="/resources/css/bootstrap-datepicker.min.css" />" rel="stylesheet" />
     
 </head>
 <body>

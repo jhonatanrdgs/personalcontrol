@@ -17,16 +17,25 @@ $(document).ready(function () {
 	chamadaAjax("resumo", montaResumo);
 	chamadaAjaxSemData("gastosFixos", montaGraficoGastosFixos);
 	
-	$("#reload").click(function() {
-		carregaDatas();
-		chamadaAjax("graficoPizza", montaGraficoPizza);
-		chamadaAjax("comprasParceladas", montraGraficoComprasParceladas);
-		chamadaAjax("gastosPorMetodoPagamento", montaGraficoGastosPorMetodoPagamento);
-		chamadaAjax("gastosVariaveis", montaGraficoGastosVariaveis);
-		chamadaAjax("gastosFixos", montaGraficoGastosFixos);
-		chamadaAjax("resumo", montaResumo);
-	})
+	$("#mes").click(function() {
+		reload();
+	});
+	
+	$("#ano").click(function() {
+		reload();
+	});
+	
 });
+
+function reload() {
+	carregaDatas();
+	chamadaAjax("graficoPizza", montaGraficoPizza);
+	chamadaAjax("comprasParceladas", montraGraficoComprasParceladas);
+	chamadaAjax("gastosPorMetodoPagamento", montaGraficoGastosPorMetodoPagamento);
+	chamadaAjax("gastosVariaveis", montaGraficoGastosVariaveis);
+	chamadaAjax("gastosFixos", montaGraficoGastosFixos);
+	chamadaAjax("resumo", montaResumo);
+}
 
 function carregaDatas() {
 	mesParam = $("#mes").val();

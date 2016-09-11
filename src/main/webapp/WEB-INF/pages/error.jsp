@@ -8,5 +8,7 @@
 </head>
 <body>
 <h2>Ocorreu um erro ao processar sua requisição</h2>
+<h2>Status: ${status}</h2>
+<h2>Exception:${exception}</h2>
 </body>
 </html>

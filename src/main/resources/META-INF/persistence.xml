@@ -8,7 +8,7 @@
         <properties>
            <prop key="hibernate.hbm2ddl.auto">update</prop>
            <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>

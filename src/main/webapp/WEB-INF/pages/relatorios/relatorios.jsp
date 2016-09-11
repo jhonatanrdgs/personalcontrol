@@ -47,11 +47,7 @@
 					</div>
 				<br />
 				<br />
-				<div class="form-group">
-					<div class="col-md-12" style="text-align:center">
-						<button id="reload" class="btn btn-primary">Atualizar</button>
-					</div>
-				</div>
+				
 				
 				<br/>
 				<br/>

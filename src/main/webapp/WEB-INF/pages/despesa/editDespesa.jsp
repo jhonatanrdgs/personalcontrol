@@ -37,7 +37,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="nome">Método de Pagamento:</label>
+						<label class="col-md-2 control-label" for="nome">Método Pgto:</label>
 						<div class="col-md-8 input-icon">
 							<form:select path="metodoPagamento.id" class="form-control" >
 								<form:option value="" label="Selecione"/>
@@ -59,7 +59,7 @@
 					
 						<label class="col-md-2 control-label" for="nome">Data da despesa:</label>
 						<div class="col-md-2 input-icon">
-							<form:input type="text" path="data" class="form-control mask_date" />
+							<form:input data-provide="datepicker" data-date-format="dd/mm/yyyy" type="text" path="data" class="form-control mask_date" />
 						</div>
 					</div>
 					
