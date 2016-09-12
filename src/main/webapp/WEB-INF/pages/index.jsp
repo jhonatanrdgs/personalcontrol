@@ -11,7 +11,7 @@
 				<input type="hidden" value="${anoAtual}" id="ano" />
 				
 				<div class="form-group" style="width: 50%; margin: 0 auto; text-align: center;">
-					<p class="bg-primary">Resumo Mês atual</p>
+					<p id="resumoMes" class="bg-primary">Resumo Mês atual</p>
 					<div id="resumo" >
 						<p>
 							<span class="col1">Rendimentos no Período</span>

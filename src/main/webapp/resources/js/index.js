@@ -5,6 +5,11 @@ $(document).ready(function () {
 	chamadaAjaxSemData("relatorios/rendimentosGastos", montaGraficoRendimentosGastos);
 	chamadaAjaxSemData("relatorios/percentual12Meses", montaGraficoPercentual12Meses)
 	chamadaAjax("relatorios/resumo", montaResumo);
+	
+	$("#resumoMes").click(function() {
+        $('#resumo').slideToggle("fast");
+    });
+	
 });
 
 

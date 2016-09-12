@@ -25,6 +25,10 @@ $(document).ready(function () {
 		reload();
 	});
 	
+	$("#resumoMes").click(function() {
+        $('#resumo').slideToggle("fast");
+    });
+	
 });
 
 function reload() {

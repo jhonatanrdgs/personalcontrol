@@ -56,7 +56,7 @@
 		<br/>
 		
 		<div class="form-group" style="width: 50%;margin:0 auto;text-align: center;">
-			<p class="bg-primary">Resumo</p>
+			<p id="resumoMes" class="bg-primary">Resumo</p>
 			<div id="resumo" >
 						<p>
 							<span class="col1">Rendimentos no Período</span>
