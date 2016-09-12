@@ -24,10 +24,7 @@ public class DespesaEndpoint {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/listarUltimasDespesas", headers="Accept=application/json")
 	public @ResponseBody List<Despesa> listarDespesas() {
-		final Despesa despesa = new Despesa();//TODO construtor mais elegante
-		despesa.setDescricao("");
-		despesa.setCategoria(new Categoria());
-		despesa.setMetodoPagamento(new MetodoPagamento());
+		final Despesa despesa = new Despesa("", new Categoria(), new MetodoPagamento());
 		return despesaService.pesquisarUltimasDespesas(despesa); //TODO parametros
 	}
 	

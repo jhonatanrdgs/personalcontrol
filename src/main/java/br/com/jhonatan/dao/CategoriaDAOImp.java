@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.entidades.Categoria;
 
 @Repository
@@ -22,10 +21,4 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 		return criarQueryResultList(Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(int mes, int ano) {
-		return (List<RelatorioDespesaPorCategoriaDTO>) criarQueryResultListDTO(Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, mes, ano);
-	}
-	
 }

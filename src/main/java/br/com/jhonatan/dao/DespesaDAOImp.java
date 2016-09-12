@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
+import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
+import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 @Repository
@@ -76,6 +78,18 @@ public class DespesaDAOImp extends GenericDAO<Despesa> implements DespesaDAO {
 	@Override
 	public Double pesquisarDespessasFixasPorMetodoPagamento(Long idMetodoPagamento) {
 		return criarQuerySingleResultSomatorio(Despesa.CONSULTAR_DESPESAS_FIXAS_POR_METODO_PAGAMENTO, idMetodoPagamento);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(int mes, int ano) {
+		return (List<RelatorioDespesaPorCategoriaDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS, mes, ano);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(int mes, int ano) {
+		return (List<RelatorioGastosPorMetodoPagamentoDTO>) criarQueryResultListDTO(Despesa.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO, mes, ano);
 	}
 	
 }

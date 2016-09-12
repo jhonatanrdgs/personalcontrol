@@ -23,15 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 	@NamedQuery(name=Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, 
 			query="from Categoria c where ativo = ?1 and (upper(descricao) like concat('%', upper(?2), '%') or ?2 is null)"),
 	
-	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true order by descricao"),
-	
-	@NamedQuery(name=Categoria.CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS,//TODO query na entidade errada
-		query="select new br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO(c.descricao, sum(p.valorParcela)) from ParcelaDespesa p"
-				+ " join p.despesa d"
-				+ " join d.categoria c"
-				+ " where extract(month from p.dataParcela) = ?1 and extract(year from p.dataParcela) = ?2"
-				+ " and d.fixa = false"
-				+ " group by c.descricao")
+	@NamedQuery(name=Categoria.CONSULTAR_TODAS_CATEGORIAS_ATIVAS, query="from Categoria c where ativo = true order by descricao")
 	
 })
 
@@ -42,7 +34,7 @@ public class Categoria extends AbstractBaseEntity implements Serializable {
 	private static final long serialVersionUID = 4064100564382874653L;
 	public static final String CONSULTAR_CATEGORIAS_POR_DESCRICAO = "categoria.consultarCategoriasPorDescricao";
 	public static final String CONSULTAR_TODAS_CATEGORIAS_ATIVAS = "categoria.consultarTodasCategoriasAtivas";
-	public static final String CONSULTAR_DESPESAS_POR_CATEGORIAS_ATIVAS = "categoria.consultarDespesasPorCategoria";
+	
 	
 	public Categoria() {
 		this.ativo = true;

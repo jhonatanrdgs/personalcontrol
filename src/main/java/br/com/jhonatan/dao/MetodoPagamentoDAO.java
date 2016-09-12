@@ -17,6 +17,4 @@ public interface MetodoPagamentoDAO {
 
 	public List<MetodoPagamento> pesquisarTodosMetodosPagamentoAtivos();
 
-	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(int mes, int ano);
-	
 }

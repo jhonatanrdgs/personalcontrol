@@ -7,10 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.jhonatan.dao.CategoriaDAO;
 import br.com.jhonatan.dao.DespesaCarroDAO;
 import br.com.jhonatan.dao.DespesaDAO;
-import br.com.jhonatan.dao.MetodoPagamentoDAO;
 import br.com.jhonatan.dao.RendimentoDAO;
 import br.com.jhonatan.dto.FormRelatorioDTO;
 import br.com.jhonatan.dto.ItemDespesaCarroDTO;
@@ -36,13 +34,7 @@ import br.com.jhonatan.util.NumberUtil;
 public class RelatorioServiceImp implements RelatorioService {
 	
 	@Autowired
-	private CategoriaDAO categoriaDAO;
-	
-	@Autowired
 	private DespesaDAO despesaDAO;
-	
-	@Autowired
-	private MetodoPagamentoDAO metodoPagamentoDAO;
 	
 	@Autowired
 	private RendimentoDAO rendimentoDAO;
@@ -62,12 +54,12 @@ public class RelatorioServiceImp implements RelatorioService {
 
 	@Override
 	public List<RelatorioDespesaPorCategoriaDTO> pesquisarDadosRelatorioDespesasPorCategoriasAtivas(int mes, int ano) {
-		return categoriaDAO.pesquisarDespesasPorCategoriasAtivas(mes, ano);
+		return despesaDAO.pesquisarDespesasPorCategoriasAtivas(mes, ano);
 	}
 
 	@Override
 	public List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDadosRelatorioGastosPorMetodoPagamento(int mes, int ano) {
-		List<RelatorioGastosPorMetodoPagamentoDTO> lista = metodoPagamentoDAO.pesquisarDespesasPorMetodoPagamentoAtivo(mes, ano);
+		List<RelatorioGastosPorMetodoPagamentoDTO> lista = despesaDAO.pesquisarDespesasPorMetodoPagamentoAtivo(mes, ano);
 		for (RelatorioGastosPorMetodoPagamentoDTO dto : lista) {
 			dto.adicionarValor(NumberUtil.zeroIfNull(despesaDAO.pesquisarDespessasFixasPorMetodoPagamento(dto.getIdMetodoPagamento())));
 		}

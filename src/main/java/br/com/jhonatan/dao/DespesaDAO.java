@@ -5,8 +5,10 @@ import java.util.List;
 
 import br.com.jhonatan.dto.RelatorioComprasNaoParceladasDTO;
 import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
+import br.com.jhonatan.dto.RelatorioDespesaPorCategoriaDTO;
 import br.com.jhonatan.dto.RelatorioGastosFixosDTO;
 import br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO;
+import br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO;
 import br.com.jhonatan.entidades.Despesa;
 
 public interface DespesaDAO {
@@ -40,5 +42,9 @@ public interface DespesaDAO {
 	Double pesquisarDespessasFixasPorMetodoPagamento(Long idMetodoPagamento);
 
 	List<Despesa> pesquisarUltimasDespesas(Despesa despesa);
+	
+	List<RelatorioDespesaPorCategoriaDTO> pesquisarDespesasPorCategoriasAtivas(int mes, int ano);
+	
+	List<RelatorioGastosPorMetodoPagamentoDTO> pesquisarDespesasPorMetodoPagamentoAtivo(int mes, int ano);
 
 }

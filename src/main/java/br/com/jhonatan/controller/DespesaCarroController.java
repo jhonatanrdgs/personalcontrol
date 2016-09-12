@@ -1,7 +1,6 @@
 package br.com.jhonatan.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +58,7 @@ public class DespesaCarroController extends AbstractCrudController<DespesaCarro>
 	
 	@RequestMapping(value="/despesaCarro/newDespesaCarro")
 	public String create(final ModelMap map) {
-		final DespesaCarro despesaCarro = new DespesaCarro();//TODO construtor mais elegante
-		despesaCarro.setData(new Date());
+		final DespesaCarro despesaCarro = new DespesaCarro();
 		map.addAttribute(Constantes.FORM, despesaCarro);
 		montarCombos(map);
 		itens = new ArrayList<ItemDespesaCarro>();
@@ -70,9 +68,7 @@ public class DespesaCarroController extends AbstractCrudController<DespesaCarro>
 	@RequestMapping(value="/despesaCarro/add", headers="Accept=application/json;charset=UTF-8", produces="text/plain;charset=UTF-8")
 	public @ResponseBody List<ItemDespesaCarro> add(@RequestParam(value="descricao") 
 		final String descricao, @RequestParam(value="valor") final Double valor) {
-		final ItemDespesaCarro item = new ItemDespesaCarro();//TODO construtor mais elegante
-		item.setDescricao(descricao);
-		item.setValorItem(valor);
+		final ItemDespesaCarro item = new ItemDespesaCarro(descricao, valor);
 		itens.add(item);
 		return itens;
 	}

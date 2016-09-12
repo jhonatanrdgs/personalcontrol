@@ -26,14 +26,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 	@NamedQuery(name=MetodoPagamento.CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO,
 			query="from MetodoPagamento mp where ativo = ?1 and (upper(mp.descricao) like concat('%', upper(?2), '%') or ?2 is null)"),
 			
-	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true order by descricao"),
+	@NamedQuery(name=MetodoPagamento.CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS, query="from MetodoPagamento mp where ativo = true order by descricao")
 	
-	@NamedQuery(name=MetodoPagamento.CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO,//TODO query na entidade errada
-			query="select new br.com.jhonatan.dto.RelatorioGastosPorMetodoPagamentoDTO(mp.id, mp.descricao, sum(p.valorParcela)) from ParcelaDespesa p"
-					+ " join p.despesa d"
-					+ " join d.metodoPagamento mp"
-					+ " where extract(month from p.dataParcela) = ?1 and extract(year from p.dataParcela) = ?2"
-					+ " group by mp.id, mp.descricao")
+	
 })
 
 @Entity
@@ -44,7 +39,6 @@ public class MetodoPagamento extends AbstractBaseEntity implements Serializable 
 
 	public static final String CONSULTAR_METODOS_PAGAMENTO_POR_DESCRICAO = "metodoPagamento.consultarMetodosPagamentoPorDescricao";
 	public static final String CONSULTAR_TODOS_METODOS_PAGAMENTO_ATIVOS = "metodoPagamento.consultarTodosMetodosPagamentoAtivos";
-	public static final String CONSULTAR_DESPESAS_POR_METODO_PAGAMENTO_ATIVO = "metodoPagamento.consultarDespesasPorMetodoPagamentoAtivo";
 	
 	public MetodoPagamento() {
 		this.ativo = true;

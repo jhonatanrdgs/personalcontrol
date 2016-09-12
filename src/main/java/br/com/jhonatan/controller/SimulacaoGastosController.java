@@ -1,7 +1,6 @@
 package br.com.jhonatan.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +33,7 @@ public class SimulacaoGastosController {
 	public String iniciar(final ModelMap map) {
 		dadosLinha = new ArrayList<RelatorioLinhaSimuladorRendimentoGastoDTO>();
 		dadosBarra = new ArrayList<RelatorioBarraSimuladorRendimentoGastoDTO>();
-		final Despesa despesa = new Despesa();//TODO construtor mais elegante
-		despesa.setData(new Date());
-		despesa.setDescricao("Despesa Simulada");
-		despesa.setTotalParcelas(1);
+		final Despesa despesa = new Despesa("Despesa Simulada");
 		map.addAttribute("simuladorForm", despesa);
 		return PAGE;
 	}

@@ -105,6 +105,7 @@ public class DespesaCarro implements Serializable {
 	
 	public DespesaCarro() {
 		this.itemDespesaCarros = new ArrayList<ItemDespesaCarro>();
+		this.data = new Date();
 	}
 	
 	public Long getId() {

@@ -18,6 +18,14 @@ import javax.persistence.Table;
 public class ItemDespesaCarro extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 4829389151584710492L;
+	
+	@Deprecated
+	public ItemDespesaCarro() {}
+	
+	public ItemDespesaCarro(String descricao, Double valorItem) {
+		this.descricao = descricao;
+		this.valorItem = valorItem;
+	}
 
 	@Id
 	@GeneratedValue(generator="item_despesa_carro_seq", strategy=GenerationType.SEQUENCE)

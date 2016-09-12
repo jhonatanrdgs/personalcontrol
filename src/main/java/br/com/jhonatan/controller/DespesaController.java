@@ -59,9 +59,7 @@ public class DespesaController extends AbstractCrudController<Despesa> {
 	
 	@RequestMapping(value="/despesa/newDespesa")
 	public String create(final ModelMap map) {
-		final Despesa despesa = new Despesa();//TODO construtor mais elegante
-		despesa.setData(new Date());
-		despesa.setTotalParcelas(1);
+		final Despesa despesa = new Despesa();
 		map.addAttribute(Constantes.FORM, despesa);
 		montarCombos(map);
 		return EDIT_PAGE;
