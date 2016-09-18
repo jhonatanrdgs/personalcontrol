@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 })
 
 @Entity
-@Table(name = "metodo_pagamento", schema = "personal_control")
+@Table(name = "metodo_pagamento")
 public class MetodoPagamento extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 5099386082815919390L;
@@ -47,7 +47,7 @@ public class MetodoPagamento extends AbstractBaseEntity implements Serializable 
 	@Id
 	@GeneratedValue(generator="metodo_pagamento_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="metodo_pagamento_seq", sequenceName="metodo_pagamento_id_metodo_pagamento_seq", schema="personal_control")
-	@Column(name = "id_metodo_pagamento", unique = true, nullable = false, columnDefinition="bigserial")
+	@Column(name = "id_metodo_pagamento", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "descricao", nullable = false, length = 100)

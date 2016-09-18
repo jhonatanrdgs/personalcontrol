@@ -31,7 +31,7 @@ import br.com.jhonatan.util.Constantes;
 })
 
 @Entity
-@Table(name = "rendimento", schema = "personal_control")
+@Table(name = "rendimento")
 public class Rendimento extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -3336005467530312440L;
@@ -43,7 +43,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(generator="rendimento_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="rendimento_seq", sequenceName="rendimento_id_rendimento_seq", schema="personal_control")
-	@Column(name = "id_rendimento", unique = true, nullable = false, columnDefinition="bigserial")
+	@Column(name = "id_rendimento", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name="nome_pessoa", length=100, nullable=false)
@@ -59,7 +59,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern=Constantes.FORMATO_DATA_PT_BR)
-	@Column(name="dt_fim", nullable=true)
+	@Column(name="dt_fim")
 	private Date dataFim;
 	
 	public Long getId() {

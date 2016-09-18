@@ -39,7 +39,7 @@ public class SimulacaoGastosController {
 	}
 	
 	@RequestMapping(value="/simulacao/simular")
-	public String simular(@ModelAttribute("simuladorForm") final Despesa despesa, final ModelMap map) {
+	public String simular(@ModelAttribute("simuladorForm") final Despesa despesa) {
 		if (despesa != null && despesa.getData() != null && despesa.getValorTotal() != null) {
 			dadosLinha = relatorioService.montarRelatorioLinhaSimulacaoGastos(despesa);
 			dadosBarra = relatorioService.montarRelatorioBarraSimulacaoGastos(despesa);

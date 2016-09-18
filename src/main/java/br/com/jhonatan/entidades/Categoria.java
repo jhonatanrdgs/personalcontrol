@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 })
 
 @Entity
-@Table(name = "categoria", schema = "personal_control")
+@Table(name = "categoria")
 public class Categoria extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 4064100564382874653L;
@@ -43,7 +43,7 @@ public class Categoria extends AbstractBaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(generator="categoria_sequence", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="categoria_sequence", sequenceName="categoria_id_categoria_seq", schema="personal_control")
-	@Column(name = "id_categoria", unique = true, nullable = false, columnDefinition="bigserial")
+	@Column(name = "id_categoria", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "descricao", nullable = false, length = 100)

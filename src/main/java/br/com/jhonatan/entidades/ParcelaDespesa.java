@@ -43,7 +43,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(generator="parcela_despesa_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="parcela_despesa_seq", sequenceName="parcela_despesa_id_parcela_despesa_seq", schema="personal_control")
-	@Column(name = "id_parcela_despesa", unique = true, nullable = false, columnDefinition="bigserial")
+	@Column(name = "id_parcela_despesa", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name="numero_parcela", nullable=false)

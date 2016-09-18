@@ -10,7 +10,7 @@ import javax.persistence.Query;
 
 import br.com.jhonatan.dto.BaseDTO;
 
-public class GenericDAO<T> implements Serializable {
+class GenericDAO<T> implements Serializable {
 	private static final long serialVersionUID = 7279035949209212928L;
 	
 	@PersistenceContext
@@ -19,7 +19,7 @@ public class GenericDAO<T> implements Serializable {
 	public void salvar(final T entidade) {
 		entityManager.persist(entidade);
 	}
-	
+
 	public void atualizar(final T entidade) {
 		entityManager.merge(entidade);
 	}
@@ -29,7 +29,7 @@ public class GenericDAO<T> implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<T> criarQueryResultList(final String nQuery, final Object... params) {
+	List<T> criarQueryResultList(final String nQuery, final Object... params) {
 		final Query q = entityManager.createNamedQuery(nQuery);
 		for (int i = 0; i < params.length; i++) {
 			q.setParameter(i+1, params[i]);
@@ -38,7 +38,7 @@ public class GenericDAO<T> implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<T> criarQueryResultListWithLimit(final String nQuery, final int limit, final Object... params) {
+	List<T> criarQueryResultListWithLimit(final String nQuery, final int limit, final Object... params) {
 		final Query q = entityManager.createNamedQuery(nQuery);
 		q.setMaxResults(limit);
 		for (int i = 0; i < params.length; i++) {
@@ -48,7 +48,7 @@ public class GenericDAO<T> implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<? extends BaseDTO> criarQueryResultListDTO(final String nQuery, final Object... params) {
+	List<? extends BaseDTO> criarQueryResultListDTO(final String nQuery, final Object... params) {
 		final Query q = entityManager.createNamedQuery(nQuery);
 		for (int i = 0; i < params.length; i++) {
 			q.setParameter(i+1, params[i]);
@@ -58,7 +58,7 @@ public class GenericDAO<T> implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public T criarQuerySingleResult(final String nQuery, final Object... params) {
+	T criarQuerySingleResult(final String nQuery, final Object... params) {
 		final Query q = entityManager.createNamedQuery(nQuery);
 		for (int i = 0; i < params.length; i++) {
 			q.setParameter(i+1, params[i]);
@@ -70,7 +70,7 @@ public class GenericDAO<T> implements Serializable {
 		}
 	}
 	
-	public Double criarQuerySingleResultSomatorio(final String nQuery, final Object... params) {
+	Double criarQuerySingleResultSomatorio(final String nQuery, final Object... params) {
 		final Query q = entityManager.createNamedQuery(nQuery);
 		for (int i = 0; i < params.length; i++) {
 			q.setParameter(i+1, params[i]);
@@ -86,7 +86,7 @@ public class GenericDAO<T> implements Serializable {
 		return this.entityManager.find(classe, id);
 	}
 	
-	public EntityManager getEntityManager() {
+	EntityManager getEntityManager() {
 		return this.entityManager;
 	}
 	

@@ -51,7 +51,7 @@ import br.com.jhonatan.util.NumberUtil;
 })
 
 @Entity
-@Table(name = "despesa_carro", schema = "personal_control")
+@Table(name = "despesa_carro")
 public class DespesaCarro implements Serializable {
 
 	private static final long serialVersionUID = 598761704442941495L;
@@ -63,7 +63,7 @@ public class DespesaCarro implements Serializable {
 	@Id
 	@GeneratedValue(generator="despesa_carro_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="despesa_carro_seq", sequenceName="despesa_carro_id_despesa_carro_seq", schema="personal_control")
-	@Column(name = "id_despesa_carro", unique = true, nullable = false, columnDefinition="bigserial")
+	@Column(name = "id_despesa_carro", unique = true, nullable = false)
 	private Long id;
 
 	@Column(name = "km", nullable = false, length = 6)

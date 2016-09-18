@@ -83,19 +83,6 @@ import br.com.jhonatan.util.Constantes;
 			+ " and extract(month from d.data) = ?1 and extract(year from d.data) = ?2"
 			+ " group by d.descricao"),
 
-	@NamedQuery(name=Despesa.CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS,
-	query="select sum(p.valorParcela) "
-			+ " from Despesa d"
-			+ " join d.parcelas p"
-			+ " where p.dataParcela between ?1 and ?2"),
-
-	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM,
-	query="select sum(pd.valorParcela) as valor from ParcelaDespesa pd "
-			+ " join pd.despesa d"
-			+ " where d.fixa = false"
-			+ " and pd.dataParcela between ?1 and ?2"),
-
-
 	@NamedQuery(name=Despesa.CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF,
 	query="select new br.com.jhonatan.dto.RelatorioGastosMensaisPdfDTO(d.descricao, d.valorTotal, p.valorParcela, p.numeroParcela, d.totalParcelas, d.categoria.descricao) "
 			+ " from Despesa d"
@@ -146,8 +133,6 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_VARIAVEIS_MES = "despesa.consultarValorTotalDespesasVariaveisMes";
 	public static final String CONSULTAR_SOMATORIO_DESPESAS_FIXAS = "despesa.consultarDespesasFixasMesAno";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_MES = "despesa.consultarDespesasVariaveisMes";
-	public static final String CONSULTAR_VALOR_TOTAL_DESPESAS_MES_RELATORIO_RENDIMENTOS = "despesa.consultarValorTotalDespesasMesRelatorioRendimentos";
-	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_SUM = "despesa.consultarDespesasVariaveisPeriodoSum";
 	public static final String CONSULTAR_DESPESAS_VARIAVEIS_PERIODO_RELATORIO_PDF = "despesa.consultarDespesasPeriodo";
 	public static final String CONSULTAR_DESPESAS_COM_PARCELAS_PROXIMO_MES_EM_DIANTE = "despesa.consultarDespesasComParcelasProximoMesEmDiante";
 	public static final String CONSULTAR_DESPESAS_FIXAS_POR_METODO_PAGAMENTO = "despesa.consultarDespesasFixasPorMetodoPagamento";
@@ -174,7 +159,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(generator="despesa_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="despesa_seq", sequenceName="despesa_id_despesa_seq", schema="personal_control")
-	@Column(name = "id_despesa", unique = true, nullable = false, columnDefinition="bigserial")
+	@Column(name = "id_despesa", unique = true, nullable = false)
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
