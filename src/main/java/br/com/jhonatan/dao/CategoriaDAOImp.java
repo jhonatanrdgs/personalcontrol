@@ -12,7 +12,7 @@ public class CategoriaDAOImp extends GenericDAO<Categoria> implements CategoriaD
 	private static final long serialVersionUID = 974619289469912497L;
 
 	@Override
-	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa) {
+	public List<Categoria> pesquisarCategorias(final String descricao, final boolean ativa) {
 		return criarQueryResultList(Categoria.CONSULTAR_CATEGORIAS_POR_DESCRICAO, ativa, descricao);
 	}
 

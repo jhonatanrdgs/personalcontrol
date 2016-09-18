@@ -61,7 +61,7 @@ public class Categoria extends AbstractBaseEntity implements Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -69,7 +69,7 @@ public class Categoria extends AbstractBaseEntity implements Serializable {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
+	public void setDescricao(final String descricao) {
 		this.descricao = descricao;
 	}
 	
@@ -77,7 +77,7 @@ public class Categoria extends AbstractBaseEntity implements Serializable {
 		return ativo;
 	}
 
-	public void setAtivo(boolean ativo) {
+	public void setAtivo(final boolean ativo) {
 		this.ativo = ativo;
 	}
 
@@ -85,7 +85,7 @@ public class Categoria extends AbstractBaseEntity implements Serializable {
 		return despesas;
 	}
 
-	public void setDespesas(Set<Despesa> despesas) {
+	public void setDespesas(final Set<Despesa> despesas) {
 		this.despesas = despesas;
 	}
 	

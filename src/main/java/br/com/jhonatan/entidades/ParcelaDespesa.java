@@ -65,7 +65,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 	
 	public ParcelaDespesa() {}
 	
-	public ParcelaDespesa(Date dataParcela, Despesa despesa, double valorParcela, Integer numeroParcela) {
+	public ParcelaDespesa(final Date dataParcela, final Despesa despesa, final double valorParcela, final Integer numeroParcela) {
 		this.dataParcela = dataParcela;
 		this.despesa = despesa;
 		this.valorParcela = valorParcela;
@@ -76,7 +76,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 		return numeroParcela;
 	}
 
-	public void setNumeroParcela(Integer numeroParcela) {
+	public void setNumeroParcela(final Integer numeroParcela) {
 		this.numeroParcela = numeroParcela;
 	}
 
@@ -84,7 +84,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 		return dataParcela;
 	}
 
-	public void setDataParcela(Date dataParcela) {
+	public void setDataParcela(final Date dataParcela) {
 		this.dataParcela = dataParcela;
 	}
 
@@ -92,7 +92,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 		return despesa;
 	}
 
-	public void setDespesa(Despesa despesa) {
+	public void setDespesa(final Despesa despesa) {
 		this.despesa = despesa;
 	}
 
@@ -104,7 +104,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 		return valorParcela;
 	}
 
-	public void setValorParcela(Double valorParcela) {
+	public void setValorParcela(final Double valorParcela) {
 		this.valorParcela = valorParcela;
 	}
 
@@ -112,7 +112,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 		return paga;
 	}
 
-	public void setPaga(boolean paga) {
+	public void setPaga(final boolean paga) {
 		this.paga = paga;
 	}
 	

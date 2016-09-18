@@ -6,17 +6,17 @@ public class RelatorioComprasParceladasDTO extends BaseDTO implements Serializab
 	
 	private static final long serialVersionUID = 8792827664179535718L;
 	
-	private String descricaoDespesa;
-	private Double valor;
+	private final String descricaoDespesa;
+	private final Double valor;
 	private Integer nrParcela;
 	private Integer totalParcelas;
 	
-	public RelatorioComprasParceladasDTO(String descricaoDespesa, Double valor) {
+	public RelatorioComprasParceladasDTO(final String descricaoDespesa, final Double valor) {
 		this.descricaoDespesa = descricaoDespesa;
 		this.valor = valor;
 	}
 	
-	public RelatorioComprasParceladasDTO(String descricaoDespesa, Double valor, Integer nrParcela, Integer totalParcelas) {
+	public RelatorioComprasParceladasDTO(final String descricaoDespesa, final Double valor, final Integer nrParcela, final Integer totalParcelas) {
 		this.descricaoDespesa = descricaoDespesa;
 		this.valor = valor;
 		this.nrParcela = nrParcela;

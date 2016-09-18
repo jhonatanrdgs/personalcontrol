@@ -21,19 +21,19 @@ public class DespesaDTO extends BaseDTO {
 	public String getDescricao() {
 		return descricao;
 	}
-	public void setDescricao(String descricao) {
+	public void setDescricao(final String descricao) {
 		this.descricao = descricao;
 	}
 	public Long getCategoriaId() {
 		return categoriaId;
 	}
-	public void setCategoriaId(Long categoriaId) {
+	public void setCategoriaId(final Long categoriaId) {
 		this.categoriaId = categoriaId;
 	}
 	public Long getMetodoPagamentoId() {
 		return metodoPagamentoId;
 	}
-	public void setMetodoPagamentoId(Long metodoPagamentoId) {
+	public void setMetodoPagamentoId(final Long metodoPagamentoId) {
 		this.metodoPagamentoId = metodoPagamentoId;
 	}
 	public Date getInicio() {
@@ -42,17 +42,17 @@ public class DespesaDTO extends BaseDTO {
 	
 	public Date getInicioFormatado() {
 		if (inicio == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
+			final SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				inicio = sdf.parse("01/01/1970");
-			} catch (ParseException e) {
+			} catch (final ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		return inicio;
 	}
 	
-	public void setInicio(Date inicio) {
+	public void setInicio(final Date inicio) {
 		this.inicio = inicio;
 	}
 	
@@ -62,16 +62,16 @@ public class DespesaDTO extends BaseDTO {
 	
 	public Date getFimFormatado() {
 		if (fim == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
+			final SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				fim = sdf.parse("01/01/3000");
-			} catch (ParseException e) {
+			} catch (final ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		return fim;
 	}
-	public void setFim(Date fim) {
+	public void setFim(final Date fim) {
 		this.fim = fim;
 	}
 	

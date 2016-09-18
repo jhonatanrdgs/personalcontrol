@@ -8,7 +8,7 @@ public class RelatorioPercentualComprometido12MesesDTO {
 	
 	public RelatorioPercentualComprometido12MesesDTO() {}
 	
-	public RelatorioPercentualComprometido12MesesDTO(int mes, int ano, Double percentual) {
+	public RelatorioPercentualComprometido12MesesDTO(final int mes, final int ano, final Double percentual) {
 		this.mes = mes;
 		this.ano = ano;
 		this.percentual = percentual;

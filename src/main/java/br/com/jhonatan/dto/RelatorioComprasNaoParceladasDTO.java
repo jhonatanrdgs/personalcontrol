@@ -6,10 +6,10 @@ public class RelatorioComprasNaoParceladasDTO extends BaseDTO implements Seriali
 
 	private static final long serialVersionUID = -79530805434613657L;
 	
-	private String descricao;
-	private Double valor;
+	private final String descricao;
+	private final Double valor;
 	
-	public RelatorioComprasNaoParceladasDTO(String descricao, Double valor) {
+	public RelatorioComprasNaoParceladasDTO(final String descricao, final Double valor) {
 		this.descricao = descricao;
 		this.valor = valor;
 	}

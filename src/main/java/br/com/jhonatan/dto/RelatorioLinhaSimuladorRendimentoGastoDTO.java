@@ -2,14 +2,14 @@ package br.com.jhonatan.dto;
 
 public class RelatorioLinhaSimuladorRendimentoGastoDTO {
 
-	private int mes;
-	private int ano;
-	private Double rendimentos;
-	private Double despesasNaoSimuladas;
-	private Double despesasSimuladas;
+	private final int mes;
+	private final int ano;
+	private final Double rendimentos;
+	private final Double despesasNaoSimuladas;
+	private final Double despesasSimuladas;
 
-	public RelatorioLinhaSimuladorRendimentoGastoDTO(Double valorDespesasNaoSimuladas, Double valorDespesasSimuladas,
-			Double rendimentos, int mes, int ano) {
+	public RelatorioLinhaSimuladorRendimentoGastoDTO(final Double valorDespesasNaoSimuladas, final Double valorDespesasSimuladas,
+													 final Double rendimentos, final int mes, final int ano) {
 		despesasNaoSimuladas = valorDespesasNaoSimuladas;
 		despesasSimuladas = valorDespesasSimuladas;
 		this.rendimentos = rendimentos;

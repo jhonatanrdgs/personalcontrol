@@ -6,7 +6,7 @@ import br.com.jhonatan.entidades.Categoria;
 import br.com.jhonatan.entidades.MetodoPagamento;
 import br.com.jhonatan.entidades.Rendimento;
 
-interface CadastrosGeraisService {
+public interface CadastrosGeraisService {
 	
 	/**
 	 * Salva ou atualiza uma categoria no banco de dados

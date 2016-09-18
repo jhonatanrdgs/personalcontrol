@@ -133,7 +133,7 @@ import br.com.jhonatan.util.Constantes;
 })
 
 @Entity
-@Table(name = "despesa", schema = "personal_control")
+@Table(name = "despesa")
 public class Despesa extends AbstractBaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 8987183170531571355L;
@@ -159,14 +159,14 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		this.totalParcelas = 1;
 	}
 	
-	public Despesa(String descricao, Categoria categoria, MetodoPagamento metodoPagamento) {
+	public Despesa(final String descricao, final Categoria categoria, final MetodoPagamento metodoPagamento) {
 		this();
 		this.descricao = descricao;
 		this.categoria = categoria;
 		this.metodoPagamento = metodoPagamento;
 	}
 	
-	public Despesa(String descricao) {
+	public Despesa(final String descricao) {
 		this();
 		this.descricao = descricao;
 	}
@@ -223,7 +223,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -231,7 +231,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(final Categoria categoria) {
 		this.categoria = categoria;
 	}
 
@@ -239,7 +239,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return metodoPagamento;
 	}
 
-	public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
+	public void setMetodoPagamento(final MetodoPagamento metodoPagamento) {
 		this.metodoPagamento = metodoPagamento;
 	}
 
@@ -247,7 +247,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(final Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -255,7 +255,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return valorTotal;
 	}
 
-	public void setValorTotal(Double valorTotal) {
+	public void setValorTotal(final Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
@@ -263,7 +263,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
+	public void setDescricao(final String descricao) {
 		this.descricao = descricao;
 	}
 
@@ -271,7 +271,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(final Date data) {
 		this.data = data;
 	}
 
@@ -279,7 +279,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return totalParcelas;
 	}
 
-	public void setTotalParcelas(Integer totalParcelas) {
+	public void setTotalParcelas(final Integer totalParcelas) {
 		this.totalParcelas = totalParcelas;
 	}
 
@@ -287,7 +287,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return parcelas;
 	}
 
-	public void setParcelas(Set<ParcelaDespesa> parcelas) {
+	public void setParcelas(final Set<ParcelaDespesa> parcelas) {
 		this.parcelas = parcelas;
 	}
 
@@ -295,24 +295,24 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 		return fixa;
 	}
 
-	public void setFixa(boolean fixa) {
+	public void setFixa(final boolean fixa) {
 		this.fixa = fixa;
 	}
 
 	@JsonIgnore
 	public Date getInicioFormatado() {
 		if (inicio == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
+			final SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				inicio = sdf.parse("01/01/1970");
-			} catch (ParseException e) {
+			} catch (final ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		return inicio;
 	}
 
-	public void setInicio(Date inicio) {
+	public void setInicio(final Date inicio) {
 		this.inicio = inicio;
 	}
 
@@ -320,17 +320,17 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	@JsonIgnore
 	public Date getFimFormatado() {
 		if (fim == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
+			final SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				fim = sdf.parse("01/01/3000");
-			} catch (ParseException e) {
+			} catch (final ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		return fim;
 	}
 
-	public void setFim(Date fim) {
+	public void setFim(final Date fim) {
 		this.fim = fim;
 	}
 

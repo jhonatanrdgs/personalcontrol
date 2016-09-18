@@ -11,8 +11,8 @@ public class ErrorHandler {
 
 	@RequestMapping(value="/error")
 	public String handleError(final HttpServletRequest request, final ModelMap map) {
-		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-		Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
+		final Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+		final Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
 		map.addAttribute("status", statusCode);
 		map.addAttribute("exception", throwable);
 		return "error";

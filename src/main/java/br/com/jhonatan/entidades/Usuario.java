@@ -65,7 +65,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -73,7 +73,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 		return nomeUsuario;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
+	public void setNomeUsuario(final String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
 
@@ -81,7 +81,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 		return login;
 	}
 
-	public void setLogin(String login) {
+	public void setLogin(final String login) {
 		this.login = login;
 	}
 
@@ -89,7 +89,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public void setSenha(final String senha) {
 		this.senha = senha;
 	}
 
@@ -97,7 +97,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 		return ativo;
 	}
 
-	public void setAtivo(boolean ativo) {
+	public void setAtivo(final boolean ativo) {
 		this.ativo = ativo;
 	}
 
@@ -105,7 +105,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 		return permissao;
 	}
 
-	public void setPermissao(String permissao) {
+	public void setPermissao(final String permissao) {
 		this.permissao = permissao;
 	}
 
@@ -113,7 +113,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 		return despesas;
 	}
 
-	public void setDespesas(Set<Despesa> despesas) {
+	public void setDespesas(final Set<Despesa> despesas) {
 		this.despesas = despesas;
 	}
 

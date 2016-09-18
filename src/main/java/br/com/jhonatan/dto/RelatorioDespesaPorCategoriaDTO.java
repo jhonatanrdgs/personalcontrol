@@ -4,7 +4,7 @@ public class RelatorioDespesaPorCategoriaDTO extends BaseDTO {
 	
 	public RelatorioDespesaPorCategoriaDTO() {}
 	
-	public RelatorioDespesaPorCategoriaDTO(String categoria, Double valorTotal) {
+	public RelatorioDespesaPorCategoriaDTO(final String categoria, final Double valorTotal) {
 		this.categoria = categoria;
 		this.valorTotal = valorTotal;
 	}

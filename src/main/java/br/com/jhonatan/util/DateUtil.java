@@ -15,58 +15,58 @@ public final class DateUtil {//Se a classe é somente utilitária e só tem mét
 	
 	private DateUtil() {}
 
-	public static Date getPrimeiroDiaMes(Date date) {
-		Calendar c = new GregorianCalendar();
+	public static Date getPrimeiroDiaMes(final Date date) {
+		final Calendar c = new GregorianCalendar();
 		c.setTime(date);
 		c.set(Calendar.DAY_OF_MONTH, 1);
 		return c.getTime();
 	}
 
-	public static Date getUltimoDiaMes(Date date) {
-		Calendar c = new GregorianCalendar();
+	public static Date getUltimoDiaMes(final Date date) {
+		final Calendar c = new GregorianCalendar();
 		c.setTime(date);
 		c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
 		return c.getTime();
 	}
 	
-	public static Date subtrairMeses(Date date, int meses) {
-		Calendar c = new GregorianCalendar();
+	public static Date subtrairMeses(final Date date, final int meses) {
+		final Calendar c = new GregorianCalendar();
 		c.setTime(date);
 		c.add(Calendar.MONTH, -meses);
 		return c.getTime();
 	}
 	
-	public static Date adicionarMeses(Date date, int meses) {
-		Calendar c = new GregorianCalendar();
+	public static Date adicionarMeses(final Date date, final int meses) {
+		final Calendar c = new GregorianCalendar();
 		c.setTime(date);
 		c.add(Calendar.MONTH, meses);
 		return c.getTime();
 	}
 	
-	public static int getMes(Date data) {
-		Calendar c = new GregorianCalendar();
+	public static int getMes(final Date data) {
+		final Calendar c = new GregorianCalendar();
 		c.setTime(data);
 		return c.get(Calendar.MONTH) + 1;
 	}
 	
-	public static int getAno(Date data) {
-		Calendar c = new GregorianCalendar();
+	public static int getAno(final Date data) {
+		final Calendar c = new GregorianCalendar();
 		c.setTime(data);
 		return c.get(Calendar.YEAR);
 	}
 	
 	public static List<String> getMeses() {
-		Locale localeBrasil = new Locale("pt", "br");
-		String[] arrayMeses = DateFormatSymbols.getInstance(localeBrasil).getMonths();
-		List<String> meses = new ArrayList<String>(Arrays.asList(arrayMeses));
+		final Locale localeBrasil = new Locale("pt", "br");
+		final String[] arrayMeses = DateFormatSymbols.getInstance(localeBrasil).getMonths();
+		final List<String> meses = new ArrayList<String>(Arrays.asList(arrayMeses));
 		meses.remove(12);//Removendo mês fantasma
 		return meses;
 	}
 
 	public static List<Integer> get5AnosAtras5anosAFrente() {
-		Calendar c = new GregorianCalendar();
-		Integer anoAtual = c.get(Calendar.YEAR);
-		Set<Integer> anos = new TreeSet<Integer>();
+		final Calendar c = new GregorianCalendar();
+		final Integer anoAtual = c.get(Calendar.YEAR);
+		final Set<Integer> anos = new TreeSet<Integer>();
 		anos.add(anoAtual);
 		for (int i = 1; i < 6; i++) {
 			anos.add(anoAtual - i);
@@ -75,16 +75,16 @@ public final class DateUtil {//Se a classe é somente utilitária e só tem mét
 		return new ArrayList<Integer>(anos);
 	}
 	
-	public static Date getPrimeiroDiaMes(Integer mes, Integer ano) {
-		Calendar c = new GregorianCalendar();
+	public static Date getPrimeiroDiaMes(final Integer mes, final Integer ano) {
+		final Calendar c = new GregorianCalendar();
 		c.set(Calendar.MONTH, mes);
 		c.set(Calendar.YEAR, ano);
 		c.set(Calendar.DAY_OF_MONTH, 1);
 		return c.getTime();
 	}
 	
-	public static Date getUltimoDiaMes(Integer mes, Integer ano) {
-		Calendar c = new GregorianCalendar();
+	public static Date getUltimoDiaMes(final Integer mes, final Integer ano) {
+		final Calendar c = new GregorianCalendar();
 		c.set(Calendar.MONTH, mes);
 		c.set(Calendar.YEAR, ano);
 		c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));

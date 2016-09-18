@@ -59,7 +59,7 @@ public interface RelatorioService {
 	 * Retorna as compras não parceladas de um determinado período
 	 * @param mes - data de inicio
 	 * @param ano - data final
-	 * @return
+	 * @return lista de despesas para o report
 	 */
 	List<RelatorioComprasNaoParceladasDTO> pesquisarDadosRelatorioGastosVariaveis(int mes, int ano);
 
@@ -67,14 +67,14 @@ public interface RelatorioService {
 	 * Retorna o resumo de gastos de um derterminado periodo
 	 * @param mes - data de inicio
 	 * @param ano - data final
-	 * @return 
+	 * @return dados do relatorio
 	 */
 	RelatorioResumoDTO pesquisarResumo(int mes, int ano);
 	
 	/**
 	 * Retorna todas as despesas de um determinado periodo
-	 * @param relatorioForm
-	 * @return
+	 * @param relatorioForm form com os dados da busca
+	 * @return dados do relatorio
 	 */
 	List<RelatorioGastosMensaisPdfDTO> pesquisarDadosRelatorioGastosMensaisPDF(FormRelatorioDTO relatorioForm);
 

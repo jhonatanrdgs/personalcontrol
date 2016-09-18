@@ -6,10 +6,10 @@ public class RelatorioGastosFixosDTO extends BaseDTO implements Serializable {
 
 	private static final long serialVersionUID = -79530805434613657L;
 	
-	private String descricao;
-	private Double valor;
+	private final String descricao;
+	private final Double valor;
 	
-	public RelatorioGastosFixosDTO(String descricao, Double valor) {
+	public RelatorioGastosFixosDTO(final String descricao, final Double valor) {
 		this.descricao = descricao;
 		this.valor = valor;
 	}

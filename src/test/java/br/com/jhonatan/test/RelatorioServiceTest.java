@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,12 +23,7 @@ public class RelatorioServiceTest {
 	private DespesaDAO despesaDAO;
 	
 	@InjectMocks
-	private RelatorioService relatorioService = new RelatorioServiceImp();
-
-	@Before
-	public void setUp() {
-		//relatorioService = new RelatorioServiceImp();
-	}
+	private final RelatorioService relatorioService = new RelatorioServiceImp();
 
 	@Test
 	public void abrirPagina() throws Exception {

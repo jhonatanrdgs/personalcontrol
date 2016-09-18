@@ -66,7 +66,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -74,7 +74,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 		return nomePessoa;
 	}
 
-	public void setNomePessoa(String nomePessoa) {
+	public void setNomePessoa(final String nomePessoa) {
 		this.nomePessoa = nomePessoa;
 	}
 
@@ -82,7 +82,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(final Double valor) {
 		this.valor = valor;
 	}
 
@@ -90,7 +90,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(final Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
@@ -98,7 +98,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 		return dataFim;
 	}
 
-	public void setDataFim(Date dataFim) {
+	public void setDataFim(final Date dataFim) {
 		this.dataFim = dataFim;
 	}
 	

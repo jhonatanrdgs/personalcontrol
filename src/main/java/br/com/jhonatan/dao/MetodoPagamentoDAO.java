@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.jhonatan.entidades.MetodoPagamento;
 
-interface MetodoPagamentoDAO {
+public interface MetodoPagamentoDAO {
 
 	void salvar(MetodoPagamento metodoPagamento);
 	

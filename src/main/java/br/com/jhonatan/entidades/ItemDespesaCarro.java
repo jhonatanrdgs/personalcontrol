@@ -22,7 +22,7 @@ public class ItemDespesaCarro extends AbstractBaseEntity implements Serializable
 	@Deprecated
 	public ItemDespesaCarro() {}
 	
-	public ItemDespesaCarro(String descricao, Double valorItem) {
+	public ItemDespesaCarro(final String descricao, final Double valorItem) {
 		this.descricao = descricao;
 		this.valorItem = valorItem;
 	}
@@ -43,7 +43,7 @@ public class ItemDespesaCarro extends AbstractBaseEntity implements Serializable
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -51,7 +51,7 @@ public class ItemDespesaCarro extends AbstractBaseEntity implements Serializable
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
+	public void setDescricao(final String descricao) {
 		this.descricao = descricao;
 	}
 
@@ -59,7 +59,7 @@ public class ItemDespesaCarro extends AbstractBaseEntity implements Serializable
 		return valorItem;
 	}
 
-	public void setValorItem(Double valorItem) {
+	public void setValorItem(final Double valorItem) {
 		this.valorItem = valorItem;
 	}
 	

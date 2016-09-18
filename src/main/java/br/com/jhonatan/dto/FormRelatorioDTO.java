@@ -9,7 +9,7 @@ public class FormRelatorioDTO extends BaseDTO {
 		return mes;
 	}
 
-	public void setMes(Integer mes) {
+	public void setMes(final Integer mes) {
 		this.mes = mes;
 	}
 
@@ -17,7 +17,7 @@ public class FormRelatorioDTO extends BaseDTO {
 		return ano;
 	}
 
-	public void setAno(Integer ano) {
+	public void setAno(final Integer ano) {
 		this.ano = ano;
 	}
 	

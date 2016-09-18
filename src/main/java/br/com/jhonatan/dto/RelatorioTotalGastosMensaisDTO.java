@@ -13,7 +13,7 @@ public class RelatorioTotalGastosMensaisDTO extends BaseDTO implements Serializa
 	
 	public RelatorioTotalGastosMensaisDTO() {}
 	
-	public RelatorioTotalGastosMensaisDTO(int mes, int ano, Double valorDespesasVariaveis) {
+	public RelatorioTotalGastosMensaisDTO(final int mes, final int ano, final Double valorDespesasVariaveis) {
 		this.mes = mes;
 		this.ano = ano;
 		this.valorDespesasVariaveis = valorDespesasVariaveis;
@@ -23,7 +23,7 @@ public class RelatorioTotalGastosMensaisDTO extends BaseDTO implements Serializa
 		return mes;
 	}
 
-	public void setMes(int mes) {
+	public void setMes(final int mes) {
 		this.mes = mes;
 	}
 	
@@ -31,7 +31,7 @@ public class RelatorioTotalGastosMensaisDTO extends BaseDTO implements Serializa
 		return ano;
 	}
 
-	public void setAno(int ano) {
+	public void setAno(final int ano) {
 		this.ano = ano;
 	}
 
@@ -39,7 +39,7 @@ public class RelatorioTotalGastosMensaisDTO extends BaseDTO implements Serializa
 		return valorDespesasVariaveis;
 	}
 
-	public void setValorDespesasVariaveis(Double valorDespesasVariaveis) {
+	public void setValorDespesasVariaveis(final Double valorDespesasVariaveis) {
 		this.valorDespesasVariaveis = valorDespesasVariaveis;
 	}
 
@@ -47,7 +47,7 @@ public class RelatorioTotalGastosMensaisDTO extends BaseDTO implements Serializa
 		return valorDespesasFixas;
 	}
 
-	public void setValorDespesasFixas(Double valorDespesasFixas) {
+	public void setValorDespesasFixas(final Double valorDespesasFixas) {
 		this.valorDespesasFixas = valorDespesasFixas;
 	}
 	
@@ -56,7 +56,7 @@ public class RelatorioTotalGastosMensaisDTO extends BaseDTO implements Serializa
 	}
 
 	@Override
-	public int compareTo(RelatorioTotalGastosMensaisDTO o) {
+	public int compareTo(final RelatorioTotalGastosMensaisDTO o) {
 		if (this.ano == o.getAno()) {
 			return ((Integer)this.mes).compareTo(o.getMes());
 		} else {

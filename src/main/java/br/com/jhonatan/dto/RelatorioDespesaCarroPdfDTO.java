@@ -8,12 +8,12 @@ import br.com.jhonatan.util.NumberUtil;
 
 public class RelatorioDespesaCarroPdfDTO extends BaseDTO {
 	
-	private String km;
-	private Date data;
-	private List<ItemDespesaCarroDTO> itensDespesaCarro;
+	private final String km;
+	private final Date data;
+	private final List<ItemDespesaCarroDTO> itensDespesaCarro;
 	
 	
-	public RelatorioDespesaCarroPdfDTO(String km, Date data) {
+	public RelatorioDespesaCarroPdfDTO(final String km, final Date data) {
 		this.km = km;
 		this.data = data;
 		this.itensDespesaCarro = new ArrayList<ItemDespesaCarroDTO>();
@@ -31,7 +31,7 @@ public class RelatorioDespesaCarroPdfDTO extends BaseDTO {
 	}
 	public Double getValorTotal() {
 		Double valorTotal = 0D;
-		for (ItemDespesaCarroDTO dto : itensDespesaCarro) {
+		for (final ItemDespesaCarroDTO dto : itensDespesaCarro) {
 			valorTotal += dto.getValorItem();
 		}
 		return NumberUtil.normalizarDouble(valorTotal, 2);

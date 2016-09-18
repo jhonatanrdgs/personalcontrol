@@ -9,3 +9,5 @@ target
 .settings/*
 !.settings/.jsdtscope
 /.apt_generated/
+.idea
+personalcontrol.iml

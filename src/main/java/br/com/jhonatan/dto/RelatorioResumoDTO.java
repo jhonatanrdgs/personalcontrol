@@ -4,11 +4,11 @@ import br.com.jhonatan.util.NumberUtil;
 
 public class RelatorioResumoDTO {
 
-	private Double totalGastosVariaveisPeriodo;
-	private Double totalGastosFixos; 
-	private Double rendimentos;
+	private final Double totalGastosVariaveisPeriodo;
+	private final Double totalGastosFixos;
+	private final Double rendimentos;
 	
-	public RelatorioResumoDTO(Double totalGastosVariaveisPeriodo, Double totalGastosFixos, Double rendimentos) {
+	public RelatorioResumoDTO(final Double totalGastosVariaveisPeriodo, final Double totalGastosFixos, final Double rendimentos) {
 		this.totalGastosVariaveisPeriodo = NumberUtil.zeroIfNull(totalGastosVariaveisPeriodo);
 		this.totalGastosFixos = NumberUtil.zeroIfNull(totalGastosFixos);
 		this.rendimentos = NumberUtil.zeroIfNull(rendimentos);

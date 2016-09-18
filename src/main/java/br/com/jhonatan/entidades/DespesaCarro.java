@@ -85,7 +85,7 @@ public class DespesaCarro implements Serializable {
      * 2.2.5.3.1.3. Unidirectional with join table
 	 * A unidirectional one to many with join table is much preferred. This association is described through an @JoinTable.
 	 * 
-	 * @see http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/#entity-mapping-association-collections
+	 * @link http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/#entity-mapping-association-collections
 	 */
 	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinTable(
@@ -116,7 +116,7 @@ public class DespesaCarro implements Serializable {
 		return km;
 	}
 
-	public void setKm(String km) {
+	public void setKm(final String km) {
 		this.km = km;
 	}
 
@@ -124,7 +124,7 @@ public class DespesaCarro implements Serializable {
 		return itemDespesaCarros;
 	}
 
-	public void setItemDespesaCarros(List<ItemDespesaCarro> itemDespesaCarros) {
+	public void setItemDespesaCarros(final List<ItemDespesaCarro> itemDespesaCarros) {
 		this.itemDespesaCarros = itemDespesaCarros;
 	}
 
@@ -132,14 +132,14 @@ public class DespesaCarro implements Serializable {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(final Date data) {
 		this.data = data;
 	}
 	
 	@Transient
 	public Double getValorTotal() {
 		Double valorTotal = 0D;
-		for (ItemDespesaCarro item : this.itemDespesaCarros) {
+		for (final ItemDespesaCarro item : this.itemDespesaCarros) {
 			valorTotal += item.getValorItem();
 		}
 		return NumberUtil.normalizarDouble(valorTotal, 2);
@@ -147,33 +147,33 @@ public class DespesaCarro implements Serializable {
 	
 	public Date getInicioFormatado() {
 		if (inicio == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
+			final SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				inicio = sdf.parse("01/01/1970");
-			} catch (ParseException e) {
+			} catch (final ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		return inicio;
 	}
 
-	public void setInicio(Date inicio) {
+	public void setInicio(final Date inicio) {
 		this.inicio = inicio;
 	}
 
 	public Date getFimFormatado() {
 		if (fim == null) {
-			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
+			final SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMATO_DATA_PT_BR);
 			try {
 				fim = sdf.parse("01/01/3000");
-			} catch (ParseException e) {
+			} catch (final ParseException e) {
 				e.printStackTrace();
 			}
 		}
 		return fim;
 	}
 	
-	public void setFim(Date fim) {
+	public void setFim(final Date fim) {
 		this.fim = fim;
 	}
 	

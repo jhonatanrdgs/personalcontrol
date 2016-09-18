@@ -12,7 +12,7 @@ public class DespesaCarroDAOImp extends GenericDAO<DespesaCarro> implements Desp
 	private static final long serialVersionUID = 7148714862726850718L;
 
 	@Override
-	public List<DespesaCarro> pesquisarDespesasCarro(DespesaCarro despesaCarro) {
+	public List<DespesaCarro> pesquisarDespesasCarro(final DespesaCarro despesaCarro) {
 		return criarQueryResultList(DespesaCarro.CONSULTAR_DESPESA_CARRO_PERIODO, despesaCarro.getInicioFormatado(), despesaCarro.getFimFormatado());
 	}
 
@@ -22,7 +22,7 @@ public class DespesaCarroDAOImp extends GenericDAO<DespesaCarro> implements Desp
 	}
 
 	@Override
-	public DespesaCarro findByIdFetched(Long id) {
+	public DespesaCarro findByIdFetched(final Long id) {
 		return criarQuerySingleResult(DespesaCarro.CONSULTAR_DESPESA_CARRO_POR_ID_FETCHED, id);
 	}
 	

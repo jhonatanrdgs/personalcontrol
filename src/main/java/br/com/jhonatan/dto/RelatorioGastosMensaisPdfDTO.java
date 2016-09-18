@@ -2,15 +2,15 @@ package br.com.jhonatan.dto;
 
 public class RelatorioGastosMensaisPdfDTO extends BaseDTO {
 	
-	private String nomeDespesa;
-	private Double valorTotalDespesa;
-	private Double valorParcela;
-	private Integer numeroParcela;
-	private Integer totalParcelas;
-	private String nomeCategoria;
+	private final String nomeDespesa;
+	private final Double valorTotalDespesa;
+	private final Double valorParcela;
+	private final Integer numeroParcela;
+	private final Integer totalParcelas;
+	private final String nomeCategoria;
 	
-	public RelatorioGastosMensaisPdfDTO(String nomeDespesa, Double valorTotalDespesa, Double valorParcela, 
-			Integer numeroParcela, Integer totalParcelas, String nomeCategoria) {
+	public RelatorioGastosMensaisPdfDTO(final String nomeDespesa, final Double valorTotalDespesa, final Double valorParcela,
+										final Integer numeroParcela, final Integer totalParcelas, final String nomeCategoria) {
 		
 		this.nomeDespesa = nomeDespesa;
 		this.valorTotalDespesa = valorTotalDespesa;

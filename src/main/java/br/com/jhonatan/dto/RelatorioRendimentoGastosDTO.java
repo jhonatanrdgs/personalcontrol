@@ -13,13 +13,13 @@ public class RelatorioRendimentoGastosDTO extends BaseDTO implements Serializabl
 	
 	public RelatorioRendimentoGastosDTO() {}
 	
-	public RelatorioRendimentoGastosDTO(int mes, int ano, Double despesas) {
+	public RelatorioRendimentoGastosDTO(final int mes, final int ano, final Double despesas) {
 		this.mes = mes;
 		this.ano = ano;
 		this.despesas = despesas;
 	}
 	
-	public RelatorioRendimentoGastosDTO(int mes, int ano, Double despesas, Double rendimentos) {
+	public RelatorioRendimentoGastosDTO(final int mes, final int ano, final Double despesas, final Double rendimentos) {
 		this.mes = mes;
 		this.ano = ano;
 		this.despesas = despesas;
@@ -43,7 +43,7 @@ public class RelatorioRendimentoGastosDTO extends BaseDTO implements Serializabl
 	}
 
 	@Override
-	public int compareTo(RelatorioRendimentoGastosDTO o) {
+	public int compareTo(final RelatorioRendimentoGastosDTO o) {
 		if (this.ano == o.getAno()) {
 			return ((Integer)this.mes).compareTo(o.getMes());
 		} else {

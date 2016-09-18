@@ -58,7 +58,7 @@ public class RelatorioPDFController {
 		
 		try {
 			gerarPDF(response, list, parametros, "gastosMensais");
-		} catch (Exception exception) {
+		} catch (final Exception exception) {
 			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + exception);
 		}
 		montarParametrosIniciais(map);
@@ -72,7 +72,7 @@ public class RelatorioPDFController {
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		try {
 			gerarPDF(response, list, parametros, "despesasCarro");
-		} catch (Exception exception) {
+		} catch (final Exception exception) {
 			MensagemUtil.adicionaMensagemErro(map, "Erro ao gerar o PDF " + exception);
 		}
 		montarParametrosIniciais(map);

@@ -13,8 +13,8 @@ public class UsuarioServiceImp implements UsuarioService {
 	private UsuarioDAO usuarioDAO;
 	
 	@Override
-	public Usuario logar(String user, String pw) {
-		Usuario usuario = usuarioDAO.pesquisarUsuarioPorLoginSenha(user, pw);
+	public Usuario logar(final String user, final String pw) {
+		final Usuario usuario = usuarioDAO.pesquisarUsuarioPorLoginSenha(user, pw);
 		return usuario;
 	}
 

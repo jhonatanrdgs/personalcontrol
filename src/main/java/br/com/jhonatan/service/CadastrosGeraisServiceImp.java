@@ -27,7 +27,7 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 
 	@Override
 	@Transactional
-	public void salvarOuAtualizarCategoria(Categoria categoria) {
+	public void salvarOuAtualizarCategoria(final Categoria categoria) {
 		if (categoria.getId() == null) {
 			categoriaDao.salvar(categoria);
 		} else {
@@ -36,12 +36,12 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
-	public List<Categoria> pesquisarCategorias(String descricao, boolean ativa) {
+	public List<Categoria> pesquisarCategorias(final String descricao, final boolean ativa) {
 		return categoriaDao.pesquisarCategorias(descricao, ativa);
 	}
 
 	@Override
-	public Categoria pesquisarPorId(Long id) {
+	public Categoria pesquisarPorId(final Long id) {
 		return categoriaDao.findById(Categoria.class, id);
 	}
 
@@ -52,7 +52,7 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	
 	@Override
 	@Transactional
-	public void salvarOuAtualizarMetodoPagamento(MetodoPagamento metodoPagamento) {
+	public void salvarOuAtualizarMetodoPagamento(final MetodoPagamento metodoPagamento) {
 		if (metodoPagamento.getId() == null) {
 			metodoPagamentoDao.salvar(metodoPagamento);
 		} else {
@@ -61,12 +61,12 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
-	public List<MetodoPagamento> pesquisarMetodosPagamento(String descricao, boolean ativo) {
+	public List<MetodoPagamento> pesquisarMetodosPagamento(final String descricao, final boolean ativo) {
 		return metodoPagamentoDao.pesquisarMetodosPagamento(descricao, ativo);
 	}
 
 	@Override
-	public MetodoPagamento findById(Long id) {
+	public MetodoPagamento findById(final Long id) {
 		return metodoPagamentoDao.findById(MetodoPagamento.class, id);
 	}
 
@@ -77,7 +77,7 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 
 	@Override
 	@Transactional
-	public void salvarOuAtualizarRendimento(Rendimento rendimento) {
+	public void salvarOuAtualizarRendimento(final Rendimento rendimento) {
 		if (rendimento.getId() == null) {
 			rendimentoDao.salvar(rendimento);
 		} else {
@@ -86,50 +86,50 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	}
 
 	@Override
-	public Rendimento findRendimentoById(Long id) {
+	public Rendimento findRendimentoById(final Long id) {
 		return rendimentoDao.findById(Rendimento.class, id);
 	}
 
 	@Override
-	public List<Rendimento> pesquisarRendimentos(String nomePessoa) {
+	public List<Rendimento> pesquisarRendimentos(final String nomePessoa) {
 		return rendimentoDao.pesquisarRendimentosPorPessoa(nomePessoa);
 	}
 
 	@Override
 	@Transactional
-	public void excluirCategoria(Long id) {
-		Categoria categoria = categoriaDao.findById(Categoria.class, id);
+	public void excluirCategoria(final Long id) {
+		final Categoria categoria = categoriaDao.findById(Categoria.class, id);
 		categoria.setAtivo(false);
 		categoriaDao.atualizar(categoria);
 	}
 
 	@Override
 	@Transactional
-	public void ativarCategoria(Long id) {
-		Categoria categoria = categoriaDao.findById(Categoria.class, id);
+	public void ativarCategoria(final Long id) {
+		final Categoria categoria = categoriaDao.findById(Categoria.class, id);
 		categoria.setAtivo(true);
 		categoriaDao.atualizar(categoria);
 	}
 
 	@Override
 	@Transactional
-	public void excluirRendimento(Long id) {
-		Rendimento rendimento = rendimentoDao.findById(Rendimento.class, id);
+	public void excluirRendimento(final Long id) {
+		final Rendimento rendimento = rendimentoDao.findById(Rendimento.class, id);
 		rendimentoDao.excluir(rendimento);
 	}
 
 	@Override
 	@Transactional
-	public void excluirMetodoPagamento(Long id) {
-		MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
+	public void excluirMetodoPagamento(final Long id) {
+		final MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
 		metodoPagamento.setAtivo(false);
 		metodoPagamentoDao.atualizar(metodoPagamento);
 	}
 
 	@Override
 	@Transactional
-	public void ativarMetodoPagamento(Long id) {
-		MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
+	public void ativarMetodoPagamento(final Long id) {
+		final MetodoPagamento metodoPagamento = metodoPagamentoDao.findById(MetodoPagamento.class, id);
 		metodoPagamento.setAtivo(true);
 		metodoPagamentoDao.atualizar(metodoPagamento);
 	}

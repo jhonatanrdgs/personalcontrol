@@ -6,11 +6,11 @@ public class RelatorioGastosPorMetodoPagamentoDTO extends BaseDTO implements Ser
 	
 	private static final long serialVersionUID = 8014931709165636561L;
 	
-	private Long idMetodoPagamento;
-	private String metodoPagamento;
+	private final Long idMetodoPagamento;
+	private final String metodoPagamento;
 	private Double valor;
 	
-	public RelatorioGastosPorMetodoPagamentoDTO(Long idMetodoPagamento, String metodoPagamento, Double valor) {
+	public RelatorioGastosPorMetodoPagamentoDTO(final Long idMetodoPagamento, final String metodoPagamento, final Double valor) {
 		this.idMetodoPagamento = idMetodoPagamento;
 		this.metodoPagamento = metodoPagamento;
 		this.valor = valor;
@@ -28,7 +28,7 @@ public class RelatorioGastosPorMetodoPagamentoDTO extends BaseDTO implements Ser
 		return idMetodoPagamento;
 	}
 
-	public void adicionarValor(double valor) {
+	public void adicionarValor(final double valor) {
 		this.valor += valor;
 		
 	}

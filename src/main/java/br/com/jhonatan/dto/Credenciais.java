@@ -7,7 +7,7 @@ public class Credenciais {
     
     public Credenciais() {}
 
-    public Credenciais(String user, String pw) {
+    public Credenciais(final String user, final String pw) {
         this.user = user;
         this.pw = pw;
     }
@@ -20,11 +20,11 @@ public class Credenciais {
         return pw;
     }
 
-	public void setUser(String user) {
+	public void setUser(final String user) {
 		this.user = user;
 	}
 
-	public void setPw(String pw) {
+	public void setPw(final String pw) {
 		this.pw = pw;
 	}
     

@@ -5,18 +5,18 @@ import java.util.List;
 import br.com.jhonatan.entidades.Despesa;
 import br.com.jhonatan.entidades.ParcelaDespesa;
 
-interface DespesaService {
+public interface DespesaService {
 	
 	/**
 	 * Salva uma despesa no banco de dados
 	 * As despesas não fixas sempre tem relacionamento com ParcelaDespesa
-	 * @param despesa
+	 * @param despesa despesa a ser salva
 	 */
 	void salvarOuAtualizar(Despesa despesa);
 
 	/**
 	 * Pesquisa no banco de dados as despesas de acordo com os parametros passados
-	 * @param despesa
+	 * @param despesa dados para a busca da despesa
 	 * @return lista de despesas recuperadas
 	 */
 	List<Despesa> pesquisarDespesas(Despesa despesa);
@@ -30,8 +30,8 @@ interface DespesaService {
 
 	/**
 	 * Busca uma despesa no banco de dados pelo seu id, porém já faz o join com categoria, método pagamento, usuário e parcelas
-	 * @param id
-	 * @return
+	 * @param id id da despesa a ser procurada
+	 * @return despesa com fetch
 	 */
 	Despesa findByIdFetched(Long id);
 	
