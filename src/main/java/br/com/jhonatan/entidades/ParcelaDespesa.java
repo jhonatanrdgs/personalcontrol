@@ -26,7 +26,7 @@ import org.hibernate.annotations.Where;
 	
 	@NamedQuery(name=ParcelaDespesa.CONSULTAR_PARCELAS_POR_ID_DESPESA,
 			query="select pd from ParcelaDespesa pd"
-					+ " where pd.despesa.id = ?1 order by pd.dataParcela"),
+					+ " where pd.despesa.id = ?1 order by pd.dataParcela")
 	
 })
 
