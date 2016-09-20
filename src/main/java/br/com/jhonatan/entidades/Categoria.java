@@ -42,7 +42,7 @@ public class Categoria extends AbstractBaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(generator="categoria_sequence", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="categoria_sequence", sequenceName="categoria_id_categoria_seq", schema="personal_control")
+	@SequenceGenerator(name="categoria_sequence", sequenceName="categoria_id_categoria_seq")
 	@Column(name = "id_categoria", unique = true, nullable = false)
 	private Long id;
 	

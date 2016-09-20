@@ -31,7 +31,7 @@ import org.hibernate.annotations.Where;
 })
 
 @Entity
-@Table(name="parcela_despesa", schema="personal_control")
+@Table(name="parcela_despesa")
 @SQLDelete(sql="UPDATE personal_control.parcela_despesa SET paga = 'true' WHERE id_parcela_despesa = ?")
 @Where(clause="paga = 'false'")
 public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
@@ -42,7 +42,7 @@ public class ParcelaDespesa extends AbstractBaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(generator="parcela_despesa_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="parcela_despesa_seq", sequenceName="parcela_despesa_id_parcela_despesa_seq", schema="personal_control")
+	@SequenceGenerator(name="parcela_despesa_seq", sequenceName="parcela_despesa_id_parcela_despesa_seq")
 	@Column(name = "id_parcela_despesa", unique = true, nullable = false)
 	private Long id;
 	

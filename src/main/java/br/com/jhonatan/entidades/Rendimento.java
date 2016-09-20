@@ -42,7 +42,7 @@ public class Rendimento extends AbstractBaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(generator="rendimento_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="rendimento_seq", sequenceName="rendimento_id_rendimento_seq", schema="personal_control")
+	@SequenceGenerator(name="rendimento_seq", sequenceName="rendimento_id_rendimento_seq")
 	@Column(name = "id_rendimento", unique = true, nullable = false)
 	private Long id;
 	

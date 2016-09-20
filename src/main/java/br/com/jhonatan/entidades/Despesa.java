@@ -158,7 +158,7 @@ public class Despesa extends AbstractBaseEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(generator="despesa_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="despesa_seq", sequenceName="despesa_id_despesa_seq", schema="personal_control")
+	@SequenceGenerator(name="despesa_seq", sequenceName="despesa_id_despesa_seq")
 	@Column(name = "id_despesa", unique = true, nullable = false)
 	private Long id;
 

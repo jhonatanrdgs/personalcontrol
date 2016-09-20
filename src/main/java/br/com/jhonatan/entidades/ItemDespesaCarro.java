@@ -29,7 +29,7 @@ public class ItemDespesaCarro extends AbstractBaseEntity implements Serializable
 
 	@Id
 	@GeneratedValue(generator="item_despesa_carro_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="item_despesa_carro_seq", sequenceName="item_despesa_carro_id_item_despesa_carro_seq", schema="personal_control")
+	@SequenceGenerator(name="item_despesa_carro_seq", sequenceName="item_despesa_carro_id_item_despesa_carro_seq")
 	@Column(name = "id_item_despesa_carro", unique = true, nullable = false)
 	private Long id;
 	

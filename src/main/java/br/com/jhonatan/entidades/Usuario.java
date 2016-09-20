@@ -38,7 +38,7 @@ public class Usuario extends AbstractBaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(generator="usuario_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="usuario_seq", sequenceName="usuario_id_usuario_seq", schema="personal_control")
+	@SequenceGenerator(name="usuario_seq", sequenceName="usuario_id_usuario_seq")
 	@Column(name = "id_usuario", unique = true, nullable = false)
 	private Long id;
 	

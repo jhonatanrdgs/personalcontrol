@@ -46,7 +46,7 @@ public class MetodoPagamento extends AbstractBaseEntity implements Serializable 
 
 	@Id
 	@GeneratedValue(generator="metodo_pagamento_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="metodo_pagamento_seq", sequenceName="metodo_pagamento_id_metodo_pagamento_seq", schema="personal_control")
+	@SequenceGenerator(name="metodo_pagamento_seq", sequenceName="metodo_pagamento_id_metodo_pagamento_seq")
 	@Column(name = "id_metodo_pagamento", unique = true, nullable = false)
 	private Long id;
 	
