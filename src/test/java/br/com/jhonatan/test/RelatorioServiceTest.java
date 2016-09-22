@@ -1,34 +1,26 @@
 package br.com.jhonatan.test;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
-import br.com.jhonatan.dao.DespesaDAO;
-import br.com.jhonatan.dto.RelatorioComprasParceladasDTO;
 import br.com.jhonatan.service.RelatorioService;
-import br.com.jhonatan.service.RelatorioServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(MockitoJUnitRunner.class)
+@ContextConfiguration(locations = "classpath:test-context.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
 public class RelatorioServiceTest {
 
-	@Mock
-	private DespesaDAO despesaDAO;
-	
-	@InjectMocks
-	private final RelatorioService relatorioService = new RelatorioServiceImp();
+
+	@Autowired
+	private  RelatorioService relatorioService;
 
 	@Test
 	public void abrirPagina() throws Exception {
-		when(despesaDAO.pesquisarDespesasParceladasMes(anyInt(), anyInt())).thenReturn(new ArrayList<RelatorioComprasParceladasDTO>());
-		assertTrue(relatorioService.pesquisarDadosRelatorioComprasParceladas(1, 1).isEmpty());
+		assertEquals(200, relatorioService.pesquisarResumo(1, 1).getTotalGastos(), 0.001);
 	}
 
 }
