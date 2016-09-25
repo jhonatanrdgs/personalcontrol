@@ -1,7 +1,9 @@
 package br.com.jhonatan.service;
 
+import java.util.Date;
 import java.util.List;
 
+import br.com.jhonatan.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,6 +80,9 @@ public class CadastrosGeraisServiceImp implements CadastrosGeraisService {
 	@Override
 	@Transactional
 	public void salvarOuAtualizarRendimento(final Rendimento rendimento) {
+		if (rendimento.getDataFim() == null) {//TODO
+			rendimento.setDataFim(DateUtil.adicionarMeses(new Date(), 36));
+		}
 		if (rendimento.getId() == null) {
 			rendimentoDao.salvar(rendimento);
 		} else {

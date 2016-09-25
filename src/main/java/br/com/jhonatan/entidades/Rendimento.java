@@ -23,7 +23,7 @@ import br.com.jhonatan.util.Constantes;
 	
 	@NamedQuery(name=Rendimento.CONSULTAR_RENDIMENTOS, 
 			query="select sum(r.valor) from Rendimento r"
-					+ " where ?1 between dataInicio and Coalesce(dataFim, current_date + 365)"),
+					+ " where ?1 between dataInicio and dataFim"),
 			
 	@NamedQuery(name=Rendimento.CONSULTAR_RENDIMENTOS_POR_PESSOA,
 			query="select r from Rendimento r where upper(r.nomePessoa) like concat('%', upper(?1), '%') or ?1 is null")
