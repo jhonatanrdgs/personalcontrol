@@ -40,7 +40,7 @@
         <jdk.version>1.7</jdk.version>
         <spring.version>5.2.1.RELEASE</spring.version>
         <jstl.version>1.2</jstl.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <apache.tiles.version>3.0.5</apache.tiles.version>
     </properties>
 
